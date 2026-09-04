@@ -1,6 +1,5 @@
-# Copy this file to the target DSH profile only when machine-local overrides
-# are needed. A patch replaces the complete config of a matched row, so every
-# required field is restated here.
+# 只有需要机器本地覆盖时才把本文件复制到目标 DSH profile。
+# patch 会替换匹配行的完整 config，因此这里重新声明所有必需字段。
 
 - id: sandbox-policy
   config:

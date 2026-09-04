@@ -1,64 +1,63 @@
 # PrincipiaBlastFoam-DSH
 
-Independent DeepSeek Harness application for natural-language-driven blastFoam/OpenFOAM analysis, case setup, execution, post-processing, and quality review.
+PrincipiaBlastFoam-DSH 是一个独立的 DeepSeek Harness 应用，通过自然语言完成 blastFoam/OpenFOAM 物理分析、算例配置、求解执行、后处理和质量审查。
 
-This repository owns the application. The upstream DeepSeek Harness checkout is only a replaceable host runtime:
+业务源码由本仓库管理；上游 DeepSeek Harness 检出目录只是可替换的宿主运行时：
 
 ```text
 DeepSeek Harness profile
   -> principia-blastfoam-dsh-bundle
-     -> workflow policy and role-specific subagent tools
+     -> 工作流策略与角色专属 subagent 工具
      -> @deepseek-ai/dsh-mcp-client
-        -> Python Principia retrieval/domain services
-  -> project .dsh/skills
+        -> Python Principia 检索与领域服务
+  -> 项目级 .dsh/skills
 ```
 
-## Current implementation
+## 当前实现
 
-- Seven project skills cover orchestration, retrieval, and the five ordered workflow phases.
-- The installable bundle mounts a stable workflow/artifact policy and five role-specialized tools over DSH's official in-process `spawn` provider.
-- The bundle connects the independent Python retrieval/domain server through stdio MCP. Its 17 tools appear as `mcp__principia_retrieval__<tool>`.
-- Exact upstream compatibility and upgrade gates live under `compatibility/`.
+- 7 个项目级 Skill，覆盖总编排、知识检索和 5 个有序工作阶段。
+- 1 个可安装的 bundle，挂载稳定的工作流/产物策略，并通过 DSH 官方进程内 `spawn` provider 提供 5 个专职 subagent。
+- 1 个基于 stdio 的 Python MCP 服务，向 DSH 暴露 17 个工具，工具名格式为 `mcp__principia_retrieval__<tool>`。
+- `compatibility/` 保存精确的上游兼容版本、验收门槛和验证证据。
 
-The orchestration sequence is:
+工作流顺序如下：
 
 ```text
-physics analysis -> case setup -> execution -> post-processing -> review
+物理分析 -> 算例配置 -> 求解执行 -> 后处理 -> 独立审查
 ```
 
-Dependent phases are not parallel. A phase may parallelize independent evidence collection.
+存在依赖关系的阶段不得并行；同一阶段内相互独立的证据检索可以并行。
 
-## Quick start
+## 快速开始
 
-The verified installation in this workspace is deliberately split into three
-locations:
+推荐把宿主、运行状态和业务源码分开存放：
 
 ```text
-<workspace>/deepseek-harness                     replaceable upstream DSH host
-<workspace>/dsh-home                              machine-local DSH profiles
+<workspace>/deepseek-harness                        可替换的上游 DSH 宿主
+<workspace>/dsh-home                               机器本地 DSH profile
 <workspace>/graduation-projects/PrincipiaBlastFoam-DSH
-                                                  version-controlled application
+                                                   受 Git 管理的业务应用
 ```
 
-Use the workspace wrapper to start DSH with the project paths and Python
-environment already connected:
+在已经安装本项目包装命令的机器上启动 Web 模式：
 
 ```bash
 cd "$PRINCIPIA_PROJECT_ROOT"
 principia-dsh --profile web
 ```
 
-For a headless task, append the task text after `--profile headless`. The
-workspace wrapper reads its locally provisioned API-key file into the child
-process only; it does not copy the credential into this repository or the DSH
-profile. The installed Principia wrapper enables real solver execution by
-default. Set `ENABLE_EXECUTION=false REQUIRE_EXECUTION=false` before the command
-for retrieval, setup, or CI sessions that must not start OpenFOAM.
+无界面任务可在 `--profile headless` 后追加任务文本。包装命令只把机器本地 API Key 注入子进程，不会把凭据复制到本仓库或 DSH profile。
 
-The commands below reproduce the project environments if this workspace is
-moved to another machine.
+本项目默认执行真实 solver。只做检索、配置或 CI 检查时，必须显式关闭：
 
-Prepare Python:
+```bash
+ENABLE_EXECUTION=false REQUIRE_EXECUTION=false \
+  principia-dsh --profile headless "检查算例配置，不运行求解器"
+```
+
+## 重建开发环境
+
+创建 Python 环境：
 
 ```bash
 python3 -m venv .venv
@@ -67,31 +66,28 @@ python -m pip install -e '.[dev]'
 pytest
 ```
 
-For solver execution, set `OPENFOAM_BASHRC` and `BLASTFOAM_BASHRC` in the host
-environment to that machine's actual setup scripts. They intentionally have no
-portable repository path default. If the MCP process
-already inherits a fully sourced OpenFOAM environment, they may remain empty;
-preflight reports that it is relying on the inherited `PATH`. A configured
-path that is not a readable file blocks execution. `ENABLE_EXECUTION` and
-`REQUIRE_EXECUTION` are `true` in the tracked template; an explicit false value
-is the configuration-only override.
+执行真实求解时，应在宿主环境设置 `OPENFOAM_BASHRC` 和 `BLASTFOAM_BASHRC`，指向该机器上的实际环境脚本。仓库不提供机器特定的绝对路径默认值。如果 MCP 进程已经继承完整的 OpenFOAM 环境，可以留空；预检会明确记录其正在依赖继承的 `PATH`。显式配置但文件不存在或不可读时，执行会被阻断。
 
-Prepare the bundle:
+跟踪模板中的 `ENABLE_EXECUTION` 和 `REQUIRE_EXECUTION` 默认为 `true`；显式设为 `false` 是配置检查和紧急停用方式。DSH 以 root 启动时，还应设置非特权的 `OPENFOAM_EXECUTION_USER`。
+
+安装并检查 bundle：
 
 ```bash
 npm --prefix packages/principia-dsh-bundle install
 npm --prefix packages/principia-dsh-bundle run check
 ```
 
-Export `PRINCIPIA_PROJECT_ROOT` and `PRINCIPIA_PYTHON`, install the bundle into a DSH profile, and verify the composed tree before boot. See [deployment/dsh/README.md](deployment/dsh/README.md) for commands and [compatibility/acceptance-matrix.md](compatibility/acceptance-matrix.md) for upgrade gates.
+导出 `PRINCIPIA_PROJECT_ROOT` 和 `PRINCIPIA_PYTHON` 后，把 bundle 安装到 DSH profile，并在启动前检查合成配置树。具体命令见 [DSH 部署说明](deployment/dsh/README.md)，升级门槛见 [兼容性验收矩阵](compatibility/acceptance-matrix.md)。
 
-The compatibility adapter for the existing chapter 3 evaluator is documented
-in [experiments/end2end/README.md](experiments/end2end/README.md). Its dry-run
-mode validates case selection and result shape without starting DSH or a solver;
-normal benchmark runs execute the solver by default.
+## 评测
 
-## Repository boundaries
+- [第 3 章端到端适配器](experiments/end2end/README.md)：兼容已有黑盒评分器。
+- [批量评测指南](experiments/BATCH_EVALUATION.md)：介绍分层评测、用例筛选、分片并行、A/B 对照、结果归档和恢复策略。
 
-Do not put this code in the upstream DeepSeek Harness checkout and do not store the live DSH profile in Git. Commit bundle source, built release inputs, skills, MCP/domain code, tests, and configuration templates here. Keep credentials and machine-local paths in the external DSH environment/profile.
+适配器的 `--dry-run` 只验证用例选择、命令和结果结构，不启动 DSH 或 solver；正常 benchmark 默认执行真实求解。
 
-DeepSeek Harness is currently pre-stable. Treat the commit in `compatibility/dsh-version.json` as a tested baseline, not as an unrestricted compatibility promise.
+## 仓库边界
+
+不得把业务代码写入上游 DeepSeek Harness 检出目录，也不得把实时 DSH profile 提交到 Git。本仓库只提交 bundle 源码与构建输入、Skills、MCP/领域代码、测试和配置模板。凭据、机器路径、生成算例、运行日志与实验结果保存在外部运行环境或毕业实验归档目录。
+
+DeepSeek Harness 当前仍处于预稳定阶段。`compatibility/dsh-version.json` 中的 commit 只代表已经验证的基线，不代表对任意新版本的兼容承诺。

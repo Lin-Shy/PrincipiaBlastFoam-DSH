@@ -1,20 +1,20 @@
 ---
 name: blastfoam-case-setup
-description: Construct or modify a workspace-local blastFoam case from an approved physics handoff and retrieved tutorial evidence.
+description: 根据已批准的物理分析交接结果和检索到的教程证据，在工作区内构建或修改 blastFoam 算例。
 ---
 
-# blastFoam case setup
+# blastFoam 算例配置
 
-Use this skill only after the physics analysis identifies a suitable tutorial and explicit changes.
+只有物理分析已经确定合适教程和明确修改项后，才能使用本 Skill。
 
-## Procedure
+## 操作步骤
 
-1. Confirm the source tutorial using `mcp__principia_retrieval__get_files_for_case`.
-2. Use `mcp__principia_retrieval__get_modification_targets` and `mcp__principia_retrieval__find_variable` to identify exact dictionaries and entries. Retrieve content before editing.
-3. Copy the tutorial into a new workspace-local case. Never edit the tutorial or OpenFOAM/blastFoam installation in place.
-4. Apply the smallest coherent changes and record old value, new value, units/dimensions, reason, and source for each change.
-5. Validate required dictionaries, dimensions, paths, boundary/field consistency, mesh configuration, time controls, write controls, and runnable scripts.
+1. 使用 `mcp__principia_retrieval__get_files_for_case` 确认源教程。
+2. 使用 `mcp__principia_retrieval__get_modification_targets` 和 `mcp__principia_retrieval__find_variable` 定位准确的字典与条目；编辑前必须检索原始内容。
+3. 把教程复制到工作区内的新算例，禁止原地编辑教程或 OpenFOAM/blastFoam 安装目录。
+4. 只实施能够保持整体一致性的最小修改，并为每项修改记录旧值、新值、单位/量纲、原因和来源。
+5. 检查必需字典、量纲、路径、边界/场一致性、网格设置、时间控制、写出控制和可执行脚本。
 
-## Handoff
+## 阶段交接
 
-Return the case path, source tutorial, changed-file manifest, checks performed, warnings, and exact command recommended for execution. Do not run the production solver during setup.
+返回算例路径、源教程、变更文件清单、已执行检查、警告和推荐的准确执行命令。配置阶段不得运行生产 solver。

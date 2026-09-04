@@ -1,20 +1,20 @@
 ---
 name: blastfoam-execution
-description: Run an approved blastFoam/OpenFOAM case with reproducible preflight checks, logs, status classification, and evidence preservation.
+description: 对已批准的 blastFoam/OpenFOAM 算例执行可复现预检和求解，保存日志并分类运行状态。
 ---
 
-# blastFoam execution
+# blastFoam 求解执行
 
-Use this skill after case setup validation.
+只有算例配置验证通过后，才能使用本 Skill。
 
-## Procedure
+## 操作步骤
 
-1. Record the case path, solver, OpenFOAM/blastFoam environment, command line, and input manifest.
-2. Run non-destructive preflight checks: expected files, dictionary parsing when available, executable discovery, disk space, and stale-process/output detection.
-3. Execute only the approved case. Preserve stdout/stderr and timing. Do not change physics or dictionaries while the run is in progress.
-4. Classify the result using exit status and log evidence. Search for fatal errors, floating-point exceptions, divergence, non-finite values, missing libraries, premature termination, and normal end markers.
-5. Check that expected time directories and fields exist before declaring success.
+1. 记录算例路径、solver、OpenFOAM/blastFoam 环境、命令行和输入清单。
+2. 执行非破坏性预检：检查预期文件、可用时解析字典、发现可执行文件、检查磁盘空间，以及检测残留进程或旧输出。
+3. 只执行已批准的算例，完整保存 stdout、stderr 和计时信息；运行期间不得修改物理设置或字典。
+4. 综合退出状态与日志证据分类结果，检查致命错误、浮点异常、发散、非有限值、缺失库、提前终止和正常结束标记。
+5. 宣称成功前，确认预期时间目录和场文件确实存在。
 
-## Outputs
+## 输出
 
-Produce `execution_report.md` and `execution_status.json`. The JSON must include a status, command, exit code, start/end timestamps, log paths, last completed time, detected failure markers, and output evidence. Use `blocked` when the environment is unavailable and `failed` when execution was attempted but invalid.
+生成 `execution_report.md` 和 `execution_status.json`。JSON 必须包含状态、命令、退出码、开始/结束时间、日志路径、最后完成时间、检测到的失败标志和输出证据。环境不可用时使用 `blocked`；已经尝试执行但结果无效时使用 `failed`。

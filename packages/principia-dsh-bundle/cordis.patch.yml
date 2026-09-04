@@ -1,7 +1,6 @@
-# Install this bundle after @deepseek-ai/dsh-base and the selected app bundle.
-# Official base supplies the `spawn` provider. These role tools specialize it
-# with independent personas and capability filters; they do not implement a
-# competing subagent provider.
+# 在 @deepseek-ai/dsh-base 和选定 app bundle 之后安装本 bundle。
+# 官方 base 提供 `spawn` provider；下列角色工具只用独立 persona 和能力
+# 过滤器对其进行专门化，不实现相互竞争的 subagent provider。
 - insert:
     - id: principia-blastfoam-policy
       name: principia-blastfoam-dsh-bundle

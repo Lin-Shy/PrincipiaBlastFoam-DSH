@@ -1,12 +1,12 @@
 # principia-blastfoam-dsh-bundle
 
-Installable DeepSeek Harness configuration bundle for PrincipiaBlastFoam. It contributes one policy plugin, the Python retrieval MCP connection, and five role-specific tools over the official in-process `spawn` subagent provider.
+这是 PrincipiaBlastFoam 的可安装 DeepSeek Harness 配置 bundle。它提供一个策略插件、Python 检索 MCP 连接，以及基于官方进程内 `spawn` subagent provider 的 5 个角色工具。
 
-The bundle assumes it is layered after `@deepseek-ai/dsh-base`; it deliberately does not register another `spawn` provider because provider names are process-global and the official base already owns that registration. The DSH application runtime supplies `@deepseek-ai/dsh-tool-subagent` and `@deepseek-ai/dsh-mcp-client`; this bundle does not install private copies that could split Cordis service identity. Compatibility pins their host-supplied versions in the repository's `compatibility/dsh-version.json`.
+本 bundle 应叠加在 `@deepseek-ai/dsh-base` 之后。官方 base 已经拥有进程级 `spawn` provider，因此本包不会注册第二个同名 provider。DSH 应用运行时提供 `@deepseek-ai/dsh-tool-subagent` 和 `@deepseek-ai/dsh-mcp-client`；本包不安装私有副本，以免不同 Cordis 副本造成服务身份分裂。宿主提供的兼容版本固定在仓库的 `compatibility/dsh-version.json`。
 
-DSH's current subagent `toolFilter` controls tool names, not filesystem paths. Role filters therefore use allowlists: the reviewer receives only `read`, `glob`, `grep`, and `skill`, and returns structured review content. The parent or a deterministic writer materializes the three review artifacts; prompt text is not treated as a path-level security control. Physics and setup deliberately fail closed if their allowlisted MCP tools were not discovered.
+当前 DSH subagent 的 `toolFilter` 控制工具名称，而不是文件系统路径。因此各角色采用允许列表：审查员只能使用 `read`、`glob`、`grep` 和 `skill`，并以结构化内容返回审查结果。父智能体或确定性写入器负责生成 3 个审查阶段产物；提示词文字不被视为路径级安全控制。如果允许列表中的 MCP 工具未被发现，物理分析和算例配置角色必须失败关闭。
 
-Build and test:
+构建和测试：
 
 ```bash
 npm install
@@ -14,4 +14,6 @@ npm run check
 npm pack
 ```
 
-The checked-in `lib/` output makes local-path and tarball installation loadable without authorizing an install-time build script. Before booting DSH, set `PRINCIPIA_PROJECT_ROOT` and optionally `PRINCIPIA_PYTHON`, `BLASTFOAM_TUTORIALS`, and `PRINCIPIA_KNOWLEDGE_GRAPH` in the DSH environment. Solver execution and strict execution artifacts default on through `ENABLE_EXECUTION=true` and `REQUIRE_EXECUTION=true`; set both false explicitly for a non-executing session.
+已提交的 `lib/` 输出保证本地路径安装和 tarball 安装无需开放安装期构建脚本。启动 DSH 前必须设置 `PRINCIPIA_PROJECT_ROOT`；还可以设置 `PRINCIPIA_PYTHON`、`BLASTFOAM_TUTORIALS` 和 `PRINCIPIA_KNOWLEDGE_GRAPH`。
+
+`ENABLE_EXECUTION=true` 和 `REQUIRE_EXECUTION=true` 使 solver 与严格执行产物默认开启。非执行会话必须显式把两者设为 `false`。

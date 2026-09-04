@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-"""DeepSeek Harness adapter for the Chapter 3 end-to-end benchmark.
+"""第 3 章端到端 benchmark 的 DeepSeek Harness 适配器。
 
-The Chapter 3 evaluation scripts call this historical filename and consume a
-``run_*/benchmark_report.json`` result.  This module keeps that boundary stable
-while replacing the legacy application CLI with the DSH headless CLI.
+既有第 3 章评测脚本调用这个历史文件名，并读取
+``run_*/benchmark_report.json``。本模块保持该边界稳定，同时把旧应用 CLI
+替换为 DSH headless CLI。
 
-Dry-run mode is deliberately side-effect-light: it creates only the benchmark
-report directory, builds the exact DSH commands, and never starts DSH or an
-OpenFOAM process.
+``--dry-run`` 有意保持低副作用：只创建 benchmark 报告目录并构造准确的
+DSH 命令，不启动 DSH 或 OpenFOAM 进程。
 """
 
 from __future__ import annotations
@@ -464,13 +463,13 @@ def build_parser() -> argparse.ArgumentParser:
         "--enable-execution",
         dest="execution_enabled",
         action="store_true",
-        help="Enable solver execution (default; retained for command compatibility).",
+        help="启用 solver 执行（默认行为；保留该参数以兼容既有命令）。",
     )
     execution_group.add_argument(
         "--disable-execution",
         dest="execution_enabled",
         action="store_false",
-        help="Disable all solver and OpenFOAM utility execution for this benchmark run.",
+        help="本次 benchmark 禁止所有 solver 和 OpenFOAM 工具执行。",
     )
     parser.set_defaults(execution_enabled=True)
     parser.add_argument("--dsh-bin", type=Path, default=DEFAULT_DSH_BIN)

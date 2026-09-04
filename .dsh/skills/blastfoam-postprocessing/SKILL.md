@@ -1,20 +1,20 @@
 ---
 name: blastfoam-postprocessing
-description: Validate blastFoam result fields and compute reproducible observables without altering the approved case configuration.
+description: 在不改变已批准算例配置的前提下，验证 blastFoam 结果场并计算可复现的观测量。
 ---
 
-# blastFoam post-processing
+# blastFoam 后处理
 
-Use this skill after execution evidence is available, including for diagnosing incomplete or failed runs.
+获得执行证据后使用本 Skill；未完成或失败的运行也可以用它进行诊断。
 
-## Procedure
+## 操作步骤
 
-1. Read `execution_status.json`, the solver log, and available time directories; do not assume the latest directory is valid.
-2. Verify required fields, dimensions, sample locations, finite values, and temporal coverage for every requested observable.
-3. Run reproducible OpenFOAM utilities or analysis commands. Record commands, inputs, selections, units, and output paths.
-4. Separate physical zero from missing, invalid, truncated, or unevaluated data.
-5. Compare results with the physics acceptance criteria and flag discrepancies without rewriting the setup.
+1. 读取 `execution_status.json`、solver 日志和可用时间目录，不能假设最新目录一定有效。
+2. 针对每个目标观测量检查必需场、量纲、采样位置、有限值和时间覆盖范围。
+3. 运行可复现的 OpenFOAM 工具或分析命令，并记录命令、输入、选择条件、单位和输出路径。
+4. 区分物理零值与缺失、无效、截断或尚未计算的数据。
+5. 把结果与物理验收标准对照；发现偏差时如实标记，不得反向改写算例配置。
 
-## Output
+## 输出
 
-Produce `post_processing_report.md` with provenance, validity checks, derived metrics, figures/tables when requested, limitations, and a clear `passed`, `failed`, `blocked`, or `partial` conclusion.
+生成 `post_processing_report.md`，包含来源、有效性检查、派生指标、按需生成的图表、局限性，以及明确的 `passed`、`failed`、`blocked` 或 `partial` 结论。

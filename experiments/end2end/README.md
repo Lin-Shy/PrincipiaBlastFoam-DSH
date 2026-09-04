@@ -1,26 +1,20 @@
-# Chapter 3 DSH benchmark adapter
+# 第 3 章 DSH benchmark 适配器
 
-`run_agent_benchmark.py` is the compatibility boundary between the existing
-Chapter 3 evaluation harness and this DeepSeek Harness application. The outer
-evaluation scripts do not need a DSH-specific result parser: point their
-`--project-root` at this repository and their `--python` at this project's
-virtual environment.
+`run_agent_benchmark.py` 是既有第 3 章评测框架与本 DeepSeek Harness 应用之间的兼容边界。外层评分脚本不需要实现 DSH 专用解析器：把它的 `--project-root` 指向本仓库，把 `--python` 指向本项目虚拟环境即可。
 
-The adapter accepts the legacy runner flags used by both Chapter 3 launchers,
-starts one DSH headless task per case, and writes the established contract:
+适配器兼容两套第 3 章启动器使用的旧参数。每个用例启动一个 DSH headless 任务，并写出既有结果契约：
 
 ```text
-<output-root>/run_<UTC timestamp>/
+<output-root>/run_<UTC 时间戳>/
   benchmark_partial.json
   benchmark_report.json
   logs/<case-id>.log
   cases/<case-id>/...
 ```
 
-## Safe dry run
+## 安全 dry-run
 
-This verifies case selection, DSH command construction, and result shape. It
-does not invoke DSH, create a case, or start OpenFOAM:
+下面的命令验证用例选择、DSH 命令构造和结果结构，不调用 DSH、不创建算例，也不启动 OpenFOAM：
 
 ```bash
 .venv/bin/python experiments/end2end/run_agent_benchmark.py \
@@ -30,8 +24,9 @@ does not invoke DSH, create a case, or start OpenFOAM:
   --dry-run
 ```
 
-For integration through the existing Chapter 3 evaluator, add its workflow
-execution flag and select this repository:
+## 接入既有第 3 章评分器
+
+调用旧评测器时，启用其工作流执行开关并选择本仓库：
 
 ```bash
 <workspace>/conda-envs/principia-blastfoam/bin/python \
@@ -41,24 +36,20 @@ execution flag and select this repository:
   --python .venv/bin/python
 ```
 
-## Runtime and credentials
+需要更完整的批量运行、分片并行、A/B 对照和归档方法时，参见[批量评测指南](../BATCH_EVALUATION.md)。
 
-By default the adapter derives the sibling `deepseek-harness` checkout and
-`dsh-home` paths from this repository's workspace root; profile is `headless`. Override them with
-`--dsh-bin`, `--dsh-home`, and `--dsh-profile`. A separately provisioned bundle
-patch can be repeated with `--patch`.
+## 运行时与凭据
 
-Provide credentials in the process environment, or use `--api-key-file` (or
-`PRINCIPIA_DSH_API_KEY_FILE`). The file content is injected only into the DSH
-child process as `DEEPSEEK_API_KEY`; neither the key nor the prompt is stored in
-the benchmark report or printed in its command field.
+默认情况下，适配器根据本仓库的工作区根目录推导同级 `deepseek-harness` 检出目录和 `dsh-home`，profile 使用 `headless`。可通过 `--dsh-bin`、`--dsh-home` 和 `--dsh-profile` 覆盖；另行准备的 bundle patch 可以重复传入 `--patch`。
 
-Solver execution is enabled by default for a real DSH benchmark run. The
-adapter sets both `ENABLE_EXECUTION=true` and `REQUIRE_EXECUTION=true`, so the
-outer Chapter 3 runners work without a new flag. Verify the OpenFOAM environment,
-case output root, timeouts, and cleanup policy before starting a real campaign.
+凭据可以由进程环境提供，也可以使用 `--api-key-file` 或 `PRINCIPIA_DSH_API_KEY_FILE`。文件内容只会以 `DEEPSEEK_API_KEY` 注入 DSH 子进程，不会写入 benchmark 报告；报告中的命令也不会包含密钥或完整提示词。
 
-Use `--disable-execution` for configuration-only development or CI. The legacy
-`--enable-execution` spelling remains accepted for explicitness and command
-compatibility. `--dry-run` always constructs commands and result contracts only;
-it never starts DSH or OpenFOAM, regardless of the execution setting.
+真实 DSH benchmark 默认执行 solver，适配器会设置 `ENABLE_EXECUTION=true` 和 `REQUIRE_EXECUTION=true`，因此旧版第 3 章外层启动器不需要新增参数。批量启动前必须检查 OpenFOAM 环境、算例输出根目录、超时和清理策略。
+
+配置开发或 CI 可使用 `--disable-execution`。为保持兼容，`--enable-execution` 仍可显式传入。`--dry-run` 无论执行开关为何值都只构造命令和结果契约，绝不会启动 DSH 或 OpenFOAM。
+
+## 当前边界
+
+- 适配器内部按用例顺序执行，不在单进程中并发。
+- `benchmark_partial.json` 会在每个用例后更新，便于观察中间状态；跨进程断点续跑与结果合并应由外层批量调度器负责。
+- `--cleanup-final` 只记录清理意图；为保留评分证据，适配器本身不删除算例，实验活动结束后由归档流程统一处理。
