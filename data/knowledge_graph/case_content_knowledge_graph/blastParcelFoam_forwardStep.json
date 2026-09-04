@@ -1,0 +1,1539 @@
+{
+  "nodes": [
+    {
+      "id": "blastParcelFoam/forwardStep",
+      "label": "Case",
+      "properties": {
+        "name": "forwardStep",
+        "path": "blastParcelFoam/forwardStep"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/0/T",
+      "label": "File",
+      "properties": {
+        "name": "T",
+        "path": "blastParcelFoam/forwardStep/0/T"
+      }
+    },
+    {
+      "id": "Variable_T",
+      "label": "Variable",
+      "properties": {
+        "name": "T",
+        "type": "Field"
+      }
+    },
+    {
+      "id": "Variable_zeroGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "zeroGradient",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_symmetryPlane",
+      "label": "Variable",
+      "properties": {
+        "name": "symmetryPlane",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/0/U",
+      "label": "File",
+      "properties": {
+        "name": "U",
+        "path": "blastParcelFoam/forwardStep/0/U"
+      }
+    },
+    {
+      "id": "Variable_U",
+      "label": "Variable",
+      "properties": {
+        "name": "U",
+        "type": "Field"
+      }
+    },
+    {
+      "id": "Variable_fixedValue",
+      "label": "Variable",
+      "properties": {
+        "name": "fixedValue",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_slip",
+      "label": "Variable",
+      "properties": {
+        "name": "slip",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/0/alpha.gas",
+      "label": "File",
+      "properties": {
+        "name": "alpha.gas",
+        "path": "blastParcelFoam/forwardStep/0/alpha.gas"
+      }
+    },
+    {
+      "id": "Variable_alpha.gas",
+      "label": "Variable",
+      "properties": {
+        "name": "alpha.gas",
+        "type": "Field"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/0/alphat",
+      "label": "File",
+      "properties": {
+        "name": "alphat",
+        "path": "blastParcelFoam/forwardStep/0/alphat"
+      }
+    },
+    {
+      "id": "Variable_alphat",
+      "label": "Variable",
+      "properties": {
+        "name": "alphat",
+        "type": "Field"
+      }
+    },
+    {
+      "id": "Variable_calculated",
+      "label": "Variable",
+      "properties": {
+        "name": "calculated",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_compressible::alphatWallFunction",
+      "label": "Variable",
+      "properties": {
+        "name": "compressible::alphatWallFunction",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/0/epsilon",
+      "label": "File",
+      "properties": {
+        "name": "epsilon",
+        "path": "blastParcelFoam/forwardStep/0/epsilon"
+      }
+    },
+    {
+      "id": "Variable_epsilon",
+      "label": "Variable",
+      "properties": {
+        "name": "epsilon",
+        "type": "Field"
+      }
+    },
+    {
+      "id": "Variable_turbulentMixingLengthDissipationRateInlet",
+      "label": "Variable",
+      "properties": {
+        "name": "turbulentMixingLengthDissipationRateInlet",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_epsilonWallFunction",
+      "label": "Variable",
+      "properties": {
+        "name": "epsilonWallFunction",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/0/k",
+      "label": "File",
+      "properties": {
+        "name": "k",
+        "path": "blastParcelFoam/forwardStep/0/k"
+      }
+    },
+    {
+      "id": "Variable_k",
+      "label": "Variable",
+      "properties": {
+        "name": "k",
+        "type": "Field"
+      }
+    },
+    {
+      "id": "Variable_kqRWallFunction",
+      "label": "Variable",
+      "properties": {
+        "name": "kqRWallFunction",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/0/nut",
+      "label": "File",
+      "properties": {
+        "name": "nut",
+        "path": "blastParcelFoam/forwardStep/0/nut"
+      }
+    },
+    {
+      "id": "Variable_nut",
+      "label": "Variable",
+      "properties": {
+        "name": "nut",
+        "type": "Field"
+      }
+    },
+    {
+      "id": "Variable_nutkWallFunction",
+      "label": "Variable",
+      "properties": {
+        "name": "nutkWallFunction",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/0/p",
+      "label": "File",
+      "properties": {
+        "name": "p",
+        "path": "blastParcelFoam/forwardStep/0/p"
+      }
+    },
+    {
+      "id": "Variable_p",
+      "label": "Variable",
+      "properties": {
+        "name": "p",
+        "type": "Field"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/0/rho.gas",
+      "label": "File",
+      "properties": {
+        "name": "rho.gas",
+        "path": "blastParcelFoam/forwardStep/0/rho.gas"
+      }
+    },
+    {
+      "id": "Variable_rho.gas",
+      "label": "Variable",
+      "properties": {
+        "name": "rho.gas",
+        "type": "Field"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/constant/cloudProperties",
+      "label": "File",
+      "properties": {
+        "name": "cloudProperties",
+        "path": "blastParcelFoam/forwardStep/constant/cloudProperties"
+      }
+    },
+    {
+      "id": "Variable_thermoCloud",
+      "label": "Variable",
+      "properties": {
+        "name": "thermoCloud",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_sphereDrag",
+      "label": "Variable",
+      "properties": {
+        "name": "sphereDrag",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_gravity",
+      "label": "Variable",
+      "properties": {
+        "name": "gravity",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_patchInjection",
+      "label": "Variable",
+      "properties": {
+        "name": "patchInjection",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_standardWallInteraction",
+      "label": "Variable",
+      "properties": {
+        "name": "standardWallInteraction",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_singlePhaseMixture",
+      "label": "Variable",
+      "properties": {
+        "name": "singlePhaseMixture",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_pairSpringSliderDashpot",
+      "label": "Variable",
+      "properties": {
+        "name": "pairSpringSliderDashpot",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_wallLocalSpringSliderDashpot",
+      "label": "Variable",
+      "properties": {
+        "name": "wallLocalSpringSliderDashpot",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/constant/dynamicMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "dynamicMeshDict",
+        "path": "blastParcelFoam/forwardStep/constant/dynamicMeshDict"
+      }
+    },
+    {
+      "id": "Variable_dynamicFvMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "dynamicFvMesh",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_adaptiveFvMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "adaptiveFvMesh",
+        "type": "Value"
+      }
+    },
+    {
+      "id": "Variable_errorEstimator",
+      "label": "Variable",
+      "properties": {
+        "name": "errorEstimator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_densityGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "densityGradient",
+        "type": "Value"
+      }
+    },
+    {
+      "id": "Variable_refineInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "refineInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_lowerRefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "lowerRefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_unrefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "unrefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxRefinement",
+      "label": "Variable",
+      "properties": {
+        "name": "maxRefinement",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/constant/phaseProperties",
+      "label": "File",
+      "properties": {
+        "name": "phaseProperties",
+        "path": "blastParcelFoam/forwardStep/constant/phaseProperties"
+      }
+    },
+    {
+      "id": "Variable_thermoType",
+      "label": "Variable",
+      "properties": {
+        "name": "thermoType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_eConst",
+      "label": "Variable",
+      "properties": {
+        "name": "eConst",
+        "type": "Value"
+      }
+    },
+    {
+      "id": "Variable_equationOfState",
+      "label": "Variable",
+      "properties": {
+        "name": "equationOfState",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_idealGas",
+      "label": "Variable",
+      "properties": {
+        "name": "idealGas",
+        "type": "Value"
+      }
+    },
+    {
+      "id": "Variable_gamma",
+      "label": "Variable",
+      "properties": {
+        "name": "gamma",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_transport",
+      "label": "Variable",
+      "properties": {
+        "name": "transport",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_const",
+      "label": "Variable",
+      "properties": {
+        "name": "const",
+        "type": "Value"
+      }
+    },
+    {
+      "id": "Variable_Cv",
+      "label": "Variable",
+      "properties": {
+        "name": "Cv",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/constant/turbulenceProperties",
+      "label": "File",
+      "properties": {
+        "name": "turbulenceProperties",
+        "path": "blastParcelFoam/forwardStep/constant/turbulenceProperties"
+      }
+    },
+    {
+      "id": "Variable_simulationType",
+      "label": "Variable",
+      "properties": {
+        "name": "simulationType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_laminar",
+      "label": "Variable",
+      "properties": {
+        "name": "laminar",
+        "type": "Value"
+      }
+    },
+    {
+      "id": "Variable_RAS",
+      "label": "Variable",
+      "properties": {
+        "name": "RAS",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_RASModel",
+      "label": "Variable",
+      "properties": {
+        "name": "RASModel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_kEpsilon",
+      "label": "Variable",
+      "properties": {
+        "name": "kEpsilon",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_turbulence",
+      "label": "Variable",
+      "properties": {
+        "name": "turbulence",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/system/blockMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "blockMeshDict",
+        "path": "blastParcelFoam/forwardStep/system/blockMeshDict"
+      }
+    },
+    {
+      "id": "Variable_patch",
+      "label": "Variable",
+      "properties": {
+        "name": "patch",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_wall",
+      "label": "Variable",
+      "properties": {
+        "name": "wall",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/system/controlDict",
+      "label": "File",
+      "properties": {
+        "name": "controlDict",
+        "path": "blastParcelFoam/forwardStep/system/controlDict"
+      }
+    },
+    {
+      "id": "Variable_application",
+      "label": "Variable",
+      "properties": {
+        "name": "application",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blastParcelFoam",
+      "label": "Variable",
+      "properties": {
+        "name": "blastParcelFoam",
+        "type": "Value"
+      }
+    },
+    {
+      "id": "Variable_startFrom",
+      "label": "Variable",
+      "properties": {
+        "name": "startFrom",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_startTime",
+      "label": "Variable",
+      "properties": {
+        "name": "startTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_stopAt",
+      "label": "Variable",
+      "properties": {
+        "name": "stopAt",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_endTime",
+      "label": "Variable",
+      "properties": {
+        "name": "endTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_deltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "deltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeControl",
+      "label": "Variable",
+      "properties": {
+        "name": "writeControl",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_adjustableRunTime",
+      "label": "Variable",
+      "properties": {
+        "name": "adjustableRunTime",
+        "type": "Value"
+      }
+    },
+    {
+      "id": "Variable_writeInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "writeInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_adjustTimeStep",
+      "label": "Variable",
+      "properties": {
+        "name": "adjustTimeStep",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_maxCo",
+      "label": "Variable",
+      "properties": {
+        "name": "maxCo",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/system/decomposeParDict",
+      "label": "File",
+      "properties": {
+        "name": "decomposeParDict",
+        "path": "blastParcelFoam/forwardStep/system/decomposeParDict"
+      }
+    },
+    {
+      "id": "Variable_numberOfSubdomains",
+      "label": "Variable",
+      "properties": {
+        "name": "numberOfSubdomains",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_method",
+      "label": "Variable",
+      "properties": {
+        "name": "method",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_scotch",
+      "label": "Variable",
+      "properties": {
+        "name": "scotch",
+        "type": "Value"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "blastParcelFoam/forwardStep/system/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_fluxScheme",
+      "label": "Variable",
+      "properties": {
+        "name": "fluxScheme",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_HLLC",
+      "label": "Variable",
+      "properties": {
+        "name": "HLLC",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_ddtSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "ddtSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Euler",
+      "label": "Variable",
+      "properties": {
+        "name": "Euler",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_timeIntegrator",
+      "label": "Variable",
+      "properties": {
+        "name": "timeIntegrator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_RK2SSP",
+      "label": "Variable",
+      "properties": {
+        "name": "RK2SSP",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_gradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "gradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cellMDLimited leastSquares",
+      "label": "Variable",
+      "properties": {
+        "name": "cellMDLimited leastSquares",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_divSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "divSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Gauss linear",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss linear",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_Gauss upwind",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss upwind",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_laplacianSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "laplacianSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Gauss linear corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss linear corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_interpolationSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "interpolationSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_linear",
+      "label": "Variable",
+      "properties": {
+        "name": "linear",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_vanLeer",
+      "label": "Variable",
+      "properties": {
+        "name": "vanLeer",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_vanLeerV",
+      "label": "Variable",
+      "properties": {
+        "name": "vanLeerV",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_snGradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "snGradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "blastParcelFoam/forwardStep/system/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "blastParcelFoam/forwardStep/system/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_solvers",
+      "label": "Variable",
+      "properties": {
+        "name": "solvers",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_diagonal",
+      "label": "Variable",
+      "properties": {
+        "name": "diagonal",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_PBiCGStab",
+      "label": "Variable",
+      "properties": {
+        "name": "PBiCGStab",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_preconditioner",
+      "label": "Variable",
+      "properties": {
+        "name": "preconditioner",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_DIC",
+      "label": "Variable",
+      "properties": {
+        "name": "DIC",
+        "type": "Preconditioner"
+      }
+    },
+    {
+      "id": "Variable_PCG",
+      "label": "Variable",
+      "properties": {
+        "name": "PCG",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_DILU",
+      "label": "Variable",
+      "properties": {
+        "name": "DILU",
+        "type": "Preconditioner"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/0/T",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/T",
+      "target": "Variable_T",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/T",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/T",
+      "target": "Variable_symmetryPlane",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/0/U",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/U",
+      "target": "Variable_U",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/U",
+      "target": "Variable_fixedValue",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/U",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/U",
+      "target": "Variable_symmetryPlane",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/U",
+      "target": "Variable_slip",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/0/alpha.gas",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/alpha.gas",
+      "target": "Variable_alpha.gas",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/alpha.gas",
+      "target": "Variable_fixedValue",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/alpha.gas",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/alpha.gas",
+      "target": "Variable_symmetryPlane",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/0/alphat",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/alphat",
+      "target": "Variable_alphat",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/alphat",
+      "target": "Variable_calculated",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/alphat",
+      "target": "Variable_symmetryPlane",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/alphat",
+      "target": "Variable_compressible::alphatWallFunction",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/0/epsilon",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/epsilon",
+      "target": "Variable_epsilon",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/epsilon",
+      "target": "Variable_turbulentMixingLengthDissipationRateInlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/epsilon",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/epsilon",
+      "target": "Variable_symmetryPlane",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/epsilon",
+      "target": "Variable_epsilonWallFunction",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/0/k",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/k",
+      "target": "Variable_k",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/k",
+      "target": "Variable_fixedValue",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/k",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/k",
+      "target": "Variable_symmetryPlane",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/k",
+      "target": "Variable_kqRWallFunction",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/0/nut",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/nut",
+      "target": "Variable_nut",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/nut",
+      "target": "Variable_calculated",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/nut",
+      "target": "Variable_symmetryPlane",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/nut",
+      "target": "Variable_nutkWallFunction",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/0/p",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/p",
+      "target": "Variable_p",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/p",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/p",
+      "target": "Variable_symmetryPlane",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/0/rho.gas",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/rho.gas",
+      "target": "Variable_rho.gas",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/rho.gas",
+      "target": "Variable_fixedValue",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/rho.gas",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/0/rho.gas",
+      "target": "Variable_symmetryPlane",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/constant/cloudProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/cloudProperties",
+      "target": "Variable_thermoCloud",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/cloudProperties",
+      "target": "Variable_sphereDrag",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/cloudProperties",
+      "target": "Variable_gravity",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/cloudProperties",
+      "target": "Variable_patchInjection",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/cloudProperties",
+      "target": "Variable_standardWallInteraction",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/cloudProperties",
+      "target": "Variable_singlePhaseMixture",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/cloudProperties",
+      "target": "Variable_pairSpringSliderDashpot",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/cloudProperties",
+      "target": "Variable_wallLocalSpringSliderDashpot",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/constant/dynamicMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/dynamicMeshDict",
+      "target": "Variable_dynamicFvMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/dynamicMeshDict",
+      "target": "Variable_adaptiveFvMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/dynamicMeshDict",
+      "target": "Variable_errorEstimator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/dynamicMeshDict",
+      "target": "Variable_densityGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/dynamicMeshDict",
+      "target": "Variable_refineInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/dynamicMeshDict",
+      "target": "Variable_lowerRefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/dynamicMeshDict",
+      "target": "Variable_unrefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/dynamicMeshDict",
+      "target": "Variable_maxRefinement",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/constant/phaseProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/phaseProperties",
+      "target": "Variable_thermoType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/phaseProperties",
+      "target": "Variable_eConst",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/phaseProperties",
+      "target": "Variable_equationOfState",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/phaseProperties",
+      "target": "Variable_idealGas",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/phaseProperties",
+      "target": "Variable_gamma",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/phaseProperties",
+      "target": "Variable_transport",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/phaseProperties",
+      "target": "Variable_const",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/phaseProperties",
+      "target": "Variable_Cv",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/constant/turbulenceProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/turbulenceProperties",
+      "target": "Variable_simulationType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/turbulenceProperties",
+      "target": "Variable_laminar",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/turbulenceProperties",
+      "target": "Variable_RAS",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/turbulenceProperties",
+      "target": "Variable_RASModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/turbulenceProperties",
+      "target": "Variable_kEpsilon",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/constant/turbulenceProperties",
+      "target": "Variable_turbulence",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/system/blockMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/blockMeshDict",
+      "target": "Variable_patch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/blockMeshDict",
+      "target": "Variable_symmetryPlane",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/blockMeshDict",
+      "target": "Variable_wall",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/system/controlDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/controlDict",
+      "target": "Variable_application",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/controlDict",
+      "target": "Variable_blastParcelFoam",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/controlDict",
+      "target": "Variable_startFrom",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/controlDict",
+      "target": "Variable_startTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/controlDict",
+      "target": "Variable_stopAt",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/controlDict",
+      "target": "Variable_endTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/controlDict",
+      "target": "Variable_deltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/controlDict",
+      "target": "Variable_writeControl",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/controlDict",
+      "target": "Variable_adjustableRunTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/controlDict",
+      "target": "Variable_writeInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/controlDict",
+      "target": "Variable_adjustTimeStep",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/controlDict",
+      "target": "Variable_maxCo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/system/decomposeParDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/decomposeParDict",
+      "target": "Variable_numberOfSubdomains",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/decomposeParDict",
+      "target": "Variable_method",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/decomposeParDict",
+      "target": "Variable_scotch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_fluxScheme",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_HLLC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_timeIntegrator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_RK2SSP",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_cellMDLimited leastSquares",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_Gauss linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_Gauss upwind",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_Gauss linear corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_vanLeer",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_vanLeerV",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSchemes",
+      "target": "Variable_corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep",
+      "target": "blastParcelFoam/forwardStep/system/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSolution",
+      "target": "Variable_diagonal",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSolution",
+      "target": "Variable_PBiCGStab",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSolution",
+      "target": "Variable_preconditioner",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSolution",
+      "target": "Variable_DIC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSolution",
+      "target": "Variable_PCG",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastParcelFoam/forwardStep/system/fvSolution",
+      "target": "Variable_DILU",
+      "type": "DEFINES"
+    }
+  ]
+}

@@ -1,0 +1,1358 @@
+{
+  "nodes": [
+    {
+      "id": "blastReactingFoam/obliqueShock",
+      "label": "Case",
+      "properties": {
+        "name": "obliqueShock",
+        "path": "blastReactingFoam/obliqueShock"
+      }
+    },
+    {
+      "id": "blastReactingFoam/obliqueShock/0/T",
+      "label": "File",
+      "properties": {
+        "name": "T",
+        "path": "blastReactingFoam/obliqueShock/0/T"
+      }
+    },
+    {
+      "id": "blastReactingFoam/obliqueShock/0/U",
+      "label": "File",
+      "properties": {
+        "name": "U",
+        "path": "blastReactingFoam/obliqueShock/0/U"
+      }
+    },
+    {
+      "id": "blastReactingFoam/obliqueShock/0/p",
+      "label": "File",
+      "properties": {
+        "name": "p",
+        "path": "blastReactingFoam/obliqueShock/0/p"
+      }
+    },
+    {
+      "id": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "label": "File",
+      "properties": {
+        "name": "thermophysicalProperties",
+        "path": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties"
+      }
+    },
+    {
+      "id": "blastReactingFoam/obliqueShock/constant/turbulenceProperties",
+      "label": "File",
+      "properties": {
+        "name": "turbulenceProperties",
+        "path": "blastReactingFoam/obliqueShock/constant/turbulenceProperties"
+      }
+    },
+    {
+      "id": "blastReactingFoam/obliqueShock/system/blockMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "blockMeshDict",
+        "path": "blastReactingFoam/obliqueShock/system/blockMeshDict"
+      }
+    },
+    {
+      "id": "blastReactingFoam/obliqueShock/system/controlDict",
+      "label": "File",
+      "properties": {
+        "name": "controlDict",
+        "path": "blastReactingFoam/obliqueShock/system/controlDict"
+      }
+    },
+    {
+      "id": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "blastReactingFoam/obliqueShock/system/fvSchemes"
+      }
+    },
+    {
+      "id": "blastReactingFoam/obliqueShock/system/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "blastReactingFoam/obliqueShock/system/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_dimensions",
+      "label": "Variable",
+      "properties": {
+        "name": "dimensions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_internalField",
+      "label": "Variable",
+      "properties": {
+        "name": "internalField",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_fixedValue",
+      "label": "Variable",
+      "properties": {
+        "name": "fixedValue",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_zeroGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "zeroGradient",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_symmetryPlane",
+      "label": "Variable",
+      "properties": {
+        "name": "symmetryPlane",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_empty",
+      "label": "Variable",
+      "properties": {
+        "name": "empty",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_T",
+      "label": "Variable",
+      "properties": {
+        "name": "T",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "Variable_U",
+      "label": "Variable",
+      "properties": {
+        "name": "U",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "Variable_p",
+      "label": "Variable",
+      "properties": {
+        "name": "p",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "Variable_thermoType",
+      "label": "Variable",
+      "properties": {
+        "name": "thermoType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_heRhoThermo",
+      "label": "Variable",
+      "properties": {
+        "name": "heRhoThermo",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_mixture",
+      "label": "Variable",
+      "properties": {
+        "name": "mixture",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_pureMixture",
+      "label": "Variable",
+      "properties": {
+        "name": "pureMixture",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_transport",
+      "label": "Variable",
+      "properties": {
+        "name": "transport",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_const",
+      "label": "Variable",
+      "properties": {
+        "name": "const",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_thermo",
+      "label": "Variable",
+      "properties": {
+        "name": "thermo",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_eConst",
+      "label": "Variable",
+      "properties": {
+        "name": "eConst",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_equationOfState",
+      "label": "Variable",
+      "properties": {
+        "name": "equationOfState",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_perfectGas",
+      "label": "Variable",
+      "properties": {
+        "name": "perfectGas",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_specie",
+      "label": "Variable",
+      "properties": {
+        "name": "specie",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_energy",
+      "label": "Variable",
+      "properties": {
+        "name": "energy",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_sensibleInternalEnergy",
+      "label": "Variable",
+      "properties": {
+        "name": "sensibleInternalEnergy",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_molWeight",
+      "label": "Variable",
+      "properties": {
+        "name": "molWeight",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Cp",
+      "label": "Variable",
+      "properties": {
+        "name": "Cp",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Cv",
+      "label": "Variable",
+      "properties": {
+        "name": "Cv",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Hf",
+      "label": "Variable",
+      "properties": {
+        "name": "Hf",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_mu",
+      "label": "Variable",
+      "properties": {
+        "name": "mu",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Pr",
+      "label": "Variable",
+      "properties": {
+        "name": "Pr",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_simulationType",
+      "label": "Variable",
+      "properties": {
+        "name": "simulationType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_laminar",
+      "label": "Variable",
+      "properties": {
+        "name": "laminar",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_convertToMeters",
+      "label": "Variable",
+      "properties": {
+        "name": "convertToMeters",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_vertices",
+      "label": "Variable",
+      "properties": {
+        "name": "vertices",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blocks",
+      "label": "Variable",
+      "properties": {
+        "name": "blocks",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_edges",
+      "label": "Variable",
+      "properties": {
+        "name": "edges",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_boundary",
+      "label": "Variable",
+      "properties": {
+        "name": "boundary",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_wall",
+      "label": "Variable",
+      "properties": {
+        "name": "wall",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_patch",
+      "label": "Variable",
+      "properties": {
+        "name": "patch",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_mergePatchPairs",
+      "label": "Variable",
+      "properties": {
+        "name": "mergePatchPairs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_application",
+      "label": "Variable",
+      "properties": {
+        "name": "application",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blastReactingFoam",
+      "label": "Variable",
+      "properties": {
+        "name": "blastReactingFoam",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_startFrom",
+      "label": "Variable",
+      "properties": {
+        "name": "startFrom",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_startTime",
+      "label": "Variable",
+      "properties": {
+        "name": "startTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_stopAt",
+      "label": "Variable",
+      "properties": {
+        "name": "stopAt",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_endTime",
+      "label": "Variable",
+      "properties": {
+        "name": "endTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_deltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "deltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeControl",
+      "label": "Variable",
+      "properties": {
+        "name": "writeControl",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_writeInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "writeInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_purgeWrite",
+      "label": "Variable",
+      "properties": {
+        "name": "purgeWrite",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeFormat",
+      "label": "Variable",
+      "properties": {
+        "name": "writeFormat",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_writePrecision",
+      "label": "Variable",
+      "properties": {
+        "name": "writePrecision",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeCompression",
+      "label": "Variable",
+      "properties": {
+        "name": "writeCompression",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_timeFormat",
+      "label": "Variable",
+      "properties": {
+        "name": "timeFormat",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_timePrecision",
+      "label": "Variable",
+      "properties": {
+        "name": "timePrecision",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_runTimeModifiable",
+      "label": "Variable",
+      "properties": {
+        "name": "runTimeModifiable",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_adjustTimeStep",
+      "label": "Variable",
+      "properties": {
+        "name": "adjustTimeStep",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_maxCo",
+      "label": "Variable",
+      "properties": {
+        "name": "maxCo",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxDeltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "maxDeltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_fluxScheme",
+      "label": "Variable",
+      "properties": {
+        "name": "fluxScheme",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Kurganov",
+      "label": "Variable",
+      "properties": {
+        "name": "Kurganov",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_ddtSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "ddtSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Euler",
+      "label": "Variable",
+      "properties": {
+        "name": "Euler",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_timeIntegrator",
+      "label": "Variable",
+      "properties": {
+        "name": "timeIntegrator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_RK2SSP",
+      "label": "Variable",
+      "properties": {
+        "name": "RK2SSP",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_gradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "gradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Gauss linear",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss linear",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_divSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "divSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_laplacianSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "laplacianSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Gauss linear corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss linear corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_interpolationSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "interpolationSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_linear",
+      "label": "Variable",
+      "properties": {
+        "name": "linear",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(rho)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(rho)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_vanLeer",
+      "label": "Variable",
+      "properties": {
+        "name": "vanLeer",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(U)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(U)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_vanLeerV",
+      "label": "Variable",
+      "properties": {
+        "name": "vanLeerV",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(e)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(e)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(p)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(p)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(speedOfSound)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(speedOfSound)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_snGradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "snGradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_solvers",
+      "label": "Variable",
+      "properties": {
+        "name": "solvers",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_(rho|rhoU|rhoE)",
+      "label": "Variable",
+      "properties": {
+        "name": "(rho|rhoU|rhoE)",
+        "type": "FieldGroup"
+      }
+    },
+    {
+      "id": "Variable_diagonal",
+      "label": "Variable",
+      "properties": {
+        "name": "diagonal",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_(e|U)",
+      "label": "Variable",
+      "properties": {
+        "name": "(e|U)",
+        "type": "FieldGroup"
+      }
+    },
+    {
+      "id": "Variable_smoothSolver",
+      "label": "Variable",
+      "properties": {
+        "name": "smoothSolver",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_smoother",
+      "label": "Variable",
+      "properties": {
+        "name": "smoother",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_GaussSeidel",
+      "label": "Variable",
+      "properties": {
+        "name": "GaussSeidel",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_nSweeps",
+      "label": "Variable",
+      "properties": {
+        "name": "nSweeps",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_tolerance",
+      "label": "Variable",
+      "properties": {
+        "name": "tolerance",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_relTol",
+      "label": "Variable",
+      "properties": {
+        "name": "relTol",
+        "type": "Parameter"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "blastReactingFoam/obliqueShock",
+      "target": "blastReactingFoam/obliqueShock/0/T",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock",
+      "target": "blastReactingFoam/obliqueShock/0/U",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock",
+      "target": "blastReactingFoam/obliqueShock/0/p",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock",
+      "target": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock",
+      "target": "blastReactingFoam/obliqueShock/constant/turbulenceProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock",
+      "target": "blastReactingFoam/obliqueShock/system/blockMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock",
+      "target": "blastReactingFoam/obliqueShock/system/controlDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock",
+      "target": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock",
+      "target": "blastReactingFoam/obliqueShock/system/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/T",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/T",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/T",
+      "target": "Variable_fixedValue",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/T",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/T",
+      "target": "Variable_symmetryPlane",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/T",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/T",
+      "target": "Variable_T",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/U",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/U",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/U",
+      "target": "Variable_fixedValue",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/U",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/U",
+      "target": "Variable_symmetryPlane",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/U",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/U",
+      "target": "Variable_U",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/p",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/p",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/p",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/p",
+      "target": "Variable_fixedValue",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/p",
+      "target": "Variable_symmetryPlane",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/p",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/0/p",
+      "target": "Variable_p",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_thermoType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_heRhoThermo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_mixture",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_pureMixture",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_transport",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_const",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_thermo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_eConst",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_equationOfState",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_perfectGas",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_specie",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_energy",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_sensibleInternalEnergy",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_molWeight",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_Cp",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_Cv",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_Hf",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_mu",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/thermophysicalProperties",
+      "target": "Variable_Pr",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/turbulenceProperties",
+      "target": "Variable_simulationType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/constant/turbulenceProperties",
+      "target": "Variable_laminar",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/blockMeshDict",
+      "target": "Variable_convertToMeters",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/blockMeshDict",
+      "target": "Variable_vertices",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/blockMeshDict",
+      "target": "Variable_blocks",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/blockMeshDict",
+      "target": "Variable_edges",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/blockMeshDict",
+      "target": "Variable_boundary",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/blockMeshDict",
+      "target": "Variable_wall",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/blockMeshDict",
+      "target": "Variable_patch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/blockMeshDict",
+      "target": "Variable_symmetryPlane",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/blockMeshDict",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/blockMeshDict",
+      "target": "Variable_mergePatchPairs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_application",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_blastReactingFoam",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_startFrom",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_startTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_stopAt",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_endTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_deltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_writeControl",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_writeInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_purgeWrite",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_writeFormat",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_writePrecision",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_writeCompression",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_timeFormat",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_timePrecision",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_runTimeModifiable",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_adjustTimeStep",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_maxCo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/controlDict",
+      "target": "Variable_maxDeltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_fluxScheme",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_Kurganov",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_timeIntegrator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_RK2SSP",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_Gauss linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_Gauss linear corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_reconstruct(rho)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_vanLeer",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_reconstruct(U)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_vanLeerV",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_reconstruct(e)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_reconstruct(p)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_reconstruct(speedOfSound)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSchemes",
+      "target": "Variable_corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSolution",
+      "target": "Variable_(rho|rhoU|rhoE)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSolution",
+      "target": "Variable_diagonal",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSolution",
+      "target": "Variable_(e|U)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSolution",
+      "target": "Variable_smoothSolver",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSolution",
+      "target": "Variable_smoother",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSolution",
+      "target": "Variable_GaussSeidel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSolution",
+      "target": "Variable_nSweeps",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSolution",
+      "target": "Variable_tolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastReactingFoam/obliqueShock/system/fvSolution",
+      "target": "Variable_relTol",
+      "type": "DEFINES"
+    }
+  ]
+}

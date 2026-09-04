@@ -1,0 +1,2324 @@
+{
+  "nodes": [
+    {
+      "id": "blastFoam/mappedBuilding3D/sector",
+      "label": "Case",
+      "properties": {
+        "name": "sector",
+        "path": "blastFoam/mappedBuilding3D/sector"
+      }
+    },
+    {
+      "id": "blastFoam/mappedBuilding3D/sector/0/T.orig",
+      "label": "File",
+      "properties": {
+        "name": "T.orig",
+        "path": "blastFoam/mappedBuilding3D/sector/0/T.orig"
+      }
+    },
+    {
+      "id": "Variable_T.orig",
+      "label": "Variable",
+      "properties": {
+        "name": "T.orig",
+        "type": "Field"
+      }
+    },
+    {
+      "id": "Variable_dimensions",
+      "label": "Variable",
+      "properties": {
+        "name": "dimensions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_internalField",
+      "label": "Variable",
+      "properties": {
+        "name": "internalField",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_boundaryField",
+      "label": "Variable",
+      "properties": {
+        "name": "boundaryField",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_outlet",
+      "label": "Variable",
+      "properties": {
+        "name": "outlet",
+        "type": "Boundary"
+      }
+    },
+    {
+      "id": "Variable_zeroGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "zeroGradient",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_ground",
+      "label": "Variable",
+      "properties": {
+        "name": "ground",
+        "type": "Boundary"
+      }
+    },
+    {
+      "id": "Variable_wedge",
+      "label": "Variable",
+      "properties": {
+        "name": "wedge",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/mappedBuilding3D/sector/0/U.orig",
+      "label": "File",
+      "properties": {
+        "name": "U.orig",
+        "path": "blastFoam/mappedBuilding3D/sector/0/U.orig"
+      }
+    },
+    {
+      "id": "Variable_U.orig",
+      "label": "Variable",
+      "properties": {
+        "name": "U.orig",
+        "type": "Field"
+      }
+    },
+    {
+      "id": "Variable_slip",
+      "label": "Variable",
+      "properties": {
+        "name": "slip",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/mappedBuilding3D/sector/0/alpha.c4.orig",
+      "label": "File",
+      "properties": {
+        "name": "alpha.c4.orig",
+        "path": "blastFoam/mappedBuilding3D/sector/0/alpha.c4.orig"
+      }
+    },
+    {
+      "id": "Variable_alpha.c4.orig",
+      "label": "Variable",
+      "properties": {
+        "name": "alpha.c4.orig",
+        "type": "Field"
+      }
+    },
+    {
+      "id": "blastFoam/mappedBuilding3D/sector/0/eCalc",
+      "label": "File",
+      "properties": {
+        "name": "eCalc",
+        "path": "blastFoam/mappedBuilding3D/sector/0/eCalc"
+      }
+    },
+    {
+      "id": "Variable_eCalc",
+      "label": "Variable",
+      "properties": {
+        "name": "eCalc",
+        "type": "Field"
+      }
+    },
+    {
+      "id": "Variable_wedge0",
+      "label": "Variable",
+      "properties": {
+        "name": "wedge0",
+        "type": "Boundary"
+      }
+    },
+    {
+      "id": "Variable_wedge1",
+      "label": "Variable",
+      "properties": {
+        "name": "wedge1",
+        "type": "Boundary"
+      }
+    },
+    {
+      "id": "Variable_wedge2",
+      "label": "Variable",
+      "properties": {
+        "name": "wedge2",
+        "type": "Boundary"
+      }
+    },
+    {
+      "id": "Variable_wedge3",
+      "label": "Variable",
+      "properties": {
+        "name": "wedge3",
+        "type": "Boundary"
+      }
+    },
+    {
+      "id": "Variable_calculated",
+      "label": "Variable",
+      "properties": {
+        "name": "calculated",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_defaultFaces",
+      "label": "Variable",
+      "properties": {
+        "name": "defaultFaces",
+        "type": "Boundary"
+      }
+    },
+    {
+      "id": "Variable_empty",
+      "label": "Variable",
+      "properties": {
+        "name": "empty",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/mappedBuilding3D/sector/0/p.orig",
+      "label": "File",
+      "properties": {
+        "name": "p.orig",
+        "path": "blastFoam/mappedBuilding3D/sector/0/p.orig"
+      }
+    },
+    {
+      "id": "Variable_p.orig",
+      "label": "Variable",
+      "properties": {
+        "name": "p.orig",
+        "type": "Field"
+      }
+    },
+    {
+      "id": "Variable_pressureWaveTransmissive",
+      "label": "Variable",
+      "properties": {
+        "name": "pressureWaveTransmissive",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/mappedBuilding3D/sector/0/rho.air.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.air.orig",
+        "path": "blastFoam/mappedBuilding3D/sector/0/rho.air.orig"
+      }
+    },
+    {
+      "id": "Variable_rho.air.orig",
+      "label": "Variable",
+      "properties": {
+        "name": "rho.air.orig",
+        "type": "Field"
+      }
+    },
+    {
+      "id": "blastFoam/mappedBuilding3D/sector/0/rho.c4.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.c4.orig",
+        "path": "blastFoam/mappedBuilding3D/sector/0/rho.c4.orig"
+      }
+    },
+    {
+      "id": "Variable_rho.c4.orig",
+      "label": "Variable",
+      "properties": {
+        "name": "rho.c4.orig",
+        "type": "Field"
+      }
+    },
+    {
+      "id": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "label": "File",
+      "properties": {
+        "name": "phaseProperties",
+        "path": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties"
+      }
+    },
+    {
+      "id": "Variable_phases",
+      "label": "Variable",
+      "properties": {
+        "name": "phases",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_c4",
+      "label": "Variable",
+      "properties": {
+        "name": "c4",
+        "type": "Phase"
+      }
+    },
+    {
+      "id": "Variable_air",
+      "label": "Variable",
+      "properties": {
+        "name": "air",
+        "type": "Phase"
+      }
+    },
+    {
+      "id": "Variable_reactants",
+      "label": "Variable",
+      "properties": {
+        "name": "reactants",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_thermoType",
+      "label": "Variable",
+      "properties": {
+        "name": "thermoType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_transport",
+      "label": "Variable",
+      "properties": {
+        "name": "transport",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_thermo",
+      "label": "Variable",
+      "properties": {
+        "name": "thermo",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_eConst",
+      "label": "Variable",
+      "properties": {
+        "name": "eConst",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_equationOfState",
+      "label": "Variable",
+      "properties": {
+        "name": "equationOfState",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Murnaghan",
+      "label": "Variable",
+      "properties": {
+        "name": "Murnaghan",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_rho0",
+      "label": "Variable",
+      "properties": {
+        "name": "rho0",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Gamma",
+      "label": "Variable",
+      "properties": {
+        "name": "Gamma",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_pRef",
+      "label": "Variable",
+      "properties": {
+        "name": "pRef",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_K0",
+      "label": "Variable",
+      "properties": {
+        "name": "K0",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_specie",
+      "label": "Variable",
+      "properties": {
+        "name": "specie",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_molWeight",
+      "label": "Variable",
+      "properties": {
+        "name": "molWeight",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_mu",
+      "label": "Variable",
+      "properties": {
+        "name": "mu",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Pr",
+      "label": "Variable",
+      "properties": {
+        "name": "Pr",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_thermodynamics",
+      "label": "Variable",
+      "properties": {
+        "name": "thermodynamics",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Cv",
+      "label": "Variable",
+      "properties": {
+        "name": "Cv",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Hf",
+      "label": "Variable",
+      "properties": {
+        "name": "Hf",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_products",
+      "label": "Variable",
+      "properties": {
+        "name": "products",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_JWL",
+      "label": "Variable",
+      "properties": {
+        "name": "JWL",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_A",
+      "label": "Variable",
+      "properties": {
+        "name": "A",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_B",
+      "label": "Variable",
+      "properties": {
+        "name": "B",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_R1",
+      "label": "Variable",
+      "properties": {
+        "name": "R1",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_R2",
+      "label": "Variable",
+      "properties": {
+        "name": "R2",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_omega",
+      "label": "Variable",
+      "properties": {
+        "name": "omega",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_activationModel",
+      "label": "Variable",
+      "properties": {
+        "name": "activationModel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_pressureBased",
+      "label": "Variable",
+      "properties": {
+        "name": "pressureBased",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_initiation",
+      "label": "Variable",
+      "properties": {
+        "name": "initiation",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_E0",
+      "label": "Variable",
+      "properties": {
+        "name": "E0",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_I",
+      "label": "Variable",
+      "properties": {
+        "name": "I",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_a",
+      "label": "Variable",
+      "properties": {
+        "name": "a",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_b",
+      "label": "Variable",
+      "properties": {
+        "name": "b",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_x",
+      "label": "Variable",
+      "properties": {
+        "name": "x",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxLambdaI",
+      "label": "Variable",
+      "properties": {
+        "name": "maxLambdaI",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_G1",
+      "label": "Variable",
+      "properties": {
+        "name": "G1",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_c",
+      "label": "Variable",
+      "properties": {
+        "name": "c",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_d",
+      "label": "Variable",
+      "properties": {
+        "name": "d",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_y",
+      "label": "Variable",
+      "properties": {
+        "name": "y",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_minLambda1",
+      "label": "Variable",
+      "properties": {
+        "name": "minLambda1",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_G2",
+      "label": "Variable",
+      "properties": {
+        "name": "G2",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_e",
+      "label": "Variable",
+      "properties": {
+        "name": "e",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_f",
+      "label": "Variable",
+      "properties": {
+        "name": "f",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_z",
+      "label": "Variable",
+      "properties": {
+        "name": "z",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_minLambda2",
+      "label": "Variable",
+      "properties": {
+        "name": "minLambda2",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_pMin",
+      "label": "Variable",
+      "properties": {
+        "name": "pMin",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_points",
+      "label": "Variable",
+      "properties": {
+        "name": "points",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_radius",
+      "label": "Variable",
+      "properties": {
+        "name": "radius",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_vDet",
+      "label": "Variable",
+      "properties": {
+        "name": "vDet",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_residualRho",
+      "label": "Variable",
+      "properties": {
+        "name": "residualRho",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_residualAlpha",
+      "label": "Variable",
+      "properties": {
+        "name": "residualAlpha",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_basic",
+      "label": "Variable",
+      "properties": {
+        "name": "basic",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_idealGas",
+      "label": "Variable",
+      "properties": {
+        "name": "idealGas",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_gamma",
+      "label": "Variable",
+      "properties": {
+        "name": "gamma",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/mappedBuilding3D/sector/system/blockMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "blockMeshDict",
+        "path": "blastFoam/mappedBuilding3D/sector/system/blockMeshDict"
+      }
+    },
+    {
+      "id": "Variable_convertToMeters",
+      "label": "Variable",
+      "properties": {
+        "name": "convertToMeters",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_vertices",
+      "label": "Variable",
+      "properties": {
+        "name": "vertices",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blocks",
+      "label": "Variable",
+      "properties": {
+        "name": "blocks",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_edges",
+      "label": "Variable",
+      "properties": {
+        "name": "edges",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_boundary",
+      "label": "Variable",
+      "properties": {
+        "name": "boundary",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_patch",
+      "label": "Variable",
+      "properties": {
+        "name": "patch",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_mergePatchPairs",
+      "label": "Variable",
+      "properties": {
+        "name": "mergePatchPairs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "label": "File",
+      "properties": {
+        "name": "controlDict",
+        "path": "blastFoam/mappedBuilding3D/sector/system/controlDict"
+      }
+    },
+    {
+      "id": "Variable_application",
+      "label": "Variable",
+      "properties": {
+        "name": "application",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_startFrom",
+      "label": "Variable",
+      "properties": {
+        "name": "startFrom",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_startTime",
+      "label": "Variable",
+      "properties": {
+        "name": "startTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_stopAt",
+      "label": "Variable",
+      "properties": {
+        "name": "stopAt",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_endTime",
+      "label": "Variable",
+      "properties": {
+        "name": "endTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeControl",
+      "label": "Variable",
+      "properties": {
+        "name": "writeControl",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "writeInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeFormat",
+      "label": "Variable",
+      "properties": {
+        "name": "writeFormat",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writePrecision",
+      "label": "Variable",
+      "properties": {
+        "name": "writePrecision",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeCompression",
+      "label": "Variable",
+      "properties": {
+        "name": "writeCompression",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_timeFormat",
+      "label": "Variable",
+      "properties": {
+        "name": "timeFormat",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_timePrecision",
+      "label": "Variable",
+      "properties": {
+        "name": "timePrecision",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_runTimeModifiable",
+      "label": "Variable",
+      "properties": {
+        "name": "runTimeModifiable",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_adjustTimeStep",
+      "label": "Variable",
+      "properties": {
+        "name": "adjustTimeStep",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_deltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "deltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxCo",
+      "label": "Variable",
+      "properties": {
+        "name": "maxCo",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_functions",
+      "label": "Variable",
+      "properties": {
+        "name": "functions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "blastFoam/mappedBuilding3D/sector/system/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_fluxScheme",
+      "label": "Variable",
+      "properties": {
+        "name": "fluxScheme",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_Kurganov",
+      "label": "Variable",
+      "properties": {
+        "name": "Kurganov",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_ddtSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "ddtSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_default",
+      "label": "Variable",
+      "properties": {
+        "name": "default",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Euler",
+      "label": "Variable",
+      "properties": {
+        "name": "Euler",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_timeIntegrator",
+      "label": "Variable",
+      "properties": {
+        "name": "timeIntegrator",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_RK2SSP",
+      "label": "Variable",
+      "properties": {
+        "name": "RK2SSP",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_gradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "gradSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_cellMDLimited",
+      "label": "Variable",
+      "properties": {
+        "name": "cellMDLimited",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_leastSquares",
+      "label": "Variable",
+      "properties": {
+        "name": "leastSquares",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_divSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "divSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_Riemann",
+      "label": "Variable",
+      "properties": {
+        "name": "Riemann",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_laplacianSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "laplacianSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_Gauss",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_linear",
+      "label": "Variable",
+      "properties": {
+        "name": "linear",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_interpolationSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "interpolationSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_cubic",
+      "label": "Variable",
+      "properties": {
+        "name": "cubic",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_reconstruct",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_Minmod",
+      "label": "Variable",
+      "properties": {
+        "name": "Minmod",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_MinmodV",
+      "label": "Variable",
+      "properties": {
+        "name": "MinmodV",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_snGradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "snGradSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_wallDist",
+      "label": "Variable",
+      "properties": {
+        "name": "wallDist",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_method",
+      "label": "Variable",
+      "properties": {
+        "name": "method",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_meshWave",
+      "label": "Variable",
+      "properties": {
+        "name": "meshWave",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "blastFoam/mappedBuilding3D/sector/system/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "blastFoam/mappedBuilding3D/sector/system/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_solvers",
+      "label": "Variable",
+      "properties": {
+        "name": "solvers",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_diagonal",
+      "label": "Variable",
+      "properties": {
+        "name": "diagonal",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_PBiCGStab",
+      "label": "Variable",
+      "properties": {
+        "name": "PBiCGStab",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_preconditioner",
+      "label": "Variable",
+      "properties": {
+        "name": "preconditioner",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_DIC",
+      "label": "Variable",
+      "properties": {
+        "name": "DIC",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_tolerance",
+      "label": "Variable",
+      "properties": {
+        "name": "tolerance",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_relTol",
+      "label": "Variable",
+      "properties": {
+        "name": "relTol",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/mappedBuilding3D/sector/system/setFieldsDict",
+      "label": "File",
+      "properties": {
+        "name": "setFieldsDict",
+        "path": "blastFoam/mappedBuilding3D/sector/system/setFieldsDict"
+      }
+    },
+    {
+      "id": "Variable_fields",
+      "label": "Variable",
+      "properties": {
+        "name": "fields",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_nBufferLayers",
+      "label": "Variable",
+      "properties": {
+        "name": "nBufferLayers",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_refiner",
+      "label": "Variable",
+      "properties": {
+        "name": "refiner",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_directionalRefiner",
+      "label": "Variable",
+      "properties": {
+        "name": "directionalRefiner",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_defaultFieldValues",
+      "label": "Variable",
+      "properties": {
+        "name": "defaultFieldValues",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_regions",
+      "label": "Variable",
+      "properties": {
+        "name": "regions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_sphericalMassToCell",
+      "label": "Variable",
+      "properties": {
+        "name": "sphericalMassToCell",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_rho",
+      "label": "Variable",
+      "properties": {
+        "name": "rho",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_mass",
+      "label": "Variable",
+      "properties": {
+        "name": "mass",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_centre",
+      "label": "Variable",
+      "properties": {
+        "name": "centre",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_level",
+      "label": "Variable",
+      "properties": {
+        "name": "level",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_fieldValues",
+      "label": "Variable",
+      "properties": {
+        "name": "fieldValues",
+        "type": "Keyword"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "blastFoam/mappedBuilding3D/sector",
+      "target": "blastFoam/mappedBuilding3D/sector/0/T.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/T.orig",
+      "target": "Variable_T.orig",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/T.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/T.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/T.orig",
+      "target": "Variable_boundaryField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/T.orig",
+      "target": "Variable_outlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/T.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/T.orig",
+      "target": "Variable_ground",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/T.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector",
+      "target": "blastFoam/mappedBuilding3D/sector/0/U.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/U.orig",
+      "target": "Variable_U.orig",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/U.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/U.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/U.orig",
+      "target": "Variable_boundaryField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/U.orig",
+      "target": "Variable_outlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/U.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/U.orig",
+      "target": "Variable_ground",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/U.orig",
+      "target": "Variable_slip",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/U.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector",
+      "target": "blastFoam/mappedBuilding3D/sector/0/alpha.c4.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/alpha.c4.orig",
+      "target": "Variable_alpha.c4.orig",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/alpha.c4.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/alpha.c4.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/alpha.c4.orig",
+      "target": "Variable_boundaryField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/alpha.c4.orig",
+      "target": "Variable_outlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/alpha.c4.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/alpha.c4.orig",
+      "target": "Variable_ground",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/alpha.c4.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector",
+      "target": "blastFoam/mappedBuilding3D/sector/0/eCalc",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/eCalc",
+      "target": "Variable_eCalc",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/eCalc",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/eCalc",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/eCalc",
+      "target": "Variable_boundaryField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/eCalc",
+      "target": "Variable_wedge0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/eCalc",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/eCalc",
+      "target": "Variable_wedge1",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/eCalc",
+      "target": "Variable_wedge2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/eCalc",
+      "target": "Variable_wedge3",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/eCalc",
+      "target": "Variable_outlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/eCalc",
+      "target": "Variable_calculated",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/eCalc",
+      "target": "Variable_defaultFaces",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/eCalc",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector",
+      "target": "blastFoam/mappedBuilding3D/sector/0/p.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/p.orig",
+      "target": "Variable_p.orig",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/p.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/p.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/p.orig",
+      "target": "Variable_boundaryField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/p.orig",
+      "target": "Variable_outlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/p.orig",
+      "target": "Variable_pressureWaveTransmissive",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/p.orig",
+      "target": "Variable_ground",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/p.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/p.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector",
+      "target": "blastFoam/mappedBuilding3D/sector/0/rho.air.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/rho.air.orig",
+      "target": "Variable_rho.air.orig",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/rho.air.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/rho.air.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/rho.air.orig",
+      "target": "Variable_boundaryField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/rho.air.orig",
+      "target": "Variable_outlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/rho.air.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/rho.air.orig",
+      "target": "Variable_ground",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/rho.air.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector",
+      "target": "blastFoam/mappedBuilding3D/sector/0/rho.c4.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/rho.c4.orig",
+      "target": "Variable_rho.c4.orig",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/rho.c4.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/rho.c4.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/rho.c4.orig",
+      "target": "Variable_boundaryField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/rho.c4.orig",
+      "target": "Variable_outlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/rho.c4.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/rho.c4.orig",
+      "target": "Variable_ground",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/0/rho.c4.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector",
+      "target": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_phases",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_c4",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_air",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_reactants",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_thermoType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_transport",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_thermo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_eConst",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_equationOfState",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_Murnaghan",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_rho0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_Gamma",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_pRef",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_K0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_specie",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_molWeight",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_mu",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_Pr",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_thermodynamics",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_Cv",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_Hf",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_products",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_JWL",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_A",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_B",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_R1",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_R2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_omega",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_activationModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_pressureBased",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_initiation",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_E0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_I",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_a",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_b",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_x",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_maxLambdaI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_G1",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_c",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_d",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_y",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_minLambda1",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_G2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_e",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_f",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_z",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_minLambda2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_pMin",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_points",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_radius",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_vDet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_residualRho",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_residualAlpha",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_basic",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_idealGas",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/constant/phaseProperties",
+      "target": "Variable_gamma",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector",
+      "target": "blastFoam/mappedBuilding3D/sector/system/blockMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/blockMeshDict",
+      "target": "Variable_convertToMeters",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/blockMeshDict",
+      "target": "Variable_vertices",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/blockMeshDict",
+      "target": "Variable_blocks",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/blockMeshDict",
+      "target": "Variable_edges",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/blockMeshDict",
+      "target": "Variable_boundary",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/blockMeshDict",
+      "target": "Variable_wedge0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/blockMeshDict",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/blockMeshDict",
+      "target": "Variable_wedge1",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/blockMeshDict",
+      "target": "Variable_wedge2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/blockMeshDict",
+      "target": "Variable_wedge3",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/blockMeshDict",
+      "target": "Variable_outlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/blockMeshDict",
+      "target": "Variable_patch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/blockMeshDict",
+      "target": "Variable_mergePatchPairs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector",
+      "target": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "target": "Variable_application",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "target": "Variable_startFrom",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "target": "Variable_startTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "target": "Variable_stopAt",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "target": "Variable_endTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "target": "Variable_writeControl",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "target": "Variable_writeInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "target": "Variable_writeFormat",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "target": "Variable_writePrecision",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "target": "Variable_writeCompression",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "target": "Variable_timeFormat",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "target": "Variable_timePrecision",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "target": "Variable_runTimeModifiable",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "target": "Variable_adjustTimeStep",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "target": "Variable_deltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "target": "Variable_maxCo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/controlDict",
+      "target": "Variable_functions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector",
+      "target": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_fluxScheme",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_Kurganov",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_default",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_timeIntegrator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_RK2SSP",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_cellMDLimited",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_leastSquares",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_Riemann",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_Gauss",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_cubic",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_reconstruct",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_Minmod",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_MinmodV",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_wallDist",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_method",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSchemes",
+      "target": "Variable_meshWave",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector",
+      "target": "blastFoam/mappedBuilding3D/sector/system/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSolution",
+      "target": "Variable_diagonal",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSolution",
+      "target": "Variable_PBiCGStab",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSolution",
+      "target": "Variable_preconditioner",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSolution",
+      "target": "Variable_DIC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSolution",
+      "target": "Variable_tolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/fvSolution",
+      "target": "Variable_relTol",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector",
+      "target": "blastFoam/mappedBuilding3D/sector/system/setFieldsDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/setFieldsDict",
+      "target": "Variable_fields",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/setFieldsDict",
+      "target": "Variable_nBufferLayers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/setFieldsDict",
+      "target": "Variable_refiner",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/setFieldsDict",
+      "target": "Variable_directionalRefiner",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/setFieldsDict",
+      "target": "Variable_defaultFieldValues",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/setFieldsDict",
+      "target": "Variable_regions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/setFieldsDict",
+      "target": "Variable_sphericalMassToCell",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/setFieldsDict",
+      "target": "Variable_rho",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/setFieldsDict",
+      "target": "Variable_mass",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/setFieldsDict",
+      "target": "Variable_centre",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/setFieldsDict",
+      "target": "Variable_level",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/mappedBuilding3D/sector/system/setFieldsDict",
+      "target": "Variable_fieldValues",
+      "type": "DEFINES"
+    }
+  ]
+}

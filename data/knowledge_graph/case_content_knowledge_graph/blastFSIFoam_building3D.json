@@ -1,0 +1,2269 @@
+{
+  "nodes": [
+    {
+      "id": "blastFSIFoam/building3D",
+      "label": "Case",
+      "properties": {
+        "name": "building3D",
+        "path": "blastFSIFoam/building3D"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/0/building/D",
+      "label": "File",
+      "properties": {
+        "name": "D",
+        "path": "blastFSIFoam/building3D/0/building/D"
+      }
+    },
+    {
+      "id": "Variable_D",
+      "label": "Variable",
+      "properties": {
+        "name": "D",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "Variable_coupledSolidTraction",
+      "label": "Variable",
+      "properties": {
+        "name": "coupledSolidTraction",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_pName",
+      "label": "Variable",
+      "properties": {
+        "name": "pName",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_pRef",
+      "label": "Variable",
+      "properties": {
+        "name": "pRef",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_traction",
+      "label": "Variable",
+      "properties": {
+        "name": "traction",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_pressure",
+      "label": "Variable",
+      "properties": {
+        "name": "pressure",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_fixedValue",
+      "label": "Variable",
+      "properties": {
+        "name": "fixedValue",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/0/building/T.orig",
+      "label": "File",
+      "properties": {
+        "name": "T.orig",
+        "path": "blastFSIFoam/building3D/0/building/T.orig"
+      }
+    },
+    {
+      "id": "Variable_T",
+      "label": "Variable",
+      "properties": {
+        "name": "T",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "Variable_zeroGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "zeroGradient",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/0/building/p.orig",
+      "label": "File",
+      "properties": {
+        "name": "p.orig",
+        "path": "blastFSIFoam/building3D/0/building/p.orig"
+      }
+    },
+    {
+      "id": "Variable_p",
+      "label": "Variable",
+      "properties": {
+        "name": "p",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/0/air/T.orig",
+      "label": "File",
+      "properties": {
+        "name": "T.orig",
+        "path": "blastFSIFoam/building3D/0/air/T.orig"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/0/air/U.orig",
+      "label": "File",
+      "properties": {
+        "name": "U.orig",
+        "path": "blastFSIFoam/building3D/0/air/U.orig"
+      }
+    },
+    {
+      "id": "Variable_U",
+      "label": "Variable",
+      "properties": {
+        "name": "U",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "Variable_movingWallVelocity",
+      "label": "Variable",
+      "properties": {
+        "name": "movingWallVelocity",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_slip",
+      "label": "Variable",
+      "properties": {
+        "name": "slip",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/0/air/alpha.c4.orig",
+      "label": "File",
+      "properties": {
+        "name": "alpha.c4.orig",
+        "path": "blastFSIFoam/building3D/0/air/alpha.c4.orig"
+      }
+    },
+    {
+      "id": "Variable_alpha.c4",
+      "label": "Variable",
+      "properties": {
+        "name": "alpha.c4",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/0/air/p.orig",
+      "label": "File",
+      "properties": {
+        "name": "p.orig",
+        "path": "blastFSIFoam/building3D/0/air/p.orig"
+      }
+    },
+    {
+      "id": "Variable_pressureWaveTransmissive",
+      "label": "Variable",
+      "properties": {
+        "name": "pressureWaveTransmissive",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/0/air/pointMotionU",
+      "label": "File",
+      "properties": {
+        "name": "pointMotionU",
+        "path": "blastFSIFoam/building3D/0/air/pointMotionU"
+      }
+    },
+    {
+      "id": "Variable_pointMotionU",
+      "label": "Variable",
+      "properties": {
+        "name": "pointMotionU",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "Variable_globalInterpolated",
+      "label": "Variable",
+      "properties": {
+        "name": "globalInterpolated",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_nbrName",
+      "label": "Variable",
+      "properties": {
+        "name": "nbrName",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/0/air/rho.air.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.air.orig",
+        "path": "blastFSIFoam/building3D/0/air/rho.air.orig"
+      }
+    },
+    {
+      "id": "Variable_rho.air",
+      "label": "Variable",
+      "properties": {
+        "name": "rho.air",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/0/air/rho.c4.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.c4.orig",
+        "path": "blastFSIFoam/building3D/0/air/rho.c4.orig"
+      }
+    },
+    {
+      "id": "Variable_rho.c4",
+      "label": "Variable",
+      "properties": {
+        "name": "rho.c4",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/constant/regionProperties",
+      "label": "File",
+      "properties": {
+        "name": "regionProperties",
+        "path": "blastFSIFoam/building3D/constant/regionProperties"
+      }
+    },
+    {
+      "id": "Variable_regions",
+      "label": "Variable",
+      "properties": {
+        "name": "regions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_interfaces",
+      "label": "Variable",
+      "properties": {
+        "name": "interfaces",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_sampleRegion",
+      "label": "Variable",
+      "properties": {
+        "name": "sampleRegion",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_samplePatch",
+      "label": "Variable",
+      "properties": {
+        "name": "samplePatch",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_mappingType",
+      "label": "Variable",
+      "properties": {
+        "name": "mappingType",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_interpolationMethod",
+      "label": "Variable",
+      "properties": {
+        "name": "interpolationMethod",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_displacementField",
+      "label": "Variable",
+      "properties": {
+        "name": "displacementField",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/constant/building/mechanicalProperties",
+      "label": "File",
+      "properties": {
+        "name": "mechanicalProperties",
+        "path": "blastFSIFoam/building3D/constant/building/mechanicalProperties"
+      }
+    },
+    {
+      "id": "Variable_planeStress",
+      "label": "Variable",
+      "properties": {
+        "name": "planeStress",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_thermalStress",
+      "label": "Variable",
+      "properties": {
+        "name": "thermalStress",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_linearElastic",
+      "label": "Variable",
+      "properties": {
+        "name": "linearElastic",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_nu",
+      "label": "Variable",
+      "properties": {
+        "name": "nu",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "Variable_E",
+      "label": "Variable",
+      "properties": {
+        "name": "E",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/constant/building/solidProperties",
+      "label": "File",
+      "properties": {
+        "name": "solidProperties",
+        "path": "blastFSIFoam/building3D/constant/building/solidProperties"
+      }
+    },
+    {
+      "id": "Variable_solidModel",
+      "label": "Variable",
+      "properties": {
+        "name": "solidModel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_linearTotalDisplacement",
+      "label": "Variable",
+      "properties": {
+        "name": "linearTotalDisplacement",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_nCorrectors",
+      "label": "Variable",
+      "properties": {
+        "name": "nCorrectors",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_solutionTolerance",
+      "label": "Variable",
+      "properties": {
+        "name": "solutionTolerance",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_alternativeTolerance",
+      "label": "Variable",
+      "properties": {
+        "name": "alternativeTolerance",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_materialTolerance",
+      "label": "Variable",
+      "properties": {
+        "name": "materialTolerance",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/constant/building/thermophysicalProperties",
+      "label": "File",
+      "properties": {
+        "name": "thermophysicalProperties",
+        "path": "blastFSIFoam/building3D/constant/building/thermophysicalProperties"
+      }
+    },
+    {
+      "id": "Variable_thermoType",
+      "label": "Variable",
+      "properties": {
+        "name": "thermoType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_equationOfState",
+      "label": "Variable",
+      "properties": {
+        "name": "equationOfState",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_rhoConst",
+      "label": "Variable",
+      "properties": {
+        "name": "rhoConst",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_rho0",
+      "label": "Variable",
+      "properties": {
+        "name": "rho0",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "Variable_kappa",
+      "label": "Variable",
+      "properties": {
+        "name": "kappa",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "Variable_Cv",
+      "label": "Variable",
+      "properties": {
+        "name": "Cv",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "Variable_C",
+      "label": "Variable",
+      "properties": {
+        "name": "C",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "Variable_k",
+      "label": "Variable",
+      "properties": {
+        "name": "k",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "Variable_alpha",
+      "label": "Variable",
+      "properties": {
+        "name": "alpha",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/constant/air/dynamicMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "dynamicMeshDict",
+        "path": "blastFSIFoam/building3D/constant/air/dynamicMeshDict"
+      }
+    },
+    {
+      "id": "Variable_dynamicFvMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "dynamicFvMesh",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_movingAdaptiveFvMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "movingAdaptiveFvMesh",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_errorEstimator",
+      "label": "Variable",
+      "properties": {
+        "name": "errorEstimator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_densityGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "densityGradient",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_motionSolver",
+      "label": "Variable",
+      "properties": {
+        "name": "motionSolver",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_velocityLaplacian",
+      "label": "Variable",
+      "properties": {
+        "name": "velocityLaplacian",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_refineInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "refineInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_lowerRefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "lowerRefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_unrefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "unrefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_nBufferLayers",
+      "label": "Variable",
+      "properties": {
+        "name": "nBufferLayers",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxRefinement",
+      "label": "Variable",
+      "properties": {
+        "name": "maxRefinement",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/constant/air/g",
+      "label": "File",
+      "properties": {
+        "name": "g",
+        "path": "blastFSIFoam/building3D/constant/air/g"
+      }
+    },
+    {
+      "id": "Variable_g",
+      "label": "Variable",
+      "properties": {
+        "name": "g",
+        "type": "PhysicalConstant"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "label": "File",
+      "properties": {
+        "name": "phaseProperties",
+        "path": "blastFSIFoam/building3D/constant/air/phaseProperties"
+      }
+    },
+    {
+      "id": "Variable_phases",
+      "label": "Variable",
+      "properties": {
+        "name": "phases",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_detonating",
+      "label": "Variable",
+      "properties": {
+        "name": "detonating",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_BirchMurnaghan3",
+      "label": "Variable",
+      "properties": {
+        "name": "BirchMurnaghan3",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_JWL",
+      "label": "Variable",
+      "properties": {
+        "name": "JWL",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_idealGas",
+      "label": "Variable",
+      "properties": {
+        "name": "idealGas",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_Gamma",
+      "label": "Variable",
+      "properties": {
+        "name": "Gamma",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "Variable_K0",
+      "label": "Variable",
+      "properties": {
+        "name": "K0",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "Variable_A",
+      "label": "Variable",
+      "properties": {
+        "name": "A",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "Variable_B",
+      "label": "Variable",
+      "properties": {
+        "name": "B",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "Variable_R1",
+      "label": "Variable",
+      "properties": {
+        "name": "R1",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "Variable_R2",
+      "label": "Variable",
+      "properties": {
+        "name": "R2",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "Variable_omega",
+      "label": "Variable",
+      "properties": {
+        "name": "omega",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "Variable_gamma",
+      "label": "Variable",
+      "properties": {
+        "name": "gamma",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "Variable_vDet",
+      "label": "Variable",
+      "properties": {
+        "name": "vDet",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "Variable_E0",
+      "label": "Variable",
+      "properties": {
+        "name": "E0",
+        "type": "MaterialProperty"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/constant/air/turbulenceProperties",
+      "label": "File",
+      "properties": {
+        "name": "turbulenceProperties",
+        "path": "blastFSIFoam/building3D/constant/air/turbulenceProperties"
+      }
+    },
+    {
+      "id": "Variable_simulationType",
+      "label": "Variable",
+      "properties": {
+        "name": "simulationType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_laminar",
+      "label": "Variable",
+      "properties": {
+        "name": "laminar",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/system/blockMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "blockMeshDict",
+        "path": "blastFSIFoam/building3D/system/blockMeshDict"
+      }
+    },
+    {
+      "id": "Variable_scale",
+      "label": "Variable",
+      "properties": {
+        "name": "scale",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_vertices",
+      "label": "Variable",
+      "properties": {
+        "name": "vertices",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blocks",
+      "label": "Variable",
+      "properties": {
+        "name": "blocks",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_edges",
+      "label": "Variable",
+      "properties": {
+        "name": "edges",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_boundary",
+      "label": "Variable",
+      "properties": {
+        "name": "boundary",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/system/controlDict",
+      "label": "File",
+      "properties": {
+        "name": "controlDict",
+        "path": "blastFSIFoam/building3D/system/controlDict"
+      }
+    },
+    {
+      "id": "Variable_application",
+      "label": "Variable",
+      "properties": {
+        "name": "application",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blastFSIFoam",
+      "label": "Variable",
+      "properties": {
+        "name": "blastFSIFoam",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_startFrom",
+      "label": "Variable",
+      "properties": {
+        "name": "startFrom",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_startTime",
+      "label": "Variable",
+      "properties": {
+        "name": "startTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_stopAt",
+      "label": "Variable",
+      "properties": {
+        "name": "stopAt",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_endTime",
+      "label": "Variable",
+      "properties": {
+        "name": "endTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_deltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "deltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeControl",
+      "label": "Variable",
+      "properties": {
+        "name": "writeControl",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "writeInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxCo",
+      "label": "Variable",
+      "properties": {
+        "name": "maxCo",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_adjustTimeStep",
+      "label": "Variable",
+      "properties": {
+        "name": "adjustTimeStep",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/system/decomposeParDict",
+      "label": "File",
+      "properties": {
+        "name": "decomposeParDict",
+        "path": "blastFSIFoam/building3D/system/decomposeParDict"
+      }
+    },
+    {
+      "id": "Variable_numberOfSubdomains",
+      "label": "Variable",
+      "properties": {
+        "name": "numberOfSubdomains",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_method",
+      "label": "Variable",
+      "properties": {
+        "name": "method",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_scotch",
+      "label": "Variable",
+      "properties": {
+        "name": "scotch",
+        "type": "Method"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/system/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "blastFSIFoam/building3D/system/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_d2dt2Schemes",
+      "label": "Variable",
+      "properties": {
+        "name": "d2dt2Schemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_Euler",
+      "label": "Variable",
+      "properties": {
+        "name": "Euler",
+        "type": "Scheme"
+      }
+    },
+    {
+      "id": "Variable_ddtSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "ddtSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_divSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "divSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_Gauss linear",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss linear",
+        "type": "Scheme"
+      }
+    },
+    {
+      "id": "Variable_gradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "gradSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_leastSquares",
+      "label": "Variable",
+      "properties": {
+        "name": "leastSquares",
+        "type": "Scheme"
+      }
+    },
+    {
+      "id": "Variable_laplacianSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "laplacianSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_interpolationSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "interpolationSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_snGradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "snGradSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/system/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "blastFSIFoam/building3D/system/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_solvers",
+      "label": "Variable",
+      "properties": {
+        "name": "solvers",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_PCG",
+      "label": "Variable",
+      "properties": {
+        "name": "PCG",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_tolerance",
+      "label": "Variable",
+      "properties": {
+        "name": "tolerance",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_relTol",
+      "label": "Variable",
+      "properties": {
+        "name": "relTol",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_preconditioner",
+      "label": "Variable",
+      "properties": {
+        "name": "preconditioner",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_DIC",
+      "label": "Variable",
+      "properties": {
+        "name": "DIC",
+        "type": "Preconditioner"
+      }
+    },
+    {
+      "id": "Variable_stressAnalysis",
+      "label": "Variable",
+      "properties": {
+        "name": "stressAnalysis",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/system/building/decomposeParDict",
+      "label": "File",
+      "properties": {
+        "name": "decomposeParDict",
+        "path": "blastFSIFoam/building3D/system/building/decomposeParDict"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/system/building/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "blastFSIFoam/building3D/system/building/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_extendedLeastSquares",
+      "label": "Variable",
+      "properties": {
+        "name": "extendedLeastSquares",
+        "type": "Scheme"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/system/building/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "blastFSIFoam/building3D/system/building/fvSolution"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/system/air/decomposeParDict",
+      "label": "File",
+      "properties": {
+        "name": "decomposeParDict",
+        "path": "blastFSIFoam/building3D/system/air/decomposeParDict"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/system/air/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "blastFSIFoam/building3D/system/air/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_fluxScheme",
+      "label": "Variable",
+      "properties": {
+        "name": "fluxScheme",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Kurganov",
+      "label": "Variable",
+      "properties": {
+        "name": "Kurganov",
+        "type": "Scheme"
+      }
+    },
+    {
+      "id": "Variable_timeIntegrator",
+      "label": "Variable",
+      "properties": {
+        "name": "timeIntegrator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_RK2SSP",
+      "label": "Variable",
+      "properties": {
+        "name": "RK2SSP",
+        "type": "Scheme"
+      }
+    },
+    {
+      "id": "Variable_cellMDLimited leastSquares",
+      "label": "Variable",
+      "properties": {
+        "name": "cellMDLimited leastSquares",
+        "type": "Scheme"
+      }
+    },
+    {
+      "id": "Variable_Riemann",
+      "label": "Variable",
+      "properties": {
+        "name": "Riemann",
+        "type": "Scheme"
+      }
+    },
+    {
+      "id": "Variable_upwindMUSCL Minmod",
+      "label": "Variable",
+      "properties": {
+        "name": "upwindMUSCL Minmod",
+        "type": "Scheme"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/system/air/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "blastFSIFoam/building3D/system/air/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_diagonal",
+      "label": "Variable",
+      "properties": {
+        "name": "diagonal",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_PBiCGStab",
+      "label": "Variable",
+      "properties": {
+        "name": "PBiCGStab",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "File_blastFSIFoam/building3D/system/air/setFieldsDict",
+      "label": "File",
+      "properties": {
+        "name": "setFieldsDict",
+        "path": "blastFSIFoam/building3D/system/air/setFieldsDict"
+      }
+    },
+    {
+      "id": "Variable_fields",
+      "label": "Variable",
+      "properties": {
+        "name": "fields",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_defaultFieldValues",
+      "label": "Variable",
+      "properties": {
+        "name": "defaultFieldValues",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cylinderToCell",
+      "label": "Variable",
+      "properties": {
+        "name": "cylinderToCell",
+        "type": "Region"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/0/building/D",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/building/D",
+      "target": "Variable_D",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/building/D",
+      "target": "Variable_coupledSolidTraction",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/building/D",
+      "target": "Variable_pName",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/building/D",
+      "target": "Variable_pRef",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/building/D",
+      "target": "Variable_traction",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/building/D",
+      "target": "Variable_pressure",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/building/D",
+      "target": "Variable_fixedValue",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/0/building/T.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/building/T.orig",
+      "target": "Variable_T",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/building/T.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/0/building/p.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/building/p.orig",
+      "target": "Variable_p",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/building/p.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/0/air/T.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/T.orig",
+      "target": "Variable_T",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/T.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/0/air/U.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/U.orig",
+      "target": "Variable_U",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/U.orig",
+      "target": "Variable_movingWallVelocity",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/U.orig",
+      "target": "Variable_slip",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/U.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/0/air/alpha.c4.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/alpha.c4.orig",
+      "target": "Variable_alpha.c4",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/alpha.c4.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/0/air/p.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/p.orig",
+      "target": "Variable_p",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/p.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/p.orig",
+      "target": "Variable_pressureWaveTransmissive",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/0/air/pointMotionU",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/pointMotionU",
+      "target": "Variable_pointMotionU",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/pointMotionU",
+      "target": "Variable_globalInterpolated",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/pointMotionU",
+      "target": "Variable_nbrName",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/pointMotionU",
+      "target": "Variable_slip",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/0/air/rho.air.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/rho.air.orig",
+      "target": "Variable_rho.air",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/rho.air.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/0/air/rho.c4.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/rho.c4.orig",
+      "target": "Variable_rho.c4",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/0/air/rho.c4.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/constant/regionProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/regionProperties",
+      "target": "Variable_regions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/regionProperties",
+      "target": "Variable_interfaces",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/regionProperties",
+      "target": "Variable_sampleRegion",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/regionProperties",
+      "target": "Variable_samplePatch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/regionProperties",
+      "target": "Variable_mappingType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/regionProperties",
+      "target": "Variable_interpolationMethod",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/regionProperties",
+      "target": "Variable_displacementField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/constant/building/mechanicalProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/mechanicalProperties",
+      "target": "Variable_planeStress",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/mechanicalProperties",
+      "target": "Variable_thermalStress",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/mechanicalProperties",
+      "target": "Variable_linearElastic",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/mechanicalProperties",
+      "target": "Variable_nu",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/mechanicalProperties",
+      "target": "Variable_E",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/constant/building/solidProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/solidProperties",
+      "target": "Variable_solidModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/solidProperties",
+      "target": "Variable_linearTotalDisplacement",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/solidProperties",
+      "target": "Variable_nCorrectors",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/solidProperties",
+      "target": "Variable_solutionTolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/solidProperties",
+      "target": "Variable_alternativeTolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/solidProperties",
+      "target": "Variable_materialTolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/constant/building/thermophysicalProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/thermophysicalProperties",
+      "target": "Variable_thermoType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/thermophysicalProperties",
+      "target": "Variable_equationOfState",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/thermophysicalProperties",
+      "target": "Variable_rhoConst",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/thermophysicalProperties",
+      "target": "Variable_rho0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/thermophysicalProperties",
+      "target": "Variable_kappa",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/thermophysicalProperties",
+      "target": "Variable_Cv",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/thermophysicalProperties",
+      "target": "Variable_C",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/thermophysicalProperties",
+      "target": "Variable_k",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/thermophysicalProperties",
+      "target": "Variable_alpha",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/building/thermophysicalProperties",
+      "target": "Variable_thermalStress",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/constant/air/dynamicMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/dynamicMeshDict",
+      "target": "Variable_dynamicFvMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/dynamicMeshDict",
+      "target": "Variable_movingAdaptiveFvMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/dynamicMeshDict",
+      "target": "Variable_errorEstimator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/dynamicMeshDict",
+      "target": "Variable_densityGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/dynamicMeshDict",
+      "target": "Variable_motionSolver",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/dynamicMeshDict",
+      "target": "Variable_velocityLaplacian",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/dynamicMeshDict",
+      "target": "Variable_refineInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/dynamicMeshDict",
+      "target": "Variable_lowerRefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/dynamicMeshDict",
+      "target": "Variable_unrefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/dynamicMeshDict",
+      "target": "Variable_nBufferLayers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/dynamicMeshDict",
+      "target": "Variable_maxRefinement",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/constant/air/g",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/g",
+      "target": "Variable_g",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_phases",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_detonating",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_thermoType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_equationOfState",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_BirchMurnaghan3",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_rho0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_Gamma",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_pRef",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_K0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_Cv",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_JWL",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_A",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_B",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_R1",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_R2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_omega",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_E0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_vDet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_idealGas",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/phaseProperties",
+      "target": "Variable_gamma",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/constant/air/turbulenceProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/turbulenceProperties",
+      "target": "Variable_simulationType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/constant/air/turbulenceProperties",
+      "target": "Variable_laminar",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/system/blockMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/blockMeshDict",
+      "target": "Variable_scale",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/blockMeshDict",
+      "target": "Variable_vertices",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/blockMeshDict",
+      "target": "Variable_blocks",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/blockMeshDict",
+      "target": "Variable_edges",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/blockMeshDict",
+      "target": "Variable_boundary",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/system/controlDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/controlDict",
+      "target": "Variable_application",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/controlDict",
+      "target": "Variable_blastFSIFoam",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/controlDict",
+      "target": "Variable_startFrom",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/controlDict",
+      "target": "Variable_startTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/controlDict",
+      "target": "Variable_stopAt",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/controlDict",
+      "target": "Variable_endTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/controlDict",
+      "target": "Variable_deltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/controlDict",
+      "target": "Variable_writeControl",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/controlDict",
+      "target": "Variable_writeInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/controlDict",
+      "target": "Variable_maxCo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/controlDict",
+      "target": "Variable_adjustTimeStep",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/system/decomposeParDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/decomposeParDict",
+      "target": "Variable_numberOfSubdomains",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/decomposeParDict",
+      "target": "Variable_method",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/decomposeParDict",
+      "target": "Variable_scotch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/system/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/fvSchemes",
+      "target": "Variable_d2dt2Schemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/fvSchemes",
+      "target": "Variable_Gauss linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/fvSchemes",
+      "target": "Variable_leastSquares",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/system/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/fvSolution",
+      "target": "Variable_PCG",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/fvSolution",
+      "target": "Variable_tolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/fvSolution",
+      "target": "Variable_relTol",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/fvSolution",
+      "target": "Variable_preconditioner",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/fvSolution",
+      "target": "Variable_DIC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/fvSolution",
+      "target": "Variable_stressAnalysis",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/system/building/decomposeParDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/system/building/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/building/fvSchemes",
+      "target": "Variable_d2dt2Schemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/building/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/building/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/building/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/building/fvSchemes",
+      "target": "Variable_Gauss linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/building/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/building/fvSchemes",
+      "target": "Variable_extendedLeastSquares",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/building/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/building/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/building/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/system/building/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/building/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/building/fvSolution",
+      "target": "Variable_PCG",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/building/fvSolution",
+      "target": "Variable_tolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/building/fvSolution",
+      "target": "Variable_relTol",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/building/fvSolution",
+      "target": "Variable_preconditioner",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/building/fvSolution",
+      "target": "Variable_DIC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/building/fvSolution",
+      "target": "Variable_stressAnalysis",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/system/air/decomposeParDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/system/air/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSchemes",
+      "target": "Variable_fluxScheme",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSchemes",
+      "target": "Variable_Kurganov",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSchemes",
+      "target": "Variable_timeIntegrator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSchemes",
+      "target": "Variable_RK2SSP",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSchemes",
+      "target": "Variable_cellMDLimited leastSquares",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSchemes",
+      "target": "Variable_Gauss linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSchemes",
+      "target": "Variable_Riemann",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSchemes",
+      "target": "Variable_upwindMUSCL Minmod",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/system/air/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSolution",
+      "target": "Variable_diagonal",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSolution",
+      "target": "Variable_PBiCGStab",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSolution",
+      "target": "Variable_preconditioner",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSolution",
+      "target": "Variable_DIC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSolution",
+      "target": "Variable_tolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/fvSolution",
+      "target": "Variable_relTol",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/building3D",
+      "target": "File_blastFSIFoam/building3D/system/air/setFieldsDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/setFieldsDict",
+      "target": "Variable_fields",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/setFieldsDict",
+      "target": "Variable_alpha.c4",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/setFieldsDict",
+      "target": "Variable_nBufferLayers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/setFieldsDict",
+      "target": "Variable_defaultFieldValues",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/setFieldsDict",
+      "target": "Variable_regions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "File_blastFSIFoam/building3D/system/air/setFieldsDict",
+      "target": "Variable_cylinderToCell",
+      "type": "DEFINES"
+    }
+  ]
+}

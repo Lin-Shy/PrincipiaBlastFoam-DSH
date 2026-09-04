@@ -1,0 +1,1333 @@
+{
+  "nodes": [
+    {
+      "id": "blastFoam/shockTube_tabulated",
+      "label": "Case",
+      "properties": {
+        "name": "shockTube_tabulated",
+        "path": "blastFoam/shockTube_tabulated"
+      }
+    },
+    {
+      "id": "blastFoam/shockTube_tabulated/0/T.orig",
+      "label": "File",
+      "properties": {
+        "name": "T.orig",
+        "path": "blastFoam/shockTube_tabulated/0/T.orig"
+      }
+    },
+    {
+      "id": "Variable_dimensions",
+      "label": "Variable",
+      "properties": {
+        "name": "dimensions",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_internalField",
+      "label": "Variable",
+      "properties": {
+        "name": "internalField",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_boundaryField",
+      "label": "Variable",
+      "properties": {
+        "name": "boundaryField",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_walls",
+      "label": "Variable",
+      "properties": {
+        "name": "walls",
+        "type": "Boundary"
+      }
+    },
+    {
+      "id": "Variable_zeroGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "zeroGradient",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_defaultFaces",
+      "label": "Variable",
+      "properties": {
+        "name": "defaultFaces",
+        "type": "Boundary"
+      }
+    },
+    {
+      "id": "Variable_empty",
+      "label": "Variable",
+      "properties": {
+        "name": "empty",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/shockTube_tabulated/0/U.orig",
+      "label": "File",
+      "properties": {
+        "name": "U.orig",
+        "path": "blastFoam/shockTube_tabulated/0/U.orig"
+      }
+    },
+    {
+      "id": "Variable_noSlip",
+      "label": "Variable",
+      "properties": {
+        "name": "noSlip",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/shockTube_tabulated/0/p.orig",
+      "label": "File",
+      "properties": {
+        "name": "p.orig",
+        "path": "blastFoam/shockTube_tabulated/0/p.orig"
+      }
+    },
+    {
+      "id": "blastFoam/shockTube_tabulated/0/rho.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.orig",
+        "path": "blastFoam/shockTube_tabulated/0/rho.orig"
+      }
+    },
+    {
+      "id": "blastFoam/shockTube_tabulated/constant/T.csv",
+      "label": "File",
+      "properties": {
+        "name": "T.csv",
+        "path": "blastFoam/shockTube_tabulated/constant/T.csv"
+      }
+    },
+    {
+      "id": "blastFoam/shockTube_tabulated/constant/p.csv",
+      "label": "File",
+      "properties": {
+        "name": "p.csv",
+        "path": "blastFoam/shockTube_tabulated/constant/p.csv"
+      }
+    },
+    {
+      "id": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "label": "File",
+      "properties": {
+        "name": "phaseProperties",
+        "path": "blastFoam/shockTube_tabulated/constant/phaseProperties"
+      }
+    },
+    {
+      "id": "Variable_type",
+      "label": "Variable",
+      "properties": {
+        "name": "type",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_thermoType",
+      "label": "Variable",
+      "properties": {
+        "name": "thermoType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_transport",
+      "label": "Variable",
+      "properties": {
+        "name": "transport",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_thermo",
+      "label": "Variable",
+      "properties": {
+        "name": "thermo",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_eTabulated",
+      "label": "Variable",
+      "properties": {
+        "name": "eTabulated",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_equationOfState",
+      "label": "Variable",
+      "properties": {
+        "name": "equationOfState",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_tabulatedMG",
+      "label": "Variable",
+      "properties": {
+        "name": "tabulatedMG",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_specie",
+      "label": "Variable",
+      "properties": {
+        "name": "specie",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_molWeight",
+      "label": "Variable",
+      "properties": {
+        "name": "molWeight",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_mu",
+      "label": "Variable",
+      "properties": {
+        "name": "mu",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Pr",
+      "label": "Variable",
+      "properties": {
+        "name": "Pr",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_pCoeffs",
+      "label": "Variable",
+      "properties": {
+        "name": "pCoeffs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_file",
+      "label": "Variable",
+      "properties": {
+        "name": "file",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_rhoCoeffs",
+      "label": "Variable",
+      "properties": {
+        "name": "rhoCoeffs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_eCoeffs",
+      "label": "Variable",
+      "properties": {
+        "name": "eCoeffs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_thermodynamics",
+      "label": "Variable",
+      "properties": {
+        "name": "thermodynamics",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_TCoeffs",
+      "label": "Variable",
+      "properties": {
+        "name": "TCoeffs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/shockTube_tabulated/system/blockMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "blockMeshDict",
+        "path": "blastFoam/shockTube_tabulated/system/blockMeshDict"
+      }
+    },
+    {
+      "id": "Variable_convertToMeters",
+      "label": "Variable",
+      "properties": {
+        "name": "convertToMeters",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_vertices",
+      "label": "Variable",
+      "properties": {
+        "name": "vertices",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blocks",
+      "label": "Variable",
+      "properties": {
+        "name": "blocks",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_hex",
+      "label": "Variable",
+      "properties": {
+        "name": "hex",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_edges",
+      "label": "Variable",
+      "properties": {
+        "name": "edges",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_boundary",
+      "label": "Variable",
+      "properties": {
+        "name": "boundary",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_patch",
+      "label": "Variable",
+      "properties": {
+        "name": "patch",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/shockTube_tabulated/system/controlDict",
+      "label": "File",
+      "properties": {
+        "name": "controlDict",
+        "path": "blastFoam/shockTube_tabulated/system/controlDict"
+      }
+    },
+    {
+      "id": "Variable_application",
+      "label": "Variable",
+      "properties": {
+        "name": "application",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blastFoam",
+      "label": "Variable",
+      "properties": {
+        "name": "blastFoam",
+        "type": "Application"
+      }
+    },
+    {
+      "id": "Variable_startFrom",
+      "label": "Variable",
+      "properties": {
+        "name": "startFrom",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_startTime",
+      "label": "Variable",
+      "properties": {
+        "name": "startTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_stopAt",
+      "label": "Variable",
+      "properties": {
+        "name": "stopAt",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_endTime",
+      "label": "Variable",
+      "properties": {
+        "name": "endTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeControl",
+      "label": "Variable",
+      "properties": {
+        "name": "writeControl",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "writeInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_adjustTimeStep",
+      "label": "Variable",
+      "properties": {
+        "name": "adjustTimeStep",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_deltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "deltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxCo",
+      "label": "Variable",
+      "properties": {
+        "name": "maxCo",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "blastFoam/shockTube_tabulated/system/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_fluxScheme",
+      "label": "Variable",
+      "properties": {
+        "name": "fluxScheme",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_HLLC",
+      "label": "Variable",
+      "properties": {
+        "name": "HLLC",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_ddtSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "ddtSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Euler",
+      "label": "Variable",
+      "properties": {
+        "name": "Euler",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_timeIntegrator",
+      "label": "Variable",
+      "properties": {
+        "name": "timeIntegrator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_RK4SSP",
+      "label": "Variable",
+      "properties": {
+        "name": "RK4SSP",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_gradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "gradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cellMDLimited",
+      "label": "Variable",
+      "properties": {
+        "name": "cellMDLimited",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_leastSquares",
+      "label": "Variable",
+      "properties": {
+        "name": "leastSquares",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_divSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "divSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_laplacianSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "laplacianSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_limiter",
+      "label": "Variable",
+      "properties": {
+        "name": "limiter",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_quadraticMUSCL",
+      "label": "Variable",
+      "properties": {
+        "name": "quadraticMUSCL",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_Minmod",
+      "label": "Variable",
+      "properties": {
+        "name": "Minmod",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_limiterV",
+      "label": "Variable",
+      "properties": {
+        "name": "limiterV",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_interpolationSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "interpolationSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_linear",
+      "label": "Variable",
+      "properties": {
+        "name": "linear",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(rho)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(rho)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(U)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(U)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(e)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(e)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(p)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(p)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(speedOfSound)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(speedOfSound)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_snGradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "snGradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/shockTube_tabulated/system/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "blastFoam/shockTube_tabulated/system/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_solvers",
+      "label": "Variable",
+      "properties": {
+        "name": "solvers",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_diagonal",
+      "label": "Variable",
+      "properties": {
+        "name": "diagonal",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_PBiCGStab",
+      "label": "Variable",
+      "properties": {
+        "name": "PBiCGStab",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_preconditioner",
+      "label": "Variable",
+      "properties": {
+        "name": "preconditioner",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_DIC",
+      "label": "Variable",
+      "properties": {
+        "name": "DIC",
+        "type": "Preconditioner"
+      }
+    },
+    {
+      "id": "Variable_tolerance",
+      "label": "Variable",
+      "properties": {
+        "name": "tolerance",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_relTol",
+      "label": "Variable",
+      "properties": {
+        "name": "relTol",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/shockTube_tabulated/system/sampleDict",
+      "label": "File",
+      "properties": {
+        "name": "sampleDict",
+        "path": "blastFoam/shockTube_tabulated/system/sampleDict"
+      }
+    },
+    {
+      "id": "Variable_sets",
+      "label": "Variable",
+      "properties": {
+        "name": "sets",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_libs",
+      "label": "Variable",
+      "properties": {
+        "name": "libs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_fields",
+      "label": "Variable",
+      "properties": {
+        "name": "fields",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_lineCell",
+      "label": "Variable",
+      "properties": {
+        "name": "lineCell",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/shockTube_tabulated/system/setFieldsDict",
+      "label": "File",
+      "properties": {
+        "name": "setFieldsDict",
+        "path": "blastFoam/shockTube_tabulated/system/setFieldsDict"
+      }
+    },
+    {
+      "id": "Variable_defaultFieldValues",
+      "label": "Variable",
+      "properties": {
+        "name": "defaultFieldValues",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_regions",
+      "label": "Variable",
+      "properties": {
+        "name": "regions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_boxToCell",
+      "label": "Variable",
+      "properties": {
+        "name": "boxToCell",
+        "type": "Keyword"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "blastFoam/shockTube_tabulated",
+      "target": "blastFoam/shockTube_tabulated/0/T.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/T.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/T.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/T.orig",
+      "target": "Variable_boundaryField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/T.orig",
+      "target": "Variable_walls",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/T.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/T.orig",
+      "target": "Variable_defaultFaces",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/T.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated",
+      "target": "blastFoam/shockTube_tabulated/0/U.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/U.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/U.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/U.orig",
+      "target": "Variable_boundaryField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/U.orig",
+      "target": "Variable_walls",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/U.orig",
+      "target": "Variable_noSlip",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/U.orig",
+      "target": "Variable_defaultFaces",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/U.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated",
+      "target": "blastFoam/shockTube_tabulated/0/p.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/p.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/p.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/p.orig",
+      "target": "Variable_boundaryField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/p.orig",
+      "target": "Variable_walls",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/p.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/p.orig",
+      "target": "Variable_defaultFaces",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/p.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated",
+      "target": "blastFoam/shockTube_tabulated/0/rho.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/rho.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/rho.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/rho.orig",
+      "target": "Variable_boundaryField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/rho.orig",
+      "target": "Variable_walls",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/rho.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/rho.orig",
+      "target": "Variable_defaultFaces",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/0/rho.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated",
+      "target": "blastFoam/shockTube_tabulated/constant/T.csv",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated",
+      "target": "blastFoam/shockTube_tabulated/constant/p.csv",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated",
+      "target": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "target": "Variable_type",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "target": "Variable_thermoType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "target": "Variable_transport",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "target": "Variable_thermo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "target": "Variable_eTabulated",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "target": "Variable_equationOfState",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "target": "Variable_tabulatedMG",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "target": "Variable_specie",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "target": "Variable_molWeight",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "target": "Variable_mu",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "target": "Variable_Pr",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "target": "Variable_pCoeffs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "target": "Variable_file",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "target": "Variable_rhoCoeffs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "target": "Variable_eCoeffs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "target": "Variable_thermodynamics",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/constant/phaseProperties",
+      "target": "Variable_TCoeffs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated",
+      "target": "blastFoam/shockTube_tabulated/system/blockMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/blockMeshDict",
+      "target": "Variable_convertToMeters",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/blockMeshDict",
+      "target": "Variable_vertices",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/blockMeshDict",
+      "target": "Variable_blocks",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/blockMeshDict",
+      "target": "Variable_hex",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/blockMeshDict",
+      "target": "Variable_edges",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/blockMeshDict",
+      "target": "Variable_boundary",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/blockMeshDict",
+      "target": "Variable_walls",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/blockMeshDict",
+      "target": "Variable_patch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated",
+      "target": "blastFoam/shockTube_tabulated/system/controlDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/controlDict",
+      "target": "Variable_application",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/controlDict",
+      "target": "Variable_blastFoam",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/controlDict",
+      "target": "Variable_startFrom",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/controlDict",
+      "target": "Variable_startTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/controlDict",
+      "target": "Variable_stopAt",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/controlDict",
+      "target": "Variable_endTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/controlDict",
+      "target": "Variable_writeControl",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/controlDict",
+      "target": "Variable_writeInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/controlDict",
+      "target": "Variable_adjustTimeStep",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/controlDict",
+      "target": "Variable_deltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/controlDict",
+      "target": "Variable_maxCo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated",
+      "target": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_fluxScheme",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_HLLC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_timeIntegrator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_RK4SSP",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_cellMDLimited",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_leastSquares",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_limiter",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_quadraticMUSCL",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_Minmod",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_limiterV",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_reconstruct(rho)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_reconstruct(U)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_reconstruct(e)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_reconstruct(p)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_reconstruct(speedOfSound)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated",
+      "target": "blastFoam/shockTube_tabulated/system/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSolution",
+      "target": "Variable_diagonal",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSolution",
+      "target": "Variable_PBiCGStab",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSolution",
+      "target": "Variable_preconditioner",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSolution",
+      "target": "Variable_DIC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSolution",
+      "target": "Variable_tolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/fvSolution",
+      "target": "Variable_relTol",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated",
+      "target": "blastFoam/shockTube_tabulated/system/sampleDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/sampleDict",
+      "target": "Variable_type",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/sampleDict",
+      "target": "Variable_sets",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/sampleDict",
+      "target": "Variable_libs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/sampleDict",
+      "target": "Variable_fields",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/sampleDict",
+      "target": "Variable_lineCell",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated",
+      "target": "blastFoam/shockTube_tabulated/system/setFieldsDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/setFieldsDict",
+      "target": "Variable_defaultFieldValues",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/setFieldsDict",
+      "target": "Variable_regions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/shockTube_tabulated/system/setFieldsDict",
+      "target": "Variable_boxToCell",
+      "type": "DEFINES"
+    }
+  ]
+}

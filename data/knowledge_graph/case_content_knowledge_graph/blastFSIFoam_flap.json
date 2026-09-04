@@ -1,0 +1,3997 @@
+{
+  "nodes": [
+    {
+      "id": "blastFSIFoam/flap",
+      "label": "Case",
+      "properties": {
+        "name": "flap",
+        "path": "blastFSIFoam/flap"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/0/flap/D",
+      "label": "File",
+      "properties": {
+        "name": "D",
+        "path": "blastFSIFoam/flap/0/flap/D"
+      }
+    },
+    {
+      "id": "Variable_dimensions",
+      "label": "Variable",
+      "properties": {
+        "name": "dimensions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_internalField",
+      "label": "Variable",
+      "properties": {
+        "name": "internalField",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_boundaryField",
+      "label": "Variable",
+      "properties": {
+        "name": "boundaryField",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_flap_to_air",
+      "label": "Variable",
+      "properties": {
+        "name": "flap_to_air",
+        "type": "Boundary"
+      }
+    },
+    {
+      "id": "Variable_coupledSolidTraction",
+      "label": "Variable",
+      "properties": {
+        "name": "coupledSolidTraction",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_pName",
+      "label": "Variable",
+      "properties": {
+        "name": "pName",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_pRef",
+      "label": "Variable",
+      "properties": {
+        "name": "pRef",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_traction",
+      "label": "Variable",
+      "properties": {
+        "name": "traction",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_value",
+      "label": "Variable",
+      "properties": {
+        "name": "value",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_pressure",
+      "label": "Variable",
+      "properties": {
+        "name": "pressure",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_flapBase",
+      "label": "Variable",
+      "properties": {
+        "name": "flapBase",
+        "type": "Boundary"
+      }
+    },
+    {
+      "id": "Variable_fixedValue",
+      "label": "Variable",
+      "properties": {
+        "name": "fixedValue",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/0/flap/T.orig",
+      "label": "File",
+      "properties": {
+        "name": "T.orig",
+        "path": "blastFSIFoam/flap/0/flap/T.orig"
+      }
+    },
+    {
+      "id": "Variable_zeroGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "zeroGradient",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/0/flap/p.orig",
+      "label": "File",
+      "properties": {
+        "name": "p.orig",
+        "path": "blastFSIFoam/flap/0/flap/p.orig"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/0/air/T.orig",
+      "label": "File",
+      "properties": {
+        "name": "T.orig",
+        "path": "blastFSIFoam/flap/0/air/T.orig"
+      }
+    },
+    {
+      "id": "Variable_air_to_flap",
+      "label": "Variable",
+      "properties": {
+        "name": "air_to_flap",
+        "type": "Boundary"
+      }
+    },
+    {
+      "id": "Variable_ground",
+      "label": "Variable",
+      "properties": {
+        "name": "ground",
+        "type": "Boundary"
+      }
+    },
+    {
+      "id": "Variable_outlet",
+      "label": "Variable",
+      "properties": {
+        "name": "outlet",
+        "type": "Boundary"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/0/air/U.orig",
+      "label": "File",
+      "properties": {
+        "name": "U.orig",
+        "path": "blastFSIFoam/flap/0/air/U.orig"
+      }
+    },
+    {
+      "id": "Variable_movingWallVelocity",
+      "label": "Variable",
+      "properties": {
+        "name": "movingWallVelocity",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_slip",
+      "label": "Variable",
+      "properties": {
+        "name": "slip",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/0/air/alpha.c4.orig",
+      "label": "File",
+      "properties": {
+        "name": "alpha.c4.orig",
+        "path": "blastFSIFoam/flap/0/air/alpha.c4.orig"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/0/air/p.orig",
+      "label": "File",
+      "properties": {
+        "name": "p.orig",
+        "path": "blastFSIFoam/flap/0/air/p.orig"
+      }
+    },
+    {
+      "id": "Variable_pressureWaveTransmissive",
+      "label": "Variable",
+      "properties": {
+        "name": "pressureWaveTransmissive",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/0/air/pointMotionU",
+      "label": "File",
+      "properties": {
+        "name": "pointMotionU",
+        "path": "blastFSIFoam/flap/0/air/pointMotionU"
+      }
+    },
+    {
+      "id": "Variable_globalInterpolated",
+      "label": "Variable",
+      "properties": {
+        "name": "globalInterpolated",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_nbrName",
+      "label": "Variable",
+      "properties": {
+        "name": "nbrName",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/0/air/rho.air.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.air.orig",
+        "path": "blastFSIFoam/flap/0/air/rho.air.orig"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/0/air/rho.c4.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.c4.orig",
+        "path": "blastFSIFoam/flap/0/air/rho.c4.orig"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/constant/regionProperties",
+      "label": "File",
+      "properties": {
+        "name": "regionProperties",
+        "path": "blastFSIFoam/flap/constant/regionProperties"
+      }
+    },
+    {
+      "id": "Variable_regions",
+      "label": "Variable",
+      "properties": {
+        "name": "regions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_interfaces",
+      "label": "Variable",
+      "properties": {
+        "name": "interfaces",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_sampleRegion",
+      "label": "Variable",
+      "properties": {
+        "name": "sampleRegion",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_samplePatch",
+      "label": "Variable",
+      "properties": {
+        "name": "samplePatch",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_mappingType",
+      "label": "Variable",
+      "properties": {
+        "name": "mappingType",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_AMI",
+      "label": "Variable",
+      "properties": {
+        "name": "AMI",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_interpolationMethod",
+      "label": "Variable",
+      "properties": {
+        "name": "interpolationMethod",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_faceAreaWeight",
+      "label": "Variable",
+      "properties": {
+        "name": "faceAreaWeight",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_displacementField",
+      "label": "Variable",
+      "properties": {
+        "name": "displacementField",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/constant/flap/mechanicalProperties",
+      "label": "File",
+      "properties": {
+        "name": "mechanicalProperties",
+        "path": "blastFSIFoam/flap/constant/flap/mechanicalProperties"
+      }
+    },
+    {
+      "id": "Variable_planeStress",
+      "label": "Variable",
+      "properties": {
+        "name": "planeStress",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_mechanical",
+      "label": "Variable",
+      "properties": {
+        "name": "mechanical",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_linearJohnsonCookPlastic",
+      "label": "Variable",
+      "properties": {
+        "name": "linearJohnsonCookPlastic",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_E",
+      "label": "Variable",
+      "properties": {
+        "name": "E",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_nu",
+      "label": "Variable",
+      "properties": {
+        "name": "nu",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_A",
+      "label": "Variable",
+      "properties": {
+        "name": "A",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_B",
+      "label": "Variable",
+      "properties": {
+        "name": "B",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_C",
+      "label": "Variable",
+      "properties": {
+        "name": "C",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_n",
+      "label": "Variable",
+      "properties": {
+        "name": "n",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_m",
+      "label": "Variable",
+      "properties": {
+        "name": "m",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_epsilonPDot0",
+      "label": "Variable",
+      "properties": {
+        "name": "epsilonPDot0",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Tref",
+      "label": "Variable",
+      "properties": {
+        "name": "Tref",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Tm",
+      "label": "Variable",
+      "properties": {
+        "name": "Tm",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_solvePressureEqn",
+      "label": "Variable",
+      "properties": {
+        "name": "solvePressureEqn",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/constant/flap/solidProperties",
+      "label": "File",
+      "properties": {
+        "name": "solidProperties",
+        "path": "blastFSIFoam/flap/constant/flap/solidProperties"
+      }
+    },
+    {
+      "id": "Variable_solidModel",
+      "label": "Variable",
+      "properties": {
+        "name": "solidModel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_linearTotalDisplacement",
+      "label": "Variable",
+      "properties": {
+        "name": "linearTotalDisplacement",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_linearTotalDisplacementCoeffs",
+      "label": "Variable",
+      "properties": {
+        "name": "linearTotalDisplacementCoeffs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_nCorrectors",
+      "label": "Variable",
+      "properties": {
+        "name": "nCorrectors",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_solutionTolerance",
+      "label": "Variable",
+      "properties": {
+        "name": "solutionTolerance",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_alternativeTolerance",
+      "label": "Variable",
+      "properties": {
+        "name": "alternativeTolerance",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_materialTolerance",
+      "label": "Variable",
+      "properties": {
+        "name": "materialTolerance",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_infoFrequency",
+      "label": "Variable",
+      "properties": {
+        "name": "infoFrequency",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/constant/flap/thermophysicalProperties",
+      "label": "File",
+      "properties": {
+        "name": "thermophysicalProperties",
+        "path": "blastFSIFoam/flap/constant/flap/thermophysicalProperties"
+      }
+    },
+    {
+      "id": "Variable_basic",
+      "label": "Variable",
+      "properties": {
+        "name": "basic",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_thermoType",
+      "label": "Variable",
+      "properties": {
+        "name": "thermoType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_transport",
+      "label": "Variable",
+      "properties": {
+        "name": "transport",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_constIso",
+      "label": "Variable",
+      "properties": {
+        "name": "constIso",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_thermo",
+      "label": "Variable",
+      "properties": {
+        "name": "thermo",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_eConst",
+      "label": "Variable",
+      "properties": {
+        "name": "eConst",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_equationOfState",
+      "label": "Variable",
+      "properties": {
+        "name": "equationOfState",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_rhoConst",
+      "label": "Variable",
+      "properties": {
+        "name": "rhoConst",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_specie",
+      "label": "Variable",
+      "properties": {
+        "name": "specie",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_molWeight",
+      "label": "Variable",
+      "properties": {
+        "name": "molWeight",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_rho0",
+      "label": "Variable",
+      "properties": {
+        "name": "rho0",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_kappa",
+      "label": "Variable",
+      "properties": {
+        "name": "kappa",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_thermodynamics",
+      "label": "Variable",
+      "properties": {
+        "name": "thermodynamics",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Hf",
+      "label": "Variable",
+      "properties": {
+        "name": "Hf",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Cv",
+      "label": "Variable",
+      "properties": {
+        "name": "Cv",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "dynamicMeshDict",
+        "path": "blastFSIFoam/flap/constant/air/dynamicMeshDict"
+      }
+    },
+    {
+      "id": "Variable_dynamicFvMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "dynamicFvMesh",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_movingAdaptiveFvMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "movingAdaptiveFvMesh",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_errorEstimator",
+      "label": "Variable",
+      "properties": {
+        "name": "errorEstimator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_densityGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "densityGradient",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_motionSolver",
+      "label": "Variable",
+      "properties": {
+        "name": "motionSolver",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_velocityLaplacian",
+      "label": "Variable",
+      "properties": {
+        "name": "velocityLaplacian",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_diffusivity",
+      "label": "Variable",
+      "properties": {
+        "name": "diffusivity",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_quadratic",
+      "label": "Variable",
+      "properties": {
+        "name": "quadratic",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_inverseDistance",
+      "label": "Variable",
+      "properties": {
+        "name": "inverseDistance",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_beginUnrefine",
+      "label": "Variable",
+      "properties": {
+        "name": "beginUnrefine",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_refineInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "refineInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_lowerRefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "lowerRefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_unrefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "unrefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_nBufferLayers",
+      "label": "Variable",
+      "properties": {
+        "name": "nBufferLayers",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxRefinement",
+      "label": "Variable",
+      "properties": {
+        "name": "maxRefinement",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_dumpLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "dumpLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/constant/air/g",
+      "label": "File",
+      "properties": {
+        "name": "g",
+        "path": "blastFSIFoam/flap/constant/air/g"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "label": "File",
+      "properties": {
+        "name": "phaseProperties",
+        "path": "blastFSIFoam/flap/constant/air/phaseProperties"
+      }
+    },
+    {
+      "id": "Variable_phases",
+      "label": "Variable",
+      "properties": {
+        "name": "phases",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_detonating",
+      "label": "Variable",
+      "properties": {
+        "name": "detonating",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_reactants",
+      "label": "Variable",
+      "properties": {
+        "name": "reactants",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Murnaghan",
+      "label": "Variable",
+      "properties": {
+        "name": "Murnaghan",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_Gamma",
+      "label": "Variable",
+      "properties": {
+        "name": "Gamma",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_K0",
+      "label": "Variable",
+      "properties": {
+        "name": "K0",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_mu",
+      "label": "Variable",
+      "properties": {
+        "name": "mu",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Pr",
+      "label": "Variable",
+      "properties": {
+        "name": "Pr",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_products",
+      "label": "Variable",
+      "properties": {
+        "name": "products",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_JWL",
+      "label": "Variable",
+      "properties": {
+        "name": "JWL",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_R1",
+      "label": "Variable",
+      "properties": {
+        "name": "R1",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_R2",
+      "label": "Variable",
+      "properties": {
+        "name": "R2",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_omega",
+      "label": "Variable",
+      "properties": {
+        "name": "omega",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_activationModel",
+      "label": "Variable",
+      "properties": {
+        "name": "activationModel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_pressureBased",
+      "label": "Variable",
+      "properties": {
+        "name": "pressureBased",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_initiation",
+      "label": "Variable",
+      "properties": {
+        "name": "initiation",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_E0",
+      "label": "Variable",
+      "properties": {
+        "name": "E0",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_I",
+      "label": "Variable",
+      "properties": {
+        "name": "I",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_a",
+      "label": "Variable",
+      "properties": {
+        "name": "a",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_b",
+      "label": "Variable",
+      "properties": {
+        "name": "b",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_x",
+      "label": "Variable",
+      "properties": {
+        "name": "x",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxLambdaI",
+      "label": "Variable",
+      "properties": {
+        "name": "maxLambdaI",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_G1",
+      "label": "Variable",
+      "properties": {
+        "name": "G1",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_c",
+      "label": "Variable",
+      "properties": {
+        "name": "c",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_d",
+      "label": "Variable",
+      "properties": {
+        "name": "d",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_y",
+      "label": "Variable",
+      "properties": {
+        "name": "y",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_minLambda1",
+      "label": "Variable",
+      "properties": {
+        "name": "minLambda1",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_G2",
+      "label": "Variable",
+      "properties": {
+        "name": "G2",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_e",
+      "label": "Variable",
+      "properties": {
+        "name": "e",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_f",
+      "label": "Variable",
+      "properties": {
+        "name": "f",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_z",
+      "label": "Variable",
+      "properties": {
+        "name": "z",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_minLambda2",
+      "label": "Variable",
+      "properties": {
+        "name": "minLambda2",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_pMin",
+      "label": "Variable",
+      "properties": {
+        "name": "pMin",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_useCOM",
+      "label": "Variable",
+      "properties": {
+        "name": "useCOM",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_radius",
+      "label": "Variable",
+      "properties": {
+        "name": "radius",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_vDet",
+      "label": "Variable",
+      "properties": {
+        "name": "vDet",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_residualRho",
+      "label": "Variable",
+      "properties": {
+        "name": "residualRho",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_residualAlpha",
+      "label": "Variable",
+      "properties": {
+        "name": "residualAlpha",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_idealGas",
+      "label": "Variable",
+      "properties": {
+        "name": "idealGas",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_gamma",
+      "label": "Variable",
+      "properties": {
+        "name": "gamma",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/constant/air/turbulenceProperties",
+      "label": "File",
+      "properties": {
+        "name": "turbulenceProperties",
+        "path": "blastFSIFoam/flap/constant/air/turbulenceProperties"
+      }
+    },
+    {
+      "id": "Variable_simulationType",
+      "label": "Variable",
+      "properties": {
+        "name": "simulationType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_laminar",
+      "label": "Variable",
+      "properties": {
+        "name": "laminar",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/system/controlDict",
+      "label": "File",
+      "properties": {
+        "name": "controlDict",
+        "path": "blastFSIFoam/flap/system/controlDict"
+      }
+    },
+    {
+      "id": "Variable_application",
+      "label": "Variable",
+      "properties": {
+        "name": "application",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blastFSIFoam",
+      "label": "Variable",
+      "properties": {
+        "name": "blastFSIFoam",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_startFrom",
+      "label": "Variable",
+      "properties": {
+        "name": "startFrom",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_startTime",
+      "label": "Variable",
+      "properties": {
+        "name": "startTime",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_stopAt",
+      "label": "Variable",
+      "properties": {
+        "name": "stopAt",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_endTime",
+      "label": "Variable",
+      "properties": {
+        "name": "endTime",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_deltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "deltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeControl",
+      "label": "Variable",
+      "properties": {
+        "name": "writeControl",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_adjustableRunTime",
+      "label": "Variable",
+      "properties": {
+        "name": "adjustableRunTime",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_runTimeModifiable",
+      "label": "Variable",
+      "properties": {
+        "name": "runTimeModifiable",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "writeInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_purgeWrite",
+      "label": "Variable",
+      "properties": {
+        "name": "purgeWrite",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeFormat",
+      "label": "Variable",
+      "properties": {
+        "name": "writeFormat",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writePrecision",
+      "label": "Variable",
+      "properties": {
+        "name": "writePrecision",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeCompression",
+      "label": "Variable",
+      "properties": {
+        "name": "writeCompression",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_timeFormat",
+      "label": "Variable",
+      "properties": {
+        "name": "timeFormat",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_timePrecision",
+      "label": "Variable",
+      "properties": {
+        "name": "timePrecision",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxCo",
+      "label": "Variable",
+      "properties": {
+        "name": "maxCo",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_adjustTimeStep",
+      "label": "Variable",
+      "properties": {
+        "name": "adjustTimeStep",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_functions",
+      "label": "Variable",
+      "properties": {
+        "name": "functions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/system/decomposeParDict",
+      "label": "File",
+      "properties": {
+        "name": "decomposeParDict",
+        "path": "blastFSIFoam/flap/system/decomposeParDict"
+      }
+    },
+    {
+      "id": "Variable_numberOfSubdomains",
+      "label": "Variable",
+      "properties": {
+        "name": "numberOfSubdomains",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_method",
+      "label": "Variable",
+      "properties": {
+        "name": "method",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_scotch",
+      "label": "Variable",
+      "properties": {
+        "name": "scotch",
+        "type": "Method"
+      }
+    },
+    {
+      "id": "Variable_simpleCoeffs",
+      "label": "Variable",
+      "properties": {
+        "name": "simpleCoeffs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_delta",
+      "label": "Variable",
+      "properties": {
+        "name": "delta",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_hierarchicalCoeffs",
+      "label": "Variable",
+      "properties": {
+        "name": "hierarchicalCoeffs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_order",
+      "label": "Variable",
+      "properties": {
+        "name": "order",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_metisCoeffs",
+      "label": "Variable",
+      "properties": {
+        "name": "metisCoeffs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_manualCoeffs",
+      "label": "Variable",
+      "properties": {
+        "name": "manualCoeffs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_dataFile",
+      "label": "Variable",
+      "properties": {
+        "name": "dataFile",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_distributed",
+      "label": "Variable",
+      "properties": {
+        "name": "distributed",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_roots",
+      "label": "Variable",
+      "properties": {
+        "name": "roots",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/system/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "blastFSIFoam/flap/system/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_fluxScheme",
+      "label": "Variable",
+      "properties": {
+        "name": "fluxScheme",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Kurganov",
+      "label": "Variable",
+      "properties": {
+        "name": "Kurganov",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_ddtSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "ddtSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Euler",
+      "label": "Variable",
+      "properties": {
+        "name": "Euler",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_timeIntegrator",
+      "label": "Variable",
+      "properties": {
+        "name": "timeIntegrator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_RK2SSP",
+      "label": "Variable",
+      "properties": {
+        "name": "RK2SSP",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_gradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "gradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cellMDLimited",
+      "label": "Variable",
+      "properties": {
+        "name": "cellMDLimited",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_leastSquares",
+      "label": "Variable",
+      "properties": {
+        "name": "leastSquares",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_divSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "divSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_none",
+      "label": "Variable",
+      "properties": {
+        "name": "none",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_laplacianSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "laplacianSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Gauss",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_linear",
+      "label": "Variable",
+      "properties": {
+        "name": "linear",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_interpolationSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "interpolationSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cubic",
+      "label": "Variable",
+      "properties": {
+        "name": "cubic",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_linearMUSCL",
+      "label": "Variable",
+      "properties": {
+        "name": "linearMUSCL",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_vanLeer",
+      "label": "Variable",
+      "properties": {
+        "name": "vanLeer",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_snGradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "snGradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/system/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "blastFSIFoam/flap/system/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_solvers",
+      "label": "Variable",
+      "properties": {
+        "name": "solvers",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_diagonal",
+      "label": "Variable",
+      "properties": {
+        "name": "diagonal",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_PBiCGStab",
+      "label": "Variable",
+      "properties": {
+        "name": "PBiCGStab",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_preconditioner",
+      "label": "Variable",
+      "properties": {
+        "name": "preconditioner",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_DIC",
+      "label": "Variable",
+      "properties": {
+        "name": "DIC",
+        "type": "Preconditioner"
+      }
+    },
+    {
+      "id": "Variable_tolerance",
+      "label": "Variable",
+      "properties": {
+        "name": "tolerance",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_relTol",
+      "label": "Variable",
+      "properties": {
+        "name": "relTol",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/system/flap/blockMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "blockMeshDict",
+        "path": "blastFSIFoam/flap/system/flap/blockMeshDict"
+      }
+    },
+    {
+      "id": "Variable_scale",
+      "label": "Variable",
+      "properties": {
+        "name": "scale",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_vertices",
+      "label": "Variable",
+      "properties": {
+        "name": "vertices",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blocks",
+      "label": "Variable",
+      "properties": {
+        "name": "blocks",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_simpleGrading",
+      "label": "Variable",
+      "properties": {
+        "name": "simpleGrading",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_edges",
+      "label": "Variable",
+      "properties": {
+        "name": "edges",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_boundary",
+      "label": "Variable",
+      "properties": {
+        "name": "boundary",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_wall",
+      "label": "Variable",
+      "properties": {
+        "name": "wall",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_mappedMovingWall",
+      "label": "Variable",
+      "properties": {
+        "name": "mappedMovingWall",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_sampleMode",
+      "label": "Variable",
+      "properties": {
+        "name": "sampleMode",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_nearestPatchFace",
+      "label": "Variable",
+      "properties": {
+        "name": "nearestPatchFace",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_mergePatchPairs",
+      "label": "Variable",
+      "properties": {
+        "name": "mergePatchPairs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/system/flap/decomposeParDict",
+      "label": "File",
+      "properties": {
+        "name": "decomposeParDict",
+        "path": "blastFSIFoam/flap/system/flap/decomposeParDict"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/system/flap/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "blastFSIFoam/flap/system/flap/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_d2dt2Schemes",
+      "label": "Variable",
+      "properties": {
+        "name": "d2dt2Schemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_div(sigma)",
+      "label": "Variable",
+      "properties": {
+        "name": "div(sigma)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_extendedLeastSquares",
+      "label": "Variable",
+      "properties": {
+        "name": "extendedLeastSquares",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_laplacian(DU,U)",
+      "label": "Variable",
+      "properties": {
+        "name": "laplacian(DU,U)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/system/flap/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "blastFSIFoam/flap/system/flap/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_PCG",
+      "label": "Variable",
+      "properties": {
+        "name": "PCG",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_stressAnalysis",
+      "label": "Variable",
+      "properties": {
+        "name": "stressAnalysis",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_compactNormalStress",
+      "label": "Variable",
+      "properties": {
+        "name": "compactNormalStress",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_D",
+      "label": "Variable",
+      "properties": {
+        "name": "D",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_relaxationFactors",
+      "label": "Variable",
+      "properties": {
+        "name": "relaxationFactors",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_DD",
+      "label": "Variable",
+      "properties": {
+        "name": "DD",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "blockMeshDict",
+        "path": "blastFSIFoam/flap/system/air/blockMeshDict"
+      }
+    },
+    {
+      "id": "Variable_patch",
+      "label": "Variable",
+      "properties": {
+        "name": "patch",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/system/air/decomposeParDict",
+      "label": "File",
+      "properties": {
+        "name": "decomposeParDict",
+        "path": "blastFSIFoam/flap/system/air/decomposeParDict"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/system/air/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "blastFSIFoam/flap/system/air/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_div(alphaRhoPhi.c4,lambda.c4)",
+      "label": "Variable",
+      "properties": {
+        "name": "div(alphaRhoPhi.c4,lambda.c4)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Riemann",
+      "label": "Variable",
+      "properties": {
+        "name": "Riemann",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_laplacian(diffusivity,cellMotionU)",
+      "label": "Variable",
+      "properties": {
+        "name": "laplacian(diffusivity,cellMotionU)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_uncorrected",
+      "label": "Variable",
+      "properties": {
+        "name": "uncorrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_quadraticMUSCL",
+      "label": "Variable",
+      "properties": {
+        "name": "quadraticMUSCL",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_Minmod",
+      "label": "Variable",
+      "properties": {
+        "name": "Minmod",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/system/air/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "blastFSIFoam/flap/system/air/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_smoother",
+      "label": "Variable",
+      "properties": {
+        "name": "smoother",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_GaussSeidel",
+      "label": "Variable",
+      "properties": {
+        "name": "GaussSeidel",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_minIter",
+      "label": "Variable",
+      "properties": {
+        "name": "minIter",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFSIFoam/flap/system/air/setFieldsDict",
+      "label": "File",
+      "properties": {
+        "name": "setFieldsDict",
+        "path": "blastFSIFoam/flap/system/air/setFieldsDict"
+      }
+    },
+    {
+      "id": "Variable_fields",
+      "label": "Variable",
+      "properties": {
+        "name": "fields",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_defaultFieldValues",
+      "label": "Variable",
+      "properties": {
+        "name": "defaultFieldValues",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_volScalarFieldValue",
+      "label": "Variable",
+      "properties": {
+        "name": "volScalarFieldValue",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cylinderToCell",
+      "label": "Variable",
+      "properties": {
+        "name": "cylinderToCell",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_p1",
+      "label": "Variable",
+      "properties": {
+        "name": "p1",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_p2",
+      "label": "Variable",
+      "properties": {
+        "name": "p2",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_backup",
+      "label": "Variable",
+      "properties": {
+        "name": "backup",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_refineInternal",
+      "label": "Variable",
+      "properties": {
+        "name": "refineInternal",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_level",
+      "label": "Variable",
+      "properties": {
+        "name": "level",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_fieldValues",
+      "label": "Variable",
+      "properties": {
+        "name": "fieldValues",
+        "type": "Keyword"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/0/flap/D",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/D",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/D",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/D",
+      "target": "Variable_boundaryField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/D",
+      "target": "Variable_flap_to_air",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/D",
+      "target": "Variable_coupledSolidTraction",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/D",
+      "target": "Variable_pName",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/D",
+      "target": "Variable_pRef",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/D",
+      "target": "Variable_traction",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/D",
+      "target": "Variable_value",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/D",
+      "target": "Variable_pressure",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/D",
+      "target": "Variable_flapBase",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/D",
+      "target": "Variable_fixedValue",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/0/flap/T.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/T.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/T.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/T.orig",
+      "target": "Variable_flap_to_air",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/T.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/T.orig",
+      "target": "Variable_flapBase",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/0/flap/p.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/p.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/p.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/p.orig",
+      "target": "Variable_flap_to_air",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/p.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/flap/p.orig",
+      "target": "Variable_flapBase",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/0/air/T.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/T.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/T.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/T.orig",
+      "target": "Variable_air_to_flap",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/T.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/T.orig",
+      "target": "Variable_ground",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/T.orig",
+      "target": "Variable_outlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/0/air/U.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/U.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/U.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/U.orig",
+      "target": "Variable_air_to_flap",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/U.orig",
+      "target": "Variable_movingWallVelocity",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/U.orig",
+      "target": "Variable_value",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/U.orig",
+      "target": "Variable_ground",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/U.orig",
+      "target": "Variable_slip",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/U.orig",
+      "target": "Variable_outlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/U.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/0/air/alpha.c4.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/alpha.c4.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/alpha.c4.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/alpha.c4.orig",
+      "target": "Variable_air_to_flap",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/alpha.c4.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/alpha.c4.orig",
+      "target": "Variable_outlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/alpha.c4.orig",
+      "target": "Variable_ground",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/0/air/p.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/p.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/p.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/p.orig",
+      "target": "Variable_air_to_flap",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/p.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/p.orig",
+      "target": "Variable_ground",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/p.orig",
+      "target": "Variable_outlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/p.orig",
+      "target": "Variable_pressureWaveTransmissive",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/p.orig",
+      "target": "Variable_value",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/0/air/pointMotionU",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/pointMotionU",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/pointMotionU",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/pointMotionU",
+      "target": "Variable_air_to_flap",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/pointMotionU",
+      "target": "Variable_globalInterpolated",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/pointMotionU",
+      "target": "Variable_nbrName",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/pointMotionU",
+      "target": "Variable_value",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/pointMotionU",
+      "target": "Variable_ground",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/pointMotionU",
+      "target": "Variable_slip",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/pointMotionU",
+      "target": "Variable_outlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/0/air/rho.air.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/rho.air.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/rho.air.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/rho.air.orig",
+      "target": "Variable_air_to_flap",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/rho.air.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/rho.air.orig",
+      "target": "Variable_outlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/rho.air.orig",
+      "target": "Variable_ground",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/0/air/rho.c4.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/rho.c4.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/rho.c4.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/rho.c4.orig",
+      "target": "Variable_air_to_flap",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/rho.c4.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/rho.c4.orig",
+      "target": "Variable_outlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/0/air/rho.c4.orig",
+      "target": "Variable_ground",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/constant/regionProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/regionProperties",
+      "target": "Variable_regions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/regionProperties",
+      "target": "Variable_interfaces",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/regionProperties",
+      "target": "Variable_air_to_flap",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/regionProperties",
+      "target": "Variable_sampleRegion",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/regionProperties",
+      "target": "Variable_samplePatch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/regionProperties",
+      "target": "Variable_mappingType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/regionProperties",
+      "target": "Variable_AMI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/regionProperties",
+      "target": "Variable_interpolationMethod",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/regionProperties",
+      "target": "Variable_faceAreaWeight",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/regionProperties",
+      "target": "Variable_flap_to_air",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/regionProperties",
+      "target": "Variable_displacementField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/constant/flap/mechanicalProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/mechanicalProperties",
+      "target": "Variable_planeStress",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/mechanicalProperties",
+      "target": "Variable_mechanical",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/mechanicalProperties",
+      "target": "Variable_linearJohnsonCookPlastic",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/mechanicalProperties",
+      "target": "Variable_E",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/mechanicalProperties",
+      "target": "Variable_nu",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/mechanicalProperties",
+      "target": "Variable_A",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/mechanicalProperties",
+      "target": "Variable_B",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/mechanicalProperties",
+      "target": "Variable_C",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/mechanicalProperties",
+      "target": "Variable_n",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/mechanicalProperties",
+      "target": "Variable_m",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/mechanicalProperties",
+      "target": "Variable_epsilonPDot0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/mechanicalProperties",
+      "target": "Variable_Tref",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/mechanicalProperties",
+      "target": "Variable_Tm",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/mechanicalProperties",
+      "target": "Variable_solvePressureEqn",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/constant/flap/solidProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/solidProperties",
+      "target": "Variable_solidModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/solidProperties",
+      "target": "Variable_linearTotalDisplacement",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/solidProperties",
+      "target": "Variable_linearTotalDisplacementCoeffs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/solidProperties",
+      "target": "Variable_nCorrectors",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/solidProperties",
+      "target": "Variable_solutionTolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/solidProperties",
+      "target": "Variable_alternativeTolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/solidProperties",
+      "target": "Variable_materialTolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/solidProperties",
+      "target": "Variable_infoFrequency",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/constant/flap/thermophysicalProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/thermophysicalProperties",
+      "target": "Variable_basic",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/thermophysicalProperties",
+      "target": "Variable_thermoType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/thermophysicalProperties",
+      "target": "Variable_transport",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/thermophysicalProperties",
+      "target": "Variable_constIso",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/thermophysicalProperties",
+      "target": "Variable_thermo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/thermophysicalProperties",
+      "target": "Variable_eConst",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/thermophysicalProperties",
+      "target": "Variable_equationOfState",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/thermophysicalProperties",
+      "target": "Variable_rhoConst",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/thermophysicalProperties",
+      "target": "Variable_specie",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/thermophysicalProperties",
+      "target": "Variable_molWeight",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/thermophysicalProperties",
+      "target": "Variable_rho0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/thermophysicalProperties",
+      "target": "Variable_kappa",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/thermophysicalProperties",
+      "target": "Variable_thermodynamics",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/thermophysicalProperties",
+      "target": "Variable_Hf",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/flap/thermophysicalProperties",
+      "target": "Variable_Cv",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "target": "Variable_dynamicFvMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "target": "Variable_movingAdaptiveFvMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "target": "Variable_errorEstimator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "target": "Variable_densityGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "target": "Variable_motionSolver",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "target": "Variable_velocityLaplacian",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "target": "Variable_diffusivity",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "target": "Variable_quadratic",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "target": "Variable_inverseDistance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "target": "Variable_beginUnrefine",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "target": "Variable_refineInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "target": "Variable_lowerRefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "target": "Variable_unrefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "target": "Variable_nBufferLayers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "target": "Variable_maxRefinement",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/dynamicMeshDict",
+      "target": "Variable_dumpLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/constant/air/g",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/g",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/g",
+      "target": "Variable_value",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_phases",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_detonating",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_reactants",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_thermoType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_equationOfState",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_Murnaghan",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_Gamma",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_pRef",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_rho0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_K0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_specie",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_molWeight",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_transport",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_mu",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_Pr",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_thermodynamics",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_Cv",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_Hf",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_products",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_JWL",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_A",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_B",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_R1",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_R2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_omega",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_activationModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_pressureBased",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_initiation",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_E0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_I",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_a",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_b",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_x",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_maxLambdaI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_G1",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_c",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_d",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_y",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_minLambda1",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_G2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_e",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_f",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_z",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_minLambda2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_pMin",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_useCOM",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_radius",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_vDet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_residualRho",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_residualAlpha",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_basic",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_idealGas",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/phaseProperties",
+      "target": "Variable_gamma",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/constant/air/turbulenceProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/turbulenceProperties",
+      "target": "Variable_simulationType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/constant/air/turbulenceProperties",
+      "target": "Variable_laminar",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/system/controlDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_application",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_blastFSIFoam",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_startFrom",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_startTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_stopAt",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_endTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_deltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_writeControl",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_adjustableRunTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_runTimeModifiable",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_writeInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_purgeWrite",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_writeFormat",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_writePrecision",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_writeCompression",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_timeFormat",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_timePrecision",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_maxCo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_adjustTimeStep",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/controlDict",
+      "target": "Variable_functions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/system/decomposeParDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/decomposeParDict",
+      "target": "Variable_numberOfSubdomains",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/decomposeParDict",
+      "target": "Variable_method",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/decomposeParDict",
+      "target": "Variable_scotch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/decomposeParDict",
+      "target": "Variable_simpleCoeffs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/decomposeParDict",
+      "target": "Variable_n",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/decomposeParDict",
+      "target": "Variable_delta",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/decomposeParDict",
+      "target": "Variable_hierarchicalCoeffs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/decomposeParDict",
+      "target": "Variable_order",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/decomposeParDict",
+      "target": "Variable_metisCoeffs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/decomposeParDict",
+      "target": "Variable_manualCoeffs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/decomposeParDict",
+      "target": "Variable_dataFile",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/decomposeParDict",
+      "target": "Variable_distributed",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/decomposeParDict",
+      "target": "Variable_roots",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/system/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_fluxScheme",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_Kurganov",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_timeIntegrator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_RK2SSP",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_cellMDLimited",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_leastSquares",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_none",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_Gauss",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_cubic",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_linearMUSCL",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_vanLeer",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/system/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSolution",
+      "target": "Variable_diagonal",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSolution",
+      "target": "Variable_PBiCGStab",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSolution",
+      "target": "Variable_preconditioner",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSolution",
+      "target": "Variable_DIC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSolution",
+      "target": "Variable_tolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/fvSolution",
+      "target": "Variable_relTol",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/system/flap/blockMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/blockMeshDict",
+      "target": "Variable_scale",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/blockMeshDict",
+      "target": "Variable_vertices",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/blockMeshDict",
+      "target": "Variable_blocks",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/blockMeshDict",
+      "target": "Variable_simpleGrading",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/blockMeshDict",
+      "target": "Variable_edges",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/blockMeshDict",
+      "target": "Variable_boundary",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/blockMeshDict",
+      "target": "Variable_flapBase",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/blockMeshDict",
+      "target": "Variable_wall",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/blockMeshDict",
+      "target": "Variable_flap_to_air",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/blockMeshDict",
+      "target": "Variable_mappedMovingWall",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/blockMeshDict",
+      "target": "Variable_sampleMode",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/blockMeshDict",
+      "target": "Variable_nearestPatchFace",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/blockMeshDict",
+      "target": "Variable_sampleRegion",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/blockMeshDict",
+      "target": "Variable_samplePatch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/blockMeshDict",
+      "target": "Variable_mergePatchPairs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/system/flap/decomposeParDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/system/flap/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSchemes",
+      "target": "Variable_d2dt2Schemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSchemes",
+      "target": "Variable_div(sigma)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSchemes",
+      "target": "Variable_Gauss",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSchemes",
+      "target": "Variable_linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSchemes",
+      "target": "Variable_extendedLeastSquares",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSchemes",
+      "target": "Variable_laplacian(DU,U)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSchemes",
+      "target": "Variable_corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/system/flap/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSolution",
+      "target": "Variable_PCG",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSolution",
+      "target": "Variable_tolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSolution",
+      "target": "Variable_relTol",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSolution",
+      "target": "Variable_preconditioner",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSolution",
+      "target": "Variable_DIC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSolution",
+      "target": "Variable_stressAnalysis",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSolution",
+      "target": "Variable_compactNormalStress",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSolution",
+      "target": "Variable_nCorrectors",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSolution",
+      "target": "Variable_D",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSolution",
+      "target": "Variable_relaxationFactors",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/flap/fvSolution",
+      "target": "Variable_DD",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "target": "Variable_scale",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "target": "Variable_vertices",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "target": "Variable_blocks",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "target": "Variable_simpleGrading",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "target": "Variable_edges",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "target": "Variable_boundary",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "target": "Variable_outlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "target": "Variable_patch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "target": "Variable_ground",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "target": "Variable_wall",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "target": "Variable_air_to_flap",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "target": "Variable_mappedMovingWall",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "target": "Variable_sampleMode",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "target": "Variable_nearestPatchFace",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "target": "Variable_sampleRegion",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "target": "Variable_samplePatch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/blockMeshDict",
+      "target": "Variable_mergePatchPairs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/system/air/decomposeParDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/system/air/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_fluxScheme",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_Kurganov",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_timeIntegrator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_RK2SSP",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_cellMDLimited",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_leastSquares",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_div(alphaRhoPhi.c4,lambda.c4)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_Riemann",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_Gauss",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_laplacian(diffusivity,cellMotionU)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_uncorrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_quadraticMUSCL",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_Minmod",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/system/air/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSolution",
+      "target": "Variable_diagonal",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSolution",
+      "target": "Variable_PCG",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSolution",
+      "target": "Variable_smoother",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSolution",
+      "target": "Variable_GaussSeidel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSolution",
+      "target": "Variable_preconditioner",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSolution",
+      "target": "Variable_DIC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSolution",
+      "target": "Variable_tolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSolution",
+      "target": "Variable_relTol",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/fvSolution",
+      "target": "Variable_minIter",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap",
+      "target": "blastFSIFoam/flap/system/air/setFieldsDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/setFieldsDict",
+      "target": "Variable_fields",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/setFieldsDict",
+      "target": "Variable_nBufferLayers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/setFieldsDict",
+      "target": "Variable_defaultFieldValues",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/setFieldsDict",
+      "target": "Variable_volScalarFieldValue",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/setFieldsDict",
+      "target": "Variable_regions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/setFieldsDict",
+      "target": "Variable_cylinderToCell",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/setFieldsDict",
+      "target": "Variable_p1",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/setFieldsDict",
+      "target": "Variable_p2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/setFieldsDict",
+      "target": "Variable_radius",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/setFieldsDict",
+      "target": "Variable_backup",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/setFieldsDict",
+      "target": "Variable_refineInternal",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/setFieldsDict",
+      "target": "Variable_level",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFSIFoam/flap/system/air/setFieldsDict",
+      "target": "Variable_fieldValues",
+      "type": "DEFINES"
+    }
+  ]
+}

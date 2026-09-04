@@ -1,0 +1,1435 @@
+{
+  "nodes": [
+    {
+      "id": "blastFoam/reacting",
+      "label": "Case",
+      "properties": {
+        "name": "reacting",
+        "path": "blastFoam/reacting"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/0/CH4.orig",
+      "label": "File",
+      "properties": {
+        "name": "CH4.orig",
+        "path": "blastFoam/reacting/0/CH4.orig"
+      }
+    },
+    {
+      "id": "Variable_CH4",
+      "label": "Variable",
+      "properties": {
+        "name": "CH4",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "Variable_internalField",
+      "label": "Variable",
+      "properties": {
+        "name": "internalField",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_zeroGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "zeroGradient",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_empty",
+      "label": "Variable",
+      "properties": {
+        "name": "empty",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/0/N2.orig",
+      "label": "File",
+      "properties": {
+        "name": "N2.orig",
+        "path": "blastFoam/reacting/0/N2.orig"
+      }
+    },
+    {
+      "id": "Variable_N2",
+      "label": "Variable",
+      "properties": {
+        "name": "N2",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/0/O2.orig",
+      "label": "File",
+      "properties": {
+        "name": "O2.orig",
+        "path": "blastFoam/reacting/0/O2.orig"
+      }
+    },
+    {
+      "id": "Variable_O2",
+      "label": "Variable",
+      "properties": {
+        "name": "O2",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/0/T.orig",
+      "label": "File",
+      "properties": {
+        "name": "T.orig",
+        "path": "blastFoam/reacting/0/T.orig"
+      }
+    },
+    {
+      "id": "Variable_T",
+      "label": "Variable",
+      "properties": {
+        "name": "T",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/0/U.orig",
+      "label": "File",
+      "properties": {
+        "name": "U.orig",
+        "path": "blastFoam/reacting/0/U.orig"
+      }
+    },
+    {
+      "id": "Variable_U",
+      "label": "Variable",
+      "properties": {
+        "name": "U",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "Variable_noSlip",
+      "label": "Variable",
+      "properties": {
+        "name": "noSlip",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/0/Ydefault",
+      "label": "File",
+      "properties": {
+        "name": "Ydefault",
+        "path": "blastFoam/reacting/0/Ydefault"
+      }
+    },
+    {
+      "id": "Variable_Ydefault",
+      "label": "Variable",
+      "properties": {
+        "name": "Ydefault",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/0/p.orig",
+      "label": "File",
+      "properties": {
+        "name": "p.orig",
+        "path": "blastFoam/reacting/0/p.orig"
+      }
+    },
+    {
+      "id": "Variable_p",
+      "label": "Variable",
+      "properties": {
+        "name": "p",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/0/rho.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.orig",
+        "path": "blastFoam/reacting/0/rho.orig"
+      }
+    },
+    {
+      "id": "Variable_rho",
+      "label": "Variable",
+      "properties": {
+        "name": "rho",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/constant/chemistryProperties",
+      "label": "File",
+      "properties": {
+        "name": "chemistryProperties",
+        "path": "blastFoam/reacting/constant/chemistryProperties"
+      }
+    },
+    {
+      "id": "Variable_chemistry",
+      "label": "Variable",
+      "properties": {
+        "name": "chemistry",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_ode",
+      "label": "Variable",
+      "properties": {
+        "name": "ode",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_initialChemicalTimeStep",
+      "label": "Variable",
+      "properties": {
+        "name": "initialChemicalTimeStep",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_cTauChem",
+      "label": "Variable",
+      "properties": {
+        "name": "cTauChem",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Euler",
+      "label": "Variable",
+      "properties": {
+        "name": "Euler",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_absTol",
+      "label": "Variable",
+      "properties": {
+        "name": "absTol",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_relTol",
+      "label": "Variable",
+      "properties": {
+        "name": "relTol",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/constant/momentumTransport",
+      "label": "File",
+      "properties": {
+        "name": "momentumTransport",
+        "path": "blastFoam/reacting/constant/momentumTransport"
+      }
+    },
+    {
+      "id": "Variable_simulationType",
+      "label": "Variable",
+      "properties": {
+        "name": "simulationType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_laminar",
+      "label": "Variable",
+      "properties": {
+        "name": "laminar",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/constant/phaseProperties",
+      "label": "File",
+      "properties": {
+        "name": "phaseProperties",
+        "path": "blastFoam/reacting/constant/phaseProperties"
+      }
+    },
+    {
+      "id": "Variable_reacting",
+      "label": "Variable",
+      "properties": {
+        "name": "reacting",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_sutherland",
+      "label": "Variable",
+      "properties": {
+        "name": "sutherland",
+        "type": "ThermoModel"
+      }
+    },
+    {
+      "id": "Variable_janaf",
+      "label": "Variable",
+      "properties": {
+        "name": "janaf",
+        "type": "ThermoModel"
+      }
+    },
+    {
+      "id": "Variable_VanderWaals",
+      "label": "Variable",
+      "properties": {
+        "name": "VanderWaals",
+        "type": "EquationOfState"
+      }
+    },
+    {
+      "id": "Variable_calculateDensity",
+      "label": "Variable",
+      "properties": {
+        "name": "calculateDensity",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_defaultSpecie",
+      "label": "Variable",
+      "properties": {
+        "name": "defaultSpecie",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/constant/reactions",
+      "label": "File",
+      "properties": {
+        "name": "reactions",
+        "path": "blastFoam/reacting/constant/reactions"
+      }
+    },
+    {
+      "id": "Variable_methaneReaction",
+      "label": "Variable",
+      "properties": {
+        "name": "methaneReaction",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_irreversibleArrhenius",
+      "label": "Variable",
+      "properties": {
+        "name": "irreversibleArrhenius",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_A",
+      "label": "Variable",
+      "properties": {
+        "name": "A",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_beta",
+      "label": "Variable",
+      "properties": {
+        "name": "beta",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Ta",
+      "label": "Variable",
+      "properties": {
+        "name": "Ta",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/constant/thermo.compressibleGas",
+      "label": "File",
+      "properties": {
+        "name": "thermo.compressibleGas",
+        "path": "blastFoam/reacting/constant/thermo.compressibleGas"
+      }
+    },
+    {
+      "id": "Variable_species",
+      "label": "Variable",
+      "properties": {
+        "name": "species",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_H2O",
+      "label": "Variable",
+      "properties": {
+        "name": "H2O",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "Variable_CO2",
+      "label": "Variable",
+      "properties": {
+        "name": "CO2",
+        "type": "PhysicalProperty"
+      }
+    },
+    {
+      "id": "Variable_molWeight",
+      "label": "Variable",
+      "properties": {
+        "name": "molWeight",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Tc",
+      "label": "Variable",
+      "properties": {
+        "name": "Tc",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Pc",
+      "label": "Variable",
+      "properties": {
+        "name": "Pc",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_As",
+      "label": "Variable",
+      "properties": {
+        "name": "As",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Ts",
+      "label": "Variable",
+      "properties": {
+        "name": "Ts",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/system/blockMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "blockMeshDict",
+        "path": "blastFoam/reacting/system/blockMeshDict"
+      }
+    },
+    {
+      "id": "Variable_convertToMeters",
+      "label": "Variable",
+      "properties": {
+        "name": "convertToMeters",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_patch",
+      "label": "Variable",
+      "properties": {
+        "name": "patch",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/system/controlDict",
+      "label": "File",
+      "properties": {
+        "name": "controlDict",
+        "path": "blastFoam/reacting/system/controlDict"
+      }
+    },
+    {
+      "id": "Variable_application",
+      "label": "Variable",
+      "properties": {
+        "name": "application",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blastFoam",
+      "label": "Variable",
+      "properties": {
+        "name": "blastFoam",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_startFrom",
+      "label": "Variable",
+      "properties": {
+        "name": "startFrom",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_startTime",
+      "label": "Variable",
+      "properties": {
+        "name": "startTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_stopAt",
+      "label": "Variable",
+      "properties": {
+        "name": "stopAt",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_endTime",
+      "label": "Variable",
+      "properties": {
+        "name": "endTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeControl",
+      "label": "Variable",
+      "properties": {
+        "name": "writeControl",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_adjustableRunTime",
+      "label": "Variable",
+      "properties": {
+        "name": "adjustableRunTime",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_writeInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "writeInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_adjustTimeStep",
+      "label": "Variable",
+      "properties": {
+        "name": "adjustTimeStep",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_deltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "deltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxCo",
+      "label": "Variable",
+      "properties": {
+        "name": "maxCo",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/system/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "blastFoam/reacting/system/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_fluxScheme",
+      "label": "Variable",
+      "properties": {
+        "name": "fluxScheme",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_HLLC",
+      "label": "Variable",
+      "properties": {
+        "name": "HLLC",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_ddtSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "ddtSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_timeIntegrator",
+      "label": "Variable",
+      "properties": {
+        "name": "timeIntegrator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_RK2SSP",
+      "label": "Variable",
+      "properties": {
+        "name": "RK2SSP",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_gradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "gradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cellMDLimited leastSquares",
+      "label": "Variable",
+      "properties": {
+        "name": "cellMDLimited leastSquares",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_divSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "divSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Riemann",
+      "label": "Variable",
+      "properties": {
+        "name": "Riemann",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_Gauss linear",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss linear",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_laplacianSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "laplacianSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Gauss linear corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss linear corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_interpolationSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "interpolationSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_linear",
+      "label": "Variable",
+      "properties": {
+        "name": "linear",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_quadraticMUSCL",
+      "label": "Variable",
+      "properties": {
+        "name": "quadraticMUSCL",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_Minmod",
+      "label": "Variable",
+      "properties": {
+        "name": "Minmod",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_snGradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "snGradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/system/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "blastFoam/reacting/system/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_diagonal",
+      "label": "Variable",
+      "properties": {
+        "name": "diagonal",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_PBiCGStab",
+      "label": "Variable",
+      "properties": {
+        "name": "PBiCGStab",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_DIC",
+      "label": "Variable",
+      "properties": {
+        "name": "DIC",
+        "type": "Preconditioner"
+      }
+    },
+    {
+      "id": "Variable_tolerance",
+      "label": "Variable",
+      "properties": {
+        "name": "tolerance",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_minIter",
+      "label": "Variable",
+      "properties": {
+        "name": "minIter",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/reacting/system/setFieldsDict",
+      "label": "File",
+      "properties": {
+        "name": "setFieldsDict",
+        "path": "blastFoam/reacting/system/setFieldsDict"
+      }
+    },
+    {
+      "id": "Variable_defaultFieldValues",
+      "label": "Variable",
+      "properties": {
+        "name": "defaultFieldValues",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_boxToCell",
+      "label": "Variable",
+      "properties": {
+        "name": "boxToCell",
+        "type": "Keyword"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/0/CH4.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/0/CH4.orig",
+      "target": "Variable_CH4",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/CH4.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/CH4.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/CH4.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/0/N2.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/0/N2.orig",
+      "target": "Variable_N2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/N2.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/N2.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/N2.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/0/O2.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/0/O2.orig",
+      "target": "Variable_O2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/O2.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/O2.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/O2.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/0/T.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/0/T.orig",
+      "target": "Variable_T",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/T.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/T.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/T.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/0/U.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/0/U.orig",
+      "target": "Variable_U",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/U.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/U.orig",
+      "target": "Variable_noSlip",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/U.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/0/Ydefault",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/0/Ydefault",
+      "target": "Variable_Ydefault",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/Ydefault",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/Ydefault",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/Ydefault",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/0/p.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/0/p.orig",
+      "target": "Variable_p",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/p.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/p.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/p.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/0/rho.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/0/rho.orig",
+      "target": "Variable_rho",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/rho.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/rho.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/0/rho.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/constant/chemistryProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/constant/chemistryProperties",
+      "target": "Variable_ode",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/chemistryProperties",
+      "target": "Variable_chemistry",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/chemistryProperties",
+      "target": "Variable_initialChemicalTimeStep",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/chemistryProperties",
+      "target": "Variable_cTauChem",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/chemistryProperties",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/chemistryProperties",
+      "target": "Variable_absTol",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/chemistryProperties",
+      "target": "Variable_relTol",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/constant/momentumTransport",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/constant/momentumTransport",
+      "target": "Variable_simulationType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/momentumTransport",
+      "target": "Variable_laminar",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/constant/phaseProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/constant/phaseProperties",
+      "target": "Variable_reacting",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/phaseProperties",
+      "target": "Variable_sutherland",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/phaseProperties",
+      "target": "Variable_janaf",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/phaseProperties",
+      "target": "Variable_VanderWaals",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/phaseProperties",
+      "target": "Variable_calculateDensity",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/phaseProperties",
+      "target": "Variable_defaultSpecie",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/phaseProperties",
+      "target": "Variable_N2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/constant/reactions",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/constant/reactions",
+      "target": "Variable_methaneReaction",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/reactions",
+      "target": "Variable_irreversibleArrhenius",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/reactions",
+      "target": "Variable_A",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/reactions",
+      "target": "Variable_beta",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/reactions",
+      "target": "Variable_Ta",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/constant/thermo.compressibleGas",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/constant/thermo.compressibleGas",
+      "target": "Variable_species",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/thermo.compressibleGas",
+      "target": "Variable_O2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/thermo.compressibleGas",
+      "target": "Variable_H2O",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/thermo.compressibleGas",
+      "target": "Variable_CH4",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/thermo.compressibleGas",
+      "target": "Variable_CO2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/thermo.compressibleGas",
+      "target": "Variable_N2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/thermo.compressibleGas",
+      "target": "Variable_molWeight",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/thermo.compressibleGas",
+      "target": "Variable_Tc",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/thermo.compressibleGas",
+      "target": "Variable_Pc",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/thermo.compressibleGas",
+      "target": "Variable_As",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/constant/thermo.compressibleGas",
+      "target": "Variable_Ts",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/system/blockMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/system/blockMeshDict",
+      "target": "Variable_convertToMeters",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/blockMeshDict",
+      "target": "Variable_patch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/system/controlDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/system/controlDict",
+      "target": "Variable_application",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/controlDict",
+      "target": "Variable_blastFoam",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/controlDict",
+      "target": "Variable_startFrom",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/controlDict",
+      "target": "Variable_startTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/controlDict",
+      "target": "Variable_stopAt",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/controlDict",
+      "target": "Variable_endTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/controlDict",
+      "target": "Variable_writeControl",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/controlDict",
+      "target": "Variable_adjustableRunTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/controlDict",
+      "target": "Variable_writeInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/controlDict",
+      "target": "Variable_adjustTimeStep",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/controlDict",
+      "target": "Variable_deltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/controlDict",
+      "target": "Variable_maxCo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/system/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_fluxScheme",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_HLLC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_timeIntegrator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_RK2SSP",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_cellMDLimited leastSquares",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_Riemann",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_Gauss linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_Gauss linear corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_quadraticMUSCL",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_Minmod",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSchemes",
+      "target": "Variable_corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/system/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSolution",
+      "target": "Variable_diagonal",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSolution",
+      "target": "Variable_PBiCGStab",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSolution",
+      "target": "Variable_DIC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSolution",
+      "target": "Variable_tolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSolution",
+      "target": "Variable_relTol",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/fvSolution",
+      "target": "Variable_minIter",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting",
+      "target": "blastFoam/reacting/system/setFieldsDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/reacting/system/setFieldsDict",
+      "target": "Variable_defaultFieldValues",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/setFieldsDict",
+      "target": "Variable_rho",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/setFieldsDict",
+      "target": "Variable_p",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/setFieldsDict",
+      "target": "Variable_T",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/setFieldsDict",
+      "target": "Variable_CH4",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/setFieldsDict",
+      "target": "Variable_N2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/setFieldsDict",
+      "target": "Variable_O2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/reacting/system/setFieldsDict",
+      "target": "Variable_boxToCell",
+      "type": "DEFINES"
+    }
+  ]
+}

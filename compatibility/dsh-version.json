@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "upstream": {
+    "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+    "commit": "d347e703908d0406b7a7ef80e3a0e594d86b2215",
+    "rootVersion": "0.1.3-alpha.1",
+    "releaseStage": "developer-preview"
+  },
+  "runtime": {
+    "node": "^22.19.0 || >=24.0.0",
+    "packageManager": "pnpm@11.7.0"
+  },
+  "hostSuppliedDshPackages": {
+    "@deepseek-ai/dsh-mcp-client": "0.1.3-alpha.1",
+    "@deepseek-ai/dsh-tool-subagent": "0.1.3-alpha.1"
+  },
+  "verification": {
+    "date": "2026-09-04",
+    "status": "all-role-safety-smoke-passed-with-artifact-gaps",
+    "profiles": ["web", "headless"],
+    "fullBenchmarkPassed": false
+  }
+}

@@ -1,0 +1,158 @@
+# Install this bundle after @deepseek-ai/dsh-base and the selected app bundle.
+# Official base supplies the `spawn` provider. These role tools specialize it
+# with independent personas and capability filters; they do not implement a
+# competing subagent provider.
+- insert:
+    - id: principia-blastfoam-policy
+      name: principia-blastfoam-dsh-bundle
+
+    - id: principia-retrieval-mcp
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: principia_retrieval
+        transport: stdio
+        command: !!js process.env.PRINCIPIA_PYTHON ?? 'python3'
+        args: ['-m', 'mcp_servers.principia_retrieval.server']
+        cwd: !!js process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()
+        env:
+          PRINCIPIA_PROJECT_ROOT: !!js process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()
+          PRINCIPIA_CASE_ROOT: !!js process.env.PRINCIPIA_CASE_ROOT ?? (process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()) + '/outputs'
+          BLASTFOAM_TUTORIALS: !!js process.env.BLASTFOAM_TUTORIALS ?? (process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()) + '/../blastFoam_tutorials'
+          RETRIEVAL_LLM_API_KEY: !!js process.env.RETRIEVAL_LLM_API_KEY ?? ''
+        toolCallTimeoutMs: 60000
+        failOnStartupError: false
+        reconnect:
+          enabled: true
+          initialDelayMs: 500
+          maxDelayMs: 30000
+          maxAttempts: 10
+
+    - id: principia-physics-analyst
+      name: '@deepseek-ai/dsh-tool-subagent'
+      config:
+        provider: spawn
+        toolName: blastfoam_physics_analyst
+        backgroundMode: one-shot
+        enableRunInBackground: false
+        maxDepth: 1
+        persona: >-
+          You are the PrincipiaBlastFoam physics analyst. Establish the physical
+          model, assumptions, dimensions, materials, initial and boundary
+          conditions, numerical risks, and acceptance criteria. Retrieve
+          blastFoam evidence before recommending a tutorial. Do not edit files
+          or execute a solver. Return a concise, evidence-backed handoff for case setup.
+        toolFilter:
+          allow:
+            - read
+            - glob
+            - grep
+            - skill
+            - web_fetch
+            - web_search
+            - mcp__principia_retrieval__get_status
+            - mcp__principia_retrieval__get_case_by_intent
+            - mcp__principia_retrieval__get_files_for_case
+            - mcp__principia_retrieval__find_variable
+            - mcp__principia_retrieval__get_file_content
+            - mcp__principia_retrieval__get_modification_targets
+            - mcp__principia_retrieval__search_case_content
+            - mcp__principia_retrieval__search_user_guide
+
+    - id: principia-case-setup
+      name: '@deepseek-ai/dsh-tool-subagent'
+      config:
+        provider: spawn
+        toolName: blastfoam_case_setup
+        backgroundMode: one-shot
+        enableRunInBackground: false
+        maxDepth: 1
+        persona: >-
+          You are the PrincipiaBlastFoam case-setup specialist. Work only from an
+          approved physics handoff and retrieved tutorial evidence. Create or
+          modify a case inside the active workspace, preserve a modification
+          manifest, validate dictionary syntax and dimensions, and do not run
+          the production solver. Report every changed file and validation result.
+        toolFilter:
+          allow:
+            - read
+            - write
+            - edit
+            - glob
+            - grep
+            - skill
+            - mcp__principia_retrieval__get_status
+            - mcp__principia_retrieval__get_case_by_intent
+            - mcp__principia_retrieval__get_files_for_case
+            - mcp__principia_retrieval__find_variable
+            - mcp__principia_retrieval__get_file_content
+            - mcp__principia_retrieval__get_modification_targets
+            - mcp__principia_retrieval__search_case_content
+            - mcp__principia_retrieval__search_user_guide
+            - mcp__principia_retrieval__initialize_case
+            - mcp__principia_retrieval__case_digest
+
+    - id: principia-execution-specialist
+      name: '@deepseek-ai/dsh-tool-subagent'
+      config:
+        provider: spawn
+        toolName: blastfoam_execution_specialist
+        backgroundMode: one-shot
+        enableRunInBackground: false
+        maxDepth: 1
+        persona: >-
+          You are the PrincipiaBlastFoam execution specialist. Run preflight
+          checks, execute only the approved workspace case, capture commands,
+          environment and logs, and classify solver termination. Never change
+          the requested physics to make a failing run appear successful. Produce
+          an evidence-based execution handoff and machine-readable status.
+        toolFilter:
+          allow:
+            - read
+            - glob
+            - grep
+            - skill
+            - mcp__principia_retrieval__case_digest
+            - mcp__principia_retrieval__execution_preflight
+            - mcp__principia_retrieval__run_case
+            - mcp__principia_retrieval__diagnostics
+
+    - id: principia-postprocessor
+      name: '@deepseek-ai/dsh-tool-subagent'
+      config:
+        provider: spawn
+        toolName: blastfoam_postprocessor
+        backgroundMode: one-shot
+        enableRunInBackground: false
+        maxDepth: 1
+        persona: >-
+          You are the PrincipiaBlastFoam post-processing specialist. Accept only
+          execution evidence, verify result directories and field validity,
+          compute requested observables with reproducible commands, and distinguish
+          missing or invalid data from physical zero. Write the post-processing
+          report inside the active workspace without changing the case setup.
+        toolFilter:
+          allow:
+            - bash
+            - read
+            - glob
+            - grep
+            - skill
+            - mcp__principia_retrieval__write_post_processing
+            - mcp__principia_retrieval__diagnostics
+
+    - id: principia-reviewer
+      name: '@deepseek-ai/dsh-tool-subagent'
+      config:
+        provider: spawn
+        toolName: blastfoam_quality_reviewer
+        backgroundMode: one-shot
+        enableRunInBackground: false
+        maxDepth: 1
+        persona: >-
+          You are the independent PrincipiaBlastFoam quality reviewer. Inspect
+          physics, case, execution, post-processing, logs and provenance through
+          read-only tools. Return structured content for review_report.md,
+          workflow_evidence.md, and artifact_contract.json to the parent without
+          writing files. Fail closed when required evidence is absent.
+        toolFilter:
+          allow: [read, glob, grep, skill]

@@ -1,0 +1,1256 @@
+{
+  "nodes": [
+    {
+      "id": "blastFoam/axisymmetricCharge",
+      "label": "Case",
+      "properties": {
+        "name": "axisymmetricCharge",
+        "path": "blastFoam/axisymmetricCharge"
+      }
+    },
+    {
+      "id": "blastFoam/axisymmetricCharge/0/T.orig",
+      "label": "File",
+      "properties": {
+        "name": "T.orig",
+        "path": "blastFoam/axisymmetricCharge/0/T.orig"
+      }
+    },
+    {
+      "id": "Variable_internalField",
+      "label": "Variable",
+      "properties": {
+        "name": "internalField",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_zeroGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "zeroGradient",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_wedge",
+      "label": "Variable",
+      "properties": {
+        "name": "wedge",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/axisymmetricCharge/0/U.orig",
+      "label": "File",
+      "properties": {
+        "name": "U.orig",
+        "path": "blastFoam/axisymmetricCharge/0/U.orig"
+      }
+    },
+    {
+      "id": "Variable_slip",
+      "label": "Variable",
+      "properties": {
+        "name": "slip",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/axisymmetricCharge/0/alpha.c4.orig",
+      "label": "File",
+      "properties": {
+        "name": "alpha.c4.orig",
+        "path": "blastFoam/axisymmetricCharge/0/alpha.c4.orig"
+      }
+    },
+    {
+      "id": "blastFoam/axisymmetricCharge/0/p.orig",
+      "label": "File",
+      "properties": {
+        "name": "p.orig",
+        "path": "blastFoam/axisymmetricCharge/0/p.orig"
+      }
+    },
+    {
+      "id": "Variable_pressureWaveTransmissive",
+      "label": "Variable",
+      "properties": {
+        "name": "pressureWaveTransmissive",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/axisymmetricCharge/0/rho.air.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.air.orig",
+        "path": "blastFoam/axisymmetricCharge/0/rho.air.orig"
+      }
+    },
+    {
+      "id": "blastFoam/axisymmetricCharge/0/rho.c4.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.c4.orig",
+        "path": "blastFoam/axisymmetricCharge/0/rho.c4.orig"
+      }
+    },
+    {
+      "id": "blastFoam/axisymmetricCharge/constant/dynamicMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "dynamicMeshDict",
+        "path": "blastFoam/axisymmetricCharge/constant/dynamicMeshDict"
+      }
+    },
+    {
+      "id": "Variable_dynamicFvMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "dynamicFvMesh",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_errorEstimator",
+      "label": "Variable",
+      "properties": {
+        "name": "errorEstimator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_refineInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "refineInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_lowerRefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "lowerRefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_unrefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "unrefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_nBufferLayers",
+      "label": "Variable",
+      "properties": {
+        "name": "nBufferLayers",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxRefinement",
+      "label": "Variable",
+      "properties": {
+        "name": "maxRefinement",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_dumpLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "dumpLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/axisymmetricCharge/constant/phaseProperties",
+      "label": "File",
+      "properties": {
+        "name": "phaseProperties",
+        "path": "blastFoam/axisymmetricCharge/constant/phaseProperties"
+      }
+    },
+    {
+      "id": "Variable_phases",
+      "label": "Variable",
+      "properties": {
+        "name": "phases",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_c4",
+      "label": "Variable",
+      "properties": {
+        "name": "c4",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_air",
+      "label": "Variable",
+      "properties": {
+        "name": "air",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_detonating",
+      "label": "Variable",
+      "properties": {
+        "name": "detonating",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Murnaghan",
+      "label": "Variable",
+      "properties": {
+        "name": "Murnaghan",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_JWL",
+      "label": "Variable",
+      "properties": {
+        "name": "JWL",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_linear",
+      "label": "Variable",
+      "properties": {
+        "name": "linear",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_vDet",
+      "label": "Variable",
+      "properties": {
+        "name": "vDet",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_residualRho",
+      "label": "Variable",
+      "properties": {
+        "name": "residualRho",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_residualAlpha",
+      "label": "Variable",
+      "properties": {
+        "name": "residualAlpha",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_basic",
+      "label": "Variable",
+      "properties": {
+        "name": "basic",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_idealGas",
+      "label": "Variable",
+      "properties": {
+        "name": "idealGas",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_gamma",
+      "label": "Variable",
+      "properties": {
+        "name": "gamma",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/axisymmetricCharge/system/blockMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "blockMeshDict",
+        "path": "blastFoam/axisymmetricCharge/system/blockMeshDict"
+      }
+    },
+    {
+      "id": "Variable_convertToMeters",
+      "label": "Variable",
+      "properties": {
+        "name": "convertToMeters",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_H",
+      "label": "Variable",
+      "properties": {
+        "name": "H",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_R",
+      "label": "Variable",
+      "properties": {
+        "name": "R",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_cellSize",
+      "label": "Variable",
+      "properties": {
+        "name": "cellSize",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_blocks",
+      "label": "Variable",
+      "properties": {
+        "name": "blocks",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_patch",
+      "label": "Variable",
+      "properties": {
+        "name": "patch",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/axisymmetricCharge/system/controlDict",
+      "label": "File",
+      "properties": {
+        "name": "controlDict",
+        "path": "blastFoam/axisymmetricCharge/system/controlDict"
+      }
+    },
+    {
+      "id": "Variable_application",
+      "label": "Variable",
+      "properties": {
+        "name": "application",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_startFrom",
+      "label": "Variable",
+      "properties": {
+        "name": "startFrom",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_startTime",
+      "label": "Variable",
+      "properties": {
+        "name": "startTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_stopAt",
+      "label": "Variable",
+      "properties": {
+        "name": "stopAt",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_endTime",
+      "label": "Variable",
+      "properties": {
+        "name": "endTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeControl",
+      "label": "Variable",
+      "properties": {
+        "name": "writeControl",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_writeInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "writeInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeFormat",
+      "label": "Variable",
+      "properties": {
+        "name": "writeFormat",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_adjustTimeStep",
+      "label": "Variable",
+      "properties": {
+        "name": "adjustTimeStep",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_deltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "deltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxCo",
+      "label": "Variable",
+      "properties": {
+        "name": "maxCo",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_impulse",
+      "label": "Variable",
+      "properties": {
+        "name": "impulse",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_dynamicPressure",
+      "label": "Variable",
+      "properties": {
+        "name": "dynamicPressure",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_overpressure",
+      "label": "Variable",
+      "properties": {
+        "name": "overpressure",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_fieldMinMax",
+      "label": "Variable",
+      "properties": {
+        "name": "fieldMinMax",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blastProbes",
+      "label": "Variable",
+      "properties": {
+        "name": "blastProbes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "blastFoam/axisymmetricCharge/system/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_fluxScheme",
+      "label": "Variable",
+      "properties": {
+        "name": "fluxScheme",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Kurganov",
+      "label": "Variable",
+      "properties": {
+        "name": "Kurganov",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_ddtSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "ddtSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Euler",
+      "label": "Variable",
+      "properties": {
+        "name": "Euler",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_RK2SSP",
+      "label": "Variable",
+      "properties": {
+        "name": "RK2SSP",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_gradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "gradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cellMDLimited",
+      "label": "Variable",
+      "properties": {
+        "name": "cellMDLimited",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_leastSquares",
+      "label": "Variable",
+      "properties": {
+        "name": "leastSquares",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_divSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "divSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Riemann",
+      "label": "Variable",
+      "properties": {
+        "name": "Riemann",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_laplacianSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "laplacianSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Gauss linear corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss linear corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_interpolationSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "interpolationSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cubic",
+      "label": "Variable",
+      "properties": {
+        "name": "cubic",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_Minmod",
+      "label": "Variable",
+      "properties": {
+        "name": "Minmod",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_MinmodV",
+      "label": "Variable",
+      "properties": {
+        "name": "MinmodV",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_snGradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "snGradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_wallDist",
+      "label": "Variable",
+      "properties": {
+        "name": "wallDist",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_meshWave",
+      "label": "Variable",
+      "properties": {
+        "name": "meshWave",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/axisymmetricCharge/system/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "blastFoam/axisymmetricCharge/system/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_solvers",
+      "label": "Variable",
+      "properties": {
+        "name": "solvers",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_diagonal",
+      "label": "Variable",
+      "properties": {
+        "name": "diagonal",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_PBiCGStab",
+      "label": "Variable",
+      "properties": {
+        "name": "PBiCGStab",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_preconditioner",
+      "label": "Variable",
+      "properties": {
+        "name": "preconditioner",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_DIC",
+      "label": "Variable",
+      "properties": {
+        "name": "DIC",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/axisymmetricCharge/system/setFieldsDict",
+      "label": "File",
+      "properties": {
+        "name": "setFieldsDict",
+        "path": "blastFoam/axisymmetricCharge/system/setFieldsDict"
+      }
+    },
+    {
+      "id": "Variable_defaultFieldValues",
+      "label": "Variable",
+      "properties": {
+        "name": "defaultFieldValues",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_regions",
+      "label": "Variable",
+      "properties": {
+        "name": "regions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_sphereToCell",
+      "label": "Variable",
+      "properties": {
+        "name": "sphereToCell",
+        "type": "Keyword"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "blastFoam/axisymmetricCharge",
+      "target": "blastFoam/axisymmetricCharge/0/T.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/T.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/T.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/T.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge",
+      "target": "blastFoam/axisymmetricCharge/0/U.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/U.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/U.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/U.orig",
+      "target": "Variable_slip",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/U.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge",
+      "target": "blastFoam/axisymmetricCharge/0/alpha.c4.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/alpha.c4.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/alpha.c4.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/alpha.c4.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge",
+      "target": "blastFoam/axisymmetricCharge/0/p.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/p.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/p.orig",
+      "target": "Variable_pressureWaveTransmissive",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/p.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/p.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge",
+      "target": "blastFoam/axisymmetricCharge/0/rho.air.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/rho.air.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/rho.air.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/rho.air.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge",
+      "target": "blastFoam/axisymmetricCharge/0/rho.c4.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/rho.c4.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/rho.c4.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/0/rho.c4.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge",
+      "target": "blastFoam/axisymmetricCharge/constant/dynamicMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/dynamicMeshDict",
+      "target": "Variable_dynamicFvMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/dynamicMeshDict",
+      "target": "Variable_errorEstimator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/dynamicMeshDict",
+      "target": "Variable_refineInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/dynamicMeshDict",
+      "target": "Variable_lowerRefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/dynamicMeshDict",
+      "target": "Variable_unrefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/dynamicMeshDict",
+      "target": "Variable_nBufferLayers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/dynamicMeshDict",
+      "target": "Variable_maxRefinement",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/dynamicMeshDict",
+      "target": "Variable_dumpLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge",
+      "target": "blastFoam/axisymmetricCharge/constant/phaseProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/phaseProperties",
+      "target": "Variable_phases",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/phaseProperties",
+      "target": "Variable_c4",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/phaseProperties",
+      "target": "Variable_air",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/phaseProperties",
+      "target": "Variable_detonating",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/phaseProperties",
+      "target": "Variable_Murnaghan",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/phaseProperties",
+      "target": "Variable_JWL",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/phaseProperties",
+      "target": "Variable_linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/phaseProperties",
+      "target": "Variable_vDet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/phaseProperties",
+      "target": "Variable_residualRho",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/phaseProperties",
+      "target": "Variable_residualAlpha",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/phaseProperties",
+      "target": "Variable_basic",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/phaseProperties",
+      "target": "Variable_idealGas",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/constant/phaseProperties",
+      "target": "Variable_gamma",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge",
+      "target": "blastFoam/axisymmetricCharge/system/blockMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/blockMeshDict",
+      "target": "Variable_convertToMeters",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/blockMeshDict",
+      "target": "Variable_H",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/blockMeshDict",
+      "target": "Variable_R",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/blockMeshDict",
+      "target": "Variable_cellSize",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/blockMeshDict",
+      "target": "Variable_blocks",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/blockMeshDict",
+      "target": "Variable_patch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/blockMeshDict",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge",
+      "target": "blastFoam/axisymmetricCharge/system/controlDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/controlDict",
+      "target": "Variable_application",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/controlDict",
+      "target": "Variable_startFrom",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/controlDict",
+      "target": "Variable_startTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/controlDict",
+      "target": "Variable_stopAt",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/controlDict",
+      "target": "Variable_endTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/controlDict",
+      "target": "Variable_writeControl",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/controlDict",
+      "target": "Variable_writeInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/controlDict",
+      "target": "Variable_writeFormat",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/controlDict",
+      "target": "Variable_adjustTimeStep",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/controlDict",
+      "target": "Variable_deltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/controlDict",
+      "target": "Variable_maxCo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/controlDict",
+      "target": "Variable_impulse",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/controlDict",
+      "target": "Variable_dynamicPressure",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/controlDict",
+      "target": "Variable_overpressure",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/controlDict",
+      "target": "Variable_fieldMinMax",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/controlDict",
+      "target": "Variable_blastProbes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge",
+      "target": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_fluxScheme",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_Kurganov",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_RK2SSP",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_cellMDLimited",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_leastSquares",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_Riemann",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_Gauss linear corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_cubic",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_Minmod",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_MinmodV",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_wallDist",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSchemes",
+      "target": "Variable_meshWave",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge",
+      "target": "blastFoam/axisymmetricCharge/system/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSolution",
+      "target": "Variable_diagonal",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSolution",
+      "target": "Variable_PBiCGStab",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSolution",
+      "target": "Variable_preconditioner",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/fvSolution",
+      "target": "Variable_DIC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge",
+      "target": "blastFoam/axisymmetricCharge/system/setFieldsDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/setFieldsDict",
+      "target": "Variable_defaultFieldValues",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/setFieldsDict",
+      "target": "Variable_regions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/setFieldsDict",
+      "target": "Variable_sphereToCell",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/axisymmetricCharge/system/setFieldsDict",
+      "target": "Variable_nBufferLayers",
+      "type": "DEFINES"
+    }
+  ]
+}

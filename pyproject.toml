@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "principia-blastfoam-dsh"
+version = "0.1.0"
+description = "DeepSeek Harness integration and framework-independent blastFoam domain services."
+requires-python = ">=3.11,<4.0"
+dependencies = [
+    "langchain-openai>=1.1,<2",
+    "mcp>=1.27,<2",
+    "pydantic>=2.11,<3",
+    "python-dotenv>=1.1,<2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3,<10",
+]
+
+[project.scripts]
+principia-retrieval-mcp = "mcp_servers.principia_retrieval.server:main"
+
+[tool.setuptools]
+packages = [
+    "principia_core",
+    "principia_core.config",
+    "principia_core.metrics",
+    "principia_core.retrieval",
+    "principia_core.utils",
+    "mcp_servers",
+    "mcp_servers.principia_retrieval",
+]
+package-dir = {principia_core = "src/principia_core", mcp_servers = "mcp_servers"}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+addopts = "-q"

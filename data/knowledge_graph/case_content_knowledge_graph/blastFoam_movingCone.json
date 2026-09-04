@@ -1,0 +1,1728 @@
+{
+  "nodes": [
+    {
+      "id": "blastFoam/movingCone",
+      "label": "Case",
+      "properties": {
+        "name": "movingCone",
+        "path": "blastFoam/movingCone"
+      }
+    },
+    {
+      "id": "blastFoam/movingCone/0/T",
+      "label": "File",
+      "properties": {
+        "name": "T",
+        "path": "blastFoam/movingCone/0/T"
+      }
+    },
+    {
+      "id": "Variable_internalField",
+      "label": "Variable",
+      "properties": {
+        "name": "internalField",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_zeroGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "zeroGradient",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_inletOutlet",
+      "label": "Variable",
+      "properties": {
+        "name": "inletOutlet",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_inletValue",
+      "label": "Variable",
+      "properties": {
+        "name": "inletValue",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_wedge",
+      "label": "Variable",
+      "properties": {
+        "name": "wedge",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/movingCone/0/U",
+      "label": "File",
+      "properties": {
+        "name": "U",
+        "path": "blastFoam/movingCone/0/U"
+      }
+    },
+    {
+      "id": "Variable_movingWallVelocity",
+      "label": "Variable",
+      "properties": {
+        "name": "movingWallVelocity",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_maxwellSlipU",
+      "label": "Variable",
+      "properties": {
+        "name": "maxwellSlipU",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_accommodationCoeff",
+      "label": "Variable",
+      "properties": {
+        "name": "accommodationCoeff",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Uwall",
+      "label": "Variable",
+      "properties": {
+        "name": "Uwall",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_noSlip",
+      "label": "Variable",
+      "properties": {
+        "name": "noSlip",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_pressureInletOutletVelocity",
+      "label": "Variable",
+      "properties": {
+        "name": "pressureInletOutletVelocity",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/movingCone/0/p",
+      "label": "File",
+      "properties": {
+        "name": "p",
+        "path": "blastFoam/movingCone/0/p"
+      }
+    },
+    {
+      "id": "Variable_totalPressure",
+      "label": "Variable",
+      "properties": {
+        "name": "totalPressure",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_p0",
+      "label": "Variable",
+      "properties": {
+        "name": "p0",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/movingCone/0/pointMotionUx",
+      "label": "File",
+      "properties": {
+        "name": "pointMotionUx",
+        "path": "blastFoam/movingCone/0/pointMotionUx"
+      }
+    },
+    {
+      "id": "Variable_uniformFixedValue",
+      "label": "Variable",
+      "properties": {
+        "name": "uniformFixedValue",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_table",
+      "label": "Variable",
+      "properties": {
+        "name": "table",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_slip",
+      "label": "Variable",
+      "properties": {
+        "name": "slip",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_uniformValue",
+      "label": "Variable",
+      "properties": {
+        "name": "uniformValue",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_constant",
+      "label": "Variable",
+      "properties": {
+        "name": "constant",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/movingCone/0/rho",
+      "label": "File",
+      "properties": {
+        "name": "rho",
+        "path": "blastFoam/movingCone/0/rho"
+      }
+    },
+    {
+      "id": "blastFoam/movingCone/constant/dynamicMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "dynamicMeshDict",
+        "path": "blastFoam/movingCone/constant/dynamicMeshDict"
+      }
+    },
+    {
+      "id": "Variable_dynamicFvMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "dynamicFvMesh",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_errorEstimator",
+      "label": "Variable",
+      "properties": {
+        "name": "errorEstimator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_motionSolver",
+      "label": "Variable",
+      "properties": {
+        "name": "motionSolver",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_component",
+      "label": "Variable",
+      "properties": {
+        "name": "component",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_diffusivity",
+      "label": "Variable",
+      "properties": {
+        "name": "diffusivity",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_refineInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "refineInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_lowerRefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "lowerRefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_unrefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "unrefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_nBufferLayers",
+      "label": "Variable",
+      "properties": {
+        "name": "nBufferLayers",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxRefinement",
+      "label": "Variable",
+      "properties": {
+        "name": "maxRefinement",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_dumpLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "dumpLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/movingCone/constant/phaseProperties",
+      "label": "File",
+      "properties": {
+        "name": "phaseProperties",
+        "path": "blastFoam/movingCone/constant/phaseProperties"
+      }
+    },
+    {
+      "id": "Variable_type",
+      "label": "Variable",
+      "properties": {
+        "name": "type",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_calculateDensity",
+      "label": "Variable",
+      "properties": {
+        "name": "calculateDensity",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_thermoType",
+      "label": "Variable",
+      "properties": {
+        "name": "thermoType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_transport",
+      "label": "Variable",
+      "properties": {
+        "name": "transport",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_thermo",
+      "label": "Variable",
+      "properties": {
+        "name": "thermo",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_equationOfState",
+      "label": "Variable",
+      "properties": {
+        "name": "equationOfState",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_gamma",
+      "label": "Variable",
+      "properties": {
+        "name": "gamma",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_specie",
+      "label": "Variable",
+      "properties": {
+        "name": "specie",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_molWeight",
+      "label": "Variable",
+      "properties": {
+        "name": "molWeight",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_thermodynamics",
+      "label": "Variable",
+      "properties": {
+        "name": "thermodynamics",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Cp",
+      "label": "Variable",
+      "properties": {
+        "name": "Cp",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Cv",
+      "label": "Variable",
+      "properties": {
+        "name": "Cv",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Hf",
+      "label": "Variable",
+      "properties": {
+        "name": "Hf",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_mu",
+      "label": "Variable",
+      "properties": {
+        "name": "mu",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Pr",
+      "label": "Variable",
+      "properties": {
+        "name": "Pr",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/movingCone/constant/turbulenceProperties",
+      "label": "File",
+      "properties": {
+        "name": "turbulenceProperties",
+        "path": "blastFoam/movingCone/constant/turbulenceProperties"
+      }
+    },
+    {
+      "id": "Variable_simulationType",
+      "label": "Variable",
+      "properties": {
+        "name": "simulationType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/movingCone/system/blockMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "blockMeshDict",
+        "path": "blastFoam/movingCone/system/blockMeshDict"
+      }
+    },
+    {
+      "id": "Variable_convertToMeters",
+      "label": "Variable",
+      "properties": {
+        "name": "convertToMeters",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_vertices",
+      "label": "Variable",
+      "properties": {
+        "name": "vertices",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blocks",
+      "label": "Variable",
+      "properties": {
+        "name": "blocks",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_edges",
+      "label": "Variable",
+      "properties": {
+        "name": "edges",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_boundary",
+      "label": "Variable",
+      "properties": {
+        "name": "boundary",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_mergePatchPairs",
+      "label": "Variable",
+      "properties": {
+        "name": "mergePatchPairs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/movingCone/system/controlDict",
+      "label": "File",
+      "properties": {
+        "name": "controlDict",
+        "path": "blastFoam/movingCone/system/controlDict"
+      }
+    },
+    {
+      "id": "Variable_application",
+      "label": "Variable",
+      "properties": {
+        "name": "application",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_startFrom",
+      "label": "Variable",
+      "properties": {
+        "name": "startFrom",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_startTime",
+      "label": "Variable",
+      "properties": {
+        "name": "startTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_stopAt",
+      "label": "Variable",
+      "properties": {
+        "name": "stopAt",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_endTime",
+      "label": "Variable",
+      "properties": {
+        "name": "endTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_deltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "deltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeControl",
+      "label": "Variable",
+      "properties": {
+        "name": "writeControl",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_writeInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "writeInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_purgeWrite",
+      "label": "Variable",
+      "properties": {
+        "name": "purgeWrite",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeFormat",
+      "label": "Variable",
+      "properties": {
+        "name": "writeFormat",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_writePrecision",
+      "label": "Variable",
+      "properties": {
+        "name": "writePrecision",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeCompression",
+      "label": "Variable",
+      "properties": {
+        "name": "writeCompression",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_timeFormat",
+      "label": "Variable",
+      "properties": {
+        "name": "timeFormat",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_timePrecision",
+      "label": "Variable",
+      "properties": {
+        "name": "timePrecision",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_runTimeModifiable",
+      "label": "Variable",
+      "properties": {
+        "name": "runTimeModifiable",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_adjustTimeStep",
+      "label": "Variable",
+      "properties": {
+        "name": "adjustTimeStep",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxCo",
+      "label": "Variable",
+      "properties": {
+        "name": "maxCo",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxDeltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "maxDeltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/movingCone/system/decomposeParDict",
+      "label": "File",
+      "properties": {
+        "name": "decomposeParDict",
+        "path": "blastFoam/movingCone/system/decomposeParDict"
+      }
+    },
+    {
+      "id": "Variable_numberOfSubdomains",
+      "label": "Variable",
+      "properties": {
+        "name": "numberOfSubdomains",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_method",
+      "label": "Variable",
+      "properties": {
+        "name": "method",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_simpleCoeffs",
+      "label": "Variable",
+      "properties": {
+        "name": "simpleCoeffs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_distributed",
+      "label": "Variable",
+      "properties": {
+        "name": "distributed",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_roots",
+      "label": "Variable",
+      "properties": {
+        "name": "roots",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/movingCone/system/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "blastFoam/movingCone/system/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_fluxScheme",
+      "label": "Variable",
+      "properties": {
+        "name": "fluxScheme",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_HLLC",
+      "label": "Variable",
+      "properties": {
+        "name": "HLLC",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_ddtSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "ddtSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Euler",
+      "label": "Variable",
+      "properties": {
+        "name": "Euler",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_timeIntegrator",
+      "label": "Variable",
+      "properties": {
+        "name": "timeIntegrator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_RK4SSP",
+      "label": "Variable",
+      "properties": {
+        "name": "RK4SSP",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_gradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "gradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cellMDLimited leastSquares",
+      "label": "Variable",
+      "properties": {
+        "name": "cellMDLimited leastSquares",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_divSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "divSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Gauss linear",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss linear",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_laplacianSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "laplacianSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Gauss linear corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss linear corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_Gauss linear uncorrected",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss linear uncorrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_interpolationSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "interpolationSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_linear",
+      "label": "Variable",
+      "properties": {
+        "name": "linear",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_vanLeer",
+      "label": "Variable",
+      "properties": {
+        "name": "vanLeer",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_vanLeerV",
+      "label": "Variable",
+      "properties": {
+        "name": "vanLeerV",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_snGradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "snGradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "blastFoam/movingCone/system/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "blastFoam/movingCone/system/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_solvers",
+      "label": "Variable",
+      "properties": {
+        "name": "solvers",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_PBiCGStab",
+      "label": "Variable",
+      "properties": {
+        "name": "PBiCGStab",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_preconditioner",
+      "label": "Variable",
+      "properties": {
+        "name": "preconditioner",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_DILU",
+      "label": "Variable",
+      "properties": {
+        "name": "DILU",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_tolerance",
+      "label": "Variable",
+      "properties": {
+        "name": "tolerance",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_relTol",
+      "label": "Variable",
+      "properties": {
+        "name": "relTol",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_PCG",
+      "label": "Variable",
+      "properties": {
+        "name": "PCG",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_DIC",
+      "label": "Variable",
+      "properties": {
+        "name": "DIC",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_diagonal",
+      "label": "Variable",
+      "properties": {
+        "name": "diagonal",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_smoothSolver",
+      "label": "Variable",
+      "properties": {
+        "name": "smoothSolver",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_smoother",
+      "label": "Variable",
+      "properties": {
+        "name": "smoother",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_symGaussSeidel",
+      "label": "Variable",
+      "properties": {
+        "name": "symGaussSeidel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_PIMPLE",
+      "label": "Variable",
+      "properties": {
+        "name": "PIMPLE",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_momentumPredictor",
+      "label": "Variable",
+      "properties": {
+        "name": "momentumPredictor",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_correctPhi",
+      "label": "Variable",
+      "properties": {
+        "name": "correctPhi",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_nOuterCorrectors",
+      "label": "Variable",
+      "properties": {
+        "name": "nOuterCorrectors",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_nCorrectors",
+      "label": "Variable",
+      "properties": {
+        "name": "nCorrectors",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_transonic",
+      "label": "Variable",
+      "properties": {
+        "name": "transonic",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_nNonOrthogonalCorrectors",
+      "label": "Variable",
+      "properties": {
+        "name": "nNonOrthogonalCorrectors",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_rhoMin",
+      "label": "Variable",
+      "properties": {
+        "name": "rhoMin",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_rhoMax",
+      "label": "Variable",
+      "properties": {
+        "name": "rhoMax",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_relaxationFactors",
+      "label": "Variable",
+      "properties": {
+        "name": "relaxationFactors",
+        "type": "Keyword"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "blastFoam/movingCone",
+      "target": "blastFoam/movingCone/0/T",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/movingCone/0/T",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/T",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/T",
+      "target": "Variable_inletOutlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/T",
+      "target": "Variable_inletValue",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/T",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone",
+      "target": "blastFoam/movingCone/0/U",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/movingCone/0/U",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/U",
+      "target": "Variable_movingWallVelocity",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/U",
+      "target": "Variable_maxwellSlipU",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/U",
+      "target": "Variable_accommodationCoeff",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/U",
+      "target": "Variable_Uwall",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/U",
+      "target": "Variable_noSlip",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/U",
+      "target": "Variable_pressureInletOutletVelocity",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/U",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone",
+      "target": "blastFoam/movingCone/0/p",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/movingCone/0/p",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/p",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/p",
+      "target": "Variable_totalPressure",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/p",
+      "target": "Variable_p0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/p",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone",
+      "target": "blastFoam/movingCone/0/pointMotionUx",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/movingCone/0/pointMotionUx",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/pointMotionUx",
+      "target": "Variable_uniformFixedValue",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/pointMotionUx",
+      "target": "Variable_table",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/pointMotionUx",
+      "target": "Variable_slip",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/pointMotionUx",
+      "target": "Variable_uniformValue",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/pointMotionUx",
+      "target": "Variable_constant",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/pointMotionUx",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone",
+      "target": "blastFoam/movingCone/0/rho",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/movingCone/0/rho",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/rho",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/0/rho",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone",
+      "target": "blastFoam/movingCone/constant/dynamicMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/dynamicMeshDict",
+      "target": "Variable_dynamicFvMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/dynamicMeshDict",
+      "target": "Variable_errorEstimator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/dynamicMeshDict",
+      "target": "Variable_motionSolver",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/dynamicMeshDict",
+      "target": "Variable_component",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/dynamicMeshDict",
+      "target": "Variable_diffusivity",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/dynamicMeshDict",
+      "target": "Variable_refineInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/dynamicMeshDict",
+      "target": "Variable_lowerRefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/dynamicMeshDict",
+      "target": "Variable_unrefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/dynamicMeshDict",
+      "target": "Variable_nBufferLayers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/dynamicMeshDict",
+      "target": "Variable_maxRefinement",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/dynamicMeshDict",
+      "target": "Variable_dumpLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone",
+      "target": "blastFoam/movingCone/constant/phaseProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/phaseProperties",
+      "target": "Variable_type",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/phaseProperties",
+      "target": "Variable_calculateDensity",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/phaseProperties",
+      "target": "Variable_thermoType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/phaseProperties",
+      "target": "Variable_transport",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/phaseProperties",
+      "target": "Variable_thermo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/phaseProperties",
+      "target": "Variable_equationOfState",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/phaseProperties",
+      "target": "Variable_gamma",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/phaseProperties",
+      "target": "Variable_specie",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/phaseProperties",
+      "target": "Variable_molWeight",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/phaseProperties",
+      "target": "Variable_thermodynamics",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/phaseProperties",
+      "target": "Variable_Cp",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/phaseProperties",
+      "target": "Variable_Cv",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/phaseProperties",
+      "target": "Variable_Hf",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/phaseProperties",
+      "target": "Variable_mu",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/phaseProperties",
+      "target": "Variable_Pr",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone",
+      "target": "blastFoam/movingCone/constant/turbulenceProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/movingCone/constant/turbulenceProperties",
+      "target": "Variable_simulationType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone",
+      "target": "blastFoam/movingCone/system/blockMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/movingCone/system/blockMeshDict",
+      "target": "Variable_convertToMeters",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/blockMeshDict",
+      "target": "Variable_vertices",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/blockMeshDict",
+      "target": "Variable_blocks",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/blockMeshDict",
+      "target": "Variable_edges",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/blockMeshDict",
+      "target": "Variable_boundary",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/blockMeshDict",
+      "target": "Variable_mergePatchPairs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone",
+      "target": "blastFoam/movingCone/system/controlDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_application",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_startFrom",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_startTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_stopAt",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_endTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_deltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_writeControl",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_writeInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_purgeWrite",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_writeFormat",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_writePrecision",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_writeCompression",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_timeFormat",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_timePrecision",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_runTimeModifiable",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_adjustTimeStep",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_maxCo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/controlDict",
+      "target": "Variable_maxDeltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone",
+      "target": "blastFoam/movingCone/system/decomposeParDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/movingCone/system/decomposeParDict",
+      "target": "Variable_numberOfSubdomains",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/decomposeParDict",
+      "target": "Variable_method",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/decomposeParDict",
+      "target": "Variable_simpleCoeffs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/decomposeParDict",
+      "target": "Variable_distributed",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/decomposeParDict",
+      "target": "Variable_roots",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone",
+      "target": "blastFoam/movingCone/system/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_fluxScheme",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_HLLC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_timeIntegrator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_RK4SSP",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_cellMDLimited leastSquares",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_Gauss linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_Gauss linear corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_Gauss linear uncorrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_vanLeer",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_vanLeerV",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSchemes",
+      "target": "Variable_corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone",
+      "target": "blastFoam/movingCone/system/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_PBiCGStab",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_preconditioner",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_DILU",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_tolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_relTol",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_PCG",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_DIC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_diagonal",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_smoothSolver",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_smoother",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_symGaussSeidel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_PIMPLE",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_momentumPredictor",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_correctPhi",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_nOuterCorrectors",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_nCorrectors",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_transonic",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_nNonOrthogonalCorrectors",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_rhoMin",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_rhoMax",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/movingCone/system/fvSolution",
+      "target": "Variable_relaxationFactors",
+      "type": "DEFINES"
+    }
+  ]
+}

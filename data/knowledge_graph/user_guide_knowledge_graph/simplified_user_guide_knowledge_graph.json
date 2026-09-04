@@ -1,0 +1,1866 @@
+[
+  {
+    "id": "ch2",
+    "parentId": null,
+    "semantic_type": "ConceptCluster",
+    "title": "Governing equations",
+    "number": "2",
+    "content_summary": "This chapter describes the governing conservation equations used in blastFoam. It covers two main cases: a single-fluid model with a shared velocity and energy, and a multi-fluid model where each fluid has its own velocity and energy. The term 'multi-phase' is used to describe a fluid that utilizes multiple equations of state for the density-energy-pressure relationship. The general form of the conservation equation is presented."
+  },
+  {
+    "id": "sec2.1",
+    "parentId": "ch2",
+    "semantic_type": "GoverningEquation",
+    "title": "Single-fluid model",
+    "number": "2.1",
+    "content_summary": "This section defines the conservative variables, fluxes, and source terms for a single-phase system with multiple species. It also describes the model for multiphase systems where phases share a single velocity and energy, but individual phase masses are conserved. The mixture's properties like density, velocity, and energy are used, and the pressure is determined by a specified equation of state."
+  },
+  {
+    "id": "sec2.2",
+    "parentId": "ch2",
+    "semantic_type": "GoverningEquation",
+    "title": "Multi-fluid",
+    "number": "2.2",
+    "content_summary": "This section details the multi-fluid model, where each phase has its own distinct set of mass, momentum, and energy. Unlike the single-fluid model, conservation of these properties is maintained through interfacial transfer models that account for interactions like drag and heat transfer between phases. The conservation equations are presented for an individual fluid phase, including source terms for momentum and energy exchange, viscous effects, and reactions."
+  },
+  {
+    "id": "sec2.2.1",
+    "parentId": "sec2.2",
+    "semantic_type": "PhysicalModel",
+    "title": "Granular phases",
+    "number": "2.2.1",
+    "content_summary": "This section describes the governing equations for granular phases. Unlike standard fluids, granular fluids track not only mass, momentum, and thermal energy but also granular energy, which arises from fluctuations in phase velocity within a cell. This granular energy is related to the granular temperature. The equations for conservative variables, fluxes, and source terms are presented, introducing new quantities like granular pressure, frictional pressure, and interfacial pressure. Source terms for momentum, energy, and granular energy dissipation and production are defined. It is noted that in highly compressible flows, the heat generated from inelastic collisions can be significant. The section provides further references for a deeper understanding of granular flows and kinetic theory."
+  },
+  {
+    "id": "ch3",
+    "parentId": null,
+    "semantic_type": "ConceptCluster",
+    "title": "Interfacial models",
+    "number": "3",
+    "content_summary": "This chapter describes the interfacial models used to determine the exchange of momentum and energy between phases. These models are generally solved using an explicit Euler integration method, except for drag and heat transfer, which are solved analytically. The focus is on models applicable to gas-particle flows, with other models to be added as they become relevant."
+  },
+  {
+    "id": "sec3.1",
+    "parentId": "ch3",
+    "semantic_type": "ConceptCluster",
+    "title": "Drag models",
+    "number": "3.1",
+    "content_summary": "This section explains that drag models are responsible for relaxing the velocity difference between two phases towards an equilibrium. The rate of this relaxation is determined by a drag coefficient. The momentum transfer term is defined, and it's noted that the solution can be found analytically or through a more computationally expensive ODE solver."
+  },
+  {
+    "id": "model3.1.1",
+    "parentId": "sec3.1",
+    "semantic_type": "PhysicalModel",
+    "title": "SchillerNaumann",
+    "number": "3.1.1",
+    "content_summary": "This drag model calculates the drag coefficient for flow over a single sphere."
+  },
+  {
+    "id": "model3.1.2",
+    "parentId": "sec3.1",
+    "semantic_type": "PhysicalModel",
+    "title": "WenYu",
+    "number": "3.1.2",
+    "content_summary": "This drag model is designed for dispersed particulate flow. The drag coefficient is defined by modifying the Schiller-Naumann drag coefficient, weighting it by the dispersed phase volume fraction."
+  },
+  {
+    "id": "model3.1.3",
+    "parentId": "sec3.1",
+    "semantic_type": "PhysicalModel",
+    "title": "Ergun",
+    "number": "3.1.3",
+    "content_summary": "This drag model is used for dispersed particulate flow, with a specific formula for the drag coefficient."
+  },
+  {
+    "id": "model3.1.4",
+    "parentId": "sec3.1",
+    "semantic_type": "PhysicalModel",
+    "title": "Gibilaro",
+    "number": "3.1.4",
+    "content_summary": "This drag model is used for dispersed particulate flow, with the drag coefficient defined by a specific formula."
+  },
+  {
+    "id": "model3.1.5",
+    "parentId": "sec3.1",
+    "semantic_type": "PhysicalModel",
+    "title": "SyamlalOBrien",
+    "number": "3.1.5",
+    "content_summary": "This drag model is intended for dispersed particulate flow and defines the drag coefficient through a set of related equations."
+  },
+  {
+    "id": "model3.1.6",
+    "parentId": "sec3.1",
+    "semantic_type": "PhysicalModel",
+    "title": "GidaspowErgunWenYu",
+    "number": "3.1.6",
+    "content_summary": "This drag model is for dispersed particulate flow and combines the Wen and Yu drag model for dilute conditions with the Ergun drag model for dense conditions."
+  },
+  {
+    "id": "model3.1.7",
+    "parentId": "sec3.1",
+    "semantic_type": "PhysicalModel",
+    "title": "GidaspowSchillerNaumann",
+    "number": "3.1.7",
+    "content_summary": "This drag model is for dispersed particulate flow. The drag coefficient is defined by modifying a base coefficient, with the Reynolds number used in the calculation being weighted by the dispersed phase volume fraction."
+  },
+  {
+    "id": "sec3.2",
+    "parentId": "ch3",
+    "semantic_type": "ConceptCluster",
+    "title": "Lift models",
+    "number": "3.2",
+    "content_summary": "This section describes the lift interfacial momentum transfer model, which accounts for acceleration due to rotation in the continuous phase. The model's definition is provided."
+  },
+  {
+    "id": "model3.2.1",
+    "parentId": "sec3.2",
+    "semantic_type": "PhysicalModel",
+    "title": "constant",
+    "number": "3.2.1",
+    "content_summary": "This model assumes the lift coefficient is a constant value."
+  },
+  {
+    "id": "sec3.3",
+    "parentId": "ch3",
+    "semantic_type": "ConceptCluster",
+    "title": "Heat transfer models",
+    "number": "3.3",
+    "content_summary": "This section explains that the heat transfer model is responsible for relaxing the temperature difference between two phases, with the rate determined by the chosen model. The Prandtl number is defined, and it is noted that the solution to temperature relaxation can be found in an appendix."
+  },
+  {
+    "id": "model3.3.1",
+    "parentId": "sec3.3",
+    "semantic_type": "PhysicalModel",
+    "title": "RanzMarshall",
+    "number": "3.3.1",
+    "content_summary": "This heat transfer model defines the heat transfer rate using a formula where the Nusselt number is a run-time selectable model, and other properties are taken from the thermodynamic model."
+  },
+  {
+    "id": "model3.3.2",
+    "parentId": "sec3.3",
+    "semantic_type": "PhysicalModel",
+    "title": "noneNu",
+    "number": "3.3.2",
+    "content_summary": "This option should only be used if a Nusselt number is required by another model, but heat transfer itself is neglected."
+  },
+  {
+    "id": "sec3.4",
+    "parentId": "ch3",
+    "semantic_type": "ConceptCluster",
+    "title": "Nusselt number models",
+    "number": "3.4",
+    "content_summary": "This section is a placeholder for various Nusselt number models."
+  },
+  {
+    "id": "model3.4.1",
+    "parentId": "sec3.4",
+    "semantic_type": "PhysicalModel",
+    "title": "constant",
+    "number": "3.4.1",
+    "content_summary": "In this heat transfer model, the Nusselt number is a constant value provided by the user."
+  },
+  {
+    "id": "model3.4.2",
+    "parentId": "sec3.4",
+    "semantic_type": "PhysicalModel",
+    "title": "duct",
+    "number": "3.4.2",
+    "content_summary": "For hollow particles, this model provides the Nusselt number as defined by Dittus and Boelter (1930)."
+  },
+  {
+    "id": "model3.4.3",
+    "parentId": "sec3.4",
+    "semantic_type": "PhysicalModel",
+    "title": "GelperinEinstein",
+    "number": "3.4.3",
+    "content_summary": "This model defines the Nusselt number according to Gelperin and Einstein (1971)."
+  },
+  {
+    "id": "model3.4.4",
+    "parentId": "sec3.4",
+    "semantic_type": "PhysicalModel",
+    "title": "Gunn",
+    "number": "3.4.4",
+    "content_summary": "This model defines the Nusselt number according to Gunn (1978)."
+  },
+  {
+    "id": "model3.4.5",
+    "parentId": "sec3.4",
+    "semantic_type": "PhysicalModel",
+    "title": "RanzMarschall",
+    "number": "3.4.5",
+    "content_summary": "This model provides the Ranz-Marschall Nusselt number definition for spheres."
+  },
+  {
+    "id": "model3.4.6",
+    "parentId": "sec3.4",
+    "semantic_type": "PhysicalModel",
+    "title": "sphere",
+    "number": "3.4.6",
+    "content_summary": "This model defines the Nusselt number for spheres."
+  },
+  {
+    "id": "sec3.5",
+    "parentId": "ch3",
+    "semantic_type": "ConceptCluster",
+    "title": "Mass transfer models",
+    "number": "3.5",
+    "content_summary": "This section notes that currently, only particle-to-fluid mass transfer has been implemented; fluid-fluid mass transfer is not supported."
+  },
+  {
+    "id": "model3.5.1",
+    "parentId": "sec3.5",
+    "semantic_type": "PhysicalModel",
+    "title": "none",
+    "number": "3.5.1",
+    "content_summary": "This option signifies that no mass transfer occurs."
+  },
+  {
+    "id": "model3.5.2",
+    "parentId": "sec3.5",
+    "semantic_type": "PhysicalModel",
+    "title": "reactingParticle",
+    "number": "3.5.2",
+    "content_summary": "In this model, the mass transfer rate is explicitly calculated from the change in a particle's mass. The regression rate is determined by a reaction rate, requiring the use of the reactingParticle diameter model."
+  },
+  {
+    "id": "sec3.6",
+    "parentId": "ch3",
+    "semantic_type": "ConceptCluster",
+    "title": "Interfacial pressure models",
+    "number": "3.6",
+    "content_summary": "This section explains that the interfacial pressure model is used to determine the pressure at the interface between two phases."
+  },
+  {
+    "id": "model3.6.1",
+    "parentId": "sec3.6",
+    "semantic_type": "PhysicalModel",
+    "title": "single",
+    "number": "3.6.1",
+    "content_summary": "This model uses the pressure of a single, specified phase. It is recommended for gas-particle flows, using the gas phase pressure."
+  },
+  {
+    "id": "model3.6.2",
+    "parentId": "sec3.6",
+    "semantic_type": "PhysicalModel",
+    "title": "volumeAveraged",
+    "number": "3.6.2",
+    "content_summary": "This model uses the volume-fraction-averaged pressure of the two phases."
+  },
+  {
+    "id": "model3.6.3",
+    "parentId": "sec3.6",
+    "semantic_type": "PhysicalModel",
+    "title": "totalPressure",
+    "number": "3.6.3",
+    "content_summary": "This model uses the volume-fraction-averaged thermodynamic pressure and the mass-averaged dynamic pressure."
+  },
+  {
+    "id": "sec3.7",
+    "parentId": "ch3",
+    "semantic_type": "ConceptCluster",
+    "title": "Interfacial velocity models",
+    "number": "3.7",
+    "content_summary": "This section explains that the interfacial velocity model is used to determine the velocity at the interface between two phases."
+  },
+  {
+    "id": "model3.7.1",
+    "parentId": "sec3.7",
+    "semantic_type": "PhysicalModel",
+    "title": "single",
+    "number": "3.7.1",
+    "content_summary": "This model uses the velocity of a single, specified phase. It is recommended for gas-particle flows, using the particle phase velocity."
+  },
+  {
+    "id": "model3.7.2",
+    "parentId": "sec3.7",
+    "semantic_type": "PhysicalModel",
+    "title": "massAveraged",
+    "number": "3.7.2",
+    "content_summary": "This model uses the mass-averaged velocity of the two phases."
+  },
+  {
+    "id": "ch4",
+    "parentId": null,
+    "semantic_type": "ConceptCluster",
+    "title": "Granular models",
+    "number": "4",
+    "content_summary": "This chapter details additional models required for granular phases to account for particle-particle collisions in both kinetic and frictional regimes. These include models for radial distribution, viscosity, conductivity, granular pressure, frictional pressure, solid-solid drag, and packing. Common variables used in these models, such as strain and total granular drag, are defined."
+  },
+  {
+    "id": "sec4.1",
+    "parentId": "ch4",
+    "semantic_type": "ConceptCluster",
+    "title": "Radial distribution models",
+    "number": "4.1",
+    "content_summary": "This section explains that the radial distribution model gives the likelihood of a collision between two particles, defined for both like and unlike particle phases."
+  },
+  {
+    "id": "model4.1.1",
+    "parentId": "sec4.1",
+    "semantic_type": "PhysicalModel",
+    "title": "CarnahanStarling",
+    "number": "4.1.1",
+    "content_summary": "The Carnahan-Starling radial distribution function is valid only for monodisperse flows."
+  },
+  {
+    "id": "model4.1.2",
+    "parentId": "sec4.1",
+    "semantic_type": "PhysicalModel",
+    "title": "SinclairJackson",
+    "number": "4.1.2",
+    "content_summary": "The Sinclair and Jackson (1989) radial distribution function is valid only for monodisperse flows."
+  },
+  {
+    "id": "model4.1.3",
+    "parentId": "sec4.1",
+    "semantic_type": "PhysicalModel",
+    "title": "LunSavage",
+    "number": "4.1.3",
+    "content_summary": "The Lun et al. (1984) radial distribution function is valid only for monodisperse flows."
+  },
+  {
+    "id": "model4.1.4",
+    "parentId": "sec4.1",
+    "semantic_type": "PhysicalModel",
+    "title": "Gao",
+    "number": "4.1.4",
+    "content_summary": "The Gao et al. (2008) radial distribution function is a modified version of the Sinclair-Jackson function and is valid for polydisperse flows."
+  },
+  {
+    "id": "model4.1.5",
+    "parentId": "sec4.1",
+    "semantic_type": "PhysicalModel",
+    "title": "Lebowitz",
+    "number": "4.1.5",
+    "content_summary": "The Lebowitz radial distribution function (Benyahia et al., 2012) is valid for polydisperse flows."
+  },
+  {
+    "id": "sec4.2",
+    "parentId": "ch4",
+    "semantic_type": "ConceptCluster",
+    "title": "Granular viscosity models",
+    "number": "4.2",
+    "content_summary": "This section explains that granular viscosity modeling is used to determine the stress in a granular phase. These models only account for single collisions; frictional models will contribute additional stress for multiple collisions."
+  },
+  {
+    "id": "model4.2.1",
+    "parentId": "sec4.2",
+    "semantic_type": "PhysicalModel",
+    "title": "Gidaspow",
+    "number": "4.2.1",
+    "content_summary": "The Gidaspow viscosity model (Gidaspow, 1994) is for monodisperse flows."
+  },
+  {
+    "id": "model4.2.2",
+    "parentId": "sec4.2",
+    "semantic_type": "PhysicalModel",
+    "title": "HrenyaSinclair",
+    "number": "4.2.2",
+    "content_summary": "The Hrenya-Sinclair viscosity model (Hrenya and Sinclair, 1997) is for monodisperse flows."
+  },
+  {
+    "id": "model4.2.3",
+    "parentId": "sec4.2",
+    "semantic_type": "PhysicalModel",
+    "title": "Princeton",
+    "number": "4.2.3",
+    "content_summary": "The Princeton viscosity model (Agrawal et al., 2001) is for polydisperse flows."
+  },
+  {
+    "id": "model4.2.4",
+    "parentId": "sec4.2",
+    "semantic_type": "PhysicalModel",
+    "title": "Syamlal",
+    "number": "4.2.4",
+    "content_summary": "The Syamlal viscosity model (Syamlal et al., 1993) is for monodisperse flows."
+  },
+  {
+    "id": "model4.2.5",
+    "parentId": "sec4.2",
+    "semantic_type": "PhysicalModel",
+    "title": "none",
+    "number": "4.2.5",
+    "content_summary": "This option signifies that no granular viscosity is used, which also removes the conductivity contribution to the granular energy equation."
+  },
+  {
+    "id": "sec4.3",
+    "parentId": "ch4",
+    "semantic_type": "ConceptCluster",
+    "title": "Granular conductivity models",
+    "number": "4.3",
+    "content_summary": "This section introduces models for granular conductivity."
+  },
+  {
+    "id": "model4.3.1",
+    "parentId": "sec4.3",
+    "semantic_type": "PhysicalModel",
+    "title": "Chao",
+    "number": "4.3.1",
+    "content_summary": "The Chao granular conductivity model (Chao et al., 2011) is defined by a specific set of equations."
+  },
+  {
+    "id": "model4.3.2",
+    "parentId": "sec4.3",
+    "semantic_type": "PhysicalModel",
+    "title": "Gidaspow",
+    "number": "4.3.2",
+    "content_summary": "The Gidaspow conductivity model (Gidaspow, 1994) is for monodisperse flows."
+  },
+  {
+    "id": "model4.3.3",
+    "parentId": "sec4.3",
+    "semantic_type": "PhysicalModel",
+    "title": "HrenyaSinclair",
+    "number": "4.3.3",
+    "content_summary": "The Hrenya-Sinclair conductivity model (Hrenya and Sinclair, 1997) is for monodisperse flows."
+  },
+  {
+    "id": "model4.3.4",
+    "parentId": "sec4.3",
+    "semantic_type": "PhysicalModel",
+    "title": "Princeton",
+    "number": "4.3.4",
+    "content_summary": "The Princeton conductivity model (Agrawal et al., 2001) is for polydisperse flows."
+  },
+  {
+    "id": "model4.3.5",
+    "parentId": "sec4.3",
+    "semantic_type": "PhysicalModel",
+    "title": "Syamlal",
+    "number": "4.3.5",
+    "content_summary": "The Syamlal conductivity model (Syamlal et al., 1993) is for monodisperse flows."
+  },
+  {
+    "id": "sec4.4",
+    "parentId": "ch4",
+    "semantic_type": "ConceptCluster",
+    "title": "Granular pressure models",
+    "number": "4.4",
+    "content_summary": "This section explains that the granular pressure model is used to calculate the pressure due to single collisions between particles. Pressures from multiple collisions are handled by frictional models."
+  },
+  {
+    "id": "model4.4.1",
+    "parentId": "sec4.4",
+    "semantic_type": "PhysicalModel",
+    "title": "Huilin",
+    "number": "4.4.1",
+    "content_summary": "The Huilin granular pressure model (Huilin and Gidaspow, 2003) is for polydisperse flows."
+  },
+  {
+    "id": "model4.4.2",
+    "parentId": "sec4.4",
+    "semantic_type": "PhysicalModel",
+    "title": "Lun",
+    "number": "4.4.2",
+    "content_summary": "The Lun granular pressure model (Lun et al., 1984) is for monodisperse flows."
+  },
+  {
+    "id": "sec4.5",
+    "parentId": "ch4",
+    "semantic_type": "ConceptCluster",
+    "title": "Frictional stress models",
+    "number": "4.5",
+    "content_summary": "This section explains that the frictional stress model accounts for non-singular collisions between particles, resulting in very large stress as granular phases approach their packing limit. This modeled pressure and viscosity limits the movement of particles between computational cells and depends on the total volume fraction of particles."
+  },
+  {
+    "id": "model4.5.1",
+    "parentId": "sec4.5",
+    "semantic_type": "PhysicalModel",
+    "title": "JohnsonJackson",
+    "number": "4.5.1",
+    "content_summary": "The Johnson-Jackson frictional stress model (OpenCFD Ltd., 2018b) uses a smooth function to calculate pressure and defines frictional viscosity based on several model coefficients and packing limits."
+  },
+  {
+    "id": "model4.5.2",
+    "parentId": "sec4.5",
+    "semantic_type": "PhysicalModel",
+    "title": "Schaeffer",
+    "number": "4.5.2",
+    "content_summary": "The Schaeffer frictional stress model (Syamlal et al., 1993) uses a power law to calculate frictional viscosity. The pressure is defined based on the ratio of local to critical volume fraction, which is useful for polydisperse systems where the local packing limit can vary."
+  },
+  {
+    "id": "model4.5.3",
+    "parentId": "sec4.5",
+    "semantic_type": "PhysicalModel",
+    "title": "JohnsonJacksonSchaeffer",
+    "number": "4.5.3",
+    "content_summary": "The Johnson-Jackson-Schaeffer frictional stress model (OpenCFD Ltd., 2018b) uses the frictional pressure from the Johnson-Jackson model and the viscosity from the Schaeffer model."
+  },
+  {
+    "id": "model4.5.4",
+    "parentId": "sec4.5",
+    "semantic_type": "PhysicalModel",
+    "title": "Princeton",
+    "number": "4.5.4",
+    "content_summary": "The Princeton model (Agrawal et al., 2001) blends the Johnson-Jackson model with the Schaeffer model based on the local volume fraction, with the critical ratio of volume fractions used as an input."
+  },
+  {
+    "id": "sec4.6",
+    "parentId": "ch4",
+    "semantic_type": "ConceptCluster",
+    "title": "Packing limit models",
+    "number": "4.6",
+    "content_summary": "This section explains the importance of modeling the packing limit in polydisperse flows. When there are large variations in particle diameters, smaller particles can fit between larger ones, increasing the maximum allowable volume fraction. For monodisperse flows, a constant packing limit is sufficient."
+  },
+  {
+    "id": "model4.6.1",
+    "parentId": "sec4.6",
+    "semantic_type": "PhysicalModel",
+    "title": "constant",
+    "number": "4.6.1",
+    "content_summary": "This model uses a constant value for the packing limit."
+  },
+  {
+    "id": "model4.6.2",
+    "parentId": "sec4.6",
+    "semantic_type": "PhysicalModel",
+    "title": "YuStandish",
+    "number": "4.6.2",
+    "content_summary": "The Yu-Standish packing model (Yu and Standish, 1987) assumes that particle phases are ordered from smallest to largest diameter to calculate the packing limit."
+  },
+  {
+    "id": "model4.6.3",
+    "parentId": "sec4.6",
+    "semantic_type": "PhysicalModel",
+    "title": "FedorsLandel",
+    "number": "4.6.3",
+    "content_summary": "The Fedors-Landel packing model (Fedors and Landel, 1979) is only valid for a binary mixture."
+  },
+  {
+    "id": "sec4.7",
+    "parentId": "ch4",
+    "semantic_type": "ConceptCluster",
+    "title": "Granular drag models",
+    "number": "4.7",
+    "content_summary": "This section explains that the drag force between granular phases differs from standard drag models because collisions, which are a function of granular energy, significantly affect the rate at which velocities relax. These models are only necessary when multiple granular phases are used."
+  },
+  {
+    "id": "model4.7.1",
+    "parentId": "sec4.7",
+    "semantic_type": "PhysicalModel",
+    "title": "Chao",
+    "number": "4.7.1",
+    "content_summary": "The Chao granular drag model (Chao et al., 2011) defines the drag coefficient between phases."
+  },
+  {
+    "id": "model4.7.2",
+    "parentId": "sec4.7",
+    "semantic_type": "PhysicalModel",
+    "title": "Syamlal",
+    "number": "4.7.2",
+    "content_summary": "The Syamlal granular drag model (Benyahia et al., 2012) defines the drag coefficient between phases based on coefficients of friction."
+  },
+  {
+    "id": "ch5",
+    "parentId": null,
+    "semantic_type": "ConceptCluster",
+    "title": "Fluid and solid thermodynamic models",
+    "number": "5",
+    "content_summary": "This chapter describes the two types of basic thermodynamic models used in blastFoam solvers: one for fluids and one for solids. Fluid models use internal energy or temperature and density to find pressure and speed of sound. Solid models, used in multi-fluid and multi-region solvers, use a constant density equation of state and model heat conduction. Both model types share basic thermodynamic classes and types (basic, detonating, or multicomponent). To calculate pressure and temperature from conservative quantities, three components are needed: an equation of state, a thermodynamic model, and a transport model, all defined in the phaseProperties file."
+  },
+  {
+    "id": "sec5.1",
+    "parentId": "ch5",
+    "semantic_type": "ConceptCluster",
+    "title": "Thermodynamic models",
+    "number": "5.1",
+    "content_summary": "This section explains that the thermodynamic model calculates internal energy based on a thermal contribution and an additional contribution from the equation of state. Since internal energy is the tracked quantity, temperature is found using a Newton-Raphson root-finding method. The model can use either internal energy or enthalpy-based coefficients, but total energy is defined only by internal energy. The conversion from enthalpy to internal energy is done using the specified equation of state. By default, internal energy is limited to ensure temperature remains positive, but this can be disabled."
+  },
+  {
+    "id": "model5.1.1",
+    "parentId": "sec5.1",
+    "semantic_type": "PhysicalModel",
+    "title": "eConst",
+    "number": "5.1.1",
+    "content_summary": "This model calculates internal energy using a constant value for the specific heat at constant volume."
+  },
+  {
+    "id": "model5.1.2",
+    "parentId": "sec5.1",
+    "semantic_type": "PhysicalModel",
+    "title": "ePolynomial",
+    "number": "5.1.2",
+    "content_summary": "This model calculates internal energy using a polynomial with powers of temperature."
+  },
+  {
+    "id": "model5.1.3",
+    "parentId": "sec5.1",
+    "semantic_type": "PhysicalModel",
+    "title": "ePower",
+    "number": "5.1.3",
+    "content_summary": "This model calculates internal energy using a power function of temperature."
+  },
+  {
+    "id": "model5.1.4",
+    "parentId": "sec5.1",
+    "semantic_type": "PhysicalModel",
+    "title": "eIcoTabulated",
+    "number": "5.1.4",
+    "content_summary": "The incompressible tabulated thermodynamic model calculates temperature by looking up internal energy from a one-dimensional table based on temperature. Specific heat is calculated using finite difference derivatives of the table data. A heat of formation must also be provided."
+  },
+  {
+    "id": "model5.1.5",
+    "parentId": "sec5.1",
+    "semantic_type": "PhysicalModel",
+    "title": "eTabulated",
+    "number": "5.1.5",
+    "content_summary": "The tabulated thermodynamic model calculates temperature by looking up internal energy from a two-dimensional table based on density and temperature. Specific heat is calculated using finite difference derivatives of the table data. A heat of formation must be provided, and the equation of state contribution to internal energy must be included in the tables."
+  },
+  {
+    "id": "model5.1.6",
+    "parentId": "sec5.1",
+    "semantic_type": "PhysicalModel",
+    "title": "hConst",
+    "number": "5.1.6",
+    "content_summary": "This model calculates enthalpy using a constant value for the specific heat at constant pressure."
+  },
+  {
+    "id": "model5.1.7",
+    "parentId": "sec5.1",
+    "semantic_type": "PhysicalModel",
+    "title": "hPolynomial",
+    "number": "5.1.7",
+    "content_summary": "This model calculates enthalpy using a polynomial with powers of temperature."
+  },
+  {
+    "id": "model5.1.8",
+    "parentId": "sec5.1",
+    "semantic_type": "PhysicalModel",
+    "title": "hPower",
+    "number": "5.1.8",
+    "content_summary": "This model calculates internal energy using a power function of temperature."
+  },
+  {
+    "id": "model5.1.9",
+    "parentId": "sec5.1",
+    "semantic_type": "PhysicalModel",
+    "title": "hIcoTabulated",
+    "number": "5.1.9",
+    "content_summary": "The incompressible tabulated thermodynamic model calculates temperature by looking up enthalpy from a one-dimensional table based on temperature. Specific heat is calculated using finite difference derivatives of the table data. A heat of formation must also be provided."
+  },
+  {
+    "id": "model5.1.10",
+    "parentId": "sec5.1",
+    "semantic_type": "PhysicalModel",
+    "title": "hTabulated",
+    "number": "5.1.10",
+    "content_summary": "The tabulated thermodynamic model calculates temperature by looking up enthalpy from a two-dimensional table based on density and temperature. Specific heat is calculated using finite difference derivatives of the table data. A heat of formation must be provided, and the equation of state contribution to internal energy must be included in the tables."
+  },
+  {
+    "id": "model5.1.11",
+    "parentId": "sec5.1",
+    "semantic_type": "PhysicalModel",
+    "title": "JANAF",
+    "number": "5.1.11",
+    "content_summary": "The JANAF thermodynamic model represents enthalpy using a temperature-based polynomial (OpenCFD Ltd., 2018b). It requires seven coefficients for both low and high temperature states, as well as high, low, and switching temperatures. Currently, it is only available for ideal gases."
+  },
+  {
+    "id": "sec5.2",
+    "parentId": "ch5",
+    "semantic_type": "ConceptCluster",
+    "title": "Equation of states",
+    "number": "5.2",
+    "content_summary": "This section explains that to handle a variety of equations of state, both temperature-based and internal energy-based (e.g., Mie-Grüneisen form) equations of state can be used."
+  },
+  {
+    "id": "model5.2.1",
+    "parentId": "sec5.2",
+    "semantic_type": "PhysicalModel",
+    "title": "rhoConst",
+    "number": "5.2.1",
+    "content_summary": "For a solid phase, this model assumes a constant density and maintains a reference pressure. Since a solid thermodynamic model is never used to transport mass, the reference pressure is arbitrary and set to 0 Pa by default."
+  },
+  {
+    "id": "sec5.2.2",
+    "parentId": "sec5.2",
+    "semantic_type": "ConceptCluster",
+    "title": "Internal energy based (Mie-Grüneisen form)",
+    "number": "5.2.2",
+    "content_summary": "This section explains that the Mie-Grüneisen form calculates pressure using two contributions: an ideal gas term and a deviation term. The Grüneisen coefficient and a pressure deviation term, both specific to the equation of state, are used to define the pressure and the speed of sound."
+  },
+  {
+    "id": "model5.2.2.1",
+    "parentId": "sec5.2.2",
+    "semantic_type": "PhysicalModel",
+    "title": "idealGas",
+    "number": "5.2.2.1",
+    "content_summary": "For an ideal gas, this model defines the pressure and represents it in Mie-Grüneisen form."
+  },
+  {
+    "id": "model5.2.2.2",
+    "parentId": "sec5.2.2",
+    "semantic_type": "PhysicalModel",
+    "title": "stiffenedGas",
+    "number": "5.2.2.2",
+    "content_summary": "For a material obeying the stiffened EOS, this model defines the pressure based on material properties (Zheng et al., 2011) and represents it in Mie-Grüneisen form."
+  },
+  {
+    "id": "model5.2.2.3",
+    "parentId": "sec5.2.2",
+    "semantic_type": "PhysicalModel",
+    "title": "(linearTillotson",
+    "number": "5.2.2.3",
+    "content_summary": "The linear Tillotson equation of state (Wardlaw et al., 1998) defines pressure based on material coefficients and reference conditions. A cavitation pressure is used as a minimum pressure when the density is significantly below the reference density. The model is also represented in Mie-Grüneisen form."
+  },
+  {
+    "id": "model5.2.2.4",
+    "parentId": "sec5.2.2",
+    "semantic_type": "PhysicalModel",
+    "title": "Tillotson",
+    "number": "5.2.2.4",
+    "content_summary": "The Tillotson equation of state, originally developed for metals (Tillotson, 1962), defines pressure based on material coefficients and reference conditions. A cavitation pressure is used as a minimum pressure for low densities. The model is also represented in Mie-Grüneisen form."
+  },
+  {
+    "id": "model5.2.2.5",
+    "parentId": "sec5.2.2",
+    "semantic_type": "PhysicalModel",
+    "title": "Tait",
+    "number": "5.2.2.5",
+    "content_summary": "For a material obeying the stiffened EOS, this model defines the pressure based on material properties (Zheng et al., 2011) and represents it in Mie-Grüneisen form."
+  },
+  {
+    "id": "model5.2.2.6",
+    "parentId": "sec5.2.2",
+    "semantic_type": "PhysicalModel",
+    "title": "vanderWaals",
+    "number": "5.2.2.6",
+    "content_summary": "For a gas described by the generalized van der Waals equation of state (Zheng et al., 2011), this model defines the pressure and represents it in Mie-Grüneisen form."
+  },
+  {
+    "id": "model5.2.2.7",
+    "parentId": "sec5.2.2",
+    "semantic_type": "PhysicalModel",
+    "title": "LSZK",
+    "number": "5.2.2.7",
+    "content_summary": "The Landau, Stanyukovich, Zeldovich, and Kompaneets equation of state is a simple model for describing an ideal explosive (Lutzky, 1964; Needham, 2018), with a form similar to a stiffened gas or Tait EOS."
+  },
+  {
+    "id": "model5.2.2.8",
+    "parentId": "sec5.2.2",
+    "semantic_type": "PhysicalModel",
+    "title": "JWL",
+    "number": "5.2.2.8",
+    "content_summary": "The Jones-Wilkins-Lee (JWL) EOS is often used for energetic materials (Zheng et al., 2011) and has a defined pressure deviation. It can also be used for the unreacted state with a detonating model of type solidJWL, where the initial energy is calculated for zero pressure at the reference density, and thermal energy is not considered."
+  },
+  {
+    "id": "model5.2.2.9",
+    "parentId": "sec5.2.2",
+    "semantic_type": "PhysicalModel",
+    "title": "CochranChan",
+    "number": "5.2.2.9",
+    "content_summary": "The Cochran-Chan EOS can be used to describe a solid material (Zheng et al., 2011), with a given reference pressure and functions defined for the Mie-Grüneisen equations."
+  },
+  {
+    "id": "model5.2.2.10",
+    "parentId": "sec5.2.2",
+    "semantic_type": "PhysicalModel",
+    "title": "DoanNickel",
+    "number": "5.2.2.10",
+    "content_summary": "The Doan-Nickel EOS accounts for changes in air composition and specific heat ratio at high temperatures due to molecular dissociation (Doan and Nickel, 1963). It can currently only be used with inviscid fluids and a constant specific heat at constant volume (eConst). The specific heat is a function of density and internal energy, and all coefficients are hard-coded for standard air."
+  },
+  {
+    "id": "sec5.2.3",
+    "parentId": "sec5.2",
+    "semantic_type": "ConceptCluster",
+    "title": "Temperature-based",
+    "number": "5.2.3",
+    "content_summary": "This section explains that for some equations of state that cannot be converted to an internal energy-based form, a temperature-based approach is used. In this case, the Grüneisen coefficient is defined to calculate the shared pressure, and the speed of sound is defined accordingly."
+  },
+  {
+    "id": "model5.2.3.1",
+    "parentId": "sec5.2.3",
+    "semantic_type": "PhysicalModel",
+    "title": "perfectGas",
+    "number": "5.2.3.1",
+    "content_summary": "The perfect gas equation of state uses the standard ideal gas pressure relation but allows for non-constant heat capacity models by not holding the specific heat ratio constant."
+  },
+  {
+    "id": "model5.2.3.2",
+    "parentId": "sec5.2.3",
+    "semantic_type": "PhysicalModel",
+    "title": "JWLC",
+    "number": "5.2.3.2",
+    "content_summary": "The C-form of the Jones-Wilkins-Lee equation of state (Souers et al., 2000) does not depend on temperature or internal energy. It defines pressure and the speed of sound with specific formulas, and uses the same Grüneisen coefficient as the standard JWL equation of state."
+  },
+  {
+    "id": "model5.2.3.3",
+    "parentId": "sec5.2.3",
+    "semantic_type": "PhysicalModel",
+    "title": "AbelNobel",
+    "number": "5.2.3.3",
+    "content_summary": "The Abel-Nobel equation of state is commonly used for modeling explosive materials, particularly propellants (Johnston, 2005). Unlike the JWL and BKW models, it uses temperature to define pressure."
+  },
+  {
+    "id": "model5.2.3.4",
+    "parentId": "sec5.2.3",
+    "semantic_type": "PhysicalModel",
+    "title": "BKW",
+    "number": "5.2.3.4",
+    "content_summary": "The Becker-Kistiakowsky-Wilson (BKW) equation of state is commonly used to simulate explosive materials (Mader, 1963). Like the Abel-Nobel model, it uses temperature to define pressure."
+  },
+  {
+    "id": "model5.2.3.5",
+    "parentId": "sec5.2.3",
+    "semantic_type": "PhysicalModel",
+    "title": "BWR",
+    "number": "5.2.3.5",
+    "content_summary": "The Benedict-Webb-Rubin (BWR) equation of state (Benedict et al., 1942) describes real gases using a set of eight experimentally determined coefficients to define the pressure."
+  },
+  {
+    "id": "model5.2.3.6",
+    "parentId": "sec5.2.3",
+    "semantic_type": "PhysicalModel",
+    "title": "Murnaghan",
+    "number": "5.2.3.6",
+    "content_summary": "The Murnaghan equation of state is used for solid material and has no temperature dependence (Souers et al., 2000). The pressure is a function of density only."
+  },
+  {
+    "id": "sec5.2.4",
+    "parentId": "sec5.2",
+    "semantic_type": "ConceptCluster",
+    "title": "tabulatedEOS",
+    "number": "5.2.4",
+    "content_summary": "The tabulated equation of state allows for pressure to be calculated from two-dimensional tables of density and temperature, with various options for modifiers and interpolation schemes."
+  },
+  {
+    "id": "model5.2.4.1",
+    "parentId": "sec5.2.4",
+    "semantic_type": "PhysicalModel",
+    "title": "BirchMurnaghan2",
+    "number": "5.2.4.1",
+    "content_summary": "The second-order Birch-Murnaghan equation of state is the second-order expansion of the Birch-Murnaghan model, and defines the pressure accordingly (Zheng and Zhao, 2016)."
+  },
+  {
+    "id": "model5.2.4.2",
+    "parentId": "sec5.2.4",
+    "semantic_type": "PhysicalModel",
+    "title": "BirchMurnaghan3",
+    "number": "5.2.4.2",
+    "content_summary": "The third-order Birch-Murnaghan equation of state is the third-order expansion of the Birch-Murnaghan model, and defines the pressure accordingly (Zheng and Zhao, 2016)."
+  },
+  {
+    "id": "model5.2.5",
+    "parentId": "sec5.2",
+    "semantic_type": "PhysicalModel",
+    "title": "eTabulated/tabulatedMG",
+    "number": "5.2.5",
+    "content_summary": "In addition to the previously mentioned models, tabulated models for equations of state and thermodynamics can be used. This is useful for simulating real gases at high temperatures and pressures where standard models are insufficient. Any combination of pressure and temperature tables can be used, as long as they are a function of density and internal energy. The internal energy is initialized using a reverse lookup from a given pressure and density. This option is currently only available with const, icoTabulated, and tabulated transport models."
+  },
+  {
+    "id": "sec5.3",
+    "parentId": "ch5",
+    "semantic_type": "ConceptCluster",
+    "title": "Fluid Transport",
+    "number": "5.3",
+    "content_summary": "This section explains that transport models are used to define quantities like viscosity and thermal diffusion. Currently, only Newtonian viscosity models are available. All transport models, except for the tabulated methods, are ported from OpenCFD Ltd. (2018b)."
+  },
+  {
+    "id": "model5.3.1",
+    "parentId": "sec5.3",
+    "semantic_type": "PhysicalModel",
+    "title": "const",
+    "number": "5.3.1",
+    "content_summary": "This model uses constant values for viscosity and Prandtl number."
+  },
+  {
+    "id": "model5.3.2",
+    "parentId": "sec5.3",
+    "semantic_type": "PhysicalModel",
+    "title": "sutherland",
+    "number": "5.3.2",
+    "content_summary": "This model calculates viscosity using Sutherland's formula."
+  },
+  {
+    "id": "model5.3.3",
+    "parentId": "sec5.3",
+    "semantic_type": "PhysicalModel",
+    "title": "logPolynomial",
+    "number": "5.3.3",
+    "content_summary": "This transport package uses polynomial functions of the natural logarithm of temperature for the natural logarithm of dynamic viscosity and thermal conductivity."
+  },
+  {
+    "id": "model5.3.4",
+    "parentId": "sec5.3",
+    "semantic_type": "PhysicalModel",
+    "title": "polynomial",
+    "number": "5.3.4",
+    "content_summary": "This transport package uses polynomial functions of temperature for dynamic viscosity and thermal conductivity."
+  },
+  {
+    "id": "model5.3.5",
+    "parentId": "sec5.3",
+    "semantic_type": "PhysicalModel",
+    "title": "WLF",
+    "number": "5.3.5",
+    "content_summary": "This transport package uses the Williams-Landel-Ferry model for the viscosity of polymer melts (Williams et al., 1955)."
+  },
+  {
+    "id": "model5.3.6",
+    "parentId": "sec5.3",
+    "semantic_type": "PhysicalModel",
+    "title": "icoTabulated",
+    "number": "5.3.6",
+    "content_summary": "The tabulated, incompressible transport model calculates viscosity and conductivity using only temperature, with data read from two one-dimensional tables."
+  },
+  {
+    "id": "model5.3.7",
+    "parentId": "sec5.3",
+    "semantic_type": "PhysicalModel",
+    "title": "tabulated",
+    "number": "5.3.7",
+    "content_summary": "The tabulated transport model calculates viscosity and conductivity using density and temperature, with data read from two two-dimensional tables."
+  },
+  {
+    "id": "sec5.4",
+    "parentId": "ch5",
+    "semantic_type": "ConceptCluster",
+    "title": "Solid Transport",
+    "number": "5.4",
+    "content_summary": "This section explains that transport models are used to define the thermal conductivity of a material. All transport models, except for the tabulated methods, are ported from OpenCFD Ltd. (2018b)."
+  },
+  {
+    "id": "model5.4.1",
+    "parentId": "sec5.4",
+    "semantic_type": "PhysicalModel",
+    "title": "constIso",
+    "number": "5.4.1",
+    "content_summary": "This model uses a constant, scalar (isotropic) value for thermal conductivity."
+  },
+  {
+    "id": "model5.4.2",
+    "parentId": "sec5.4",
+    "semantic_type": "PhysicalModel",
+    "title": "constAnIso",
+    "number": "5.4.2",
+    "content_summary": "This model uses a constant, vector (anisotropic) value for thermal conductivity."
+  },
+  {
+    "id": "model5.4.3",
+    "parentId": "sec5.4",
+    "semantic_type": "PhysicalModel",
+    "title": "exponential",
+    "number": "5.4.3",
+    "content_summary": "This model calculates thermal conductivity using an exponential function."
+  },
+  {
+    "id": "model5.4.4",
+    "parentId": "sec5.4",
+    "semantic_type": "PhysicalModel",
+    "title": "polynomial",
+    "number": "5.4.4",
+    "content_summary": "This model calculates thermal conductivity using polynomial functions of temperature."
+  },
+  {
+    "id": "model5.4.5",
+    "parentId": "sec5.4",
+    "semantic_type": "PhysicalModel",
+    "title": "tabulatedIso",
+    "number": "5.4.5",
+    "content_summary": "The tabulated, isotropic solid transport model calculates conductivity using temperature, with data read from a one-dimensional table."
+  },
+  {
+    "id": "model5.4.6",
+    "parentId": "sec5.4",
+    "semantic_type": "PhysicalModel",
+    "title": "tabulatedAnIso",
+    "number": "5.4.6",
+    "content_summary": "The tabulated, anisotropic solid transport model calculates conductivity using temperature, with data read from a one-dimensional table."
+  },
+  {
+    "id": "sec5.5",
+    "parentId": "ch5",
+    "semantic_type": "ConceptCluster",
+    "title": "Basic thermodynamic model",
+    "number": "5.5",
+    "content_summary": "This section explains that the basicFluid and basicSolid models ('type' basic) use a transport model, a thermodynamic model, and an equation of state to describe a non-reacting phase."
+  },
+  {
+    "id": "sec5.6",
+    "parentId": "ch5",
+    "semantic_type": "ConceptCluster",
+    "title": "Detonating thermodynamic model",
+    "number": "5.6",
+    "content_summary": "This section describes the 'detonating' thermodynamic model, which transitions a material from an unreacted to a reacted state using an activation model. Each state is described by its own basic thermodynamic model, allowing for different coefficients for properties like viscosity or specific heats. Afterburn models can also be used to add energy after the initial detonation. This methodology is also applied to solid phases where energy is released locally to increase thermal energy. An ideal gas can be used as a simple option if the solid properties of the unreacted material are unknown."
+  },
+  {
+    "id": "sec5.6.1",
+    "parentId": "sec5.6",
+    "semantic_type": "ConceptCluster",
+    "title": "Activation Models",
+    "number": "5.6.1",
+    "content_summary": "This section describes different models available to approximate the speed at which solid reactants become product gases, including linear, pressure-based, and Arrhenius rate reaction models. These models use a reaction progress variable to describe the state of cell activation. To ensure numerical stability, the initial energy is defined by the unreacted equation of state, and reaction energy is added based on the rate of change of the reaction progress variable. Phase properties are calculated by blending the unreacted and reacted states. Detonation points can be set for any activation model to specify when and where cells are fully activated. The transport of the reaction progress variable is also described."
+  },
+  {
+    "id": "model5.6.1.1",
+    "parentId": "sec5.6.1",
+    "semantic_type": "PhysicalModel",
+    "title": "none",
+    "number": "5.6.1.1",
+    "content_summary": "The 'none' activation model assumes all cells are activated at the start of the simulation, which is equivalent to an infinitely fast detonation velocity. Delays and detonation points are not applicable, and there is no transport of the reaction progress variable."
+  },
+  {
+    "id": "model5.6.1.2",
+    "parentId": "sec5.6.1",
+    "semantic_type": "PhysicalModel",
+    "title": "linear",
+    "number": "5.6.1.2",
+    "content_summary": "The simplest activation model uses a list of detonation points and a constant detonation velocity to determine which cells have been activated. For multi-point detonations, the actual reaction progress is the maximum value from all points."
+  },
+  {
+    "id": "model5.6.1.3",
+    "parentId": "sec5.6.1",
+    "semantic_type": "PhysicalModel",
+    "title": "programmedIgnition",
+    "number": "5.6.1.3",
+    "content_summary": "The programmedIgnition activation model is more complex than the linear model and includes an option for activation due to material compression, based on the work of Giroux (1973). The reaction progress variable is defined by a combination of a compression model and a modified linear activation model."
+  },
+  {
+    "id": "model5.6.1.4",
+    "parentId": "sec5.6.1",
+    "semantic_type": "PhysicalModel",
+    "title": "pressureBased",
+    "number": "5.6.1.4",
+    "content_summary": "A more advanced activation model that uses the local cell pressure to follow an evolution equation. The first term in the equation handles the initial detonation based on material compression, while the following two terms account for subsequent reactions based on local pressure. These terms can be activated or deactivated by specifying the minimum and maximum lambda values for each stage."
+  },
+  {
+    "id": "model5.6.1.5",
+    "parentId": "sec5.6.1",
+    "semantic_type": "PhysicalModel",
+    "title": "ArrheniusRate",
+    "number": "5.6.1.5",
+    "content_summary": "A more physical representation of the activation rate that uses the local temperature, which is defined by the internal energy and specific heat of the mixture. The reaction progress variable's evolution equation is given, with the particle diameter determined by a chosen diameter model."
+  },
+  {
+    "id": "sec5.6.2",
+    "parentId": "sec5.6",
+    "semantic_type": "ConceptCluster",
+    "title": "Afterburn Models",
+    "number": "5.6.2",
+    "content_summary": "This section explains that afterburn models can be used to add energy after the initial charge has been activated, resulting in higher pressure and temperature. This is typical in under-oxygenated or non-ideal explosives that release energy at a later time. The advection scheme and limiters for this process need to be specified in the fvSchemes."
+  },
+  {
+    "id": "model5.6.2.1",
+    "parentId": "sec5.6.2",
+    "semantic_type": "PhysicalModel",
+    "title": "none [default]",
+    "number": "5.6.2.1",
+    "content_summary": "The default model where no additional energy is added. This model is used if the 'afterburnModel' keyword is not found in the phase dictionary."
+  },
+  {
+    "id": "model5.6.2.2",
+    "parentId": "sec5.6.2",
+    "semantic_type": "PhysicalModel",
+    "title": "constant",
+    "number": "5.6.2.2",
+    "content_summary": "This model adds a constant amount of afterburn energy as specified by the user."
+  },
+  {
+    "id": "model5.6.2.3",
+    "parentId": "sec5.6.2",
+    "semantic_type": "PhysicalModel",
+    "title": "linear",
+    "number": "5.6.2.3",
+    "content_summary": "This model adds afterburn energy linearly between a specified start and end time."
+  },
+  {
+    "id": "model5.6.2.4",
+    "parentId": "sec5.6.2",
+    "semantic_type": "PhysicalModel",
+    "title": "Miller",
+    "number": "5.6.2.4",
+    "content_summary": "The Miller (1995) model uses an evolution equation to determine the fraction of total afterburn energy added due to unburnt material. The reaction progress variable has a value between 0 and 1."
+  },
+  {
+    "id": "sec5.7",
+    "parentId": "ch5",
+    "semantic_type": "ConceptCluster",
+    "title": "Multicomponent thermodynamic model",
+    "number": "5.7",
+    "content_summary": "The multicomponent fluid thermodynamic model allows for multiple species that share the same equation of state, with coefficients determined by mass averaging. Initial conditions require mass fractions for the species, and a 'defaultSpecie' must be provided in the thermodynamic dictionary to specify a slave species."
+  },
+  {
+    "id": "sec5.8",
+    "parentId": "ch5",
+    "semantic_type": "ConceptCluster",
+    "title": "Two/multiphase models",
+    "number": "5.8",
+    "content_summary": "To simulate a two-phase or multiphase system, the 'phases' keyword must be defined in the phaseProperties dictionary, listing the phases used. The mixture pressure is defined by a weighted average of the individual phase pressures, which are determined by their respective equations of state. The speed of sound within a given phase is also defined."
+  },
+  {
+    "id": "sec5.9",
+    "parentId": "ch5",
+    "semantic_type": "ConceptCluster",
+    "title": "Initialization",
+    "number": "5.9",
+    "content_summary": "This section describes the initialization of fields, which can be done in several ways, though density, pressure, and temperature must be given as initial conditions. For Mie-Grüneisen equations of state, pressure and density are used by default to initialize internal energy. For temperature-based equations, density and temperature are used. If the 'calculateDensity' keyword is set to 'yes', density is calculated from pressure and temperature before internal energy initialization. If the internal energy field is provided in the initial conditions, pressure and temperature are calculated directly from it and the density."
+  },
+  {
+    "id": "sec5.10",
+    "parentId": "ch5",
+    "semantic_type": "Utility",
+    "title": "Example",
+    "number": "5.10",
+    "content_summary": "This section provides an example of a single-phase phaseProperties file."
+  },
+  {
+    "id": "ch6",
+    "parentId": null,
+    "semantic_type": "ConceptCluster",
+    "title": "Turbulence",
+    "number": "6",
+    "content_summary": "This chapter explains that in addition to hyperbolic flux terms, viscous effects can be included in simulations through turbulence models like Reynolds-averaged Navier-Stokes (RANS) or Large Eddy simulations (LES). All standard OpenFOAM single-phase turbulence models are available. The chosen model adds transport equations and modifies transport coefficients like viscosity and thermal diffusivity. The available turbulence models are listed and can be found using the '-listMomentumTransportModels' option when running blastFoam. Many of these models require additional fields to be specified in the initial conditions."
+  },
+  {
+    "id": "ch7",
+    "parentId": null,
+    "semantic_type": "ConceptCluster",
+    "title": "Burst patches",
+    "number": "7",
+    "content_summary": "This chapter describes the use of 'bursting' patches, including burst (external), burstCyclic (internal without AMR), and burstCyclicAMI (general internal). All fields for these patches require an additional 'inactField' entry to specify the boundary condition before bursting. The basic burst patch can be created with any mesh generation technique, but cyclic variations require the createBaffles utility."
+  },
+  {
+    "id": "sec7.1",
+    "parentId": "ch7",
+    "semantic_type": "ConceptCluster",
+    "title": "Burst models",
+    "number": "7.1",
+    "content_summary": "This section explains that the method for calculating when a burst occurs is runtime-selectable, with inputs placed in the constant/polyMesh/boundary file. The settings can also be added within the patch entry of blockMeshDict or snappyHexMeshDict."
+  },
+  {
+    "id": "model7.1.1",
+    "parentId": "sec7.1",
+    "semantic_type": "PhysicalModel",
+    "title": "pressure",
+    "number": "7.1.1",
+    "content_summary": "In this model, only pressure is used to determine if a burst occurs."
+  },
+  {
+    "id": "model7.1.2",
+    "parentId": "sec7.1",
+    "semantic_type": "PhysicalModel",
+    "title": "impulse",
+    "number": "7.1.2",
+    "content_summary": "In this model, only impulse is used to determine if a burst occurs. Since an impulse field must be available during the simulation, it is recommended to use the impulse functionObject."
+  },
+  {
+    "id": "model7.1.3",
+    "parentId": "sec7.1",
+    "semantic_type": "PhysicalModel",
+    "title": "pressureAndImpulse",
+    "number": "7.1.3",
+    "content_summary": "This model uses a combination of pressure and impulse. A burst occurs if either model's condition is met. Both sets of inputs are required."
+  },
+  {
+    "id": "model7.1.4",
+    "parentId": "sec7.1",
+    "semantic_type": "PhysicalModel",
+    "title": "field",
+    "number": "7.1.4",
+    "content_summary": "This model uses a list of fields and burst values to determine if a patch has burst. The inputs can be given as a single entry, multiple burst conditions, or as a list of names and values."
+  },
+  {
+    "id": "ch8",
+    "parentId": null,
+    "semantic_type": "ConceptCluster",
+    "title": "Region models",
+    "number": "8",
+    "content_summary": "This chapter explains that when multiple regions are used, blastFoam solvers use global poly patches to transfer data between fields without requiring special mesh patches. The information is transferred using field-specific boundary conditions, with the interpolation method, sampled patch, and optional displacement field specified in the constant/regionProperties file."
+  },
+  {
+    "id": "sec8.1",
+    "parentId": "ch8",
+    "semantic_type": "ConceptCluster",
+    "title": "Boundary conditions",
+    "number": "8.1",
+    "content_summary": "This section describes several boundary conditions that have been implemented to make use of global patches."
+  },
+  {
+    "id": "model8.1.1",
+    "parentId": "sec8.1",
+    "semantic_type": "PhysicalModel",
+    "title": "globalMapped",
+    "number": "8.1.1",
+    "content_summary": "The globalMapped boundary condition can be used for both volume and point fields, directly mapping values from one patch to another, with the neighbor patch specified in regionProperties."
+  },
+  {
+    "id": "model8.1.2",
+    "parentId": "sec8.1",
+    "semantic_type": "PhysicalModel",
+    "title": "globalInterpolated",
+    "number": "8.1.2",
+    "content_summary": "The globalInterpolated boundary condition for point fields maps a volume field to a point field, with the neighbor patch specified in regionProperties."
+  },
+  {
+    "id": "model8.1.3",
+    "parentId": "sec8.1",
+    "semantic_type": "PhysicalModel",
+    "title": "globalTemperatureCoupled",
+    "number": "8.1.3",
+    "content_summary": "Using the same methodology as the globalMapped boundary condition, the globalTemperatureCoupled boundary condition computes the temperature of a patch using the neighbor temperature, heat transfer coefficient, and radiation heat flux. An unmapped temperature can be specified for cases where the entire boundary does not overlap the neighbor patch."
+  },
+  {
+    "id": "ch9",
+    "parentId": null,
+    "semantic_type": "ConceptCluster",
+    "title": "Diameter models",
+    "number": "9",
+    "content_summary": "This chapter describes the models available for the diameter of a dispersed phase, which is used to calculate surface reaction rates in the Arrhenius activation model and interfacial transfer sources in the blastEulerFoam solver."
+  },
+  {
+    "id": "model9.1",
+    "parentId": "ch9",
+    "semantic_type": "PhysicalModel",
+    "title": "constant",
+    "number": "9.1",
+    "content_summary": "This model uses a constant diameter, and the diameter field is not written."
+  },
+  {
+    "id": "model9.2",
+    "parentId": "ch9",
+    "semantic_type": "PhysicalModel",
+    "title": "constantMass",
+    "number": "9.2",
+    "content_summary": "In this model, the diameter is determined using a reference diameter at a reference density. The mass is defined, and the true diameter is calculated from it."
+  },
+  {
+    "id": "model9.3",
+    "parentId": "ch9",
+    "semantic_type": "PhysicalModel",
+    "title": "reacting",
+    "number": "9.3",
+    "content_summary": "The reacting diameter model adds a source term to the diameter transport equation, causing the local diameter to increase or decrease based on a given reaction rate."
+  },
+  {
+    "id": "sec9.4",
+    "parentId": "ch9",
+    "semantic_type": "ConceptCluster",
+    "title": "Reaction Rates",
+    "number": "9.4",
+    "content_summary": "This section explains that reaction rates are used to give rates based on temperature and/or pressure. There are currently two options: pressure-based and Arrhenius rate."
+  },
+  {
+    "id": "model9.4.1",
+    "parentId": "sec9.4",
+    "semantic_type": "PhysicalModel",
+    "title": "pressureBased",
+    "number": "9.4.1",
+    "content_summary": "The pressureBased reaction rate model computes the rate using a coefficient, pressure scale, pressure offset (in scaled units), and pressure exponent."
+  },
+  {
+    "id": "model9.4.2",
+    "parentId": "sec9.4",
+    "semantic_type": "PhysicalModel",
+    "title": "Arrhenius",
+    "number": "9.4.2",
+    "content_summary": "This model gives the reaction rate based on the Arrhenius reaction rate formula."
+  },
+  {
+    "id": "ch10",
+    "parentId": null,
+    "semantic_type": "NumericalMethod",
+    "title": "Flux Evaluation",
+    "number": "10",
+    "content_summary": "This chapter explains that blastFoam uses explicit solutions for evolving conservative variables, which offers benefits in accuracy and computational cost. Higher-order, explicit Runge-Kutta time integration schemes improve time-integration accuracy. Stability is managed with SSP time integration methods or restrictive limiters. The calculation of conservative, hyperbolic fluxes relies on interpolated values on cell faces, found using a combination of a base interpolation scheme and flux limiters. MUSCL reconstruction is also implemented for more accurate face value reconstruction."
+  },
+  {
+    "id": "sec10.1",
+    "parentId": "ch10",
+    "semantic_type": "NumericalMethod",
+    "title": "Riemann Solvers",
+    "number": "10.1",
+    "content_summary": "This section describes the available Riemann solvers. For all schemes, n denotes the surface normal vector, and u represents the normal velocity component. The solutions include the volume fraction for multi-fluid problems, but these details are omitted from the descriptions, except for the AUSM+up flux scheme for granular phases."
+  },
+  {
+    "id": "model10.1.1",
+    "parentId": "sec10.1",
+    "semantic_type": "NumericalMethod",
+    "title": "HLL",
+    "number": "10.1.1",
+    "content_summary": "The HLL scheme, based on Toro et al. (1994), neglects the contact wave. The fluxes are determined based on the wave propagation speeds, which are approximated from the owner and neighbor states using Roe averages."
+  },
+  {
+    "id": "model10.1.2",
+    "parentId": "sec10.1",
+    "semantic_type": "NumericalMethod",
+    "title": "HLLC",
+    "number": "10.1.2",
+    "content_summary": "The HLLC Riemann solver, developed by Toro et al. (1994), improves on the HLL method by estimating the contact wave between the owner and neighbor waves. This implementation, from Zheng et al. (2011, 2008), results in two states between the waves, with constant pressure and velocity across the contact wave."
+  },
+  {
+    "id": "model10.1.3",
+    "parentId": "sec10.1",
+    "semantic_type": "NumericalMethod",
+    "title": "HLLCP",
+    "number": "10.1.3",
+    "content_summary": "Following the work of Xie et al. (2019), a low-speed correction has been added to the standard HLLC flux scheme. It is currently only available for single-phase simulations."
+  },
+  {
+    "id": "model10.1.4",
+    "parentId": "sec10.1",
+    "semantic_type": "NumericalMethod",
+    "title": "AUSM+",
+    "number": "10.1.4",
+    "content_summary": "The AUSM+ scheme, developed by Luo et al. (2004), constructs fluxes based on the mass flux across the face. The star state variables are written as functions of the owner and neighbor states."
+  },
+  {
+    "id": "model10.1.5",
+    "parentId": "sec10.1",
+    "semantic_type": "NumericalMethod",
+    "title": "AUSM+up",
+    "number": "10.1.5",
+    "content_summary": "The AUSM+up scheme extends the AUSM+ scheme with a low-speed correction by Liou (2006). It uses the high-speed portion from the previous section but adds diffusion terms, resulting in new definitions for the mass and pressure fluxes. This correction is important for blast simulations where Mach numbers can become much less than unity, which can lead to numerical checker-boarding."
+  },
+  {
+    "id": "model10.1.6",
+    "parentId": "sec10.1",
+    "semantic_type": "NumericalMethod",
+    "title": "AUSM+up (granular)",
+    "number": "10.1.6",
+    "content_summary": "A modified version of the AUSM+up flux scheme, developed by Houim and Oran (2016), includes flux limiters for packing events. It defines the flux of conservative variables (mass, momentum, thermal energy, and granular energy) across a face with specific formulas."
+  },
+  {
+    "id": "model10.1.7",
+    "parentId": "sec10.1",
+    "semantic_type": "NumericalMethod",
+    "title": "Tadmor/Kurganov",
+    "number": "10.1.7",
+    "content_summary": "The Tadmor/Kurganov fluxes were developed by Kurganov and Tadmor (2000) and are utilized by the rhoCentalFoam solver (OpenCFD Ltd., 2018a; Greenshields et al., 2010), which has been ported to the current framework. Two run-time selectable options (Kurganov or Tadmor) are available, following the same general procedure with a slight difference in coefficient calculation."
+  },
+  {
+    "id": "sec10.2",
+    "parentId": "ch10",
+    "semantic_type": "NumericalMethod",
+    "title": "Riemann advection scheme",
+    "number": "10.2",
+    "content_summary": "This section describes an additional advection scheme using Riemann fluxes, which has been added for consistency between conserved quantities and other transport quantities like turbulence fields or species mass fractions. This allows the use of higher-order interpolation schemes for additional scalar transport, a major advantage over traditional methods that are often limited to upwinding in the presence of strong gradients. However, one limitation is that with very stiff implicit terms (e.g., in turbulence models), the explicit advection term can become negligible, leading to no advection. Therefore, implicit divergence schemes are still recommended for turbulence quantities with large implicit source terms."
+  },
+  {
+    "id": "sec10.3",
+    "parentId": "ch10",
+    "semantic_type": "NumericalMethod",
+    "title": "Time integration",
+    "number": "10.3",
+    "content_summary": "This section explains that higher-order time integration has been added, allowing for fully third-order accurate solutions, a significant improvement over standard OpenFOAM's at-most second-order implicit time evolution. This applies to both conservative quantities and activation and afterburn models. The transport of turbulent quantities is still limited by standard time integration schemes. The available schemes and their mathematical steps are detailed, with the scheme specified in the fvSchemes dictionary. Strong stability preserving (SSP) methods offer variations with more steps for added stability."
+  },
+  {
+    "id": "method10.3.1",
+    "parentId": "sec10.3",
+    "semantic_type": "NumericalMethod",
+    "title": "Euler",
+    "number": "10.3.1",
+    "content_summary": "Describes the standard first-order explicit Euler time integration method."
+  },
+  {
+    "id": "method10.3.2",
+    "parentId": "sec10.3",
+    "semantic_type": "NumericalMethod",
+    "title": "RK1SSP",
+    "number": "10.3.2",
+    "content_summary": "This section outlines the first-order, strong-stability-preserving (SSP) Runge-Kutta method, based on the work of Spiteri and Ruuth (2002). It details the formulas for one-stage, two-stage, and three-stage implementations of the method."
+  },
+  {
+    "id": "method10.3.3",
+    "parentId": "sec10.3",
+    "semantic_type": "NumericalMethod",
+    "title": "RK2",
+    "number": "10.3.3",
+    "content_summary": "This section describes the standard second-order Runge-Kutta method, also known as the midpoint method."
+  },
+  {
+    "id": "method10.3.4",
+    "parentId": "sec10.3",
+    "semantic_type": "NumericalMethod",
+    "title": "RK2SSP",
+    "number": "10.3.4",
+    "content_summary": "Details the second-order, strong-stability-preserving (SSP) Runge-Kutta method from Spiteri and Ruuth (2002). Formulas are provided for two-stage, three-stage and four-stage implementations."
+  },
+  {
+    "id": "method10.3.5",
+    "parentId": "sec10.3",
+    "semantic_type": "NumericalMethod",
+    "title": "RK3SSP",
+    "number": "10.3.5",
+    "content_summary": "Presents the third-order, strong-stability-preserving (SSP) Runge-Kutta method from Spiteri and Ruuth (2002). Formulas are provided for both three-stage and four-stage implementations."
+  },
+  {
+    "id": "method10.3.6",
+    "parentId": "sec10.3",
+    "semantic_type": "NumericalMethod",
+    "title": "RK4",
+    "number": "10.3.6",
+    "content_summary": "Provides the formulas for the standard fourth-order Runge-Kutta method."
+  },
+  {
+    "id": "method10.3.7",
+    "parentId": "sec10.3",
+    "semantic_type": "NumericalMethod",
+    "title": "RK4SSP",
+    "number": "10.3.7",
+    "content_summary": "This section details the fourth-order, strong-stability-preserving (SSP) Runge-Kutta method developed by Spiteri and Ruuth (2002). The general formula for the iterative update is presented, which depends on coefficients provided in two separate tables."
+  },
+  {
+    "id": "ch11",
+    "parentId": null,
+    "semantic_type": "NumericalMethod",
+    "title": "Adaptive Mesh Refinement (AMR)",
+    "number": "11",
+    "content_summary": "This chapter describes the integration of dynamic mesh classes for Adaptive Mesh Refinement (AMR), based on the work of Rettenmaier et al. (2019). The library supports 2-D, 2-D axisymmetric, and 3-D meshes with dynamic load balancing. The original 'adaptiveFvMesh' class has been enhanced for compressible flows, improving stability with meshes from 'snappyHexMesh'. Additionally, polyhedral refinement capabilities have been ported from foam-extend. A new feature allows delaying the start of unrefinement, which is useful for simulations with delayed detonations. A 'movingAdaptiveFvMesh' class is also available, which combines AMR with mesh motion, recommended for use with the 'velocityLaplacian' motion solver. Important notes are provided regarding limitations when using snappyHexMesh for 2-D or axisymmetric refinement and the potential for crashes with 'snapped' meshes."
+  },
+  {
+    "id": "sec11.1",
+    "parentId": "ch11",
+    "semantic_type": "NumericalMethod",
+    "title": "Error estimators",
+    "number": "11.1",
+    "content_summary": "This section explains how error estimators are used to determine which cells to refine or unrefine. The process generally involves evaluating a derivative or difference of a specified field across the faces of a cell and its neighbors. The maximum face error for a cell is then used as the cell-centered value to decide on refinement. Probe locations are automatically refined to the maximum level to maintain accuracy and avoid discontinuities in sampled data."
+  },
+  {
+    "id": "method11.1.1",
+    "parentId": "sec11.1",
+    "semantic_type": "NumericalMethod",
+    "title": "cellSize",
+    "number": "11.1.1",
+    "content_summary": "Refinement is determined based on the size of the cell. Users can specify criteria based on the cell's volume, the magnitude of its dimensions, its components (x, y, z), or a characteristic length. Since refinement is based on cell size, a large number of maximum refinement levels can be used."
+  },
+  {
+    "id": "method11.1.2",
+    "parentId": "sec11.1",
+    "semantic_type": "NumericalMethod",
+    "title": "fieldValue",
+    "number": "11.1.2",
+    "content_summary": "This error estimation method sets the error value directly to the value of a user-specified scalar field within the simulation."
+  },
+  {
+    "id": "method11.1.3",
+    "parentId": "sec11.1",
+    "semantic_type": "NumericalMethod",
+    "title": "delta",
+    "number": "11.1.3",
+    "content_summary": "This is a basic method for detecting sharp changes across cell faces. The error is defined as the absolute difference between the values of a user-specified scalar field at the current face ('own') and the neighboring face ('nei')."
+  },
+  {
+    "id": "method11.1.4",
+    "parentId": "sec11.1",
+    "semantic_type": "NumericalMethod",
+    "title": "scaledDelta",
+    "number": "11.1.4",
+    "content_summary": "This method detects sharp changes using a scaled difference approach. The error is calculated by dividing the absolute difference between field values at the current and neighboring faces by a scaling factor. This factor is the maximum of a user-specified minimum value and the minimum distance of the two face values from a central offset value, which helps to normalize the error."
+  },
+  {
+    "id": "method11.1.5",
+    "parentId": "sec11.1",
+    "semantic_type": "NumericalMethod",
+    "title": "Density gradient (densityGradient)",
+    "number": "11.1.5",
+    "content_summary": "This section describes a modified density gradient error estimator, based on the work of Zheng et al. (2008). The error is defined by an equation that takes the maximum of two terms, considering both the 'own' and 'nei' cell faces, to capture the gradient accurately."
+  },
+  {
+    "id": "method11.1.6",
+    "parentId": "sec11.1",
+    "semantic_type": "NumericalMethod",
+    "title": "Lohner",
+    "number": "11.1.6",
+    "content_summary": "This section presents an error estimation method based on Löhner (1987). It employs a scaled Laplacian to produce an error value bounded between 0 and 1, indicating the smoothness of the solution. Originally designed for Cartesian grids, the method has been adapted for non-Cartesian grids by using cubic interpolation to determine the face value of the tracked field, which allows for non-zero smoothness across faces."
+  },
+  {
+    "id": "method11.1.7",
+    "parentId": "sec11.1",
+    "semantic_type": "NumericalMethod",
+    "title": "multiComponent",
+    "number": "11.1.7",
+    "content_summary": "The multicomponent error estimator allows for the use of multiple error criteria to determine cell refinement. Any of the previously described methods can be combined. A list of estimator names must be provided, each corresponding to a dictionary with its specific settings. The refinement decision for each cell is based on the maximum error value calculated from all the specified estimators. Each estimator can also have its own maximum refinement level."
+  },
+  {
+    "id": "sec11.2",
+    "parentId": "ch11",
+    "semantic_type": "NumericalMethod",
+    "title": "Dynamic Load Balancing",
+    "number": "11.2",
+    "content_summary": "This section discusses the availability of dynamic load balancing for 2-D, 2-D axisymmetric, and 3-D meshes, which can significantly reduce computational time by distributing cells evenly across processors. However, it also highlights known limitations. Large cases may exceed the MPI buffer limit during data transfer, causing crashes. Additionally, issues can arise when transferring non-scalar fields and with 'movingWall' boundary conditions. While these problems have been addressed for the standard 'blastFoam' solver, stability is not guaranteed if 'adaptiveFvMesh' is used with a different solver."
+  },
+  {
+    "id": "sec11.3",
+    "parentId": "ch11",
+    "semantic_type": "Utility",
+    "title": "Example",
+    "number": "11.3",
+    "content_summary": "This section provides an example of the optional 'dynamicMeshDict' file used with the 'adaptiveFvMesh' class."
+  },
+  {
+    "id": "ch12",
+    "parentId": null,
+    "semantic_type": "NumericalMethod",
+    "title": "Numerics",
+    "number": "12",
+    "content_summary": "This chapter presents a collection of numerical methods used within the previously described models, which can also be applied to new applications and solvers. The reader is directed to the provided references for more comprehensive descriptions of the methods."
+  },
+  {
+    "id": "sec12.1",
+    "parentId": "ch12",
+    "semantic_type": "NumericalMethod",
+    "title": "Lookup tables",
+    "number": "12.1",
+    "content_summary": "This section describes the availability of 1D, 2D, and 3D lookup tables. These tables support modified data types, runtime-selectable interpolation schemes, and can read or construct data. The dictionary names and inputs are model-specific, using 'x' and 'f' as placeholders. If a dictionary named 'xCoeffs' is used, the 'x' prefix is dropped for other inputs (e.g., 'xMod' becomes 'mod'). For 1D data, the field can be constructed in three ways: read directly, read from a specific column in a file, or generated using a specified spacing."
+  },
+  {
+    "id": "method12.1.1",
+    "parentId": "sec12.1",
+    "semantic_type": "NumericalMethod",
+    "title": "Modifiers",
+    "number": "12.1.1",
+    "content_summary": "This section lists the different modifiers available for interpolating scalar data in various mathematical spaces. The options include 'none' (no modification), 'log10', 'pow10' (10^x), 'ln' (natural logarithm), and 'exp' (exponential)."
+  },
+  {
+    "id": "method12.1.2",
+    "parentId": "sec12.1",
+    "semantic_type": "NumericalMethod",
+    "title": "Interpolation schemes",
+    "number": "12.1.2",
+    "content_summary": "This section outlines several interpolation schemes that give users control over how data is interpolated. The available methods include 'floor', 'ceil', and various 'Clamp' and 'Extrapolated' versions for linear, quadratic, and cubic interpolation. 'Clamp' methods restrict the interpolated values to the minimum and maximum of the provided table, while 'Extrapolated' methods use the nearest values to extend the data beyond the table's bounds. The 'interpolationScheme' keyword is used to set the default method for all directions."
+  },
+  {
+    "id": "method12.1.3",
+    "parentId": "sec12.1",
+    "semantic_type": "NumericalMethod",
+    "title": "1D lookup tables",
+    "number": "12.1.3",
+    "content_summary": "Data is retrieved based on a single input value 'x'. The implementation supports calculating first and second derivatives. Additionally, a reverse lookup feature is available for scalar data, allowing one to find the input 'x' that corresponds to a given function value 'f'."
+  },
+  {
+    "id": "method12.1.4",
+    "parentId": "sec12.1",
+    "semantic_type": "NumericalMethod",
+    "title": "2D lookup table",
+    "number": "12.1.4",
+    "content_summary": "This section describes 2D lookup tables where data is retrieved based on 'x' and 'y' values. Data can be read from a table or a list, with a comma as the default delimiter. The table can be flipped (transposed) during reading if the input is specified as y-by-x. The implementation includes first and second derivatives (both pure and mixed) and supports reverse lookup for scalar data (e.g., finding 'x' given 'f' and 'y')."
+  },
+  {
+    "id": "method12.1.5",
+    "parentId": "sec12.1",
+    "semantic_type": "NumericalMethod",
+    "title": "3D lookup tables",
+    "number": "12.1.5",
+    "content_summary": "This section covers 3D lookup tables, where data is retrieved using x, y, and z values. Data can be read from a table or a list, with default delimiters of ',' for columns and ';' for rows. The table can be flipped if the input order is reversed. The implementation includes first and second derivatives (both pure and mixed)."
+  },
+  {
+    "id": "sec12.2",
+    "parentId": "ch12",
+    "semantic_type": "NumericalMethod",
+    "title": "Equations",
+    "number": "12.2",
+    "content_summary": "A simple equation class has been implemented to support various numerical methods. It takes an input and returns a result. This class can function as either a univariate equation, where a list of scalar inputs returns a single value, or a multivariate equation, where a list of scalar inputs returns a list of values."
+  },
+  {
+    "id": "sec12.3",
+    "parentId": "ch12",
+    "semantic_type": "NumericalMethod",
+    "title": "Root solvers",
+    "number": "12.3",
+    "content_summary": "This section lists a collection of root-finding solvers for both univariate and multivariate scalar equations. For univariate solvers, convergence is checked based on both absolute and relative tolerances for the independent variable (x) and an absolute tolerance for the function value (y). The available univariate methods include bisection, Brent's method, false position, Halley's method, Newton-Raphson, secant, Steffensen's method, and a simple step method. For multivariate problems, the available solvers are goodBroyden, badBroyden, and Newton-Raphson."
+  },
+  {
+    "id": "sec12.4",
+    "parentId": "ch12",
+    "semantic_type": "NumericalMethod",
+    "title": "Minimization",
+    "number": "12.4",
+    "content_summary": "This section presents a collection of minimization methods for finding the minima of scalar equations, implemented based on the work of Kochenderfer and Wheeler (2019). For univariate minimization, the available models are bisection, Fibonacci, golden ratio, Newton-Raphson, quadratic fit, Shubert-Piyavskii, and a simple step method. For multivariate minimization, the options are gradient descent, Nelder-Mead, and particle swarm. Specific options are provided for configuring the Nelder-Mead and Particle Swarm algorithms, as well as general options for convergence criteria."
+  },
+  {
+    "id": "sec12.5",
+    "parentId": "ch12",
+    "semantic_type": "NumericalMethod",
+    "title": "Integrators",
+    "number": "12.5",
+    "content_summary": "This section describes numerical integrators implemented for arbitrary data types, not just scalars. Univariate integrators, which take a single input, can use either adaptive integration or a fixed number of intervals and are optimized to reduce function evaluations. The available univariate methods include Boole's rule, Gaussian quadrature, midpoint rule, Simpson's 1/3 rule, Simpson's 3/8 rule, and the trapezoidal rule. For multivariate integration, a smaller subset of these methods (Gaussian, midpoint, trapezoidal) is available due to the complexity of higher dimensions, and they lack the same level of optimization as the univariate versions."
+  },
+  {
+    "id": "ch13",
+    "parentId": null,
+    "semantic_type": "PhysicalModel",
+    "title": "Solid models",
+    "number": "13",
+    "content_summary": "This chapter describes the integration of solid mechanics models from the 'solids4foam' library into the 'blastFSI' solver. These models enable the simulation of both linear and non-linear deformation using a finite-volume methodology, as detailed in works by Cardiff et al. and Simo and Hughes. If 'solids4foam' is available locally, the 'blastSolids4Foam' library can be compiled to allow the 'solids4Foam' solver to use the fluid models available in 'blastFoam'. It is noted that these models are still under development and have not been extensively validated for blast applications."
+  },
+  {
+    "id": "ch14",
+    "parentId": null,
+    "semantic_type": "Utility",
+    "title": "Coupling to preCICE’s OpenFOAM adapter",
+    "number": "14",
+    "content_summary": "This chapter explains the capability of coupling blastFoam with an external solver through the preCICE library. This feature is enabled by the addition of moving mesh functionality and is ready to use upon installation without special setup for standard moving mesh classes. However, when using the 'movingAdaptiveFvMesh', there are limitations: the coupled boundary cannot change during the simulation, which means load balancing is not allowed, and the 'protectedPatches' keyword must be used to specify boundaries that cannot be refined. Additionally, checkpointing cannot be used with refinement due to mesh-related limitations."
+  },
+  {
+    "id": "ch15",
+    "parentId": null,
+    "semantic_type": "Utility",
+    "title": "Function objects",
+    "number": "15",
+    "content_summary": "This chapter introduces additional blast-specific function objects that supplement the standard OpenFOAM function objects. While standard sampling library objects are included by default, other libraries can be added as well. An example is provided showing how to include these additional libraries in the 'controlDict' file."
+  },
+  {
+    "id": "sec15.1",
+    "parentId": "ch15",
+    "semantic_type": "Utility",
+    "title": "blastProbes",
+    "number": "15.1",
+    "content_summary": "This section describes 'blastProbes,' a modified version of the standard OpenFOAM probe utility. It adds several key features: the ability to append data to existing probe files, allowing for a single file across simulation restarts; the option to move probes that are outside the mesh to the nearest face to obtain valid results, which is useful for curved surfaces; and the removal of warnings about probes existing on multiple processors by selecting a single processor for probing. A note of caution is added: during mesh refinement and unrefinement, probe locations can 'jump' to the nearest cell, causing fluctuations in plotted data. This can be mitigated by enabling probe refinement in the 'dynamicMeshDict' file."
+  },
+  {
+    "id": "sec15.2",
+    "parentId": "ch15",
+    "semantic_type": "Utility",
+    "title": "fieldMinMax (fieldMax)",
+    "number": "15.2",
+    "content_summary": "This function object outputs the minimum or maximum value of any specified field at every cell in the domain. This is useful for visualizing quantities like maximum impulse or peak pressure. These min/max fields are automatically saved during the calculation."
+  },
+  {
+    "id": "sec15.3",
+    "parentId": "ch15",
+    "semantic_type": "Utility",
+    "title": "writeTimeList",
+    "number": "15.3",
+    "content_summary": "This utility allows for writing output fields at a user-specified list of times, which is useful when data is needed at times that do not align with the standard write interval."
+  },
+  {
+    "id": "sec15.4",
+    "parentId": "ch15",
+    "semantic_type": "Utility",
+    "title": "conservedQuantities",
+    "number": "15.4",
+    "content_summary": "This function object computes and prints the volume-integrated value of specified fields. It outputs the initial, current, total difference, and relative difference for each tracked field. A note indicates that the removal and injection of values into a domain are not currently considered."
+  },
+  {
+    "id": "sec15.5",
+    "parentId": "ch15",
+    "semantic_type": "Utility",
+    "title": "vtkTimeSeries surface writer",
+    "number": "15.5",
+    "content_summary": "This is an extension of the standard VTK surface writer. It creates an additional '*.vtk.series' file in the post-processing directory, which contains relative paths to the surface data at all write times. This file can be opened in ParaView to easily visualize the time sequence of the surface data."
+  },
+  {
+    "id": "sec15.6",
+    "parentId": "ch15",
+    "semantic_type": "Utility",
+    "title": "Schlieren (grad)",
+    "number": "15.6",
+    "content_summary": "This function object calculates and writes the gradient of a given scalar or vector field."
+  },
+  {
+    "id": "sec15.7",
+    "parentId": "ch15",
+    "semantic_type": "Utility",
+    "title": "shadowgrap (laplacian)",
+    "number": "15.7",
+    "content_summary": "This utility calculates and writes the Laplacian of a specified field."
+  },
+  {
+    "id": "sec15.8",
+    "parentId": "ch15",
+    "semantic_type": "Utility",
+    "title": "blastMachNo",
+    "number": "15.8",
+    "content_summary": "This function object replaces the standard 'machNo' utility in OpenFOAM. It calculates the Mach number using the speed of sound derived from the specific thermodynamic models available in blastFoam."
+  },
+  {
+    "id": "sec15.9",
+    "parentId": "ch15",
+    "semantic_type": "Utility",
+    "title": "dynamicPressure",
+    "number": "15.9",
+    "content_summary": "This utility is useful for tracking the dynamic pressure (kinetic energy) of a phase in blast simulations. It returns the vector of dynamic pressure, the magnitude of which is the standard dynamic pressure. For calculating static or total pressure, the standard OpenFOAM 'pressure' function object can be used."
+  },
+  {
+    "id": "sec15.10",
+    "parentId": "ch15",
+    "semantic_type": "Utility",
+    "title": "overpressure",
+    "number": "15.10",
+    "content_summary": "This function object calculates and writes the overpressure, which is the pressure relative to a specified reference pressure (typically ambient). The resulting overpressure field can also be saved for additional sampling."
+  },
+  {
+    "id": "sec15.11",
+    "parentId": "ch15",
+    "semantic_type": "Utility",
+    "title": "impulse",
+    "number": "15.11",
+    "content_summary": "This function object calculates the impulse in each cell by integrating the overpressure over time, using a specified pressure field and reference pressure. The impulse field is automatically saved by default to allow for further sampling."
+  },
+  {
+    "id": "sec15.12",
+    "parentId": "ch15",
+    "semantic_type": "Utility",
+    "title": "timeOfArrival",
+    "number": "15.12",
+    "content_summary": "This utility tracks the maximum pressure in each cell and records the time at which this maximum is reached."
+  },
+  {
+    "id": "ch16",
+    "parentId": null,
+    "semantic_type": "Utility",
+    "title": "Utilities",
+    "number": "16",
+    "content_summary": "This chapter lists utilities developed for blastFoam to simplify the setup of cases and post-processing of results."
+  },
+  {
+    "id": "sec16.1",
+    "parentId": "ch16",
+    "semantic_type": "Utility",
+    "title": "setRefinedFields",
+    "number": "16.1",
+    "content_summary": "This section describes 'setRefinedFields', a modified version of the standard OpenFOAM 'setFields' utility. It adds the capability to refine the mesh based on the fields being set, which is particularly useful for initializing small volumes within large computational cells. The utility allows for setting and refining 2D and 3D geometries, with refinement options specified in 'setFieldsDict'. It operates by setting default field values, applying the requested field modifications, and then checking for local variations to trigger refinement. The utility iterates until the mesh is stable or a maximum number of iterations is reached."
+  },
+  {
+    "id": "sec16.2",
+    "parentId": "ch16",
+    "semantic_type": "Utility",
+    "title": "blastToVTK",
+    "number": "16.2",
+    "content_summary": "This utility is designed to create smaller files for post-processing by converting data from a specified patch into VTK format. By default, it uses the same write interval as the main simulation, but an optional '-dt' flag allows for writing interpolated, intermediate time steps. A '.vtk.series' file is automatically generated for easy viewing in ParaView. The output is binary by default."
+  },
+  {
+    "id": "sec16.3",
+    "parentId": "ch16",
+    "semantic_type": "Utility",
+    "title": "createTimeSeries",
+    "number": "16.3",
+    "content_summary": "This utility simplifies the creation of time series for visualization in ParaView. It generates a '*.series' file that contains the path to each time step of a VTK or STL file. This allows for easy viewing of the time evolution of the data. The utility creates a single series file for each sampled field in the provided directory. By default, it uses relative paths to the data files."
+  },
+  {
+    "id": "sec16.4",
+    "parentId": "ch16",
+    "semantic_type": "Utility",
+    "title": "mergeProbes",
+    "number": "16.4",
+    "content_summary": "This is a simple utility for combining probe data files that were started at different times. By default, it merges all files found in the specified start time folder."
+  },
+  {
+    "id": "sec16.5",
+    "parentId": "ch16",
+    "semantic_type": "Utility",
+    "title": "calculateImpulse",
+    "number": "16.5",
+    "content_summary": "This is a simple utility for calculating impulse from a pressure probe file. It defaults to integrating the overpressure field if available, but this can be overridden with the '-p' option. If an overpressure file is used, the reference pressure is assumed to be 0 unless specified with the '-pRef' option."
+  },
+  {
+    "id": "sec16.6",
+    "parentId": "ch16",
+    "semantic_type": "Utility",
+    "title": "initializeAtmosphere",
+    "number": "16.6",
+    "content_summary": "The 'initializeAtmosphere' utility is used to set up stable initial pressure and density fields by balancing the hydrostatic pressure gradient with gravitational forces. It is a modified version of the standard OpenFOAM utility and offers two models: 'hydrostatic' and 'tabulated'. The hydrostatic model dynamically solves for the pressure gradient and adjusts the density, while the tabulated model uses a predefined list of pressures and temperatures versus height. An optional hydrostatic correction can be applied after using the tabulated data. Inputs can be provided via a dictionary or command line, and a 'system/atmosphereProperties' file is required for the tabulated option."
+  },
+  {
+    "id": "sec16.7",
+    "parentId": "ch16",
+    "semantic_type": "Utility",
+    "title": "rotateFields",
+    "number": "16.7",
+    "content_summary": "The 'rotateFields' utility maps fields from a 1D or 2D solution to a 2D or 3D solution, using the source and target meshes to determine the necessary rotation. It correctly maps vector and tensor fields by applying the local rotation tensor. Only fields present in the target case are mapped by default, but additional fields can be included. For cells outside the mapped region, the closest value from the source mesh is used. The utility also supports iterative refinement based on criteria in 'dynamicMeshDict' to facilitate initialization with AMR. It is noted that the current mapping is not conservative and uses nearest-cell values, which can lead to over- or under-emphasis of flow features."
+  },
+  {
+    "id": "sec16.8",
+    "parentId": "ch16",
+    "semantic_type": "Utility",
+    "title": "convertLagrangianPositions",
+    "number": "16.8",
+    "content_summary": "This utility addresses an issue with ParaView's inability to read the barycentric coordinate format used by OpenFOAM for Lagrangian particle positions. It reads the standard OpenFOAM 'positions' file, converts it to a format readable by ParaView (for both serial and parallel cases), and rewrites the file. A '-revert' option is available to convert the positions back to the original format if needed to continue a simulation."
+  },
+  {
+    "id": "sec16.9",
+    "parentId": "ch16",
+    "semantic_type": "Utility",
+    "title": "reconstructParAll",
+    "number": "16.9",
+    "content_summary": "This is a modified version of the standard OpenFOAM 'reconstructPar' and 'reconstructParMesh' utilities. It is designed to handle the reconstruction of cases that have undergone dynamic load balancing, which would normally cause a fatal error with the standard utility. Mesh reconstruction is handled automatically, so 'reconstructParMesh' does not need to be run separately. This utility also supports the reconstruction of blastFoam AMR refinement histories, which is not typically supported by the standard tools. Notes are provided on using the '-constant' and '-withZero' flags when the mesh differs between directories."
+  },
+  {
+    "id": "ch17",
+    "parentId": null,
+    "semantic_type": "Utility",
+    "title": "fvModels and fvConstraints",
+    "number": "17",
+    "content_summary": "This chapter explains that in addition to the built-in physics, additional source terms and models can be included in the simulation by using the optional 'constant/fvModels' and 'system/fvConstraints' directories. All such models must have their associated libraries included in their respective files. A list and brief description of these libraries are provided in Section 18."
+  },
+  {
+    "id": "ch18",
+    "parentId": null,
+    "semantic_type": "Utility",
+    "title": "Optional libraries",
+    "number": "18",
+    "content_summary": "This chapter provides a list of optional libraries that can be included for functionObjects, fvModels, and fvConstraints. Including these libraries makes additional runtime-selectable models available."
+  },
+  {
+    "id": "ch19",
+    "parentId": null,
+    "semantic_type": "ConceptCluster",
+    "title": "Solvers",
+    "number": "19",
+    "content_summary": "This chapter provides a brief description of the wide variety of solvers available in blastFoam for simulating transient, highly compressible flows."
+  },
+  {
+    "id": "solver19.1",
+    "parentId": "ch19",
+    "semantic_type": "Utility",
+    "title": "blastFoam",
+    "number": "19.1",
+    "content_summary": "The 'blastFoam' solver is the standard solver, capable of handling single-phase, two-phase, and multiphase flows. The phases and thermodynamic models are specified in the 'constant/phaseProperties' file. If a list with more than one phase is provided, the two-phase or multiphase solver is automatically selected; otherwise, the single-phase solver is used. All phases utilize the blastFoam-specific equations of state described in Section 5."
+  },
+  {
+    "id": "solver19.2",
+    "parentId": "ch19",
+    "semantic_type": "Utility",
+    "title": "blastEulerFoam",
+    "number": "19.2",
+    "content_summary": "The 'blastEulerFoam' solver is an Euler-Euler (two/multifluid) variant of blastFoam, based on the work of Houim and Oran (2016) and Lai et al. (2018). It currently supports fluid-solid simulations, with fluid-fluid capabilities under development. A key advantage over the standard 'multiphaseEulerFoam' is its ability to handle any number of particle phases. It supports three phase models: 'fluid' (for single-component fluids like air), 'multiphase' (for fluids with multiple components, each with a unique equation of state), and 'granular' (for solid phases). Fluid and multiphase models can use any of the fluid thermodynamic models, while the granular model uses solid thermodynamic models. Interactions between fluids are described in Sections 3 and 4. A note clarifies that while multiple fluid phases are technically supported, simulations of that type are not currently the intended use."
+  },
+  {
+    "id": "solver19.3",
+    "parentId": "ch19",
+    "semantic_type": "Utility",
+    "title": "blastFSIFoam",
+    "number": "19.3",
+    "content_summary": "The 'blastFSIFoam' solver handles fluid-solid interaction by using the standard 'blastFoam' solver for the fluid phase and models from Section 13 for the solid deformation. The fluid phase employs a moving mesh, while the solid phase can be solved using a total Lagrangian, linear (stationary), or updated Lagrangian (moving) method. Information transfer between patches is managed by the 'coupledGlobalPolyPatch' from Cardiff et al. (2018), which does not require changes to mesh patch types. Fields needing coupling information (like temperature or displacement) should use a global patch type (see Section 8.1). If meshes are created for each region individually, patch types can be set as usual; however, if the 'splitMeshRegions' utility is used, patch names and types may need modification. This solver is still in development."
+  },
+  {
+    "id": "solver19.4",
+    "parentId": "ch19",
+    "semantic_type": "Utility",
+    "title": "blastXiFoam",
+    "number": "19.4",
+    "content_summary": "This is an additional solver for combustion, extending the standard OpenFOAM 'XiFoam' solver. The key difference is the use of the flux schemes presented earlier to transport conserved quantities, which provides a more accurate description of highly compressible combustion phenomena like deflagration-to-detonation transition. It is recommended to use the 'adiabaticFlameT' utility to calculate model coefficients for the 'constant/thermophysicalProperties' dictionary."
+  },
+  {
+    "id": "solver19.5",
+    "parentId": "ch19",
+    "semantic_type": "Utility",
+    "title": "blastReactingFoam",
+    "number": "19.5",
+    "content_summary": "The 'blastReactingFoam' solver uses standard OpenFOAM thermodynamic classes to solve multi-species systems with reactions, including combustion models. It requires the 'constant/thermophysicalProperties', 'constant/combustionProperties', and 'constant/chemistryProperties' dictionaries, along with initial mass fraction files. The conserved quantities (mass, momentum, energy) and mass fractions are all transported using the flux schemes described in this guide."
+  },
+  {
+    "id": "solver19.6",
+    "parentId": "ch19",
+    "semantic_type": "Utility",
+    "title": "blastMultiRegionFoam",
+    "number": "19.6",
+    "content_summary": "The 'blastMultiRegionFoam' solver is derived from the 'chtMultiRegionFoam' solver in OpenFOAM. The main differences are the use of ODE time integration and Riemann fluxes. Thermal transport in solids is still handled implicitly using a matrix solution."
+  },
+  {
+    "id": "solver19.7",
+    "parentId": "ch19",
+    "semantic_type": "Utility",
+    "title": "blastParcelFoam",
+    "number": "19.7",
+    "content_summary": "The 'blastParcelFoam' solver uses standard OpenFOAM Lagrangian classes to simulate a coupled system of a Eulerian fluid and a collection of Lagrangian parcels. It includes interaction terms for drag, heat transfer, and particle collisions. Not all standard OpenFOAM Lagrangian options are available due to the use of a different thermodynamic model. While AMR can be used with this solver, dynamic load balancing cannot."
+  },
+  {
+    "id": "solver19.8",
+    "parentId": "ch19",
+    "semantic_type": "Utility",
+    "title": "blastEquation",
+    "number": "19.8",
+    "content_summary": "The 'blastEquation' utility leverages the numerics library to evaluate simple or complex coded function evaluations. It can be used either through the command line or with dictionaries to define equations and operations. Using dictionaries provides more control, especially for root-solving, minimization, and integration schemes. The tutorials for this utility offer more complete examples."
+  }
+]

@@ -1,0 +1,28 @@
+# Copy this file to the target DSH profile only when machine-local overrides
+# are needed. A patch replaces the complete config of a matched row, so every
+# required field is restated here.
+
+- id: sandbox-policy
+  config:
+    mode: !!js process.env.DSH_PERMISSION_MODE ?? 'workspace-write'
+    workspaceRoot: !!js process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()
+
+- id: principia-retrieval-mcp
+  config:
+    serverName: principia_retrieval
+    transport: stdio
+    command: !!js process.env.PRINCIPIA_PYTHON ?? 'python3'
+    args: ['-m', 'mcp_servers.principia_retrieval.server']
+    cwd: !!js process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()
+    env:
+      PRINCIPIA_PROJECT_ROOT: !!js process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()
+      PRINCIPIA_CASE_ROOT: !!js process.env.PRINCIPIA_CASE_ROOT ?? (process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()) + '/outputs'
+      BLASTFOAM_TUTORIALS: !!js process.env.BLASTFOAM_TUTORIALS ?? (process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()) + '/../blastFoam_tutorials'
+      RETRIEVAL_LLM_API_KEY: !!js process.env.RETRIEVAL_LLM_API_KEY ?? ''
+    toolCallTimeoutMs: 60000
+    failOnStartupError: true
+    reconnect:
+      enabled: true
+      initialDelayMs: 500
+      maxDelayMs: 30000
+      maxAttempts: 10

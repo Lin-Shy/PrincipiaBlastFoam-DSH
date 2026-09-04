@@ -1,0 +1,1626 @@
+{
+  "nodes": [
+    {
+      "id": "blastFoam/delayedDetonation",
+      "label": "Case",
+      "properties": {
+        "name": "delayedDetonation",
+        "path": "blastFoam/delayedDetonation"
+      }
+    },
+    {
+      "id": "blastFoam/delayedDetonation/0/T.orig",
+      "label": "File",
+      "properties": {
+        "name": "T.orig",
+        "path": "blastFoam/delayedDetonation/0/T.orig"
+      }
+    },
+    {
+      "id": "Variable_dimensions",
+      "label": "Variable",
+      "properties": {
+        "name": "dimensions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_internalField",
+      "label": "Variable",
+      "properties": {
+        "name": "internalField",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_zeroGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "zeroGradient",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_wedge",
+      "label": "Variable",
+      "properties": {
+        "name": "wedge",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/delayedDetonation/0/U.orig",
+      "label": "File",
+      "properties": {
+        "name": "U.orig",
+        "path": "blastFoam/delayedDetonation/0/U.orig"
+      }
+    },
+    {
+      "id": "Variable_slip",
+      "label": "Variable",
+      "properties": {
+        "name": "slip",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/delayedDetonation/0/alpha.RDX.orig",
+      "label": "File",
+      "properties": {
+        "name": "alpha.RDX.orig",
+        "path": "blastFoam/delayedDetonation/0/alpha.RDX.orig"
+      }
+    },
+    {
+      "id": "blastFoam/delayedDetonation/0/alpha.gas.orig",
+      "label": "File",
+      "properties": {
+        "name": "alpha.gas.orig",
+        "path": "blastFoam/delayedDetonation/0/alpha.gas.orig"
+      }
+    },
+    {
+      "id": "blastFoam/delayedDetonation/0/p.orig",
+      "label": "File",
+      "properties": {
+        "name": "p.orig",
+        "path": "blastFoam/delayedDetonation/0/p.orig"
+      }
+    },
+    {
+      "id": "Variable_pressureWaveTransmissive",
+      "label": "Variable",
+      "properties": {
+        "name": "pressureWaveTransmissive",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/delayedDetonation/0/rho.RDX.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.RDX.orig",
+        "path": "blastFoam/delayedDetonation/0/rho.RDX.orig"
+      }
+    },
+    {
+      "id": "blastFoam/delayedDetonation/0/rho.gas.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.gas.orig",
+        "path": "blastFoam/delayedDetonation/0/rho.gas.orig"
+      }
+    },
+    {
+      "id": "blastFoam/delayedDetonation/constant/dynamicMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "dynamicMeshDict",
+        "path": "blastFoam/delayedDetonation/constant/dynamicMeshDict"
+      }
+    },
+    {
+      "id": "Variable_dynamicFvMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "dynamicFvMesh",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_adaptiveFvMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "adaptiveFvMesh",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_errorEstimator",
+      "label": "Variable",
+      "properties": {
+        "name": "errorEstimator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_densityGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "densityGradient",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_refineInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "refineInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_beginUnrefine",
+      "label": "Variable",
+      "properties": {
+        "name": "beginUnrefine",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_lowerRefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "lowerRefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_unrefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "unrefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_nBufferLayers",
+      "label": "Variable",
+      "properties": {
+        "name": "nBufferLayers",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxRefinement",
+      "label": "Variable",
+      "properties": {
+        "name": "maxRefinement",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_dumpLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "dumpLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "label": "File",
+      "properties": {
+        "name": "phaseProperties",
+        "path": "blastFoam/delayedDetonation/constant/phaseProperties"
+      }
+    },
+    {
+      "id": "Variable_phases",
+      "label": "Variable",
+      "properties": {
+        "name": "phases",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_RDX",
+      "label": "Variable",
+      "properties": {
+        "name": "RDX",
+        "type": "Phase"
+      }
+    },
+    {
+      "id": "Variable_gas",
+      "label": "Variable",
+      "properties": {
+        "name": "gas",
+        "type": "Phase"
+      }
+    },
+    {
+      "id": "Variable_thermoType",
+      "label": "Variable",
+      "properties": {
+        "name": "thermoType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_eConst",
+      "label": "Variable",
+      "properties": {
+        "name": "eConst",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_equationOfState",
+      "label": "Variable",
+      "properties": {
+        "name": "equationOfState",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Murnaghan",
+      "label": "Variable",
+      "properties": {
+        "name": "Murnaghan",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_rho0",
+      "label": "Variable",
+      "properties": {
+        "name": "rho0",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_n",
+      "label": "Variable",
+      "properties": {
+        "name": "n",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_kappa",
+      "label": "Variable",
+      "properties": {
+        "name": "kappa",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Gamma",
+      "label": "Variable",
+      "properties": {
+        "name": "Gamma",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_pRef",
+      "label": "Variable",
+      "properties": {
+        "name": "pRef",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_JWL",
+      "label": "Variable",
+      "properties": {
+        "name": "JWL",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_A",
+      "label": "Variable",
+      "properties": {
+        "name": "A",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_B",
+      "label": "Variable",
+      "properties": {
+        "name": "B",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_R1",
+      "label": "Variable",
+      "properties": {
+        "name": "R1",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_R2",
+      "label": "Variable",
+      "properties": {
+        "name": "R2",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_C",
+      "label": "Variable",
+      "properties": {
+        "name": "C",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_omega",
+      "label": "Variable",
+      "properties": {
+        "name": "omega",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_activationModel",
+      "label": "Variable",
+      "properties": {
+        "name": "activationModel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_programmedIgnition",
+      "label": "Variable",
+      "properties": {
+        "name": "programmedIgnition",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_initiation",
+      "label": "Variable",
+      "properties": {
+        "name": "initiation",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_E0",
+      "label": "Variable",
+      "properties": {
+        "name": "E0",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_points",
+      "label": "Variable",
+      "properties": {
+        "name": "points",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_delays",
+      "label": "Variable",
+      "properties": {
+        "name": "delays",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_radius",
+      "label": "Variable",
+      "properties": {
+        "name": "radius",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_radii",
+      "label": "Variable",
+      "properties": {
+        "name": "radii",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_vDet",
+      "label": "Variable",
+      "properties": {
+        "name": "vDet",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Pcj",
+      "label": "Variable",
+      "properties": {
+        "name": "Pcj",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_burnModel",
+      "label": "Variable",
+      "properties": {
+        "name": "burnModel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_programmedBeta",
+      "label": "Variable",
+      "properties": {
+        "name": "programmedBeta",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_idealGas",
+      "label": "Variable",
+      "properties": {
+        "name": "idealGas",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_gamma",
+      "label": "Variable",
+      "properties": {
+        "name": "gamma",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/delayedDetonation/system/blockMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "blockMeshDict",
+        "path": "blastFoam/delayedDetonation/system/blockMeshDict"
+      }
+    },
+    {
+      "id": "Variable_convertToMeters",
+      "label": "Variable",
+      "properties": {
+        "name": "convertToMeters",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_vertices",
+      "label": "Variable",
+      "properties": {
+        "name": "vertices",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blocks",
+      "label": "Variable",
+      "properties": {
+        "name": "blocks",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_edges",
+      "label": "Variable",
+      "properties": {
+        "name": "edges",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_boundary",
+      "label": "Variable",
+      "properties": {
+        "name": "boundary",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_walls",
+      "label": "Variable",
+      "properties": {
+        "name": "walls",
+        "type": "BoundaryPatch"
+      }
+    },
+    {
+      "id": "Variable_outlet",
+      "label": "Variable",
+      "properties": {
+        "name": "outlet",
+        "type": "BoundaryPatch"
+      }
+    },
+    {
+      "id": "blastFoam/delayedDetonation/system/controlDict",
+      "label": "File",
+      "properties": {
+        "name": "controlDict",
+        "path": "blastFoam/delayedDetonation/system/controlDict"
+      }
+    },
+    {
+      "id": "Variable_application",
+      "label": "Variable",
+      "properties": {
+        "name": "application",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blastFoam",
+      "label": "Variable",
+      "properties": {
+        "name": "blastFoam",
+        "type": "Application"
+      }
+    },
+    {
+      "id": "Variable_startFrom",
+      "label": "Variable",
+      "properties": {
+        "name": "startFrom",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_startTime",
+      "label": "Variable",
+      "properties": {
+        "name": "startTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_stopAt",
+      "label": "Variable",
+      "properties": {
+        "name": "stopAt",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_endTime",
+      "label": "Variable",
+      "properties": {
+        "name": "endTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeControl",
+      "label": "Variable",
+      "properties": {
+        "name": "writeControl",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "writeInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_adjustTimeStep",
+      "label": "Variable",
+      "properties": {
+        "name": "adjustTimeStep",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_deltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "deltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxCo",
+      "label": "Variable",
+      "properties": {
+        "name": "maxCo",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/delayedDetonation/system/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "blastFoam/delayedDetonation/system/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_fluxScheme",
+      "label": "Variable",
+      "properties": {
+        "name": "fluxScheme",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_HLLC",
+      "label": "Variable",
+      "properties": {
+        "name": "HLLC",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_ddtSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "ddtSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Euler",
+      "label": "Variable",
+      "properties": {
+        "name": "Euler",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_timeIntegrator",
+      "label": "Variable",
+      "properties": {
+        "name": "timeIntegrator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_RK2SSP",
+      "label": "Variable",
+      "properties": {
+        "name": "RK2SSP",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_gradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "gradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cellMDLimited leastSquares",
+      "label": "Variable",
+      "properties": {
+        "name": "cellMDLimited leastSquares",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_divSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "divSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Riemann",
+      "label": "Variable",
+      "properties": {
+        "name": "Riemann",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_laplacianSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "laplacianSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_interpolationSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "interpolationSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cubic",
+      "label": "Variable",
+      "properties": {
+        "name": "cubic",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_vanLeer",
+      "label": "Variable",
+      "properties": {
+        "name": "vanLeer",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_vanLeerV",
+      "label": "Variable",
+      "properties": {
+        "name": "vanLeerV",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_snGradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "snGradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "blastFoam/delayedDetonation/system/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "blastFoam/delayedDetonation/system/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_solvers",
+      "label": "Variable",
+      "properties": {
+        "name": "solvers",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_diagonal",
+      "label": "Variable",
+      "properties": {
+        "name": "diagonal",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_PBiCGStab",
+      "label": "Variable",
+      "properties": {
+        "name": "PBiCGStab",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_preconditioner",
+      "label": "Variable",
+      "properties": {
+        "name": "preconditioner",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_DIC",
+      "label": "Variable",
+      "properties": {
+        "name": "DIC",
+        "type": "Preconditioner"
+      }
+    },
+    {
+      "id": "Variable_nSweeps",
+      "label": "Variable",
+      "properties": {
+        "name": "nSweeps",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_tolerance",
+      "label": "Variable",
+      "properties": {
+        "name": "tolerance",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_relTol",
+      "label": "Variable",
+      "properties": {
+        "name": "relTol",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/delayedDetonation/system/setFieldsDict",
+      "label": "File",
+      "properties": {
+        "name": "setFieldsDict",
+        "path": "blastFoam/delayedDetonation/system/setFieldsDict"
+      }
+    },
+    {
+      "id": "Variable_fields",
+      "label": "Variable",
+      "properties": {
+        "name": "fields",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_alpha.RDX",
+      "label": "Variable",
+      "properties": {
+        "name": "alpha.RDX",
+        "type": "PhysicalVariable"
+      }
+    },
+    {
+      "id": "Variable_defaultFieldValues",
+      "label": "Variable",
+      "properties": {
+        "name": "defaultFieldValues",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_alpha.gas",
+      "label": "Variable",
+      "properties": {
+        "name": "alpha.gas",
+        "type": "PhysicalVariable"
+      }
+    },
+    {
+      "id": "Variable_regions",
+      "label": "Variable",
+      "properties": {
+        "name": "regions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cylinderToCell",
+      "label": "Variable",
+      "properties": {
+        "name": "cylinderToCell",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_fieldValues",
+      "label": "Variable",
+      "properties": {
+        "name": "fieldValues",
+        "type": "Keyword"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "blastFoam/delayedDetonation",
+      "target": "blastFoam/delayedDetonation/0/T.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/T.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/T.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/T.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/T.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation",
+      "target": "blastFoam/delayedDetonation/0/U.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/U.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/U.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/U.orig",
+      "target": "Variable_slip",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/U.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/U.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation",
+      "target": "blastFoam/delayedDetonation/0/alpha.RDX.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/alpha.RDX.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/alpha.RDX.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/alpha.RDX.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/alpha.RDX.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation",
+      "target": "blastFoam/delayedDetonation/0/alpha.gas.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/alpha.gas.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/alpha.gas.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/alpha.gas.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/alpha.gas.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation",
+      "target": "blastFoam/delayedDetonation/0/p.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/p.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/p.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/p.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/p.orig",
+      "target": "Variable_pressureWaveTransmissive",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/p.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation",
+      "target": "blastFoam/delayedDetonation/0/rho.RDX.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/rho.RDX.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/rho.RDX.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/rho.RDX.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/rho.RDX.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation",
+      "target": "blastFoam/delayedDetonation/0/rho.gas.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/rho.gas.orig",
+      "target": "Variable_dimensions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/rho.gas.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/rho.gas.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/0/rho.gas.orig",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation",
+      "target": "blastFoam/delayedDetonation/constant/dynamicMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/dynamicMeshDict",
+      "target": "Variable_dynamicFvMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/dynamicMeshDict",
+      "target": "Variable_adaptiveFvMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/dynamicMeshDict",
+      "target": "Variable_errorEstimator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/dynamicMeshDict",
+      "target": "Variable_densityGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/dynamicMeshDict",
+      "target": "Variable_refineInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/dynamicMeshDict",
+      "target": "Variable_beginUnrefine",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/dynamicMeshDict",
+      "target": "Variable_lowerRefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/dynamicMeshDict",
+      "target": "Variable_unrefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/dynamicMeshDict",
+      "target": "Variable_nBufferLayers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/dynamicMeshDict",
+      "target": "Variable_maxRefinement",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/dynamicMeshDict",
+      "target": "Variable_dumpLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation",
+      "target": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_phases",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_RDX",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_gas",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_thermoType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_eConst",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_equationOfState",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_Murnaghan",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_rho0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_n",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_kappa",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_Gamma",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_pRef",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_JWL",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_A",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_B",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_R1",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_R2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_C",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_omega",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_activationModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_programmedIgnition",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_initiation",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_E0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_points",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_delays",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_radius",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_radii",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_vDet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_Pcj",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_burnModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_programmedBeta",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_idealGas",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/constant/phaseProperties",
+      "target": "Variable_gamma",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation",
+      "target": "blastFoam/delayedDetonation/system/blockMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/blockMeshDict",
+      "target": "Variable_convertToMeters",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/blockMeshDict",
+      "target": "Variable_vertices",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/blockMeshDict",
+      "target": "Variable_blocks",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/blockMeshDict",
+      "target": "Variable_edges",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/blockMeshDict",
+      "target": "Variable_boundary",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/blockMeshDict",
+      "target": "Variable_walls",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/blockMeshDict",
+      "target": "Variable_outlet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/blockMeshDict",
+      "target": "Variable_wedge",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation",
+      "target": "blastFoam/delayedDetonation/system/controlDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/controlDict",
+      "target": "Variable_application",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/controlDict",
+      "target": "Variable_blastFoam",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/controlDict",
+      "target": "Variable_startFrom",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/controlDict",
+      "target": "Variable_startTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/controlDict",
+      "target": "Variable_stopAt",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/controlDict",
+      "target": "Variable_endTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/controlDict",
+      "target": "Variable_writeControl",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/controlDict",
+      "target": "Variable_writeInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/controlDict",
+      "target": "Variable_adjustTimeStep",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/controlDict",
+      "target": "Variable_deltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/controlDict",
+      "target": "Variable_maxCo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation",
+      "target": "blastFoam/delayedDetonation/system/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSchemes",
+      "target": "Variable_fluxScheme",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSchemes",
+      "target": "Variable_HLLC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSchemes",
+      "target": "Variable_timeIntegrator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSchemes",
+      "target": "Variable_RK2SSP",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSchemes",
+      "target": "Variable_cellMDLimited leastSquares",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSchemes",
+      "target": "Variable_Riemann",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSchemes",
+      "target": "Variable_cubic",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSchemes",
+      "target": "Variable_vanLeer",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSchemes",
+      "target": "Variable_vanLeerV",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSchemes",
+      "target": "Variable_corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation",
+      "target": "blastFoam/delayedDetonation/system/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSolution",
+      "target": "Variable_diagonal",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSolution",
+      "target": "Variable_PBiCGStab",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSolution",
+      "target": "Variable_preconditioner",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSolution",
+      "target": "Variable_DIC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSolution",
+      "target": "Variable_nSweeps",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSolution",
+      "target": "Variable_tolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/fvSolution",
+      "target": "Variable_relTol",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation",
+      "target": "blastFoam/delayedDetonation/system/setFieldsDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/setFieldsDict",
+      "target": "Variable_fields",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/setFieldsDict",
+      "target": "Variable_alpha.RDX",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/setFieldsDict",
+      "target": "Variable_nBufferLayers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/setFieldsDict",
+      "target": "Variable_defaultFieldValues",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/setFieldsDict",
+      "target": "Variable_alpha.gas",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/setFieldsDict",
+      "target": "Variable_regions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/setFieldsDict",
+      "target": "Variable_cylinderToCell",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/delayedDetonation/system/setFieldsDict",
+      "target": "Variable_fieldValues",
+      "type": "DEFINES"
+    }
+  ]
+}

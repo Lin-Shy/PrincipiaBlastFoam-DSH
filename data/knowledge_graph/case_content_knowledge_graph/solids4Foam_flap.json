@@ -1,0 +1,1992 @@
+{
+  "nodes": [
+    {
+      "id": "solids4Foam/flap",
+      "label": "Case",
+      "properties": {
+        "name": "flap",
+        "path": "solids4Foam/flap"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/0/solid/D",
+      "label": "File",
+      "properties": {
+        "name": "D",
+        "path": "solids4Foam/flap/0/solid/D"
+      }
+    },
+    {
+      "id": "Variable_solidTraction",
+      "label": "Variable",
+      "properties": {
+        "name": "solidTraction",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_fixedValue",
+      "label": "Variable",
+      "properties": {
+        "name": "fixedValue",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/0/solid/DD",
+      "label": "File",
+      "properties": {
+        "name": "DD",
+        "path": "solids4Foam/flap/0/solid/DD"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/0/solid/T.orig",
+      "label": "File",
+      "properties": {
+        "name": "T.orig",
+        "path": "solids4Foam/flap/0/solid/T.orig"
+      }
+    },
+    {
+      "id": "Variable_zeroGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "zeroGradient",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/0/solid/p.orig",
+      "label": "File",
+      "properties": {
+        "name": "p.orig",
+        "path": "solids4Foam/flap/0/solid/p.orig"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/0/fluid/T.orig",
+      "label": "File",
+      "properties": {
+        "name": "T.orig",
+        "path": "solids4Foam/flap/0/fluid/T.orig"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/0/fluid/U.orig",
+      "label": "File",
+      "properties": {
+        "name": "U.orig",
+        "path": "solids4Foam/flap/0/fluid/U.orig"
+      }
+    },
+    {
+      "id": "Variable_movingWallVelocity",
+      "label": "Variable",
+      "properties": {
+        "name": "movingWallVelocity",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_slip",
+      "label": "Variable",
+      "properties": {
+        "name": "slip",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/0/fluid/alpha.c4.orig",
+      "label": "File",
+      "properties": {
+        "name": "alpha.c4.orig",
+        "path": "solids4Foam/flap/0/fluid/alpha.c4.orig"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/0/fluid/p.orig",
+      "label": "File",
+      "properties": {
+        "name": "p.orig",
+        "path": "solids4Foam/flap/0/fluid/p.orig"
+      }
+    },
+    {
+      "id": "Variable_pressureWaveTransmissive",
+      "label": "Variable",
+      "properties": {
+        "name": "pressureWaveTransmissive",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/0/fluid/pointMotionU",
+      "label": "File",
+      "properties": {
+        "name": "pointMotionU",
+        "path": "solids4Foam/flap/0/fluid/pointMotionU"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/0/fluid/rho.air.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.air.orig",
+        "path": "solids4Foam/flap/0/fluid/rho.air.orig"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/0/fluid/rho.c4.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.c4.orig",
+        "path": "solids4Foam/flap/0/fluid/rho.c4.orig"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/constant/fsiProperties",
+      "label": "File",
+      "properties": {
+        "name": "fsiProperties",
+        "path": "solids4Foam/flap/constant/fsiProperties"
+      }
+    },
+    {
+      "id": "Variable_fluidSolidInterface",
+      "label": "Variable",
+      "properties": {
+        "name": "fluidSolidInterface",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_weakCoupling",
+      "label": "Variable",
+      "properties": {
+        "name": "weakCoupling",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_nOuterCorr",
+      "label": "Variable",
+      "properties": {
+        "name": "nOuterCorr",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_interfaceTransferMethod",
+      "label": "Variable",
+      "properties": {
+        "name": "interfaceTransferMethod",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_AMI",
+      "label": "Variable",
+      "properties": {
+        "name": "AMI",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_relaxationFactor",
+      "label": "Variable",
+      "properties": {
+        "name": "relaxationFactor",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_outerCorrTolerance",
+      "label": "Variable",
+      "properties": {
+        "name": "outerCorrTolerance",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/constant/physicsProperties",
+      "label": "File",
+      "properties": {
+        "name": "physicsProperties",
+        "path": "solids4Foam/flap/constant/physicsProperties"
+      }
+    },
+    {
+      "id": "Variable_fluidSolidInteraction",
+      "label": "Variable",
+      "properties": {
+        "name": "fluidSolidInteraction",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/constant/solid/g",
+      "label": "File",
+      "properties": {
+        "name": "g",
+        "path": "solids4Foam/flap/constant/solid/g"
+      }
+    },
+    {
+      "id": "Variable_g",
+      "label": "Variable",
+      "properties": {
+        "name": "g",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/constant/solid/mechanicalProperties",
+      "label": "File",
+      "properties": {
+        "name": "mechanicalProperties",
+        "path": "solids4Foam/flap/constant/solid/mechanicalProperties"
+      }
+    },
+    {
+      "id": "Variable_planeStress",
+      "label": "Variable",
+      "properties": {
+        "name": "planeStress",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_linearElastic",
+      "label": "Variable",
+      "properties": {
+        "name": "linearElastic",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_rho",
+      "label": "Variable",
+      "properties": {
+        "name": "rho",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_E",
+      "label": "Variable",
+      "properties": {
+        "name": "E",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_nu",
+      "label": "Variable",
+      "properties": {
+        "name": "nu",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/constant/solid/solidProperties",
+      "label": "File",
+      "properties": {
+        "name": "solidProperties",
+        "path": "solids4Foam/flap/constant/solid/solidProperties"
+      }
+    },
+    {
+      "id": "Variable_solidModel",
+      "label": "Variable",
+      "properties": {
+        "name": "solidModel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_linearGeometryTotalDisplacement",
+      "label": "Variable",
+      "properties": {
+        "name": "linearGeometryTotalDisplacement",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/constant/solid/thermophysicalProperties",
+      "label": "File",
+      "properties": {
+        "name": "thermophysicalProperties",
+        "path": "solids4Foam/flap/constant/solid/thermophysicalProperties"
+      }
+    },
+    {
+      "id": "Variable_transport",
+      "label": "Variable",
+      "properties": {
+        "name": "transport",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_constIso",
+      "label": "Variable",
+      "properties": {
+        "name": "constIso",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_thermo",
+      "label": "Variable",
+      "properties": {
+        "name": "thermo",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_eConst",
+      "label": "Variable",
+      "properties": {
+        "name": "eConst",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_equationOfState",
+      "label": "Variable",
+      "properties": {
+        "name": "equationOfState",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_rhoConst",
+      "label": "Variable",
+      "properties": {
+        "name": "rhoConst",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/constant/fluid/dynamicMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "dynamicMeshDict",
+        "path": "solids4Foam/flap/constant/fluid/dynamicMeshDict"
+      }
+    },
+    {
+      "id": "Variable_dynamicFvMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "dynamicFvMesh",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_movingAdaptiveFvMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "movingAdaptiveFvMesh",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_errorEstimator",
+      "label": "Variable",
+      "properties": {
+        "name": "errorEstimator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_densityGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "densityGradient",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_motionSolver",
+      "label": "Variable",
+      "properties": {
+        "name": "motionSolver",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_velocityLaplacian",
+      "label": "Variable",
+      "properties": {
+        "name": "velocityLaplacian",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_diffusivity",
+      "label": "Variable",
+      "properties": {
+        "name": "diffusivity",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_refineInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "refineInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_lowerRefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "lowerRefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_unrefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "unrefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_nBufferLayers",
+      "label": "Variable",
+      "properties": {
+        "name": "nBufferLayers",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxRefinement",
+      "label": "Variable",
+      "properties": {
+        "name": "maxRefinement",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/constant/fluid/fluidProperties",
+      "label": "File",
+      "properties": {
+        "name": "fluidProperties",
+        "path": "solids4Foam/flap/constant/fluid/fluidProperties"
+      }
+    },
+    {
+      "id": "Variable_fluidModel",
+      "label": "Variable",
+      "properties": {
+        "name": "fluidModel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blast",
+      "label": "Variable",
+      "properties": {
+        "name": "blast",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/constant/fluid/g",
+      "label": "File",
+      "properties": {
+        "name": "g",
+        "path": "solids4Foam/flap/constant/fluid/g"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/constant/fluid/phaseProperties",
+      "label": "File",
+      "properties": {
+        "name": "phaseProperties",
+        "path": "solids4Foam/flap/constant/fluid/phaseProperties"
+      }
+    },
+    {
+      "id": "Variable_phases",
+      "label": "Variable",
+      "properties": {
+        "name": "phases",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_detonating",
+      "label": "Variable",
+      "properties": {
+        "name": "detonating",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Murnaghan",
+      "label": "Variable",
+      "properties": {
+        "name": "Murnaghan",
+        "type": "EOS Model"
+      }
+    },
+    {
+      "id": "Variable_JWL",
+      "label": "Variable",
+      "properties": {
+        "name": "JWL",
+        "type": "EOS Model"
+      }
+    },
+    {
+      "id": "Variable_activationModel",
+      "label": "Variable",
+      "properties": {
+        "name": "activationModel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_pressureBased",
+      "label": "Variable",
+      "properties": {
+        "name": "pressureBased",
+        "type": "Activation Model"
+      }
+    },
+    {
+      "id": "Variable_idealGas",
+      "label": "Variable",
+      "properties": {
+        "name": "idealGas",
+        "type": "EOS Model"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/constant/fluid/turbulenceProperties",
+      "label": "File",
+      "properties": {
+        "name": "turbulenceProperties",
+        "path": "solids4Foam/flap/constant/fluid/turbulenceProperties"
+      }
+    },
+    {
+      "id": "Variable_simulationType",
+      "label": "Variable",
+      "properties": {
+        "name": "simulationType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_laminar",
+      "label": "Variable",
+      "properties": {
+        "name": "laminar",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/system/controlDict",
+      "label": "File",
+      "properties": {
+        "name": "controlDict",
+        "path": "solids4Foam/flap/system/controlDict"
+      }
+    },
+    {
+      "id": "Variable_application",
+      "label": "Variable",
+      "properties": {
+        "name": "application",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_solids4Foam",
+      "label": "Variable",
+      "properties": {
+        "name": "solids4Foam",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_startFrom",
+      "label": "Variable",
+      "properties": {
+        "name": "startFrom",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_startTime",
+      "label": "Variable",
+      "properties": {
+        "name": "startTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_stopAt",
+      "label": "Variable",
+      "properties": {
+        "name": "stopAt",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_endTime",
+      "label": "Variable",
+      "properties": {
+        "name": "endTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_deltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "deltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeControl",
+      "label": "Variable",
+      "properties": {
+        "name": "writeControl",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_writeInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "writeInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxCo",
+      "label": "Variable",
+      "properties": {
+        "name": "maxCo",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_adjustTimeStep",
+      "label": "Variable",
+      "properties": {
+        "name": "adjustTimeStep",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_libs",
+      "label": "Variable",
+      "properties": {
+        "name": "libs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/system/decomposeParDict",
+      "label": "File",
+      "properties": {
+        "name": "decomposeParDict",
+        "path": "solids4Foam/flap/system/decomposeParDict"
+      }
+    },
+    {
+      "id": "Variable_numberOfSubdomains",
+      "label": "Variable",
+      "properties": {
+        "name": "numberOfSubdomains",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_method",
+      "label": "Variable",
+      "properties": {
+        "name": "method",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_scotch",
+      "label": "Variable",
+      "properties": {
+        "name": "scotch",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/system/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "solids4Foam/flap/system/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_fluxScheme",
+      "label": "Variable",
+      "properties": {
+        "name": "fluxScheme",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Kurganov",
+      "label": "Variable",
+      "properties": {
+        "name": "Kurganov",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_ddtSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "ddtSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Euler",
+      "label": "Variable",
+      "properties": {
+        "name": "Euler",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_timeIntegrator",
+      "label": "Variable",
+      "properties": {
+        "name": "timeIntegrator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_RK2SSP",
+      "label": "Variable",
+      "properties": {
+        "name": "RK2SSP",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_gradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "gradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cellMDLimited",
+      "label": "Variable",
+      "properties": {
+        "name": "cellMDLimited",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_divSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "divSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_laplacianSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "laplacianSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Gauss linear corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss linear corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_interpolationSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "interpolationSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cubic",
+      "label": "Variable",
+      "properties": {
+        "name": "cubic",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_reconstruct",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_linearMUSCL vanLeer",
+      "label": "Variable",
+      "properties": {
+        "name": "linearMUSCL vanLeer",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_snGradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "snGradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/system/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "solids4Foam/flap/system/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_solvers",
+      "label": "Variable",
+      "properties": {
+        "name": "solvers",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_diagonal",
+      "label": "Variable",
+      "properties": {
+        "name": "diagonal",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_PBiCGStab",
+      "label": "Variable",
+      "properties": {
+        "name": "PBiCGStab",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_DIC",
+      "label": "Variable",
+      "properties": {
+        "name": "DIC",
+        "type": "Preconditioner"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/system/solid/blockMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "blockMeshDict",
+        "path": "solids4Foam/flap/system/solid/blockMeshDict"
+      }
+    },
+    {
+      "id": "Variable_wall",
+      "label": "Variable",
+      "properties": {
+        "name": "wall",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/system/solid/decomposeParDict",
+      "label": "File",
+      "properties": {
+        "name": "decomposeParDict",
+        "path": "solids4Foam/flap/system/solid/decomposeParDict"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/system/solid/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "solids4Foam/flap/system/solid/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_d2dt2Schemes",
+      "label": "Variable",
+      "properties": {
+        "name": "d2dt2Schemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_extendedLeastSquares",
+      "label": "Variable",
+      "properties": {
+        "name": "extendedLeastSquares",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_Gauss linear",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss linear",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/system/solid/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "solids4Foam/flap/system/solid/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_PCG",
+      "label": "Variable",
+      "properties": {
+        "name": "PCG",
+        "type": "Solver"
+      }
+    },
+    {
+      "id": "Variable_stressAnalysis",
+      "label": "Variable",
+      "properties": {
+        "name": "stressAnalysis",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_relaxationFactors",
+      "label": "Variable",
+      "properties": {
+        "name": "relaxationFactors",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/system/fluid/blockMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "blockMeshDict",
+        "path": "solids4Foam/flap/system/fluid/blockMeshDict"
+      }
+    },
+    {
+      "id": "Variable_patch",
+      "label": "Variable",
+      "properties": {
+        "name": "patch",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/system/fluid/decomposeParDict",
+      "label": "File",
+      "properties": {
+        "name": "decomposeParDict",
+        "path": "solids4Foam/flap/system/fluid/decomposeParDict"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/system/fluid/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "solids4Foam/flap/system/fluid/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_Riemann",
+      "label": "Variable",
+      "properties": {
+        "name": "Riemann",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_Gauss linear uncorrected",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss linear uncorrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_quadraticMUSCL Minmod",
+      "label": "Variable",
+      "properties": {
+        "name": "quadraticMUSCL Minmod",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/system/fluid/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "solids4Foam/flap/system/fluid/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_GaussSeidel",
+      "label": "Variable",
+      "properties": {
+        "name": "GaussSeidel",
+        "type": "Smoother"
+      }
+    },
+    {
+      "id": "solids4Foam/flap/system/fluid/setFieldsDict",
+      "label": "File",
+      "properties": {
+        "name": "setFieldsDict",
+        "path": "solids4Foam/flap/system/fluid/setFieldsDict"
+      }
+    },
+    {
+      "id": "Variable_defaultFieldValues",
+      "label": "Variable",
+      "properties": {
+        "name": "defaultFieldValues",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_regions",
+      "label": "Variable",
+      "properties": {
+        "name": "regions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cylinderToCell",
+      "label": "Variable",
+      "properties": {
+        "name": "cylinderToCell",
+        "type": "Keyword"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/0/solid/D",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/0/solid/D",
+      "target": "Variable_solidTraction",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/0/solid/D",
+      "target": "Variable_fixedValue",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/0/solid/DD",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/0/solid/DD",
+      "target": "Variable_solidTraction",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/0/solid/DD",
+      "target": "Variable_fixedValue",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/0/solid/T.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/0/solid/T.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/0/solid/p.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/0/solid/p.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/0/fluid/T.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/0/fluid/T.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/0/fluid/U.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/0/fluid/U.orig",
+      "target": "Variable_movingWallVelocity",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/0/fluid/U.orig",
+      "target": "Variable_slip",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/0/fluid/U.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/0/fluid/alpha.c4.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/0/fluid/alpha.c4.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/0/fluid/p.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/0/fluid/p.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/0/fluid/p.orig",
+      "target": "Variable_pressureWaveTransmissive",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/0/fluid/pointMotionU",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/0/fluid/pointMotionU",
+      "target": "Variable_fixedValue",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/0/fluid/pointMotionU",
+      "target": "Variable_slip",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/0/fluid/rho.air.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/0/fluid/rho.air.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/0/fluid/rho.c4.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/0/fluid/rho.c4.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/constant/fsiProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fsiProperties",
+      "target": "Variable_fluidSolidInterface",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fsiProperties",
+      "target": "Variable_weakCoupling",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fsiProperties",
+      "target": "Variable_nOuterCorr",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fsiProperties",
+      "target": "Variable_interfaceTransferMethod",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fsiProperties",
+      "target": "Variable_AMI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fsiProperties",
+      "target": "Variable_relaxationFactor",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fsiProperties",
+      "target": "Variable_outerCorrTolerance",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/constant/physicsProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/constant/physicsProperties",
+      "target": "Variable_fluidSolidInteraction",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/constant/solid/g",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/constant/solid/g",
+      "target": "Variable_g",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/constant/solid/mechanicalProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/constant/solid/mechanicalProperties",
+      "target": "Variable_planeStress",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/solid/mechanicalProperties",
+      "target": "Variable_linearElastic",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/solid/mechanicalProperties",
+      "target": "Variable_rho",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/solid/mechanicalProperties",
+      "target": "Variable_E",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/solid/mechanicalProperties",
+      "target": "Variable_nu",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/constant/solid/solidProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/constant/solid/solidProperties",
+      "target": "Variable_solidModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/solid/solidProperties",
+      "target": "Variable_linearGeometryTotalDisplacement",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/constant/solid/thermophysicalProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/constant/solid/thermophysicalProperties",
+      "target": "Variable_transport",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/solid/thermophysicalProperties",
+      "target": "Variable_constIso",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/solid/thermophysicalProperties",
+      "target": "Variable_thermo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/solid/thermophysicalProperties",
+      "target": "Variable_eConst",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/solid/thermophysicalProperties",
+      "target": "Variable_equationOfState",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/solid/thermophysicalProperties",
+      "target": "Variable_rhoConst",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/constant/fluid/dynamicMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/dynamicMeshDict",
+      "target": "Variable_dynamicFvMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/dynamicMeshDict",
+      "target": "Variable_movingAdaptiveFvMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/dynamicMeshDict",
+      "target": "Variable_errorEstimator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/dynamicMeshDict",
+      "target": "Variable_densityGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/dynamicMeshDict",
+      "target": "Variable_motionSolver",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/dynamicMeshDict",
+      "target": "Variable_velocityLaplacian",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/dynamicMeshDict",
+      "target": "Variable_diffusivity",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/dynamicMeshDict",
+      "target": "Variable_refineInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/dynamicMeshDict",
+      "target": "Variable_lowerRefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/dynamicMeshDict",
+      "target": "Variable_unrefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/dynamicMeshDict",
+      "target": "Variable_nBufferLayers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/dynamicMeshDict",
+      "target": "Variable_maxRefinement",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/constant/fluid/fluidProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/fluidProperties",
+      "target": "Variable_fluidModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/fluidProperties",
+      "target": "Variable_blast",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/constant/fluid/g",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/g",
+      "target": "Variable_g",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/constant/fluid/phaseProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/phaseProperties",
+      "target": "Variable_phases",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/phaseProperties",
+      "target": "Variable_detonating",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/phaseProperties",
+      "target": "Variable_equationOfState",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/phaseProperties",
+      "target": "Variable_Murnaghan",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/phaseProperties",
+      "target": "Variable_JWL",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/phaseProperties",
+      "target": "Variable_activationModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/phaseProperties",
+      "target": "Variable_pressureBased",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/phaseProperties",
+      "target": "Variable_idealGas",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/constant/fluid/turbulenceProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/turbulenceProperties",
+      "target": "Variable_simulationType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/constant/fluid/turbulenceProperties",
+      "target": "Variable_laminar",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/system/controlDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/system/controlDict",
+      "target": "Variable_application",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/controlDict",
+      "target": "Variable_solids4Foam",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/controlDict",
+      "target": "Variable_startFrom",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/controlDict",
+      "target": "Variable_startTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/controlDict",
+      "target": "Variable_stopAt",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/controlDict",
+      "target": "Variable_endTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/controlDict",
+      "target": "Variable_deltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/controlDict",
+      "target": "Variable_writeControl",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/controlDict",
+      "target": "Variable_writeInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/controlDict",
+      "target": "Variable_maxCo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/controlDict",
+      "target": "Variable_adjustTimeStep",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/controlDict",
+      "target": "Variable_libs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/system/decomposeParDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/system/decomposeParDict",
+      "target": "Variable_numberOfSubdomains",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/decomposeParDict",
+      "target": "Variable_method",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/decomposeParDict",
+      "target": "Variable_scotch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/system/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSchemes",
+      "target": "Variable_fluxScheme",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSchemes",
+      "target": "Variable_Kurganov",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSchemes",
+      "target": "Variable_timeIntegrator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSchemes",
+      "target": "Variable_RK2SSP",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSchemes",
+      "target": "Variable_cellMDLimited",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSchemes",
+      "target": "Variable_Gauss linear corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSchemes",
+      "target": "Variable_cubic",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSchemes",
+      "target": "Variable_reconstruct",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSchemes",
+      "target": "Variable_linearMUSCL vanLeer",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/system/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSolution",
+      "target": "Variable_diagonal",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSolution",
+      "target": "Variable_PBiCGStab",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fvSolution",
+      "target": "Variable_DIC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/system/solid/blockMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/system/solid/blockMeshDict",
+      "target": "Variable_wall",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/system/solid/decomposeParDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/system/solid/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/system/solid/fvSchemes",
+      "target": "Variable_d2dt2Schemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/solid/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/solid/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/solid/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/solid/fvSchemes",
+      "target": "Variable_extendedLeastSquares",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/solid/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/solid/fvSchemes",
+      "target": "Variable_Gauss linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/solid/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/solid/fvSchemes",
+      "target": "Variable_Gauss linear corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/solid/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/solid/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/system/solid/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/system/solid/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/solid/fvSolution",
+      "target": "Variable_PCG",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/solid/fvSolution",
+      "target": "Variable_DIC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/solid/fvSolution",
+      "target": "Variable_stressAnalysis",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/solid/fvSolution",
+      "target": "Variable_relaxationFactors",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/system/fluid/blockMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/blockMeshDict",
+      "target": "Variable_patch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/blockMeshDict",
+      "target": "Variable_wall",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/system/fluid/decomposeParDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/system/fluid/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSchemes",
+      "target": "Variable_fluxScheme",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSchemes",
+      "target": "Variable_Kurganov",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSchemes",
+      "target": "Variable_timeIntegrator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSchemes",
+      "target": "Variable_RK2SSP",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSchemes",
+      "target": "Variable_cellMDLimited",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSchemes",
+      "target": "Variable_Riemann",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSchemes",
+      "target": "Variable_Gauss linear corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSchemes",
+      "target": "Variable_Gauss linear uncorrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSchemes",
+      "target": "Variable_reconstruct",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSchemes",
+      "target": "Variable_quadraticMUSCL Minmod",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/system/fluid/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSolution",
+      "target": "Variable_diagonal",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSolution",
+      "target": "Variable_PCG",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSolution",
+      "target": "Variable_GaussSeidel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/fvSolution",
+      "target": "Variable_DIC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap",
+      "target": "solids4Foam/flap/system/fluid/setFieldsDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/setFieldsDict",
+      "target": "Variable_defaultFieldValues",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/setFieldsDict",
+      "target": "Variable_regions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "solids4Foam/flap/system/fluid/setFieldsDict",
+      "target": "Variable_cylinderToCell",
+      "type": "DEFINES"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+将这本《用户指导》的从《第一章》到《第三章》的内容转化为知识图谱，具体要求如下：
+1. 每个标题是一个物理变量的名称，将标题作为最小单元，提取正文内容作为content；
+2. 正文内容包含了该物理变量的描述、公式和参数等等；
+3. PDF的正文内容可能出现错误，正文要求统一使用标准英文，公式使用latex格式；
+3. 表格的内容包括Variable和Description，独立用"Variable"和"Description"作为key保存为list；
+4. 使用json格式返回，以下是初步的json格式，可以对其进行适当修改，示例如下：
+{
+      "id": "0",
+      "type": "variable",
+      "title": "System Requirements",
+      "content": "blastFoam currently builds against OpenFOAM-92. The following...",
+      "level": 2,
+      "number": "1.1",
+    "table": [
+      {
+        "Variable": "swarmCorrelation",
+        "Description": "Swarm model"
+      }
+    ]
+    },
+    {
+      "id": "1",
+      "type": "variable",
+      "title": "Downloading",
+      "content": "Th...",
+      "level": 2,
+      "number": "1.2",
+    "table": [
+      {
+        "Variable": "swarmCorrelation",
+        "Description": "Swarm model"
+      }
+    ]
+    }

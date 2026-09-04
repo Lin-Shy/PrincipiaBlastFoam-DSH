@@ -1,0 +1,95 @@
+**角色与目标：**
+
+你是一位精通计算流体动力学（CFD）、物理学和知识图谱工程的专家。你的任务是处理提供的《blastFoam Theory and User Guide》PDF文档，从**《第2章》**开始直至文档结束，将其转化为一个结构化的、相互关联的JSON知识图谱。
+
+最终目标是创建一个网络化的知识结构，而不仅仅是一个扁平的文档章节列表。你需要识别内容的核心语义，并将公式、参数和实体间的关系进行显式化和结构化。
+
+**核心要求与输出格式：**
+
+请将每个章节/子章节（以标题为最小单元）转换为一个JSON对象。每个对象必须遵循以下结构：
+
+```json
+{
+  "id": "string", // 一个为此节点创建的、唯一的、人类可读的标识符 (例如: 'ch2', 'sec2.1', 'model3.1.1')。
+  "parentId": "string | null", // 父节点的'id'，用于建立明确的层级关系。章级别的节点parentId为null。
+  "semantic_type": "string", // 节点内容的语义类型。
+  "title": "string", // 该节点的原始标题。
+  "number": "string", // 该节点的原始章节编号 (例如: '2', '2.1', '3.1.1')。
+  "content_summary": "string", // 对该节点正文内容的简洁摘要，必须使用清晰、标准的英文重写。此摘要应排除原始公式和明确的引用语句，因为它们将在其他字段中被结构化。
+  "content": "string", // 该节点的完整正文内容，包括变量、公式（使用latex格式撰写），必须使用清晰、标准的英文,但是不包括表格内容。
+  "table": [ // 一个包含该节点所有表格内容的列表。
+    {
+      "Variable": "string", // “Variable”列的内容。
+      "Description": "string" // “Description”列的内容。
+    }
+  ]
+}
+```
+
+---
+
+**详细处理指令：**
+
+1.  **ID与层级 (`id`, `parentId`)**: 请为每个节点创建有意义的ID，并正确链接`parentId`以构建树状结构。例如，`"3.1.1 SchillerNaumann"` 的 `id` 可以是 `"model3.1.1"`，其 `parentId` 是 `"sec3.1"`。
+
+2.  **语义类型 (`semantic_type`)**:
+    *   `ConceptCluster`: 用于概括性的章节，如“Governing equations”、“Interfacial models”。
+    *   `GoverningEquation`: 用于描述核心控制方程的章节。
+    *   `PhysicalModel`: 用于描述具体的物理模型，如“SchillerNaumann”、“Ergun”。
+    *   `NumericalMethod`: 用于描述数值方法或方案，如“Flux Evaluation”、“Riemann Solvers”。
+    *   `Utility`: 用于描述软件工具或功能，如“setRefinedFields”。
+
+3.  **内容分离 (`content_summary`, `formulas`, `table`)**: 务必将原始文本块拆分。描述性文字放入`content_summary`，所有公式（包括行内和行间）放入`formulas`列表，表格数据放入`table`列表。
+
+4.  **数据清洗**: 确保所有输出的文本（特别是`content_summary`和`description`）都是语法正确、拼写无误的**标准英文**。所有公式必须是**有效的LaTeX格式**。
+
+---
+
+**示例：**
+
+**假设输入PDF的“3.1.1 SchillerNaumann”章节内容如下：**
+
+> **3.1.1 SchillerNaumann**
+> The drag model of Schiller and Naumann (1933) calculates the drag coefficient for flow over a single sphere:
+>
+> $$ C_D Re_{ij} = \begin{cases} 24(1 + 0.15Re_{ij}^{0.687}) & \text{if } Re_{ij} < 1000 \\ 0.44Re_{ij} & \text{else} \end{cases} \quad (3.2) $$
+>
+> | Variable | Description |
+> | :--- | :--- |
+> | residualRe | Minimum Reynolds number \[ \] |
+
+**你应该输出的JSON对象如下：**
+
+```json
+{
+  "id": "model3.1.1",
+  "parentId": "sec3.1",
+  "semantic_type": "PhysicalModel",
+  "title": "SchillerNaumann",
+  "number": "3.1.1",
+  "content_summary": "This drag model calculates the drag coefficient for flow over a single sphere.",
+  "formulas": [
+    {
+      "latex": "C_D Re_{ij} = \\begin{cases} 24(1 + 0.15Re_{ij}^{0.687}) & \\text{if } Re_{ij} < 1000 \\\\ 0.44Re_{ij} & \\text{else} \\end{cases}",
+      "equation_number": "3.2",
+      "description": "Calculates the drag coefficient based on the Reynolds number.",
+      "variables": ["C_D", "Re_{ij}"]
+    }
+  ],
+  "table": [
+    {
+      "Variable": "residualRe",
+      "Description": "Minimum Reynolds number [ ]"
+    }
+  ],
+  "relations": [
+    {
+      "type": "basedOn",
+      "target_id": null,
+      "citation_key": "Schiller1933"
+    }
+  ]
+}
+```
+
+现在，请开始处理文档，从《第2章》开始，并以一个完整的JSON数组返回所有生成的知识节点。

@@ -1,0 +1,1742 @@
+{
+  "nodes": [
+    {
+      "id": "blastFoam/burstingWindow_workshop",
+      "label": "Case",
+      "properties": {
+        "name": "burstingWindow_workshop",
+        "path": "blastFoam/burstingWindow_workshop"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/0/T.orig",
+      "label": "File",
+      "properties": {
+        "name": "T.orig",
+        "path": "blastFoam/burstingWindow_workshop/0/T.orig"
+      }
+    },
+    {
+      "id": "Variable_T",
+      "label": "Variable",
+      "properties": {
+        "name": "T",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_zeroGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "zeroGradient",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_burstCyclicAMI",
+      "label": "Variable",
+      "properties": {
+        "name": "burstCyclicAMI",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_symmetry",
+      "label": "Variable",
+      "properties": {
+        "name": "symmetry",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/0/U.orig",
+      "label": "File",
+      "properties": {
+        "name": "U.orig",
+        "path": "blastFoam/burstingWindow_workshop/0/U.orig"
+      }
+    },
+    {
+      "id": "Variable_U",
+      "label": "Variable",
+      "properties": {
+        "name": "U",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_slip",
+      "label": "Variable",
+      "properties": {
+        "name": "slip",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/0/alpha.c4.orig",
+      "label": "File",
+      "properties": {
+        "name": "alpha.c4.orig",
+        "path": "blastFoam/burstingWindow_workshop/0/alpha.c4.orig"
+      }
+    },
+    {
+      "id": "Variable_alpha.c4",
+      "label": "Variable",
+      "properties": {
+        "name": "alpha.c4",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/0/p.orig",
+      "label": "File",
+      "properties": {
+        "name": "p.orig",
+        "path": "blastFoam/burstingWindow_workshop/0/p.orig"
+      }
+    },
+    {
+      "id": "Variable_p",
+      "label": "Variable",
+      "properties": {
+        "name": "p",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/0/rho.air.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.air.orig",
+        "path": "blastFoam/burstingWindow_workshop/0/rho.air.orig"
+      }
+    },
+    {
+      "id": "Variable_rho.air",
+      "label": "Variable",
+      "properties": {
+        "name": "rho.air",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/0/rho.c4.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.c4.orig",
+        "path": "blastFoam/burstingWindow_workshop/0/rho.c4.orig"
+      }
+    },
+    {
+      "id": "Variable_rho.c4",
+      "label": "Variable",
+      "properties": {
+        "name": "rho.c4",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/constant/dynamicMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "dynamicMeshDict",
+        "path": "blastFoam/burstingWindow_workshop/constant/dynamicMeshDict"
+      }
+    },
+    {
+      "id": "Variable_dynamicFvMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "dynamicFvMesh",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_adaptiveFvMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "adaptiveFvMesh",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_errorEstimator",
+      "label": "Variable",
+      "properties": {
+        "name": "errorEstimator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_densityGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "densityGradient",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_refineInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "refineInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_lowerRefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "lowerRefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_unrefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "unrefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_nBufferLayers",
+      "label": "Variable",
+      "properties": {
+        "name": "nBufferLayers",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxRefinement",
+      "label": "Variable",
+      "properties": {
+        "name": "maxRefinement",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_dumpLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "dumpLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/constant/phaseProperties",
+      "label": "File",
+      "properties": {
+        "name": "phaseProperties",
+        "path": "blastFoam/burstingWindow_workshop/constant/phaseProperties"
+      }
+    },
+    {
+      "id": "Variable_phases",
+      "label": "Variable",
+      "properties": {
+        "name": "phases",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_c4",
+      "label": "Variable",
+      "properties": {
+        "name": "c4",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_air",
+      "label": "Variable",
+      "properties": {
+        "name": "air",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_thermoType",
+      "label": "Variable",
+      "properties": {
+        "name": "thermoType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_equationOfState",
+      "label": "Variable",
+      "properties": {
+        "name": "equationOfState",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_BirchMurnaghan3",
+      "label": "Variable",
+      "properties": {
+        "name": "BirchMurnaghan3",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_JWL",
+      "label": "Variable",
+      "properties": {
+        "name": "JWL",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_idealGas",
+      "label": "Variable",
+      "properties": {
+        "name": "idealGas",
+        "type": "Model"
+      }
+    },
+    {
+      "id": "Variable_activationModel",
+      "label": "Variable",
+      "properties": {
+        "name": "activationModel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_initiation",
+      "label": "Variable",
+      "properties": {
+        "name": "initiation",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_residualRho",
+      "label": "Variable",
+      "properties": {
+        "name": "residualRho",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_residualAlpha",
+      "label": "Variable",
+      "properties": {
+        "name": "residualAlpha",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/system/blockMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "blockMeshDict",
+        "path": "blastFoam/burstingWindow_workshop/system/blockMeshDict"
+      }
+    },
+    {
+      "id": "Variable_convertToMeters",
+      "label": "Variable",
+      "properties": {
+        "name": "convertToMeters",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_wall",
+      "label": "Variable",
+      "properties": {
+        "name": "wall",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_patch",
+      "label": "Variable",
+      "properties": {
+        "name": "patch",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "label": "File",
+      "properties": {
+        "name": "controlDict",
+        "path": "blastFoam/burstingWindow_workshop/system/controlDict"
+      }
+    },
+    {
+      "id": "Variable_application",
+      "label": "Variable",
+      "properties": {
+        "name": "application",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blastFoam",
+      "label": "Variable",
+      "properties": {
+        "name": "blastFoam",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_startFrom",
+      "label": "Variable",
+      "properties": {
+        "name": "startFrom",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_startTime",
+      "label": "Variable",
+      "properties": {
+        "name": "startTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_stopAt",
+      "label": "Variable",
+      "properties": {
+        "name": "stopAt",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_endTime",
+      "label": "Variable",
+      "properties": {
+        "name": "endTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_deltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "deltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeControl",
+      "label": "Variable",
+      "properties": {
+        "name": "writeControl",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "writeInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_adjustTimeStep",
+      "label": "Variable",
+      "properties": {
+        "name": "adjustTimeStep",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxCo",
+      "label": "Variable",
+      "properties": {
+        "name": "maxCo",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxDeltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "maxDeltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_functions",
+      "label": "Variable",
+      "properties": {
+        "name": "functions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_impulse",
+      "label": "Variable",
+      "properties": {
+        "name": "impulse",
+        "type": "FunctionObject"
+      }
+    },
+    {
+      "id": "Variable_overpressure",
+      "label": "Variable",
+      "properties": {
+        "name": "overpressure",
+        "type": "FunctionObject"
+      }
+    },
+    {
+      "id": "Variable_fieldMax",
+      "label": "Variable",
+      "properties": {
+        "name": "fieldMax",
+        "type": "FunctionObject"
+      }
+    },
+    {
+      "id": "Variable_blastProbes",
+      "label": "Variable",
+      "properties": {
+        "name": "blastProbes",
+        "type": "FunctionObject"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/system/createBafflesDict",
+      "label": "File",
+      "properties": {
+        "name": "createBafflesDict",
+        "path": "blastFoam/burstingWindow_workshop/system/createBafflesDict"
+      }
+    },
+    {
+      "id": "Variable_internalFacesOnly",
+      "label": "Variable",
+      "properties": {
+        "name": "internalFacesOnly",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_baffles",
+      "label": "Variable",
+      "properties": {
+        "name": "baffles",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_faceZone",
+      "label": "Variable",
+      "properties": {
+        "name": "faceZone",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_patchPairs",
+      "label": "Variable",
+      "properties": {
+        "name": "patchPairs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_burstModel",
+      "label": "Variable",
+      "properties": {
+        "name": "burstModel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_pressure",
+      "label": "Variable",
+      "properties": {
+        "name": "pressure",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_partialBurst",
+      "label": "Variable",
+      "properties": {
+        "name": "partialBurst",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_pBurst",
+      "label": "Variable",
+      "properties": {
+        "name": "pBurst",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_useDelta",
+      "label": "Variable",
+      "properties": {
+        "name": "useDelta",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/system/decomposeParDict",
+      "label": "File",
+      "properties": {
+        "name": "decomposeParDict",
+        "path": "blastFoam/burstingWindow_workshop/system/decomposeParDict"
+      }
+    },
+    {
+      "id": "Variable_numberOfSubdomains",
+      "label": "Variable",
+      "properties": {
+        "name": "numberOfSubdomains",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_method",
+      "label": "Variable",
+      "properties": {
+        "name": "method",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_scotch",
+      "label": "Variable",
+      "properties": {
+        "name": "scotch",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "blastFoam/burstingWindow_workshop/system/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_fluxScheme",
+      "label": "Variable",
+      "properties": {
+        "name": "fluxScheme",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Tadmor",
+      "label": "Variable",
+      "properties": {
+        "name": "Tadmor",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_ddtSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "ddtSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Euler",
+      "label": "Variable",
+      "properties": {
+        "name": "Euler",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_timeIntegrator",
+      "label": "Variable",
+      "properties": {
+        "name": "timeIntegrator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_RK2SSP",
+      "label": "Variable",
+      "properties": {
+        "name": "RK2SSP",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_gradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "gradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cellMDLimited",
+      "label": "Variable",
+      "properties": {
+        "name": "cellMDLimited",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_leastSquares",
+      "label": "Variable",
+      "properties": {
+        "name": "leastSquares",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_divSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "divSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Riemann",
+      "label": "Variable",
+      "properties": {
+        "name": "Riemann",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_laplacianSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "laplacianSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Gauss linear corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss linear corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_interpolationSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "interpolationSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cubic",
+      "label": "Variable",
+      "properties": {
+        "name": "cubic",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_reconstruct",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Minmod",
+      "label": "Variable",
+      "properties": {
+        "name": "Minmod",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_MinmodV",
+      "label": "Variable",
+      "properties": {
+        "name": "MinmodV",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_snGradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "snGradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/system/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "blastFoam/burstingWindow_workshop/system/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_solvers",
+      "label": "Variable",
+      "properties": {
+        "name": "solvers",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_diagonal",
+      "label": "Variable",
+      "properties": {
+        "name": "diagonal",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/system/setFieldsDict",
+      "label": "File",
+      "properties": {
+        "name": "setFieldsDict",
+        "path": "blastFoam/burstingWindow_workshop/system/setFieldsDict"
+      }
+    },
+    {
+      "id": "Variable_fields",
+      "label": "Variable",
+      "properties": {
+        "name": "fields",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_defaultFieldValues",
+      "label": "Variable",
+      "properties": {
+        "name": "defaultFieldValues",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_regions",
+      "label": "Variable",
+      "properties": {
+        "name": "regions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_hemisphericalMassToCell",
+      "label": "Variable",
+      "properties": {
+        "name": "hemisphericalMassToCell",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/system/snappyHexMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "snappyHexMeshDict",
+        "path": "blastFoam/burstingWindow_workshop/system/snappyHexMeshDict"
+      }
+    },
+    {
+      "id": "Variable_castellatedMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "castellatedMesh",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_snap",
+      "label": "Variable",
+      "properties": {
+        "name": "snap",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_addLayers",
+      "label": "Variable",
+      "properties": {
+        "name": "addLayers",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_geometry",
+      "label": "Variable",
+      "properties": {
+        "name": "geometry",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_triSurfaceMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "triSurfaceMesh",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_castellatedMeshControls",
+      "label": "Variable",
+      "properties": {
+        "name": "castellatedMeshControls",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_snapControls",
+      "label": "Variable",
+      "properties": {
+        "name": "snapControls",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_addLayersControls",
+      "label": "Variable",
+      "properties": {
+        "name": "addLayersControls",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_meshQualityControls",
+      "label": "Variable",
+      "properties": {
+        "name": "meshQualityControls",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_features",
+      "label": "Variable",
+      "properties": {
+        "name": "features",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_refinementSurfaces",
+      "label": "Variable",
+      "properties": {
+        "name": "refinementSurfaces",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_locationInMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "locationInMesh",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/system/surfaceFeaturesDict",
+      "label": "File",
+      "properties": {
+        "name": "surfaceFeaturesDict",
+        "path": "blastFoam/burstingWindow_workshop/system/surfaceFeaturesDict"
+      }
+    },
+    {
+      "id": "Variable_surfaces",
+      "label": "Variable",
+      "properties": {
+        "name": "surfaces",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_includedAngle",
+      "label": "Variable",
+      "properties": {
+        "name": "includedAngle",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_subsetFeatures",
+      "label": "Variable",
+      "properties": {
+        "name": "subsetFeatures",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastFoam/burstingWindow_workshop/system/topoSetDict",
+      "label": "File",
+      "properties": {
+        "name": "topoSetDict",
+        "path": "blastFoam/burstingWindow_workshop/system/topoSetDict"
+      }
+    },
+    {
+      "id": "Variable_actions",
+      "label": "Variable",
+      "properties": {
+        "name": "actions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_faceZoneSet",
+      "label": "Variable",
+      "properties": {
+        "name": "faceZoneSet",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_searchableSurfaceToFaceZone",
+      "label": "Variable",
+      "properties": {
+        "name": "searchableSurfaceToFaceZone",
+        "type": "Keyword"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/0/T.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/T.orig",
+      "target": "Variable_T",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/T.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/T.orig",
+      "target": "Variable_burstCyclicAMI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/T.orig",
+      "target": "Variable_symmetry",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/0/U.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/U.orig",
+      "target": "Variable_U",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/U.orig",
+      "target": "Variable_slip",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/U.orig",
+      "target": "Variable_burstCyclicAMI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/U.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/U.orig",
+      "target": "Variable_symmetry",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/0/alpha.c4.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/alpha.c4.orig",
+      "target": "Variable_alpha.c4",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/alpha.c4.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/alpha.c4.orig",
+      "target": "Variable_burstCyclicAMI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/alpha.c4.orig",
+      "target": "Variable_symmetry",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/0/p.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/p.orig",
+      "target": "Variable_p",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/p.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/p.orig",
+      "target": "Variable_burstCyclicAMI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/p.orig",
+      "target": "Variable_symmetry",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/0/rho.air.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/rho.air.orig",
+      "target": "Variable_rho.air",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/rho.air.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/rho.air.orig",
+      "target": "Variable_burstCyclicAMI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/rho.air.orig",
+      "target": "Variable_symmetry",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/0/rho.c4.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/rho.c4.orig",
+      "target": "Variable_rho.c4",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/rho.c4.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/rho.c4.orig",
+      "target": "Variable_burstCyclicAMI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/0/rho.c4.orig",
+      "target": "Variable_symmetry",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/constant/dynamicMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/dynamicMeshDict",
+      "target": "Variable_dynamicFvMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/dynamicMeshDict",
+      "target": "Variable_adaptiveFvMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/dynamicMeshDict",
+      "target": "Variable_errorEstimator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/dynamicMeshDict",
+      "target": "Variable_densityGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/dynamicMeshDict",
+      "target": "Variable_refineInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/dynamicMeshDict",
+      "target": "Variable_lowerRefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/dynamicMeshDict",
+      "target": "Variable_unrefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/dynamicMeshDict",
+      "target": "Variable_nBufferLayers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/dynamicMeshDict",
+      "target": "Variable_maxRefinement",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/dynamicMeshDict",
+      "target": "Variable_dumpLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/constant/phaseProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/phaseProperties",
+      "target": "Variable_phases",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/phaseProperties",
+      "target": "Variable_c4",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/phaseProperties",
+      "target": "Variable_air",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/phaseProperties",
+      "target": "Variable_thermoType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/phaseProperties",
+      "target": "Variable_equationOfState",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/phaseProperties",
+      "target": "Variable_BirchMurnaghan3",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/phaseProperties",
+      "target": "Variable_JWL",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/phaseProperties",
+      "target": "Variable_idealGas",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/phaseProperties",
+      "target": "Variable_activationModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/phaseProperties",
+      "target": "Variable_initiation",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/phaseProperties",
+      "target": "Variable_residualRho",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/constant/phaseProperties",
+      "target": "Variable_residualAlpha",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/system/blockMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/blockMeshDict",
+      "target": "Variable_convertToMeters",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/blockMeshDict",
+      "target": "Variable_wall",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/blockMeshDict",
+      "target": "Variable_patch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/blockMeshDict",
+      "target": "Variable_symmetry",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "target": "Variable_application",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "target": "Variable_blastFoam",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "target": "Variable_startFrom",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "target": "Variable_startTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "target": "Variable_stopAt",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "target": "Variable_endTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "target": "Variable_deltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "target": "Variable_writeControl",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "target": "Variable_writeInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "target": "Variable_adjustTimeStep",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "target": "Variable_maxCo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "target": "Variable_maxDeltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "target": "Variable_functions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "target": "Variable_impulse",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "target": "Variable_overpressure",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "target": "Variable_fieldMax",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/controlDict",
+      "target": "Variable_blastProbes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/system/createBafflesDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/createBafflesDict",
+      "target": "Variable_internalFacesOnly",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/createBafflesDict",
+      "target": "Variable_baffles",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/createBafflesDict",
+      "target": "Variable_faceZone",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/createBafflesDict",
+      "target": "Variable_patchPairs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/createBafflesDict",
+      "target": "Variable_burstCyclicAMI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/createBafflesDict",
+      "target": "Variable_burstModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/createBafflesDict",
+      "target": "Variable_pressure",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/createBafflesDict",
+      "target": "Variable_partialBurst",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/createBafflesDict",
+      "target": "Variable_pBurst",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/createBafflesDict",
+      "target": "Variable_useDelta",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/system/decomposeParDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/decomposeParDict",
+      "target": "Variable_numberOfSubdomains",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/decomposeParDict",
+      "target": "Variable_method",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/decomposeParDict",
+      "target": "Variable_scotch",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_fluxScheme",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_Tadmor",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_timeIntegrator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_RK2SSP",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_cellMDLimited",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_leastSquares",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_Riemann",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_Gauss linear corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_cubic",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_reconstruct",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_Minmod",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_MinmodV",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSchemes",
+      "target": "Variable_corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/system/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/fvSolution",
+      "target": "Variable_diagonal",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/system/setFieldsDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/setFieldsDict",
+      "target": "Variable_fields",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/setFieldsDict",
+      "target": "Variable_alpha.c4",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/setFieldsDict",
+      "target": "Variable_defaultFieldValues",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/setFieldsDict",
+      "target": "Variable_regions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/setFieldsDict",
+      "target": "Variable_hemisphericalMassToCell",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/system/snappyHexMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/snappyHexMeshDict",
+      "target": "Variable_castellatedMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/snappyHexMeshDict",
+      "target": "Variable_snap",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/snappyHexMeshDict",
+      "target": "Variable_addLayers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/snappyHexMeshDict",
+      "target": "Variable_geometry",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/snappyHexMeshDict",
+      "target": "Variable_triSurfaceMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/snappyHexMeshDict",
+      "target": "Variable_castellatedMeshControls",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/snappyHexMeshDict",
+      "target": "Variable_snapControls",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/snappyHexMeshDict",
+      "target": "Variable_addLayersControls",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/snappyHexMeshDict",
+      "target": "Variable_meshQualityControls",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/snappyHexMeshDict",
+      "target": "Variable_features",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/snappyHexMeshDict",
+      "target": "Variable_refinementSurfaces",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/snappyHexMeshDict",
+      "target": "Variable_locationInMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/system/surfaceFeaturesDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/surfaceFeaturesDict",
+      "target": "Variable_surfaces",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/surfaceFeaturesDict",
+      "target": "Variable_includedAngle",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/surfaceFeaturesDict",
+      "target": "Variable_subsetFeatures",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop",
+      "target": "blastFoam/burstingWindow_workshop/system/topoSetDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/topoSetDict",
+      "target": "Variable_actions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/topoSetDict",
+      "target": "Variable_faceZoneSet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/burstingWindow_workshop/system/topoSetDict",
+      "target": "Variable_searchableSurfaceToFaceZone",
+      "type": "DEFINES"
+    }
+  ]
+}

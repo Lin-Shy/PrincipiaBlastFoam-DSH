@@ -1,0 +1,1291 @@
+{
+  "nodes": [
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition",
+      "label": "Case",
+      "properties": {
+        "name": "deflagrationToDetonationTransition",
+        "path": "blastXiFoam/deflagrationToDetonationTransition"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/0/Su",
+      "label": "File",
+      "properties": {
+        "name": "Su",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/0/Su"
+      }
+    },
+    {
+      "id": "Variable_zeroGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "zeroGradient",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_empty",
+      "label": "Variable",
+      "properties": {
+        "name": "empty",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/0/T.orig",
+      "label": "File",
+      "properties": {
+        "name": "T.orig",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/0/T.orig"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/0/Tu.orig",
+      "label": "File",
+      "properties": {
+        "name": "Tu.orig",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/0/Tu.orig"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/0/U.orig",
+      "label": "File",
+      "properties": {
+        "name": "U.orig",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/0/U.orig"
+      }
+    },
+    {
+      "id": "Variable_noSlip",
+      "label": "Variable",
+      "properties": {
+        "name": "noSlip",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/0/Xi",
+      "label": "File",
+      "properties": {
+        "name": "Xi",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/0/Xi"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/0/alphat",
+      "label": "File",
+      "properties": {
+        "name": "alphat",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/0/alphat"
+      }
+    },
+    {
+      "id": "Variable_compressible::alphatWallFunction",
+      "label": "Variable",
+      "properties": {
+        "name": "compressible::alphatWallFunction",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/0/b.orig",
+      "label": "File",
+      "properties": {
+        "name": "b.orig",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/0/b.orig"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/0/epsilon",
+      "label": "File",
+      "properties": {
+        "name": "epsilon",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/0/epsilon"
+      }
+    },
+    {
+      "id": "Variable_epsilonWallFunction",
+      "label": "Variable",
+      "properties": {
+        "name": "epsilonWallFunction",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/0/ft.orig",
+      "label": "File",
+      "properties": {
+        "name": "ft.orig",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/0/ft.orig"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/0/fu",
+      "label": "File",
+      "properties": {
+        "name": "fu",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/0/fu"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/0/k",
+      "label": "File",
+      "properties": {
+        "name": "k",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/0/k"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/0/nut",
+      "label": "File",
+      "properties": {
+        "name": "nut",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/0/nut"
+      }
+    },
+    {
+      "id": "Variable_nutkWallFunction",
+      "label": "Variable",
+      "properties": {
+        "name": "nutkWallFunction",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/0/omega",
+      "label": "File",
+      "properties": {
+        "name": "omega",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/0/omega"
+      }
+    },
+    {
+      "id": "Variable_omegaWallFunction",
+      "label": "Variable",
+      "properties": {
+        "name": "omegaWallFunction",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/0/p.orig",
+      "label": "File",
+      "properties": {
+        "name": "p.orig",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/0/p.orig"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/0/tau",
+      "label": "File",
+      "properties": {
+        "name": "tau",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/0/tau"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/constant/combustionProperties",
+      "label": "File",
+      "properties": {
+        "name": "combustionProperties",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/constant/combustionProperties"
+      }
+    },
+    {
+      "id": "Variable_laminarFlameSpeedCorrelation",
+      "label": "Variable",
+      "properties": {
+        "name": "laminarFlameSpeedCorrelation",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Su",
+      "label": "Variable",
+      "properties": {
+        "name": "Su",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_SuModel",
+      "label": "Variable",
+      "properties": {
+        "name": "SuModel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_equivalenceRatio",
+      "label": "Variable",
+      "properties": {
+        "name": "equivalenceRatio",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_sigmaExt",
+      "label": "Variable",
+      "properties": {
+        "name": "sigmaExt",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_XiModel",
+      "label": "Variable",
+      "properties": {
+        "name": "XiModel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_RaviPetersenCoeffs",
+      "label": "Variable",
+      "properties": {
+        "name": "RaviPetersenCoeffs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_ignite",
+      "label": "Variable",
+      "properties": {
+        "name": "ignite",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_ignitionSites",
+      "label": "Variable",
+      "properties": {
+        "name": "ignitionSites",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/constant/g",
+      "label": "File",
+      "properties": {
+        "name": "g",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/constant/g"
+      }
+    },
+    {
+      "id": "Variable_g",
+      "label": "Variable",
+      "properties": {
+        "name": "g",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/constant/thermophysicalProperties",
+      "label": "File",
+      "properties": {
+        "name": "thermophysicalProperties",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/constant/thermophysicalProperties"
+      }
+    },
+    {
+      "id": "Variable_thermoType",
+      "label": "Variable",
+      "properties": {
+        "name": "thermoType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_mixture",
+      "label": "Variable",
+      "properties": {
+        "name": "mixture",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_transport",
+      "label": "Variable",
+      "properties": {
+        "name": "transport",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_thermo",
+      "label": "Variable",
+      "properties": {
+        "name": "thermo",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_energy",
+      "label": "Variable",
+      "properties": {
+        "name": "energy",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_equationOfState",
+      "label": "Variable",
+      "properties": {
+        "name": "equationOfState",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_stoichiometricAirFuelMassRatio",
+      "label": "Variable",
+      "properties": {
+        "name": "stoichiometricAirFuelMassRatio",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/constant/turbulenceProperties",
+      "label": "File",
+      "properties": {
+        "name": "turbulenceProperties",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/constant/turbulenceProperties"
+      }
+    },
+    {
+      "id": "Variable_simulationType",
+      "label": "Variable",
+      "properties": {
+        "name": "simulationType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_RASModel",
+      "label": "Variable",
+      "properties": {
+        "name": "RASModel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_turbulence",
+      "label": "Variable",
+      "properties": {
+        "name": "turbulence",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/system/blockMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "blockMeshDict",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/system/blockMeshDict"
+      }
+    },
+    {
+      "id": "Variable_convertToMeters",
+      "label": "Variable",
+      "properties": {
+        "name": "convertToMeters",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_wall",
+      "label": "Variable",
+      "properties": {
+        "name": "wall",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/system/controlDict",
+      "label": "File",
+      "properties": {
+        "name": "controlDict",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/system/controlDict"
+      }
+    },
+    {
+      "id": "Variable_application",
+      "label": "Variable",
+      "properties": {
+        "name": "application",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_startFrom",
+      "label": "Variable",
+      "properties": {
+        "name": "startFrom",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_startTime",
+      "label": "Variable",
+      "properties": {
+        "name": "startTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_stopAt",
+      "label": "Variable",
+      "properties": {
+        "name": "stopAt",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_endTime",
+      "label": "Variable",
+      "properties": {
+        "name": "endTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeControl",
+      "label": "Variable",
+      "properties": {
+        "name": "writeControl",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_writeInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "writeInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_adjustTimeStep",
+      "label": "Variable",
+      "properties": {
+        "name": "adjustTimeStep",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_deltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "deltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxCo",
+      "label": "Variable",
+      "properties": {
+        "name": "maxCo",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/system/decomposeParDict",
+      "label": "File",
+      "properties": {
+        "name": "decomposeParDict",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/system/decomposeParDict"
+      }
+    },
+    {
+      "id": "Variable_numberOfSubdomains",
+      "label": "Variable",
+      "properties": {
+        "name": "numberOfSubdomains",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_method",
+      "label": "Variable",
+      "properties": {
+        "name": "method",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/system/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/system/fvSchemes"
+      }
+    },
+    {
+      "id": "Variable_fluxScheme",
+      "label": "Variable",
+      "properties": {
+        "name": "fluxScheme",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_ddtSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "ddtSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_gradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "gradSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_divSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "divSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_laplacianSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "laplacianSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_interpolationSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "interpolationSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_snGradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "snGradSchemes",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_wallDist",
+      "label": "Variable",
+      "properties": {
+        "name": "wallDist",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/system/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/system/fvSolution"
+      }
+    },
+    {
+      "id": "Variable_solvers",
+      "label": "Variable",
+      "properties": {
+        "name": "solvers",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_PBiCGStab",
+      "label": "Variable",
+      "properties": {
+        "name": "PBiCGStab",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_DIC",
+      "label": "Variable",
+      "properties": {
+        "name": "DIC",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_DILU",
+      "label": "Variable",
+      "properties": {
+        "name": "DILU",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_PIMPLE",
+      "label": "Variable",
+      "properties": {
+        "name": "PIMPLE",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_nOuterCorrectors",
+      "label": "Variable",
+      "properties": {
+        "name": "nOuterCorrectors",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_nCorrectors",
+      "label": "Variable",
+      "properties": {
+        "name": "nCorrectors",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_nNonOrthogonalCorrectors",
+      "label": "Variable",
+      "properties": {
+        "name": "nNonOrthogonalCorrectors",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/system/setFieldsDict",
+      "label": "File",
+      "properties": {
+        "name": "setFieldsDict",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/system/setFieldsDict"
+      }
+    },
+    {
+      "id": "Variable_defaultFieldValues",
+      "label": "Variable",
+      "properties": {
+        "name": "defaultFieldValues",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_regions",
+      "label": "Variable",
+      "properties": {
+        "name": "regions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cylinderToCell",
+      "label": "Variable",
+      "properties": {
+        "name": "cylinderToCell",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "blastXiFoam/deflagrationToDetonationTransition/system/topoSetDict",
+      "label": "File",
+      "properties": {
+        "name": "topoSetDict",
+        "path": "blastXiFoam/deflagrationToDetonationTransition/system/topoSetDict"
+      }
+    },
+    {
+      "id": "Variable_actions",
+      "label": "Variable",
+      "properties": {
+        "name": "actions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cellSet",
+      "label": "Variable",
+      "properties": {
+        "name": "cellSet",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_boxToCell",
+      "label": "Variable",
+      "properties": {
+        "name": "boxToCell",
+        "type": "Keyword"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/0/Su",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/Su",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/Su",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/0/T.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/T.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/T.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/0/Tu.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/Tu.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/Tu.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/0/U.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/U.orig",
+      "target": "Variable_noSlip",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/U.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/U.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/0/Xi",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/Xi",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/Xi",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/0/alphat",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/alphat",
+      "target": "Variable_compressible::alphatWallFunction",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/alphat",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/0/b.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/b.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/b.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/0/epsilon",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/epsilon",
+      "target": "Variable_epsilonWallFunction",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/epsilon",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/0/ft.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/ft.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/ft.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/0/fu",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/fu",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/fu",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/0/k",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/k",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/k",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/0/nut",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/nut",
+      "target": "Variable_nutkWallFunction",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/nut",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/0/omega",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/omega",
+      "target": "Variable_omegaWallFunction",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/omega",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/0/p.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/p.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/p.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/0/tau",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/tau",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/0/tau",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/constant/combustionProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/combustionProperties",
+      "target": "Variable_laminarFlameSpeedCorrelation",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/combustionProperties",
+      "target": "Variable_Su",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/combustionProperties",
+      "target": "Variable_SuModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/combustionProperties",
+      "target": "Variable_equivalenceRatio",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/combustionProperties",
+      "target": "Variable_sigmaExt",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/combustionProperties",
+      "target": "Variable_XiModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/combustionProperties",
+      "target": "Variable_RaviPetersenCoeffs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/combustionProperties",
+      "target": "Variable_ignite",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/combustionProperties",
+      "target": "Variable_ignitionSites",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/constant/g",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/g",
+      "target": "Variable_g",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/constant/thermophysicalProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/thermophysicalProperties",
+      "target": "Variable_thermoType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/thermophysicalProperties",
+      "target": "Variable_mixture",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/thermophysicalProperties",
+      "target": "Variable_transport",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/thermophysicalProperties",
+      "target": "Variable_thermo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/thermophysicalProperties",
+      "target": "Variable_energy",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/thermophysicalProperties",
+      "target": "Variable_equationOfState",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/thermophysicalProperties",
+      "target": "Variable_stoichiometricAirFuelMassRatio",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/constant/turbulenceProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/turbulenceProperties",
+      "target": "Variable_simulationType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/turbulenceProperties",
+      "target": "Variable_RASModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/constant/turbulenceProperties",
+      "target": "Variable_turbulence",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/system/blockMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/blockMeshDict",
+      "target": "Variable_convertToMeters",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/blockMeshDict",
+      "target": "Variable_wall",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/system/controlDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/controlDict",
+      "target": "Variable_application",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/controlDict",
+      "target": "Variable_startFrom",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/controlDict",
+      "target": "Variable_startTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/controlDict",
+      "target": "Variable_stopAt",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/controlDict",
+      "target": "Variable_endTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/controlDict",
+      "target": "Variable_writeControl",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/controlDict",
+      "target": "Variable_writeInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/controlDict",
+      "target": "Variable_adjustTimeStep",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/controlDict",
+      "target": "Variable_deltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/controlDict",
+      "target": "Variable_maxCo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/system/decomposeParDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/decomposeParDict",
+      "target": "Variable_numberOfSubdomains",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/decomposeParDict",
+      "target": "Variable_method",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/system/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/fvSchemes",
+      "target": "Variable_fluxScheme",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/fvSchemes",
+      "target": "Variable_wallDist",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/system/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/fvSolution",
+      "target": "Variable_PBiCGStab",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/fvSolution",
+      "target": "Variable_DIC",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/fvSolution",
+      "target": "Variable_DILU",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/fvSolution",
+      "target": "Variable_PIMPLE",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/fvSolution",
+      "target": "Variable_nOuterCorrectors",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/fvSolution",
+      "target": "Variable_nCorrectors",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/fvSolution",
+      "target": "Variable_nNonOrthogonalCorrectors",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/system/setFieldsDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/setFieldsDict",
+      "target": "Variable_defaultFieldValues",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/setFieldsDict",
+      "target": "Variable_regions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/setFieldsDict",
+      "target": "Variable_cylinderToCell",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition",
+      "target": "blastXiFoam/deflagrationToDetonationTransition/system/topoSetDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/topoSetDict",
+      "target": "Variable_actions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/topoSetDict",
+      "target": "Variable_cellSet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastXiFoam/deflagrationToDetonationTransition/system/topoSetDict",
+      "target": "Variable_boxToCell",
+      "type": "DEFINES"
+    }
+  ]
+}

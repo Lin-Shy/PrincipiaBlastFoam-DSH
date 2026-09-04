@@ -1,0 +1,2112 @@
+{
+  "nodes": [
+    {
+      "id": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass",
+      "label": "Case",
+      "properties": {
+        "name": "internalDetonation_withObstacleAndGlass",
+        "path": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass"
+      }
+    },
+    {
+      "id": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/T.orig",
+      "label": "File",
+      "properties": {
+        "name": "T.orig",
+        "path": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/T.orig"
+      }
+    },
+    {
+      "id": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/U.orig",
+      "label": "File",
+      "properties": {
+        "name": "U.orig",
+        "path": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/U.orig"
+      }
+    },
+    {
+      "id": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/alpha.c4.orig",
+      "label": "File",
+      "properties": {
+        "name": "alpha.c4.orig",
+        "path": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/alpha.c4.orig"
+      }
+    },
+    {
+      "id": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/p.orig",
+      "label": "File",
+      "properties": {
+        "name": "p.orig",
+        "path": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/p.orig"
+      }
+    },
+    {
+      "id": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/rho.air.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.air.orig",
+        "path": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/rho.air.orig"
+      }
+    },
+    {
+      "id": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/rho.c4.orig",
+      "label": "File",
+      "properties": {
+        "name": "rho.c4.orig",
+        "path": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/rho.c4.orig"
+      }
+    },
+    {
+      "id": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/dynamicMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "dynamicMeshDict",
+        "path": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/dynamicMeshDict"
+      }
+    },
+    {
+      "id": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "label": "File",
+      "properties": {
+        "name": "phaseProperties",
+        "path": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties"
+      }
+    },
+    {
+      "id": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/blockMeshDict",
+      "label": "File",
+      "properties": {
+        "name": "blockMeshDict",
+        "path": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/blockMeshDict"
+      }
+    },
+    {
+      "id": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict",
+      "label": "File",
+      "properties": {
+        "name": "controlDict",
+        "path": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict"
+      }
+    },
+    {
+      "id": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createBafflesDict",
+      "label": "File",
+      "properties": {
+        "name": "createBafflesDict",
+        "path": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createBafflesDict"
+      }
+    },
+    {
+      "id": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createPatchDict",
+      "label": "File",
+      "properties": {
+        "name": "createPatchDict",
+        "path": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createPatchDict"
+      }
+    },
+    {
+      "id": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "label": "File",
+      "properties": {
+        "name": "fvSchemes",
+        "path": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes"
+      }
+    },
+    {
+      "id": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSolution",
+      "label": "File",
+      "properties": {
+        "name": "fvSolution",
+        "path": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSolution"
+      }
+    },
+    {
+      "id": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/setFieldsDict",
+      "label": "File",
+      "properties": {
+        "name": "setFieldsDict",
+        "path": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/setFieldsDict"
+      }
+    },
+    {
+      "id": "Variable_T",
+      "label": "Variable",
+      "properties": {
+        "name": "T",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_internalField",
+      "label": "Variable",
+      "properties": {
+        "name": "internalField",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_zeroGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "zeroGradient",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_burstCyclicAMI",
+      "label": "Variable",
+      "properties": {
+        "name": "burstCyclicAMI",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_empty",
+      "label": "Variable",
+      "properties": {
+        "name": "empty",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_U",
+      "label": "Variable",
+      "properties": {
+        "name": "U",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_slip",
+      "label": "Variable",
+      "properties": {
+        "name": "slip",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_alpha.c4",
+      "label": "Variable",
+      "properties": {
+        "name": "alpha.c4",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_p",
+      "label": "Variable",
+      "properties": {
+        "name": "p",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_rho.air",
+      "label": "Variable",
+      "properties": {
+        "name": "rho.air",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_rho.c4",
+      "label": "Variable",
+      "properties": {
+        "name": "rho.c4",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_dynamicFvMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "dynamicFvMesh",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_adaptiveFvMesh",
+      "label": "Variable",
+      "properties": {
+        "name": "adaptiveFvMesh",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_errorEstimator",
+      "label": "Variable",
+      "properties": {
+        "name": "errorEstimator",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_densityGradient",
+      "label": "Variable",
+      "properties": {
+        "name": "densityGradient",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_refineInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "refineInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_lowerRefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "lowerRefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_unrefineLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "unrefineLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_nBufferLayers",
+      "label": "Variable",
+      "properties": {
+        "name": "nBufferLayers",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxRefinement",
+      "label": "Variable",
+      "properties": {
+        "name": "maxRefinement",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_dumpLevel",
+      "label": "Variable",
+      "properties": {
+        "name": "dumpLevel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_protectedPatches",
+      "label": "Variable",
+      "properties": {
+        "name": "protectedPatches",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_phases",
+      "label": "Variable",
+      "properties": {
+        "name": "phases",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_radiationModel",
+      "label": "Variable",
+      "properties": {
+        "name": "radiationModel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_c4",
+      "label": "Variable",
+      "properties": {
+        "name": "c4",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_detonating",
+      "label": "Variable",
+      "properties": {
+        "name": "detonating",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_reactants",
+      "label": "Variable",
+      "properties": {
+        "name": "reactants",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_thermoType",
+      "label": "Variable",
+      "properties": {
+        "name": "thermoType",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_equationOfState",
+      "label": "Variable",
+      "properties": {
+        "name": "equationOfState",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Murnaghan",
+      "label": "Variable",
+      "properties": {
+        "name": "Murnaghan",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Gamma",
+      "label": "Variable",
+      "properties": {
+        "name": "Gamma",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_pRef",
+      "label": "Variable",
+      "properties": {
+        "name": "pRef",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_rho0",
+      "label": "Variable",
+      "properties": {
+        "name": "rho0",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_K0",
+      "label": "Variable",
+      "properties": {
+        "name": "K0",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_specie",
+      "label": "Variable",
+      "properties": {
+        "name": "specie",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_molWeight",
+      "label": "Variable",
+      "properties": {
+        "name": "molWeight",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_transport",
+      "label": "Variable",
+      "properties": {
+        "name": "transport",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_mu",
+      "label": "Variable",
+      "properties": {
+        "name": "mu",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Pr",
+      "label": "Variable",
+      "properties": {
+        "name": "Pr",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_thermodynamics",
+      "label": "Variable",
+      "properties": {
+        "name": "thermodynamics",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Cv",
+      "label": "Variable",
+      "properties": {
+        "name": "Cv",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_Hf",
+      "label": "Variable",
+      "properties": {
+        "name": "Hf",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_products",
+      "label": "Variable",
+      "properties": {
+        "name": "products",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_JWL",
+      "label": "Variable",
+      "properties": {
+        "name": "JWL",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_A",
+      "label": "Variable",
+      "properties": {
+        "name": "A",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_B",
+      "label": "Variable",
+      "properties": {
+        "name": "B",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_R1",
+      "label": "Variable",
+      "properties": {
+        "name": "R1",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_R2",
+      "label": "Variable",
+      "properties": {
+        "name": "R2",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_omega",
+      "label": "Variable",
+      "properties": {
+        "name": "omega",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_afterburnModel",
+      "label": "Variable",
+      "properties": {
+        "name": "afterburnModel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Miller",
+      "label": "Variable",
+      "properties": {
+        "name": "Miller",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_MillerCoeffs",
+      "label": "Variable",
+      "properties": {
+        "name": "MillerCoeffs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Q0",
+      "label": "Variable",
+      "properties": {
+        "name": "Q0",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_m",
+      "label": "Variable",
+      "properties": {
+        "name": "m",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_n",
+      "label": "Variable",
+      "properties": {
+        "name": "n",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_a",
+      "label": "Variable",
+      "properties": {
+        "name": "a",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_pMin",
+      "label": "Variable",
+      "properties": {
+        "name": "pMin",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_pScale",
+      "label": "Variable",
+      "properties": {
+        "name": "pScale",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_activationModel",
+      "label": "Variable",
+      "properties": {
+        "name": "activationModel",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_linear",
+      "label": "Variable",
+      "properties": {
+        "name": "linear",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_initiation",
+      "label": "Variable",
+      "properties": {
+        "name": "initiation",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_E0",
+      "label": "Variable",
+      "properties": {
+        "name": "E0",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_points",
+      "label": "Variable",
+      "properties": {
+        "name": "points",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_vDet",
+      "label": "Variable",
+      "properties": {
+        "name": "vDet",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_residualRho",
+      "label": "Variable",
+      "properties": {
+        "name": "residualRho",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_residualAlpha",
+      "label": "Variable",
+      "properties": {
+        "name": "residualAlpha",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_air",
+      "label": "Variable",
+      "properties": {
+        "name": "air",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_basic",
+      "label": "Variable",
+      "properties": {
+        "name": "basic",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_idealGas",
+      "label": "Variable",
+      "properties": {
+        "name": "idealGas",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_gamma",
+      "label": "Variable",
+      "properties": {
+        "name": "gamma",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_convertToMeters",
+      "label": "Variable",
+      "properties": {
+        "name": "convertToMeters",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_vertices",
+      "label": "Variable",
+      "properties": {
+        "name": "vertices",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_blocks",
+      "label": "Variable",
+      "properties": {
+        "name": "blocks",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_edges",
+      "label": "Variable",
+      "properties": {
+        "name": "edges",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_boundary",
+      "label": "Variable",
+      "properties": {
+        "name": "boundary",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_wall",
+      "label": "Variable",
+      "properties": {
+        "name": "wall",
+        "type": "BoundaryCondition"
+      }
+    },
+    {
+      "id": "Variable_application",
+      "label": "Variable",
+      "properties": {
+        "name": "application",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_blastFoam",
+      "label": "Variable",
+      "properties": {
+        "name": "blastFoam",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_startFrom",
+      "label": "Variable",
+      "properties": {
+        "name": "startFrom",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_startTime",
+      "label": "Variable",
+      "properties": {
+        "name": "startTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_stopAt",
+      "label": "Variable",
+      "properties": {
+        "name": "stopAt",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_endTime",
+      "label": "Variable",
+      "properties": {
+        "name": "endTime",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_deltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "deltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeControl",
+      "label": "Variable",
+      "properties": {
+        "name": "writeControl",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_writeInterval",
+      "label": "Variable",
+      "properties": {
+        "name": "writeInterval",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_adjustTimeStep",
+      "label": "Variable",
+      "properties": {
+        "name": "adjustTimeStep",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxCo",
+      "label": "Variable",
+      "properties": {
+        "name": "maxCo",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_maxDeltaT",
+      "label": "Variable",
+      "properties": {
+        "name": "maxDeltaT",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_functions",
+      "label": "Variable",
+      "properties": {
+        "name": "functions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_impulse",
+      "label": "Variable",
+      "properties": {
+        "name": "impulse",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_internalFacesOnly",
+      "label": "Variable",
+      "properties": {
+        "name": "internalFacesOnly",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_baffles",
+      "label": "Variable",
+      "properties": {
+        "name": "baffles",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_faceZone",
+      "label": "Variable",
+      "properties": {
+        "name": "faceZone",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_patchPairs",
+      "label": "Variable",
+      "properties": {
+        "name": "patchPairs",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_partialBurst",
+      "label": "Variable",
+      "properties": {
+        "name": "partialBurst",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_burstModel",
+      "label": "Variable",
+      "properties": {
+        "name": "burstModel",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_field",
+      "label": "Variable",
+      "properties": {
+        "name": "field",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_burstValues",
+      "label": "Variable",
+      "properties": {
+        "name": "burstValues",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_patches",
+      "label": "Variable",
+      "properties": {
+        "name": "patches",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_pach",
+      "label": "Variable",
+      "properties": {
+        "name": "pach",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_constructFrom",
+      "label": "Variable",
+      "properties": {
+        "name": "constructFrom",
+        "type": "Parameter"
+      }
+    },
+    {
+      "id": "Variable_set",
+      "label": "Variable",
+      "properties": {
+        "name": "set",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_fluxScheme",
+      "label": "Variable",
+      "properties": {
+        "name": "fluxScheme",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Kurganov",
+      "label": "Variable",
+      "properties": {
+        "name": "Kurganov",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_ddtSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "ddtSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Euler",
+      "label": "Variable",
+      "properties": {
+        "name": "Euler",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_timeIntegrator",
+      "label": "Variable",
+      "properties": {
+        "name": "timeIntegrator",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_RK2SSP",
+      "label": "Variable",
+      "properties": {
+        "name": "RK2SSP",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_gradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "gradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cellMDLimited leastSquares",
+      "label": "Variable",
+      "properties": {
+        "name": "cellMDLimited leastSquares",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_divSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "divSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Riemann",
+      "label": "Variable",
+      "properties": {
+        "name": "Riemann",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_laplacianSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "laplacianSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Gauss linear corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "Gauss linear corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_interpolationSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "interpolationSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_cubic",
+      "label": "Variable",
+      "properties": {
+        "name": "cubic",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(alpha)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(alpha)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_Minmod",
+      "label": "Variable",
+      "properties": {
+        "name": "Minmod",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(rho)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(rho)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(U)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(U)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_MinmodV",
+      "label": "Variable",
+      "properties": {
+        "name": "MinmodV",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(e)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(e)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(p)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(p)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(speedOfSound)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(speedOfSound)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(lambda.c4)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(lambda.c4)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_reconstruct(c.c4)",
+      "label": "Variable",
+      "properties": {
+        "name": "reconstruct(c.c4)",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_snGradSchemes",
+      "label": "Variable",
+      "properties": {
+        "name": "snGradSchemes",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_corrected",
+      "label": "Variable",
+      "properties": {
+        "name": "corrected",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_solvers",
+      "label": "Variable",
+      "properties": {
+        "name": "solvers",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_diagonal",
+      "label": "Variable",
+      "properties": {
+        "name": "diagonal",
+        "type": "NumericalScheme"
+      }
+    },
+    {
+      "id": "Variable_fields",
+      "label": "Variable",
+      "properties": {
+        "name": "fields",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_defaultFieldValues",
+      "label": "Variable",
+      "properties": {
+        "name": "defaultFieldValues",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_regions",
+      "label": "Variable",
+      "properties": {
+        "name": "regions",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_sphereToCell",
+      "label": "Variable",
+      "properties": {
+        "name": "sphereToCell",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_boxToCell",
+      "label": "Variable",
+      "properties": {
+        "name": "boxToCell",
+        "type": "Keyword"
+      }
+    },
+    {
+      "id": "Variable_boxToPoint",
+      "label": "Variable",
+      "properties": {
+        "name": "boxToPoint",
+        "type": "Keyword"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass",
+      "target": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/T.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass",
+      "target": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/U.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass",
+      "target": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/alpha.c4.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass",
+      "target": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/p.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass",
+      "target": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/rho.air.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass",
+      "target": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/rho.c4.orig",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass",
+      "target": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/dynamicMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass",
+      "target": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass",
+      "target": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/blockMeshDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass",
+      "target": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass",
+      "target": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createBafflesDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass",
+      "target": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createPatchDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass",
+      "target": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass",
+      "target": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSolution",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass",
+      "target": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/setFieldsDict",
+      "type": "CONTAINS"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/T.orig",
+      "target": "Variable_T",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/T.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/T.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/T.orig",
+      "target": "Variable_burstCyclicAMI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/T.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/U.orig",
+      "target": "Variable_U",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/U.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/U.orig",
+      "target": "Variable_slip",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/U.orig",
+      "target": "Variable_burstCyclicAMI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/U.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/U.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/alpha.c4.orig",
+      "target": "Variable_alpha.c4",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/alpha.c4.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/alpha.c4.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/alpha.c4.orig",
+      "target": "Variable_burstCyclicAMI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/alpha.c4.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/p.orig",
+      "target": "Variable_p",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/p.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/p.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/p.orig",
+      "target": "Variable_burstCyclicAMI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/p.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/rho.air.orig",
+      "target": "Variable_rho.air",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/rho.air.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/rho.air.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/rho.air.orig",
+      "target": "Variable_burstCyclicAMI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/rho.air.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/rho.c4.orig",
+      "target": "Variable_rho.c4",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/rho.c4.orig",
+      "target": "Variable_internalField",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/rho.c4.orig",
+      "target": "Variable_zeroGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/rho.c4.orig",
+      "target": "Variable_burstCyclicAMI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/0/rho.c4.orig",
+      "target": "Variable_empty",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/dynamicMeshDict",
+      "target": "Variable_dynamicFvMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/dynamicMeshDict",
+      "target": "Variable_adaptiveFvMesh",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/dynamicMeshDict",
+      "target": "Variable_errorEstimator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/dynamicMeshDict",
+      "target": "Variable_densityGradient",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/dynamicMeshDict",
+      "target": "Variable_refineInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/dynamicMeshDict",
+      "target": "Variable_lowerRefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/dynamicMeshDict",
+      "target": "Variable_unrefineLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/dynamicMeshDict",
+      "target": "Variable_nBufferLayers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/dynamicMeshDict",
+      "target": "Variable_maxRefinement",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/dynamicMeshDict",
+      "target": "Variable_dumpLevel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/dynamicMeshDict",
+      "target": "Variable_protectedPatches",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_phases",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_radiationModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_c4",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_detonating",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_reactants",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_thermoType",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_equationOfState",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_Murnaghan",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_Gamma",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_pRef",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_rho0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_K0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_specie",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_molWeight",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_transport",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_mu",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_Pr",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_thermodynamics",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_Cv",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_Hf",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_products",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_JWL",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_A",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_B",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_R1",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_R2",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_omega",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_afterburnModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_Miller",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_MillerCoeffs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_Q0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_m",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_n",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_a",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_pMin",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_pScale",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_activationModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_linear",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_initiation",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_E0",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_points",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_vDet",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_residualRho",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_residualAlpha",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_air",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_basic",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_idealGas",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/constant/phaseProperties",
+      "target": "Variable_gamma",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/blockMeshDict",
+      "target": "Variable_convertToMeters",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/blockMeshDict",
+      "target": "Variable_vertices",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/blockMeshDict",
+      "target": "Variable_blocks",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/blockMeshDict",
+      "target": "Variable_edges",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/blockMeshDict",
+      "target": "Variable_boundary",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/blockMeshDict",
+      "target": "Variable_wall",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict",
+      "target": "Variable_application",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict",
+      "target": "Variable_blastFoam",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict",
+      "target": "Variable_startFrom",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict",
+      "target": "Variable_startTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict",
+      "target": "Variable_stopAt",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict",
+      "target": "Variable_endTime",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict",
+      "target": "Variable_deltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict",
+      "target": "Variable_writeControl",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict",
+      "target": "Variable_writeInterval",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict",
+      "target": "Variable_adjustTimeStep",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict",
+      "target": "Variable_maxCo",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict",
+      "target": "Variable_maxDeltaT",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict",
+      "target": "Variable_functions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict",
+      "target": "Variable_impulse",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/controlDict",
+      "target": "Variable_pRef",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createBafflesDict",
+      "target": "Variable_internalFacesOnly",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createBafflesDict",
+      "target": "Variable_baffles",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createBafflesDict",
+      "target": "Variable_faceZone",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createBafflesDict",
+      "target": "Variable_patchPairs",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createBafflesDict",
+      "target": "Variable_burstCyclicAMI",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createBafflesDict",
+      "target": "Variable_partialBurst",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createBafflesDict",
+      "target": "Variable_burstModel",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createBafflesDict",
+      "target": "Variable_field",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createBafflesDict",
+      "target": "Variable_burstValues",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createBafflesDict",
+      "target": "Variable_p",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createBafflesDict",
+      "target": "Variable_impulse",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createPatchDict",
+      "target": "Variable_patches",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createPatchDict",
+      "target": "Variable_pach",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createPatchDict",
+      "target": "Variable_constructFrom",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/createPatchDict",
+      "target": "Variable_set",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_fluxScheme",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_Kurganov",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_ddtSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_Euler",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_timeIntegrator",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_RK2SSP",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_gradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_cellMDLimited leastSquares",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_divSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_Riemann",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_laplacianSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_Gauss linear corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_interpolationSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_cubic",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_reconstruct(alpha)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_Minmod",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_reconstruct(rho)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_reconstruct(U)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_MinmodV",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_reconstruct(e)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_reconstruct(p)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_reconstruct(speedOfSound)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_reconstruct(lambda.c4)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_reconstruct(c.c4)",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_snGradSchemes",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSchemes",
+      "target": "Variable_corrected",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSolution",
+      "target": "Variable_solvers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/fvSolution",
+      "target": "Variable_diagonal",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/setFieldsDict",
+      "target": "Variable_fields",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/setFieldsDict",
+      "target": "Variable_nBufferLayers",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/setFieldsDict",
+      "target": "Variable_defaultFieldValues",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/setFieldsDict",
+      "target": "Variable_alpha.c4",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/setFieldsDict",
+      "target": "Variable_regions",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/setFieldsDict",
+      "target": "Variable_sphereToCell",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/setFieldsDict",
+      "target": "Variable_boxToCell",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/setFieldsDict",
+      "target": "Variable_boxToPoint",
+      "type": "DEFINES"
+    },
+    {
+      "source": "blastFoam/internalDetonation/internalDetonation_withObstacleAndGlass/system/setFieldsDict",
+      "target": "Variable_patches",
+      "type": "DEFINES"
+    }
+  ]
+}
