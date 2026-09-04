@@ -16,7 +16,7 @@
   },
   "verification": {
     "date": "2026-09-04",
-    "status": "all-role-safety-smoke-passed-with-artifact-gaps",
+    "status": "real-solver-smoke-passed",
     "profiles": ["web", "headless"],
     "fullBenchmarkPassed": false
   }

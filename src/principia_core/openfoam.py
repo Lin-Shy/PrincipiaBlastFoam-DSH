@@ -210,11 +210,11 @@ def run_openfoam_case_once(
 ) -> dict[str, Any]:
     """Run a prepared OpenFOAM case once and write execution artifacts."""
     case_dir = Path(case_path).expanduser().resolve()
-    if os.getenv("ENABLE_EXECUTION", "false").lower() not in {"1", "true", "yes", "on"}:
+    if not _bool_env("ENABLE_EXECUTION", True):
         return {
             "started": False,
             "blocked": True,
-            "reason": "ENABLE_EXECUTION is not true; solver was not started.",
+            "reason": "ENABLE_EXECUTION is explicitly false; solver was not started.",
         }
 
     preflight = run_execution_preflight(case_dir)
@@ -312,13 +312,13 @@ def complete_workflow_once(
     case_path: str | os.PathLike[str],
     *,
     user_request: str,
-    require_execution: bool = False,
+    require_execution: bool = True,
     require_review: bool = False,
     timeout_seconds: int = 3600,
 ) -> dict[str, Any]:
     """Complete deterministic workflow artifacts for a prepared case."""
     case_dir = Path(case_path).expanduser().resolve()
-    execution_gate_enabled = _bool_env("ENABLE_EXECUTION", False)
+    execution_gate_enabled = _bool_env("ENABLE_EXECUTION", True)
     finalization = finalize_nonexecution_artifacts(
         case_dir,
         user_request=user_request,
@@ -382,7 +382,7 @@ class OpenFOAMDomainService:
     case_path: str | os.PathLike[str]
     user_request: str
     tutorial_path: str | os.PathLike[str]
-    require_execution: bool = False
+    require_execution: bool = True
     require_review: bool = False
 
     @property
@@ -404,7 +404,7 @@ class OpenFOAMDomainService:
         return run_execution_preflight(self.case_dir)
 
     def run_case(self, timeout_seconds: int = 3600) -> dict[str, Any]:
-        execution_gate_enabled = _bool_env("ENABLE_EXECUTION", False)
+        execution_gate_enabled = _bool_env("ENABLE_EXECUTION", True)
         finalize_nonexecution_artifacts(
             self.case_dir,
             user_request=self.user_request,
@@ -460,7 +460,7 @@ def make_openfoam_tools(
     case_path: str | os.PathLike[str],
     user_request: str,
     tutorial_path: str | os.PathLike[str],
-    default_require_execution: bool = False,
+    default_require_execution: bool = True,
     default_require_review: bool = False,
 ):
     """Return plain callables for legacy adapters; no agent framework required."""
@@ -494,7 +494,7 @@ def make_openfoam_tools(
             case_dir,
             user_request=user_request,
             reason="run_openfoam_case pre-execution deterministic control finalization",
-            execution_enabled=_bool_env("ENABLE_EXECUTION", False),
+            execution_enabled=_bool_env("ENABLE_EXECUTION", True),
         )
         result = run_openfoam_case_once(case_dir, timeout_seconds=timeout_seconds)
         result["post_processing"] = write_post_processing_report_file(case_dir)

@@ -51,7 +51,9 @@ principia-dsh --profile web
 For a headless task, append the task text after `--profile headless`. The
 workspace wrapper reads its locally provisioned API-key file into the child
 process only; it does not copy the credential into this repository or the DSH
-profile.
+profile. The installed Principia wrapper enables real solver execution by
+default. Set `ENABLE_EXECUTION=false REQUIRE_EXECUTION=false` before the command
+for retrieval, setup, or CI sessions that must not start OpenFOAM.
 
 The commands below reproduce the project environments if this workspace is
 moved to another machine.
@@ -65,13 +67,14 @@ python -m pip install -e '.[dev]'
 pytest
 ```
 
-Before enabling solver execution, set `OPENFOAM_BASHRC` and
-`BLASTFOAM_BASHRC` in the host environment to that machine's actual setup
-scripts. They intentionally have no repository default. If the MCP process
+For solver execution, set `OPENFOAM_BASHRC` and `BLASTFOAM_BASHRC` in the host
+environment to that machine's actual setup scripts. They intentionally have no
+portable repository path default. If the MCP process
 already inherits a fully sourced OpenFOAM environment, they may remain empty;
 preflight reports that it is relying on the inherited `PATH`. A configured
-path that is not a readable file blocks execution. `ENABLE_EXECUTION` remains
-`false` in the tracked template.
+path that is not a readable file blocks execution. `ENABLE_EXECUTION` and
+`REQUIRE_EXECUTION` are `true` in the tracked template; an explicit false value
+is the configuration-only override.
 
 Prepare the bundle:
 
@@ -85,7 +88,7 @@ Export `PRINCIPIA_PROJECT_ROOT` and `PRINCIPIA_PYTHON`, install the bundle into 
 The compatibility adapter for the existing chapter 3 evaluator is documented
 in [experiments/end2end/README.md](experiments/end2end/README.md). Its dry-run
 mode validates case selection and result shape without starting DSH or a solver;
-real solver execution remains an explicit opt-in.
+normal benchmark runs execute the solver by default.
 
 ## Repository boundaries
 

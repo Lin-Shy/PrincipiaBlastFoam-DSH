@@ -14,4 +14,4 @@ npm run check
 npm pack
 ```
 
-The checked-in `lib/` output makes local-path and tarball installation loadable without authorizing an install-time build script. Before booting DSH, set `PRINCIPIA_PROJECT_ROOT` and optionally `PRINCIPIA_PYTHON`, `BLASTFOAM_TUTORIALS`, and `PRINCIPIA_KNOWLEDGE_GRAPH` in the DSH environment.
+The checked-in `lib/` output makes local-path and tarball installation loadable without authorizing an install-time build script. Before booting DSH, set `PRINCIPIA_PROJECT_ROOT` and optionally `PRINCIPIA_PYTHON`, `BLASTFOAM_TUTORIALS`, and `PRINCIPIA_KNOWLEDGE_GRAPH` in the DSH environment. Solver execution and strict execution artifacts default on through `ENABLE_EXECUTION=true` and `REQUIRE_EXECUTION=true`; set both false explicitly for a non-executing session.

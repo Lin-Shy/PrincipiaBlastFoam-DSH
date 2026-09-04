@@ -135,6 +135,11 @@ def build_case_prompt(
         if execution_enabled
         else "Execution is disabled. Do not invoke blastFoam, Allrun, OpenFOAM utilities, or any solver process."
     )
+    artifact_text = (
+        "Execution artifacts are required and must be backed by filesystem and solver-log evidence."
+        if execution_enabled
+        else "State clearly when an artifact is not applicable because execution is disabled."
+    )
     return f"""You are running controlled Chapter 3 benchmark case {case_id!r}.
 
 Use the project skill `blastfoam-workflow` and its specialist subagents. Work in this exact case directory:
@@ -156,7 +161,7 @@ Required procedure:
 4. {execution_text}
 5. Finalize all applicable standard artifacts: physics_report.md, execution_report.md,
    execution_status.json, workflow_evidence.md, artifact_contract.json, review_report.md,
-   and post_processing_report.md. State clearly when an artifact is not applicable because execution is disabled.
+   and post_processing_report.md. {artifact_text}
 6. Do not claim a solver run, time directory, or clean solver end without filesystem evidence.
 
 End the final response with exactly:
@@ -454,11 +459,20 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--run-as-user")
     parser.add_argument("--allow-root-openfoam", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
-    parser.add_argument(
+    execution_group = parser.add_mutually_exclusive_group()
+    execution_group.add_argument(
         "--enable-execution",
+        dest="execution_enabled",
         action="store_true",
-        help="Opt in to solver execution. The adapter and MCP execution service default to disabled.",
+        help="Enable solver execution (default; retained for command compatibility).",
     )
+    execution_group.add_argument(
+        "--disable-execution",
+        dest="execution_enabled",
+        action="store_false",
+        help="Disable all solver and OpenFOAM utility execution for this benchmark run.",
+    )
+    parser.set_defaults(execution_enabled=True)
     parser.add_argument("--dsh-bin", type=Path, default=DEFAULT_DSH_BIN)
     parser.add_argument("--dsh-home", type=Path, default=DEFAULT_DSH_HOME)
     parser.add_argument("--dsh-profile", default="headless")
@@ -484,7 +498,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     run_root.mkdir(parents=True, exist_ok=False)
     case_root = run_root / "cases"
     logs_root = run_root / "logs"
-    execution_enabled = bool(args.enable_execution)
+    execution_enabled = bool(args.execution_enabled)
 
     if not args.dry_run:
         if not args.dsh_bin.is_file():

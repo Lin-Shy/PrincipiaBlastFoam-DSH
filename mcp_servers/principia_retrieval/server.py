@@ -27,6 +27,16 @@ TimeoutSeconds = Annotated[int, Field(ge=1, le=86400)]
 DetailLevel = Literal["candidates", "detail", "content", "full", "legacy", "all"]
 
 
+def _bool_env(name: str, default: bool) -> bool:
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return value.lower() in {"1", "true", "yes", "on"}
+
+
+DEFAULT_REQUIRE_EXECUTION = _bool_env("REQUIRE_EXECUTION", True)
+
+
 def _configured_root(env_name: str, default: Path | None = None) -> Path:
     raw = os.getenv(env_name, "").strip()
     if raw:
@@ -66,8 +76,8 @@ mcp = FastMCP(
     "principia-blastfoam",
     instructions=(
         "Knowledge retrieval and deterministic OpenFOAM workflow tools for "
-        "PrincipiaBlastFoam. Solver execution is always gated by "
-        "ENABLE_EXECUTION=true."
+        "PrincipiaBlastFoam. Solver execution is enabled by default and can be "
+        "disabled explicitly with ENABLE_EXECUTION=false."
     ),
 )
 
@@ -229,7 +239,7 @@ def run_case(
     user_request: RequestText,
     timeout_seconds: TimeoutSeconds = 3600,
 ) -> Dict[str, Any]:
-    """Run case_path once; ENABLE_EXECUTION=true remains a mandatory gate."""
+    """Run case_path once unless ENABLE_EXECUTION is explicitly false."""
     return _call_domain(
         "run_case",
         case_path=case_path,
@@ -243,11 +253,11 @@ def complete_workflow(
     case_path: PathText,
     user_request: RequestText,
     tutorial_path: PathText | None = None,
-    require_execution: bool = False,
+    require_execution: bool = DEFAULT_REQUIRE_EXECUTION,
     require_review: bool = False,
     timeout_seconds: TimeoutSeconds = 3600,
 ) -> Dict[str, Any]:
-    """Finalize, optionally execute, and validate required workflow artifacts."""
+    """Finalize, execute by default, and validate required workflow artifacts."""
     with redirect_stdout(sys.stderr):
         validated_case = _validated_case_path(case_path)
         validated_tutorial = (
@@ -280,7 +290,7 @@ def write_post_processing(case_path: PathText) -> Dict[str, Any]:
 @mcp.tool()
 def validate_artifacts(
     case_path: PathText,
-    require_execution: bool = False,
+    require_execution: bool = DEFAULT_REQUIRE_EXECUTION,
     require_review: bool = False,
 ) -> Dict[str, Any]:
     """Validate workflow artifact contracts and write artifact_contract.json."""

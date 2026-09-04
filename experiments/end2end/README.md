@@ -53,9 +53,12 @@ Provide credentials in the process environment, or use `--api-key-file` (or
 child process as `DEEPSEEK_API_KEY`; neither the key nor the prompt is stored in
 the benchmark report or printed in its command field.
 
-Solver execution is disabled by default even for a real DSH run. The adapter
-sets both `ENABLE_EXECUTION=false` and `REQUIRE_EXECUTION=false`. A future
-controlled solver campaign must opt in explicitly with `--enable-execution`,
-after separately verifying OpenFOAM environment and cleanup policy. The current
-Chapter 3 outer runner does not forward that new flag, so its DSH migration path
-remains non-executing until the campaign launcher is intentionally updated.
+Solver execution is enabled by default for a real DSH benchmark run. The
+adapter sets both `ENABLE_EXECUTION=true` and `REQUIRE_EXECUTION=true`, so the
+outer Chapter 3 runners work without a new flag. Verify the OpenFOAM environment,
+case output root, timeouts, and cleanup policy before starting a real campaign.
+
+Use `--disable-execution` for configuration-only development or CI. The legacy
+`--enable-execution` spelling remains accepted for explicitness and command
+compatibility. `--dry-run` always constructs commands and result contracts only;
+it never starts DSH or OpenFOAM, regardless of the execution setting.

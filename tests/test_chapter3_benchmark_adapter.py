@@ -29,7 +29,7 @@ def sample_case() -> dict:
     }
 
 
-def test_builds_headless_dsh_command_without_secret_or_execution() -> None:
+def test_builds_headless_dsh_command_without_secret_when_execution_disabled() -> None:
     case_path = Path("/tmp/results/cases/shock_tube_smoke")
     prompt = adapter.build_case_prompt(
         sample_case(),
@@ -85,7 +85,7 @@ def test_dry_run_writes_chapter3_compatible_contract_without_case(tmp_path: Path
     report = json.loads(reports[0].read_text(encoding="utf-8"))
     assert report["benchmark"]["name"] == "adapter-test"
     assert report["settings"]["adapter"] == "principia-blastfoam-dsh"
-    assert report["settings"]["execution_enabled"] is False
+    assert report["settings"]["execution_enabled"] is True
     assert report["aggregate"]["cases_total"] == 1
     assert report["aggregate"]["cases_executed"] == 0
 
@@ -106,6 +106,21 @@ def test_dry_run_writes_chapter3_compatible_contract_without_case(tmp_path: Path
     assert result["run"]["command"][-1] == "<benchmark-prompt>"
     assert not Path(result["summary"]["case_path"]).exists()
     assert not (reports[0].parent / "logs").exists()
+
+
+def test_execution_defaults_enabled_and_can_be_explicitly_disabled() -> None:
+    parser = adapter.build_parser()
+    default_args = parser.parse_args(["--cases-file", "/tmp/cases.json"])
+    disabled_args = parser.parse_args(
+        ["--cases-file", "/tmp/cases.json", "--disable-execution"]
+    )
+    explicit_args = parser.parse_args(
+        ["--cases-file", "/tmp/cases.json", "--enable-execution"]
+    )
+
+    assert default_args.execution_enabled is True
+    assert disabled_args.execution_enabled is False
+    assert explicit_args.execution_enabled is True
 
 
 def test_case_selection_rejects_unknown_id() -> None:

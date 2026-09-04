@@ -319,6 +319,16 @@ class TutorialInitializer:
                 if "twochargedetonation" in path or "twocharge" in path:
                     score -= 80
 
+            shock_tube_request = any(
+                term in request
+                for term in ("shock tube", "shocktube", "sod", "激波管")
+            )
+            if shock_tube_request:
+                if "shocktube" in path or "shock_tube" in path:
+                    score += 180
+                elif "triplepoint" in path:
+                    score -= 80
+
             obstacle_reflection_request = any(
                 term in request
                 for term in (

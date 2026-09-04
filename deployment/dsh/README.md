@@ -36,6 +36,9 @@ Set these variables outside Git:
 - `PRINCIPIA_CASE_ROOT`: only directory in which case-mutating domain tools may operate; defaults to `outputs` under `PRINCIPIA_PROJECT_ROOT`.
 - `BLASTFOAM_TUTORIALS`: external blastFoam tutorial root used by retrieval; defaults to a sibling `blastFoam_tutorials` directory.
 - `PRINCIPIA_KNOWLEDGE_GRAPH`: optional knowledge-graph file override.
+- `ENABLE_EXECUTION` and `REQUIRE_EXECUTION`: default to `true`. Set both to `false` for a configuration-only or CI session that must not start a solver.
+- `OPENFOAM_BASHRC` and `BLASTFOAM_BASHRC`: host-specific setup scripts. If omitted, preflight warns and relies on inherited `PATH`; an explicitly configured missing file blocks execution.
+- `OPENFOAM_EXECUTION_USER`: recommended when DSH runs as root. The domain service may transfer ownership of only the bounded generated case when `OPENFOAM_CHOWN_CASE=true`.
 - `RETRIEVAL_LLM_API_KEY`: optional retrieval-fallback credential; the MCP client must pass it explicitly because secret-like ambient names are scrubbed from stdio children.
 - `DSH_PERMISSION_MODE`: normally `workspace-write`; never place production secrets in the profile patch.
 

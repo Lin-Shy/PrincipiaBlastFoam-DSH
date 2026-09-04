@@ -44,6 +44,17 @@ def test_initializer_selects_axisymmetric_charge(tmp_path: Path) -> None:
     assert (tmp_path / "system" / "controlDict").exists()
 
 
+def test_initializer_selects_shock_tube_not_triple_point(tmp_path: Path) -> None:
+    result = initialize_case_from_tutorial(
+        case_path=tmp_path,
+        user_request="运行真实 blastFoam 激波管短时 smoke。",
+        tutorial_path=TUTORIAL_ROOT,
+    )
+
+    assert result["initialized"] is True
+    assert result["tutorial_case_path"] == "blastFoam/shockTube_tabulated"
+
+
 def test_domain_service_completes_nonexecution_artifacts(tmp_path: Path) -> None:
     control = tmp_path / "system" / "controlDict"
     control.parent.mkdir(parents=True)
@@ -55,6 +66,7 @@ def test_domain_service_completes_nonexecution_artifacts(tmp_path: Path) -> None
         case_path=tmp_path,
         user_request="短时 smoke test，endTime 控制在 0.0005 秒以内。",
         tutorial_path=TUTORIAL_ROOT,
+        require_execution=False,
     )
 
     result = service.complete(timeout_seconds=30)
@@ -68,16 +80,31 @@ def test_domain_service_completes_nonexecution_artifacts(tmp_path: Path) -> None
     assert "endTime 0.0005;" in control.read_text(encoding="utf-8")
 
 
-def test_execution_is_disabled_by_default(tmp_path: Path, monkeypatch) -> None:
-    monkeypatch.delenv("ENABLE_EXECUTION", raising=False)
+def test_execution_can_be_disabled_explicitly(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setenv("ENABLE_EXECUTION", "false")
 
     result = run_openfoam_case_once(tmp_path)
 
     assert result == {
         "started": False,
         "blocked": True,
-        "reason": "ENABLE_EXECUTION is not true; solver was not started.",
+        "reason": "ENABLE_EXECUTION is explicitly false; solver was not started.",
     }
+
+
+def test_execution_is_enabled_by_default_but_preflight_still_blocks(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    monkeypatch.delenv("ENABLE_EXECUTION", raising=False)
+    monkeypatch.setenv("OPENFOAM_BASHRC", str(tmp_path / "missing-bashrc"))
+
+    result = run_openfoam_case_once(tmp_path)
+
+    assert result["started"] is False
+    assert result["blocked"] is True
+    assert "preflight" in result
+    assert "does not point to a readable file" in " ".join(result["preflight"]["blockers"])
 
 
 def test_domain_run_case_disabled_reports_skipped_not_enabled(tmp_path: Path, monkeypatch) -> None:
@@ -253,7 +280,8 @@ def test_mcp_exposes_domain_tools_and_completes_without_execution(
     tmp_path: Path,
     monkeypatch,
 ) -> None:
-    tool_names = {tool.name for tool in asyncio.run(mcp_server.mcp.list_tools())}
+    listed_tools = asyncio.run(mcp_server.mcp.list_tools())
+    tool_names = {tool.name for tool in listed_tools}
     assert {
         "initialize_case",
         "case_digest",
@@ -265,6 +293,8 @@ def test_mcp_exposes_domain_tools_and_completes_without_execution(
         "validate_artifacts",
         "diagnostics",
     } <= tool_names
+    complete_tool = next(tool for tool in listed_tools if tool.name == "complete_workflow")
+    assert complete_tool.inputSchema["properties"]["require_execution"]["default"] is True
 
     monkeypatch.setenv("PRINCIPIA_CASE_ROOT", str(tmp_path))
     case_path = tmp_path / "safe-case"

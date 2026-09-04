@@ -19,6 +19,14 @@
           PRINCIPIA_CASE_ROOT: !!js process.env.PRINCIPIA_CASE_ROOT ?? (process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()) + '/outputs'
           BLASTFOAM_TUTORIALS: !!js process.env.BLASTFOAM_TUTORIALS ?? (process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()) + '/../blastFoam_tutorials'
           RETRIEVAL_LLM_API_KEY: !!js process.env.RETRIEVAL_LLM_API_KEY ?? ''
+          ENABLE_EXECUTION: !!js process.env.ENABLE_EXECUTION ?? 'true'
+          REQUIRE_EXECUTION: !!js process.env.REQUIRE_EXECUTION ?? 'true'
+          OPENFOAM_BASHRC: !!js process.env.OPENFOAM_BASHRC ?? ''
+          BLASTFOAM_BASHRC: !!js process.env.BLASTFOAM_BASHRC ?? ''
+          OPENFOAM_EXECUTION_USER: !!js process.env.OPENFOAM_EXECUTION_USER ?? ''
+          OPENFOAM_CHOWN_CASE: !!js process.env.OPENFOAM_CHOWN_CASE ?? 'true'
+          PRINCIPIA_EXECUTION_TIMEOUT_SECONDS: !!js process.env.PRINCIPIA_EXECUTION_TIMEOUT_SECONDS ?? '3600'
+          PRINCIPIA_MIN_EXECUTION_TIMEOUT_SECONDS: !!js process.env.PRINCIPIA_MIN_EXECUTION_TIMEOUT_SECONDS ?? '180'
         toolCallTimeoutMs: 60000
         failOnStartupError: false
         reconnect:
