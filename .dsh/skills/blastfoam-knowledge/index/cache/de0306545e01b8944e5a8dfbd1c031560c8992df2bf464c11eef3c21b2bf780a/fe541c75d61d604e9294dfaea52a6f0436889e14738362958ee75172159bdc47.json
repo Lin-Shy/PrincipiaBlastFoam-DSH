@@ -1,0 +1,1 @@
+{"diagnostics":[],"entries":[],"kind":"text","steps":[],"text":"participants:\n\n    Solid:\n        interfaces:\n        - nodes-mesh: Solid-Mesh\n          patch: surface\n          read-data: [Force]\n          write-data: [Displacement]\n\nprecice-config-file: ../precice-config.xml\n"}

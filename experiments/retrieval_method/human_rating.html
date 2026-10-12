@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>第2章 · 人工评分</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#243547;background:#f4f6f9;font-size:15px}*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid #c9d3df;border-radius:7px;padding:8px 12px;background:white;color:#243547}button:hover:not(:disabled){background:#eaf1fb}button:disabled{opacity:.5;cursor:default}button.primary{background:#245da4;color:white;border-color:#245da4}input,select,textarea{border:1px solid #c9d3df;border-radius:6px;padding:8px;background:white;max-width:100%}header{padding:20px 28px;background:white;border-bottom:1px solid #dce2ea}h1{font-size:23px;margin:0 0 6px}h2{font-size:19px}h3{font-size:16px}p{line-height:1.6}.muted{color:#607185;font-size:13px}.toolbar,.profile,.nav,.scores{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.profile{margin:14px 0}.toolbar{margin:10px 0}.profile label{font-size:13px}.layout{display:grid;grid-template-columns:205px minmax(0,1fr);gap:20px;padding:20px 28px;max-width:1550px;margin:auto}aside{align-self:start;position:sticky;top:15px;border:1px solid #dce2ea;border-radius:10px;background:white;padding:12px}#case-list{max-height:65vh;overflow:auto;display:grid;gap:5px;margin-top:10px}#case-list button{text-align:left;font-size:13px}#case-list button[aria-current=true]{border-color:#245da4;background:#e8f0fc}.columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}.card{border:1px solid #dce2ea;background:white;border-radius:10px;padding:18px;margin-bottom:16px;min-width:0}.verbatim{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.75}.quote{white-space:pre-wrap;overflow-wrap:anywhere;font-family:ui-monospace,monospace;font-size:13px;line-height:1.65;padding:12px;background:#f5f7fa;border-left:3px solid #93aace}.meta{font-size:12px;color:#607185;overflow-wrap:anywhere}.rating{border-top:1px solid #e3e8ef;padding:12px 0}.rating h3{margin:5px 0 10px}.scores button{min-width:44px}.scores button[aria-pressed=true]{background:#245da4;color:white;border-color:#245da4}.rubric{font-size:13px;line-height:1.65;margin:8px 0;color:#607185}.nav{justify-content:space-between;margin-bottom:14px}textarea{width:100%;min-height:75px}summary{cursor:pointer;line-height:1.7}details{margin:10px 0}#message{min-height:24px;color:#245da4;font-size:14px}#message.error{color:#ac3333}#mode{display:inline-block;padding:3px 9px;border-radius:20px;background:#e9f1fc;color:#245da4;font-size:13px}progress{width:100%;height:12px}.comparison-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.comparison-grid .card{margin:0}table{border-collapse:collapse;width:100%;font-size:13px}th,td{text-align:left;border-bottom:1px solid #dce2ea;padding:9px}dialog{max-width:600px;width:90%;border:1px solid #c9d3df;border-radius:12px;padding:22px}dialog::backdrop{background:#1b293780}.dialog-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:15px}#comparison[hidden]{display:none}.section-tab{border-bottom:2px solid #245da4}kbd{background:#edf1f6;border-radius:3px;padding:1px 4px}.identity{color:#245da4}#revision{color:#8b4d0a}@media(max-width:950px){.columns,.comparison-grid{grid-template-columns:1fr}.layout{grid-template-columns:160px minmax(0,1fr);padding:14px;gap:12px}header{padding:18px}}@media(max-width:600px){.layout{display:block}aside{position:static;margin-bottom:14px}#case-list{max-height:150px;grid-template-columns:repeat(3,1fr)}.profile{display:grid}.nav{gap:7px}.card{padding:14px}}
+</style></head><body>
+<header><h1>第2章 · 人工评分 <span id="mode">盲审</span></h1>
+<div class="muted">48份冻结回答 · 两项五分制 · 备注选填 · 全程离线</div>
+<div class="profile">
+<label>审阅者代号 <input id="reviewer" maxlength="80" placeholder="例如 reviewer01" autocomplete="off"></label>
+<label>是否参与开发 <select id="development"><option value="">请选择</option><option value="false">否</option><option value="true">是</option></select></label>
+<label>此前是否接触方法输出 <select id="exposed"><option value="">请选择</option><option value="false">否</option><option value="true">是</option></select></label>
+</div>
+<div class="toolbar">
+<button id="draft">下载草稿JSON</button><button id="import">导入评分</button>
+<button id="seal" class="primary">封存并下载JSON</button><button id="csv">下载CSV</button>
+<button id="unblind" disabled>加载解盲文件</button><button id="revision" hidden>建立解盲后修订</button>
+</div><input id="import-file" type="file" accept=".json,application/json" hidden><input id="unblind-file" type="file" accept=".json,application/json" hidden>
+<div id="message" role="status" aria-live="polite"></div>
+<details><summary class="muted">评分说明与保存提示</summary><div class="muted">
+<p>请根据必要事实检查答案完整正确性，再核对每条断言所用的引用原文。来源坐标正确不等于引用支持。没有有效引用的答案可给引用1分。无法确认时选“无法判断”，不要猜分。</p>
+<p>缓存便于续审；下载JSON才是可移植的结果。所有评分均由你填写。两项都选分或“无法判断”算完成，备注可空。先下载封存JSON，再加载旁边的 unblind.json 解盲。</p>
+<p>键盘：<kbd>1</kbd>–<kbd>5</kbd> 给当前维度评分，<kbd>U</kbd> 无法判断，<kbd>F</kbd> 事实、<kbd>C</kbd> 引用；<kbd>←</kbd><kbd>→</kbd> 切换样本。文本输入时快捷键停用。</p>
+<p>五分制不转换为通过/失败，48份会话不代表全量1728会话。原文公式保留LaTeX源码。解盲后修订单独标记，不能作为未接触方法的盲审记录。</p>
+</div></details></header>
+<div class="layout"><aside><strong id="progress-label">已完成 0 / 48</strong><progress id="progress" max="48" value="0"></progress>
+<select id="filter" aria-label="样本筛选"><option value="all">全部样本</option><option value="pending">未完成</option><option value="done">已完成</option></select><div id="case-list"></div></aside>
+<main><div class="nav"><button id="previous">← 上一份</button><strong id="case-title"></strong><button id="next">下一份 →</button><button id="next-pending">下一份未完成</button></div>
+<section id="review"><article class="card"><h2 id="question"></h2><h3>回答原文</h3><div id="answer" class="verbatim"></div></article>
+<div class="columns"><section><article class="card"><h3>必要事实与要求</h3><div id="requirements"></div><details><summary>允许回答、禁止误解与歧义说明</summary><div id="constraints"></div></details></article>
+<article class="card"><h3>必要权威证据</h3><div id="evidence"></div></article></section>
+<section><article class="card"><h3>回答使用的引用</h3><div id="references"></div></article>
+<article class="card" id="rating-card"><h2>人工评分</h2><div id="ratings"></div><label for="notes">备注（选填）</label><textarea id="notes" placeholder="可直接留空"></textarea><p id="row-status" class="muted"></p></article></section></div></section>
+<section id="comparison" hidden><article class="card"><h2>封存结果与方法对比</h2><p class="muted">同题面、同重复的六种方法。模型判断与人工五分制分别显示，未知项保持未知。</p><div id="statistics"></div><label>对比题目 <select id="comparison-question"></select></label></article><div id="comparison-panels" class="comparison-grid"></div></section>
+<div class="toolbar"><button id="review-tab" class="section-tab">逐份查看</button><button id="comparison-tab" hidden>方法对比</button></div>
+</main></div>
+<dialog id="conflict"><h2>检测到已有评分</h2><p id="conflict-text"></p><div class="dialog-actions"><button id="conflict-cancel">取消</button><button id="conflict-keep">保留当前</button><button id="conflict-replace" class="primary">使用导入版本</button></div></dialog>
+<dialog id="seal-dialog"><h2>封存人工评分</h2><p>两项评分均已完成。下载后本版本只读，请确认文件已保存。封存内容包含审阅者背景和输入哈希，不认证审阅者身份。</p><div class="dialog-actions"><button id="seal-cancel">返回检查</button><button id="seal-confirm" class="primary">确认并下载JSON</button></div></dialog>
+<script id="review-data" type="application/json">__REVIEW_DATA__</script><script>__REVIEW_SCRIPT__</script></body></html>

@@ -1,9 +1,3 @@
-"""Knowledge-graph retrieval engines exposed through the MCP server."""
+"""Knowledge retrieval is published by the blastfoam-knowledge skill index."""
 
-from .case_content_knowledge_graph import CaseContentKnowledgeGraphRetriever
-from .user_guide_knowledge_graph import UserGuideKnowledgeGraphRetriever
-
-__all__ = [
-    "CaseContentKnowledgeGraphRetriever",
-    "UserGuideKnowledgeGraphRetriever",
-]
+__all__: list[str] = []

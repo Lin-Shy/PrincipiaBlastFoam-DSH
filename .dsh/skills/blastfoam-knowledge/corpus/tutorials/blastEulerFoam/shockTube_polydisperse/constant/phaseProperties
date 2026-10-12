@@ -1,0 +1,582 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      MieGruneisenEOSProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+phases (coal particles0 particles1 particles2 particles3 particles4 gas);
+pRef 67e3;
+coal
+{
+    phaseType        granular;
+    diameterModel constant;
+    constantDiameterCoeffs
+    {
+        d           10e-6;
+    }
+    alphaMax    0.65;
+
+
+    type basic;
+    thermoType
+    {
+        equationOfState rhoConst;
+        thermo          eConst;
+        transport       constIso;
+    }
+    specie
+    {
+        molWeight   100.0;
+    }
+    equationOfState
+    {
+        rho0         1300;
+    }
+    transport
+    {
+        kappa       0.36;
+    }
+    thermodynamics
+    {
+        type        eConst;
+        Cv          987;           // Heat capacity
+        Hf          0.0;
+    }
+
+    kineticTheoryCoeffs
+    {
+        e       0.9;
+    }
+    residualRho 0;
+    residualAlpha 1e-10;
+}
+
+particles0
+{
+    phaseType        granular;
+
+    diameterModel constant;
+    constantDiameterCoeffs
+    {
+        d           1.685e-6;
+    }
+
+    alphaMax    0.65;
+
+    type basic;
+    thermoType
+    {
+        equationOfState rhoConst;
+        thermo          eConst;
+        transport       constIso;
+    }
+    specie
+    {
+        molWeight   100.0;
+    }
+    equationOfState
+    {
+        rho0         2700;
+    }
+    transport
+    {
+        kappa       0.36;
+    }
+    thermodynamics
+    {
+        type        eConst;
+        Cv          987;           // Heat capacity
+        Hf          0.0;
+    }
+
+    kineticTheoryCoeffs
+    {
+        e       0.9;
+    }
+    residualRho 0;
+    residualAlpha 1e-10;
+}
+particles1
+{
+    phaseType        granular;
+
+    diameterModel constant;
+    constantDiameterCoeffs
+    {
+        d           8.931e-6;
+    }
+    alphaMax    0.65;
+
+    type basic;
+    thermoType
+    {
+        equationOfState rhoConst;
+        thermo          eConst;
+        transport       constIso;
+    }
+    specie
+    {
+        molWeight   100.0;
+    }
+    equationOfState
+    {
+        rho0         2700;
+    }
+    transport
+    {
+        kappa       0.36;
+    }
+    thermodynamics
+    {
+        type        eConst;
+        Cv          987;           // Heat capacity
+        Hf          0.0;
+    }
+
+    kineticTheoryCoeffs
+    {
+        e       0.9;
+    }
+    residualRho 0;
+    residualAlpha 1e-10;
+}
+
+particles2
+{
+    phaseType        granular;
+
+    diameterModel constant;
+    constantDiameterCoeffs
+    {
+        d           26.201e-6;
+    }
+
+    alphaMax    0.65;
+
+    type basic;
+    thermoType
+    {
+        equationOfState rhoConst;
+        thermo          eConst;
+        transport       constIso;
+    }
+    specie
+    {
+        molWeight   100.0;
+    }
+    equationOfState
+    {
+        rho0         2700;
+    }
+    transport
+    {
+        kappa       0.36;
+    }
+    thermodynamics
+    {
+        type        eConst;
+        Cv          987;           // Heat capacity
+        Hf          0.0;
+    }
+
+    kineticTheoryCoeffs
+    {
+        e       0.9;
+    }
+    residualRho 0;
+    residualAlpha 1e-10;
+}
+
+particles3
+{
+    phaseType        granular;
+
+    diameterModel constant;
+    constantDiameterCoeffs
+    {
+        d           81.633e-6;
+    }
+    alphaMax    0.65;
+
+    type basic;
+    thermoType
+    {
+        equationOfState rhoConst;
+        thermo          eConst;
+        transport       constIso;
+    }
+    specie
+    {
+        molWeight   100.0;
+    }
+    equationOfState
+    {
+        rho0         2700;
+    }
+    transport
+    {
+        kappa       0.36;
+    }
+    thermodynamics
+    {
+        type        eConst;
+        Cv          987;           // Heat capacity
+        Hf          0.0;
+    }
+
+    kineticTheoryCoeffs
+    {
+        e       0.9;
+    }
+    residualRho 0;
+    residualAlpha 1e-10;
+}
+
+particles4
+{
+    phaseType        granular;
+
+    diameterModel constant;
+    constantDiameterCoeffs
+    {
+        d           171.239e-6;
+    }
+
+    alphaMax    0.65;
+
+    type basic;
+    thermoType
+    {
+        equationOfState rhoConst;
+        thermo          eConst;
+        transport       constIso;
+    }
+    specie
+    {
+        molWeight   100.0;
+    }
+    equationOfState
+    {
+        rho0         2700;
+    }
+    transport
+    {
+        kappa       0.36;
+    }
+    thermodynamics
+    {
+        type        eConst;
+        Cv          987;           // Heat capacity
+        Hf          0.0;
+    }
+
+    kineticTheoryCoeffs
+    {
+        e       0.9;
+    }
+    residualRho 0;
+    residualAlpha 1e-10;
+}
+
+gas
+{
+    phaseType            fluid;
+
+    diameterModel constant;
+    constantDiameterCoeffs
+    {
+        d           0;
+    }
+
+    type basic;
+    thermoType
+    {
+        transport   const;
+        thermo      eConst;
+        equationOfState idealGas;
+    }
+    equationOfState
+    {
+        gamma           1.4;            // Heat capactiy ratio
+    }
+    specie
+    {
+        molWeight       28.97;
+    }
+    transport
+    {
+        mu              1.81e-5;
+        Pr              1;
+    }
+    thermodynamics
+    {
+        type        eConst;
+        Cv          718;
+        Hf          0;
+    }
+
+    residualRho     1e-6;
+    residualAlpha   1e-10;
+}
+
+blending
+{
+    default
+    {
+        type none;
+        continuousPhase gas;
+    }
+}
+
+interfacialPressure
+(
+    (gas and particles0)
+    {
+        type single;
+        phase gas;
+    }
+    (gas and particles1)
+    {
+        type single;
+        phase gas;
+    }
+    (gas and particles2)
+    {
+        type single;
+        phase gas;
+    }
+    (gas and particles3)
+    {
+        type single;
+        phase gas;
+    }
+    (gas and particles4)
+    {
+        type single;
+        phase gas;
+    }
+    (gas and coal)
+    {
+        type single;
+        phase gas;
+    }
+);
+
+interfacialVelocity
+(
+    (gas and particles0)
+    {
+        type single;
+        phase particles0;
+    }
+    (gas and particles1)
+    {
+        type single;
+        phase particles1;
+    }
+    (gas and particles2)
+    {
+        type single;
+        phase particles2;
+    }
+    (gas and particles3)
+    {
+        type single;
+        phase particles3;
+    }
+    (gas and particles4)
+    {
+        type single;
+        phase particles4;
+    }
+    (gas and coal)
+    {
+        type single;
+        phase coal;
+    }
+);
+
+aspectRatio
+(
+);
+
+solveDragODE off;
+dragODECoeffs
+{
+    solver seulex;
+    relTol 1e-3;
+
+}
+
+drag
+(
+    (coal in gas)
+    {
+        type GidaspowErgunWenYu;
+        residualRe 1e-3;
+        swarmCorrection
+        {
+            type none;
+        }
+    }
+    (particles0 in gas)
+    {
+        type GidaspowErgunWenYu;
+        residualRe 1e-3;
+        swarmCorrection
+        {
+            type none;
+        }
+    }
+    (particles1 in gas)
+    {
+        type GidaspowErgunWenYu;
+        residualRe 1e-3;
+        swarmCorrection
+        {
+            type none;
+        }
+    }
+    (particles2 in gas)
+    {
+        type GidaspowErgunWenYu;
+        residualRe 1e-3;
+        swarmCorrection
+        {
+            type none;
+        }
+    }
+    (particles3 in gas)
+    {
+        type GidaspowErgunWenYu;
+        residualRe 1e-3;
+        swarmCorrection
+        {
+            type none;
+        }
+    }
+    (particles4 in gas)
+    {
+        type GidaspowErgunWenYu;
+        residualRe 1e-3;
+        swarmCorrection
+        {
+            type none;
+        }
+    }
+);
+
+virtualMass
+(
+);
+
+heatTransfer
+(
+    (coal in gas)
+    {
+        type RanzMarshall;
+        NuModel Gunn;
+    }
+    (particles0 in gas)
+    {
+        type RanzMarshall;
+        NuModel Gunn;
+    }
+    (particles1 in gas)
+    {
+        type RanzMarshall;
+        NuModel Gunn;
+    }
+    (particles2 in gas)
+    {
+        type RanzMarshall;
+        NuModel Gunn;
+    }
+    (particles3 in gas)
+    {
+        type RanzMarshall;
+        NuModel Gunn;
+    }
+    (particles4 in gas)
+    {
+        type RanzMarshall;
+        NuModel Gunn;
+    }
+);
+
+lift
+(
+    (coal in gas)
+    {
+        type constant;
+        Cl 0.5;
+    }
+    (particles0 in gas)
+    {
+        type constant;
+        Cl 0.5;
+    }
+    (particles1 in gas)
+    {
+        type constant;
+        Cl 0.5;
+    }
+    (particles2 in gas)
+    {
+        type constant;
+        Cl 0.5;
+    }
+    (particles3 in gas)
+    {
+        type constant;
+        Cl 0.5;
+    }
+    (particles4 in gas)
+    {
+        type constant;
+        Cl 0.5;
+    }
+);
+
+wallLubrication
+(
+);
+
+turbulentDispersion
+(
+);
+
+kineticTheory
+{
+    packingLimitModel YuStandish;
+    writeTotal yes;
+    residualAlpha 1e-10;
+
+    radialModel Lebowitz;
+    viscosityModel none;
+    conductivityModel Syamlal;
+    granularPressureModel Huilin;
+    frictionalStressModel JohnsonJackson;
+
+    JohnsonJacksonCoeffs
+    {
+        alphaMinFriction        0.5;
+        Fr                      0.05;
+        eta                     2;
+        p                       5;
+        phi                     28.5;
+        alphaDeltaMin           1e-6;
+    }
+}
+// ************************************************************************* //

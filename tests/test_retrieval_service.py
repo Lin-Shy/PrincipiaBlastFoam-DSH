@@ -24,13 +24,14 @@ def service(monkeypatch: pytest.MonkeyPatch) -> PrincipiaRetrievalService:
     return PrincipiaRetrievalService()
 
 
-def test_status_loads_bundled_knowledge_graph(service: PrincipiaRetrievalService) -> None:
+def test_status_loads_skill_knowledge_graph(service: PrincipiaRetrievalService) -> None:
     status = service.get_status()
 
     assert status["project_root"] == str(PROJECT_ROOT)
     assert status["case_nodes"] > 0
     assert status["case_relationships"] > 0
     assert "blastXiFoam/deflagrationToDetonationTransition" in status["known_cases"]
+    assert ".dsh/skills/blastfoam-knowledge/index/releases/" in status["knowledge_index"]
 
 
 def test_case_alias_and_file_lookup_are_deterministic(service: PrincipiaRetrievalService) -> None:
@@ -81,4 +82,4 @@ def test_file_content_lookup_rejects_path_traversal(service: PrincipiaRetrievalS
     )
 
     assert result["found"] is False
-    assert result["content"].startswith("File access denied outside BLASTFOAM_TUTORIALS")
+    assert result["content"].startswith("File access denied or unavailable in blastfoam-knowledge corpus")

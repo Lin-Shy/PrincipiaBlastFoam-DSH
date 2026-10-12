@@ -13,6 +13,22 @@ DeepSeek Harness profile
   -> 项目级 .dsh/skills
 ```
 
+## 共享研究设计
+
+研究定位与章节边界统一引用 [共享设计入口](../graduation-research/README.md)和[总体设计](../graduation-research/OVERVIEW.md)。本项目分别对应[第2章检索](../graduation-research/chapters/chapter02.md)、[第3章多智能体执行](../graduation-research/chapters/chapter03.md)和[第4章独立单agent RSI](../graduation-research/chapters/chapter04.md)。共享设计说明研究目标，本项目维护源码、配置与详细实施计划，实验归档维护冻结协议和证据；当前实现状态须依据代码和验证记录核验。
+
+## 知识图谱与检索定位
+
+第2章维护实现位于 `experiments/retrieval_method/`，实验统一在外部 `graduation-experiment-results/chapter2_retrieval/`。题集入口为 `datasets/natural_navigation_qa/`；最新论文结果为 `aliyun_8b_cross_source_v1/`，使用离线 `deepseek-flash` 与在线 `qwen3-8b`。该正式实验独立冻结44事实组合族/132题，不与公共题集50族/300题混算。留出集不锁定，gold仅供评测，不进入生产检索或回答。
+
+自研最终方法只持久化图谱与构图清单，读取原始权威文件核验；BM25/E5为隔离对照，Graphify `.txt`仅为可逆摄取适配。图关系表示文档/配置支持，不能直接声称物理运行条件已满足。最新实验的引用非劣效未获支持，同8B评分与AI复核仍有局限。实验适配器中的方法与生产MCP的接入状态须分别验证，不能因为论文成绩就假定线上集成完成。
+
+## 论文与第4章方向
+
+本项目是当前唯一在开发的PrincipiaBlastFoam多智能体应用，后续第3、4章正文和实验基于DSH。论文直接在同级 `graduation-manuscript/` 以LaTeX维护，所有最终图件在其 `assets/`。
+
+第4章独立研究单agent递归自改进（RSI），仅使用DSH框架，不继承第3章多角色系统。基线为冻结初始agent，对照为一次性自改进与多轮递归自改进；底层模型、工具权限和公共评分固定。设计、消融和实现顺序见 [DSH自进化计划](experiments/self_evolution/PLAN.md)。目前只有设计，没有DSH自进化正式收益结果；历史框架结果保留原身份。
+
 ## 当前实现
 
 - 7 个项目级 Skill，覆盖总编排、知识检索和 5 个有序工作阶段。

@@ -1,0 +1,19 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+# -- Create paraview file
+paraFoam -builtin -touch
+
+# -- Create the mesh for the fluid
+runApplication blockMesh
+
+# -- Set the initial conditions for the fluid
+runApplication setRefinedFields
+
+#- Run the calc
+runApplication $(getApplication)
+
+# ----------------------------------------------------------------- end-of-file

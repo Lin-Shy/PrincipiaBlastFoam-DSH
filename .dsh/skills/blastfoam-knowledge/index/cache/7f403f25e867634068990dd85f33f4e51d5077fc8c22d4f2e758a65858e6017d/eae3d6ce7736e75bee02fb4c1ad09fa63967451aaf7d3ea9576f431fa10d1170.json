@@ -1,0 +1,1 @@
+{"diagnostics":[],"entries":[],"kind":"text","steps":[],"text":"ulin perpendicular flap to the flow\nread Solid/flap.frd\nread Solid/flap.inp\nview elem\nview disp\nrot y\n#rot l 180\nds 1 e 4\n#graph NA time DISP D1\n#q\n#graph NA time DISP D2\n#q\n#quit\n\nanim real\n# movi frames auto\nds 2 ah 7\n# min 0\n# max 2.5e10\n#sys mv movie.gif figures/displacement.gif\n# quit\n"}

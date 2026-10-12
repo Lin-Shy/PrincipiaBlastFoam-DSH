@@ -1,0 +1,1 @@
+{"diagnostics":[],"entries":[],"kind":"text","steps":[],"text":"s 1.0;\nt0 1.0;\nv1 (2 1 1);\n\n//- Boundary Layer properties\nuRef       1.45;\nzRef       2.0;\nz0         0.0005;  // 0.5 mm\nzg         0.0;\nuDir       (0 1 0);\nzDir       (0 0 1);\n"}

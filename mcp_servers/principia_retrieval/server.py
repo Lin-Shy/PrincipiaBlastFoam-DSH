@@ -2,12 +2,15 @@ from __future__ import annotations
 
 import sys
 import os
-from contextlib import redirect_stdout
+import json
+import time
+import uuid
+from contextlib import redirect_stdout, contextmanager
 from pathlib import Path
 from typing import Annotated, Any, Dict, Literal
 
 from mcp.server.fastmcp import FastMCP
-from pydantic import Field
+from pydantic import Field, BaseModel, ConfigDict
 
 from mcp_servers.principia_retrieval.retrieval_service import get_service
 from principia_core.openfoam import OpenFOAMDomainService
@@ -25,6 +28,8 @@ LineLimit = Annotated[int, Field(ge=1, le=1000)]
 IterationLimit = Annotated[int, Field(ge=1, le=10)]
 TimeoutSeconds = Annotated[int, Field(ge=1, le=86400)]
 DetailLevel = Literal["candidates", "detail", "content", "full", "legacy", "all"]
+NavigationBudget = Annotated[int, Field(ge=1000, le=24000)]
+SourceLine = Annotated[int, Field(ge=1)]
 
 
 def _bool_env(name: str, default: bool) -> bool:
@@ -82,9 +87,22 @@ mcp = FastMCP(
 )
 
 
+@contextmanager
+def _tool_observation(name: str):
+    """Record names and timings on stderr, never query text or credentials."""
+    start=time.monotonic();status='ok'
+    print(json.dumps({'event':'principia_tool_start','tool':name}),file=sys.stderr,flush=True)
+    try:yield
+    except Exception:
+        status='error';raise
+    finally:
+        print(json.dumps({'event':'principia_tool_end','tool':name,'status':status,
+                          'seconds':round(time.monotonic()-start,6)}),file=sys.stderr,flush=True)
+
+
 def _call_service(method_name: str, *args: Any, **kwargs: Any) -> Dict[str, Any]:
     # stdio MCP uses stdout for JSON-RPC. Keep legacy retriever print output on stderr.
-    with redirect_stdout(sys.stderr):
+    with redirect_stdout(sys.stderr), _tool_observation(method_name):
         method = getattr(get_service(), method_name)
         return method(*args, **kwargs)
 
@@ -98,7 +116,7 @@ def _call_domain(
     **kwargs: Any,
 ) -> Dict[str, Any]:
     """Call deterministic domain code without corrupting stdio JSON-RPC."""
-    with redirect_stdout(sys.stderr):
+    with redirect_stdout(sys.stderr), _tool_observation(method_name):
         validated_case = _validated_case_path(case_path)
         validated_tutorial = (
             _validated_tutorial_path(tutorial_path)
@@ -121,15 +139,45 @@ def get_status() -> Dict[str, Any]:
 
 
 @mcp.tool()
+def locate_case_edits(query: RequestText, tutorial_case: PathText, translation: QueryText = "", budget: NavigationBudget = 5000, original_request: QueryText = "") -> str:
+    """定位算例要修改的完整字典路径、原文及有来源的关联配置。自然语言需求可附忠实英文翻译；关系不保证物理适用。"""
+    from mcp_servers.principia_retrieval import knowledge_navigation as navigation
+    with redirect_stdout(sys.stderr), _tool_observation('locate_case_edits'):
+        from mcp_servers.principia_retrieval.request_context import locate_with_context
+        return json.dumps(locate_with_context(navigation.locate,query,tutorial_case,translation,budget,original_request),ensure_ascii=False,separators=(',',':'))
+
+
+@mcp.tool()
+def check_case_dependencies(case_path: PathText, tutorial_case: PathText, budget: NavigationBudget = 5000) -> str:
+    """检查编辑后实际算例的条件依赖。仅审核范围内全零常数黏度可排除黏性依赖；unknown 不等于适用或通过，不替代运行检查。"""
+    from mcp_servers.principia_retrieval import knowledge_navigation as navigation
+    with redirect_stdout(sys.stderr), _tool_observation('check_case_dependencies'):
+        return json.dumps(navigation.assess(_validated_case_path(case_path),tutorial_case,budget),ensure_ascii=False,separators=(',',':'))
+
+
+@mcp.tool()
+def read_knowledge_source(path: PathText, start: SourceLine = 1, end: SourceLine = 80, budget: NavigationBudget = 5000) -> str:
+    """读取定位器返回的语料路径及行号，保留来源散列。complete=false 表示只读到该范围的前缀，可缩小范围继续读取。"""
+    from mcp_servers.principia_retrieval import knowledge_navigation as navigation
+    with redirect_stdout(sys.stderr), _tool_observation('read_knowledge_source'):
+        return json.dumps(navigation.source(path,start,end,budget),ensure_ascii=False,separators=(',',':'))
+
+
+@mcp.tool()
 def get_case_by_intent(query: RequestText) -> Dict[str, Any]:
     """Resolve a user query or alias such as DDT to a known blastFoam tutorial case."""
     return _call_service("get_case_by_intent", query)
 
 
 @mcp.tool()
-def get_files_for_case(case_path: PathText) -> Dict[str, Any]:
-    """Return files known for a tutorial case path."""
-    return _call_service("get_files_for_case", case_path)
+def get_files_for_case(case_path: PathText, original_request: QueryText = "") -> Dict[str, Any]:
+    """Return the full tutorial file inventory; optional task context adds read-only navigation."""
+    result = _call_service("get_files_for_case", case_path)
+    if not original_request:return result
+    from mcp_servers.principia_retrieval import knowledge_navigation as navigation
+    from mcp_servers.principia_retrieval.file_navigation import attach_file_navigation
+    with redirect_stdout(sys.stderr):
+        return attach_file_navigation(result,original_request,navigation)
 
 
 @mcp.tool()
@@ -211,7 +259,12 @@ def initialize_case(
     tutorial_path: PathText,
     force: bool = False,
 ) -> Dict[str, Any]:
-    """Initialize case_path from the best deterministic tutorial match."""
+    """Copy tutorial_path if it is a case (Allrun and Allclean present).
+
+    An explicit case path preserves the locator's selection. A collection path
+    instead selects its best deterministic tutorial match. Existing nonempty
+    targets are preserved unless force is explicitly requested.
+    """
     return _call_domain(
         "initialize_case",
         case_path=case_path,
@@ -219,6 +272,37 @@ def initialize_case(
         tutorial_path=tutorial_path,
         force=force,
     )
+
+
+class DictionaryEdit(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    path: PathText
+    entry: IdentifierText
+    value: Annotated[str, Field(max_length=16000)] | None
+
+
+@mcp.tool()
+def edit_case_dictionaries(
+    case_path: PathText,
+    edits: Annotated[list[DictionaryEdit], Field(min_length=1, max_length=64)],
+    dry_run: bool = False,
+) -> str:
+    """Apply explicit path/entry/value edits and parse all touched dictionaries before writing.
+
+    Use on an authorized case copy after locating edits. Null removes a literal key.
+    Creates missing parents and system/constant dictionaries; preserves regex fallbacks.
+    For finite parent groups such as (U|e), effective_lookups reports actual field
+    lookup values. Check has_mismatch: a group can parse yet be shadowed by another
+    pattern. status describes coverage of listed finite-group checks only;
+    not_checked/partial with has_mismatch=null is not a pass. Literal-key precedence,
+    arbitrary regexes and runtime validity are not validated by this feedback.
+    dry_run validates without writing. No physics inference or solver execution.
+    """
+    from principia_core.dictionary_edits import apply_dictionary_edits
+    case = _validated_case_path(case_path)
+    with _tool_observation("edit_case_dictionaries"):
+        result = apply_dictionary_edits(case, [edit.model_dump() for edit in edits], dry_run=dry_run)
+    return json.dumps(result, ensure_ascii=False, separators=(",", ":"))
 
 
 @mcp.tool()
@@ -306,6 +390,36 @@ def validate_artifacts(
 def diagnostics(case_path: PathText) -> Dict[str, Any]:
     """Classify fatal and nonfatal diagnostics in OpenFOAM logs."""
     return _call_domain("diagnostics", case_path=case_path)
+
+
+_untraced_call_tool = mcp.call_tool
+
+
+async def _traced_call_tool(name: str, arguments: dict[str, Any]):
+    """Optional experiment trace; disabled unless the caller configures a directory."""
+    directory=os.getenv('PRINCIPIA_TOOL_TRACE_DIR','')
+    if not directory:return await _untraced_call_tool(name,arguments)
+    root=Path(directory);root.mkdir(parents=True,exist_ok=True)
+    path=root/(str(uuid.uuid4())+'.json');start=time.monotonic()
+    record={'tool':name,'arguments':arguments,'started_at':time.time(),'status':'running'}
+    def write():
+        temp=path.with_suffix('.tmp')
+        temp.write_text(json.dumps(record,ensure_ascii=False,indent=2,default=lambda x:x.model_dump(mode='json') if hasattr(x,'model_dump') else str(x)))
+        temp.replace(path)
+    write()
+    try:
+        result=await _untraced_call_tool(name,arguments)
+        record.update(status='ok',result=result)
+        return result
+    except BaseException as error:
+        record.update(status='error',error_type=type(error).__name__)
+        raise
+    finally:
+        record['seconds']=time.monotonic()-start;write()
+
+
+mcp.call_tool = _traced_call_tool
+mcp._mcp_server.call_tool(validate_input=False)(_traced_call_tool)
 
 
 def main() -> None:

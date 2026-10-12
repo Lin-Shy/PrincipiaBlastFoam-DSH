@@ -10,8 +10,8 @@ description: 在创建或修改任何算例文件前分析爆炸物理问题，�
 ## 操作步骤
 
 1. 把需求规范为几何、维数、材料、炸药/源项、初始状态、边界、目标观测量以及时间/长度尺度。
-2. 使用 `mcp__principia_retrieval__get_status` 获取 MCP 服务状态。
-3. 使用 `mcp__principia_retrieval__get_case_by_intent` 查找候选教程；选择前检查相关文件和用户手册证据。
+2. 阅读 [blastfoam-knowledge](../blastfoam-knowledge/SKILL.md)，使用本地检索入口获取固定版本的教程与手册证据。
+3. 用 `--mode cases` 查找候选教程，再用 `--case` 限定配置查询、用 `--mode manual` 核对模型定义；选择前检查原始文件与适用条件。检索分数不等同于模型适用性。
 4. 明确哪些物理与数值特征可以原样迁移，哪些必须修改。
 5. 定义稳定性风险、预期定性行为、定量检查，以及能够推翻当前配置方案的证据。
 

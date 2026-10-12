@@ -155,7 +155,7 @@ def initialize_case_from_tutorial(
     tutorial_path: str | os.PathLike[str],
     force: bool = False,
 ) -> dict[str, Any]:
-    """Initialize a case directory from the best matching blastFoam tutorial."""
+    """Copy an explicitly selected tutorial, or select from a tutorial collection."""
     target = Path(case_path).expanduser().resolve()
     tutorials = Path(tutorial_path).expanduser().resolve()
     target.mkdir(parents=True, exist_ok=True)
@@ -176,8 +176,13 @@ def initialize_case_from_tutorial(
         }
 
     initializer = TutorialInitializer(llm=None)
-    cases = initializer.find_complete_cases(str(tutorials))
-    selected = initializer.find_relevant_tutorial_cases(user_request, cases, top_k=1)
+    if all((tutorials / name).is_file() for name in ("Allrun", "Allclean")):
+        # A locator has already selected this case. Do not scan only its children
+        # or let a second text-ranking pass replace the explicit selection.
+        selected = [{"path": str(tutorials), "relative_path": tutorials.name}]
+    else:
+        cases = initializer.find_complete_cases(str(tutorials))
+        selected = initializer.find_relevant_tutorial_cases(user_request, cases, top_k=1)
     if not selected:
         return {
             "initialized": False,

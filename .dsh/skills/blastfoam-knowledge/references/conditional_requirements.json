@@ -1,0 +1,301 @@
+{
+  "rules": [
+    {
+      "case_patterns": [
+        "tutorials/blastFoam/*"
+      ],
+      "dictionary_patterns": [
+        "transport",
+        "*/transport",
+        "thermoType",
+        "*/thermoType"
+      ],
+      "evidence": [
+        {
+          "end": 3,
+          "path": "manual/markdown/06_turbulence.md",
+          "quote": "When the maximum viscosity is zero, the constant/momentumTransport (or constant/turbulenceProperties) does not need to be included, however if any phase has viscous terms, this dictionary needs to be included along with the appropriate turbulence model (laminar is the same as no turbulence model).",
+          "sha256": "fa38c0fb329e3fd38bb65077dbb6162e5f47aece5bfc742975e132a89b6ffaec",
+          "start": 3
+        }
+      ],
+      "examples": [
+        {
+          "end": 19,
+          "path": "tutorials/blastFoam/reacting/constant/momentumTransport",
+          "quote": "FoamFile\n{\n    format      ascii;\n    class       dictionary;\n    location    \"constant\";\n    object      momentumTransport;\n}\n// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //\n\nsimulationType  laminar;\n\n\n",
+          "sha256": "193a6127e7ce32793b290949f3e3f60b7b02bcc407b5c816f91d3781c827081f",
+          "start": 8
+        },
+        {
+          "end": 34,
+          "path": "tutorials/blastFoam/reacting/system/fvSchemes",
+          "quote": "    div(((rho*nuEff)*dev2(T(grad(U))))) Gauss linear;\n",
+          "sha256": "6237af051a1f76ad1e8dc490e01fc6c8ba3074499bc145bdae9ce034a80ee2ea",
+          "start": 34
+        },
+        {
+          "end": 34,
+          "path": "tutorials/blastFoam/reacting/system/fvSolution",
+          "quote": "    \"(U|e|Yi)\"\n    {\n        solver          PBiCGStab;\n        preconditioner  DIC;\n        tolerance       1e-6;\n        relTol          0.1;\n        minIter         1;\n    }\n",
+          "sha256": "7698c187503b21976aa34cac1f4f6e977b0b654c52797b926ba256c2263b06cb",
+          "start": 27
+        }
+      ],
+      "id": "viscosity_requires_momentum_dictionary",
+      "required_files": [
+        "constant/momentumTransport",
+        "constant/turbulenceProperties"
+      ],
+      "required_files_semantics": "version-dependent alternatives, not both required",
+      "requirements": [
+        {
+          "entry": "divSchemes/div(((rho*nuEff)*dev2(T(grad(U)))))",
+          "evidence": [
+            {
+              "end": 59,
+              "path": "manual/source_code/blastfoam/src/compressibleSystem/compressibleSystem/compressibleSystem.C",
+              "quote": "void Foam::compressibleSystem::setModels()\n{\n    if (Foam::max(this->thermo().mu()).value() > small)\n    {\n        turbulence_ =\n        (\n            compressible::momentumTransportModel::New\n            (\n                rho(),\n                U(),\n                rhoPhi(),\n                this->thermo()\n            )\n        );\n        turbulence_->validate();\n",
+              "sha256": "9d91e75b1ae2c5855e588dd801f4527604673f82054bc6d3471b4325695cda74",
+              "start": 45
+            },
+            {
+              "end": 203,
+              "path": "manual/source_code/blastfoam/src/compressibleSystem/compressibleBlastSystem/compressibleBlastSystem.C",
+              "quote": "        if (turbulence_.valid())\n        {\n            UEqn += turbulence_->divDevTau(U_);\n            rhoE_ +=\n                rho_.mesh().time().deltaT()\n               *fvc::div\n                (\n                    fvc::dotInterpolate(rho_.mesh().Sf(), turbulence_->devTau())\n                  & fluxScheme_->Uf()\n                );\n        }\n        constraints().constrain(UEqn);\n        UEqn.solve();\n        constraints().constrain(U_);\n\n        rhoU_ = rho()*U_;\n",
+              "sha256": "3dca3c02224c7094a8bacf515852455fb4c15a855d60592fb4c1cee8cdd1fbe8",
+              "start": 188
+            },
+            {
+              "end": 91,
+              "path": "manual/source_code/OpenFOAM-9/src/MomentumTransportModels/momentumTransportModels/linearViscousStress/linearViscousStress.C",
+              "quote": "Foam::linearViscousStress<BasicMomentumTransportModel>::divDevTau\n(\n    volVectorField& U\n) const\n{\n    return\n    (\n      - fvc::div((this->alpha_*this->rho_*this->nuEff())*dev2(T(fvc::grad(U))))\n      - fvm::laplacian(this->alpha_*this->rho_*this->nuEff(), U)\n    );\n}\n",
+              "sha256": "cbe74290cfda08698a8a178533dabbce0c63b337cc2bf2b09ac6e4f4ca28989a",
+              "start": 81
+            }
+          ],
+          "requirement": "粘性分支需要应力散度和隐式拉普拉斯格式；本键已在本地OpenFOAM 9运行核对。",
+          "target": "system/fvSchemes"
+        },
+        {
+          "entry": "solvers/U and solvers/e",
+          "evidence": [
+            {
+              "end": 59,
+              "path": "manual/source_code/blastfoam/src/compressibleSystem/compressibleSystem/compressibleSystem.C",
+              "quote": "void Foam::compressibleSystem::setModels()\n{\n    if (Foam::max(this->thermo().mu()).value() > small)\n    {\n        turbulence_ =\n        (\n            compressible::momentumTransportModel::New\n            (\n                rho(),\n                U(),\n                rhoPhi(),\n                this->thermo()\n            )\n        );\n        turbulence_->validate();\n",
+              "sha256": "9d91e75b1ae2c5855e588dd801f4527604673f82054bc6d3471b4325695cda74",
+              "start": 45
+            },
+            {
+              "end": 203,
+              "path": "manual/source_code/blastfoam/src/compressibleSystem/compressibleBlastSystem/compressibleBlastSystem.C",
+              "quote": "        if (turbulence_.valid())\n        {\n            UEqn += turbulence_->divDevTau(U_);\n            rhoE_ +=\n                rho_.mesh().time().deltaT()\n               *fvc::div\n                (\n                    fvc::dotInterpolate(rho_.mesh().Sf(), turbulence_->devTau())\n                  & fluxScheme_->Uf()\n                );\n        }\n        constraints().constrain(UEqn);\n        UEqn.solve();\n        constraints().constrain(U_);\n\n        rhoU_ = rho()*U_;\n",
+              "sha256": "3dca3c02224c7094a8bacf515852455fb4c15a855d60592fb4c1cee8cdd1fbe8",
+              "start": 188
+            },
+            {
+              "end": 239,
+              "path": "manual/source_code/blastfoam/src/compressibleSystem/compressibleBlastSystem/compressibleBlastSystem.C",
+              "quote": "        if (turbulence_.valid())\n        {\n            eEqn += thermophysicalTransport_->divq(e_);\n        }\n        constraints().constrain(eEqn);\n        eEqn.solve();\n        constraints().constrain(e_);\n\n        rhoE_ = rho()*(e_ + 0.5*magSqr(U_));\n",
+              "sha256": "3dca3c02224c7094a8bacf515852455fb4c15a855d60592fb4c1cee8cdd1fbe8",
+              "start": 231
+            },
+            {
+              "end": 91,
+              "path": "manual/source_code/OpenFOAM-9/src/MomentumTransportModels/momentumTransportModels/linearViscousStress/linearViscousStress.C",
+              "quote": "Foam::linearViscousStress<BasicMomentumTransportModel>::divDevTau\n(\n    volVectorField& U\n) const\n{\n    return\n    (\n      - fvc::div((this->alpha_*this->rho_*this->nuEff())*dev2(T(fvc::grad(U))))\n      - fvm::laplacian(this->alpha_*this->rho_*this->nuEff(), U)\n    );\n}\n",
+              "sha256": "cbe74290cfda08698a8a178533dabbce0c63b337cc2bf2b09ac6e4f4ca28989a",
+              "start": 81
+            },
+            {
+              "end": 71,
+              "path": "manual/source_code/OpenFOAM-9/src/OpenFOAM/matrices/lduMatrix/solvers/diagonalSolver/diagonalSolver.C",
+              "quote": "    psi = source/matrix_.diag();\n\n    return solverPerformance\n",
+              "sha256": "cb79ef583e681690122043e21d75bd0525f88a8302e05ebd00b6fcda83ef6527",
+              "start": 69
+            }
+          ],
+          "requirement": "U/e隐式矩阵不可用diagonal；PBiCGStab仅为示例。编辑具体solvers/U、solvers/e并核对生效值，避免示例正则被覆盖。",
+          "target": "system/fvSolution",
+          "lookup_entries": [
+            "solvers/U/solver",
+            "solvers/e/solver"
+          ]
+        },
+        {
+          "target": "constant/thermophysicalTransport",
+          "entry": "file absence",
+          "relation": "DEFAULTS_WHEN",
+          "requirement": "已审核OpenFOAM 9：simulationType=laminar且此文件不存在时，默认unityLewisFourier，无需添加。其他版本、湍流模型或损坏字典不在此结论范围内。",
+          "evidence": [
+            {
+              "path": "manual/markdown/98_reviewed_defaults.md",
+              "start": 3,
+              "end": 3,
+              "quote": "在已审核的 OpenFOAM 9 层流路径中，momentumTransport 的 simulationType=laminar 且 constant/thermophysicalTransport 不存在时，默认选择 unityLewisFourier；无需为该默认模型添加此文件。此结论不覆盖其他版本、湍流模型或已有但损坏的字典。",
+              "sha256": "2acdb93cb40e2b10f8de5d8736294984342142a41688d551de99d607b055fe69"
+            }
+          ]
+        }
+      ],
+      "requirements_scope": "Reviewed blastFoam/OpenFOAM 9 path; verify other solvers/versions.",
+      "review": {
+        "kind": "author_source_review",
+        "scope": "manual condition and example quote verified; dictionary binding is a retrieval hint, not inferred applicability; numerical snippets are associated case examples, not universal requirements; conditional numerical requirements reviewed against pinned source chain and prior startup failures/success, source links retained",
+        "status": "accept"
+      },
+      "state_binding": {
+        "application": "blastFoam",
+        "evidence": [
+          {
+            "end": 3,
+            "path": "manual/markdown/06_turbulence.md",
+            "quote": "When the maximum viscosity is zero, the constant/momentumTransport (or constant/turbulenceProperties) does not need to be included, however if any phase has viscous terms, this dictionary needs to be included along with the appropriate turbulence model (laminar is the same as no turbulence model).",
+            "sha256": "fa38c0fb329e3fd38bb65077dbb6162e5f47aece5bfc742975e132a89b6ffaec",
+            "start": 3
+          },
+          {
+            "end": 59,
+            "path": "manual/source_code/blastfoam/src/compressibleSystem/compressibleSystem/compressibleSystem.C",
+            "quote": "void Foam::compressibleSystem::setModels()\n{\n    if (Foam::max(this->thermo().mu()).value() > small)\n    {\n        turbulence_ =\n        (\n            compressible::momentumTransportModel::New\n            (\n                rho(),\n                U(),\n                rhoPhi(),\n                this->thermo()\n            )\n        );\n        turbulence_->validate();\n",
+            "sha256": "9d91e75b1ae2c5855e588dd801f4527604673f82054bc6d3471b4325695cda74",
+            "start": 45
+          }
+        ],
+        "predicate": "explicit_const_zero_excludes_viscosity",
+        "review": {
+          "kind": "author_source_review",
+          "scope": "Only exclude current viscosity dependency when all explicitly supported components use const mu=0 and application is blastFoam. Positive or nonconstant input does not prove mixture maximum or future-state applicability.",
+          "status": "accept"
+        }
+      },
+      "when": "运行时 max(thermo().mu()).value() > small 才创建输运模型；相参数或模型名不能证明此条件成立，需核验实际混合量及加载版本。",
+      "review_sources": [
+        {
+          "path": "manual/source_code/OpenFOAM-9/src/ThermophysicalTransportModels/fluidThermo/fluidThermophysicalTransportModel.H",
+          "start": 27,
+          "end": 81,
+          "quote": "Typedef\n    Foam::compressible::laminarThermophysicalTransportModel\n\nTypedef\n    Foam::compressible::RASThermophysicalTransportModel\n\nTypedef\n    Foam::compressible::LESThermophysicalTransportModel\n\nDescription\n    Typedefs for laminar, RAS and LES thermophysical transport models\n    for fluidThermo flow.\n\n\\*---------------------------------------------------------------------------*/\n\n#ifndef fluidThermophysicalTransportModel_H\n#define fluidThermophysicalTransportModel_H\n\n#include \"fluidThermo.H\"\n#include \"laminarThermophysicalTransportModel.H\"\n#include \"RASThermophysicalTransportModel.H\"\n#include \"LESThermophysicalTransportModel.H\"\n#include \"dynamicMomentumTransportModel.H\"\n\n// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //\n\nnamespace Foam\n{\n    typedef ThermophysicalTransportModel\n    <\n        compressible::momentumTransportModel,\n        fluidThermo\n    > fluidThermophysicalTransportModel;\n\n    typedef laminarThermophysicalTransportModel\n    <\n        fluidThermophysicalTransportModel\n    > laminarFluidThermophysicalTransportModel;\n\n    typedef RASThermophysicalTransportModel\n    <\n        fluidThermophysicalTransportModel\n    > RASFluidThermophysicalTransportModel;\n\n    typedef LESThermophysicalTransportModel\n    <\n        fluidThermophysicalTransportModel\n    > LESFluidThermophysicalTransportModel;\n}\n\n// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //\n\n#endif\n\n// ************************************************************************* //\n",
+          "sha256": "6347ca171f0cb1fdce08e594c5f54972559fec521ace1ae8d8c8e8e2484ef5a2"
+        },
+        {
+          "path": "manual/source_code/OpenFOAM-9/src/ThermophysicalTransportModels/ThermophysicalTransportModel/ThermophysicalTransportModel.C",
+          "start": 27,
+          "end": 86,
+          "quote": "#include \"volFields.H\"\n#include \"surfaceFields.H\"\n\n// * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //\n\ntemplate<class MomentumTransportModel, class ThermoModel>\nFoam::ThermophysicalTransportModel<MomentumTransportModel, ThermoModel>::\nThermophysicalTransportModel\n(\n    const momentumTransportModel& momentumTransport,\n    const thermoModel& thermo\n)\n:\n    thermophysicalTransportModel(momentumTransport),\n    momentumTransport_(momentumTransport),\n    thermo_(thermo)\n{}\n\n\n// * * * * * * * * * * * * * * * * * Selectors * * * * * * * * * * * * * * * //\n\ntemplate<class MomentumTransportModel, class ThermoModel>\nFoam::autoPtr\n<\n    Foam::ThermophysicalTransportModel<MomentumTransportModel, ThermoModel>\n>\nFoam::ThermophysicalTransportModel<MomentumTransportModel, ThermoModel>::New\n(\n    const momentumTransportModel& momentumTransport,\n    const thermoModel& thermo\n)\n{\n    const word modelType\n    (\n        momentumTransport.lookup(\"simulationType\")\n    );\n\n    Info<< \"Selecting thermophysical transport type \" << modelType << endl;\n\n    typename dictionaryConstructorTable::iterator cstrIter =\n        dictionaryConstructorTablePtr_->find(modelType);\n\n    if (cstrIter == dictionaryConstructorTablePtr_->end())\n    {\n        FatalErrorInFunction\n            << \"Unknown thermophysical transport type \"\n            << modelType << nl << nl\n            << \"Available types:\" << endl\n            << dictionaryConstructorTablePtr_->sortedToc()\n            << exit(FatalError);\n    }\n\n    return autoPtr<ThermophysicalTransportModel>\n    (\n        cstrIter()(momentumTransport, thermo)\n    );\n}\n\n\n// ************************************************************************* //\n",
+          "sha256": "831387800d05de633908db149219ec0e8a0766cf6e1c2a3b415d8a97d7ebd9e4"
+        },
+        {
+          "path": "manual/source_code/OpenFOAM-9/src/ThermophysicalTransportModels/thermophysicalTransportModel/thermophysicalTransportModel.C",
+          "start": 27,
+          "end": 80,
+          "quote": "#include \"surfaceFields.H\"\n\n// * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //\n\nnamespace Foam\n{\n    defineTypeNameAndDebug(thermophysicalTransportModel, 0);\n}\n\n\n// * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //\n\nFoam::thermophysicalTransportModel::thermophysicalTransportModel\n(\n    const compressibleMomentumTransportModel& momentumTransport\n)\n:\n    IOdictionary\n    (\n        IOobject\n        (\n            IOobject::groupName\n            (\n                typeName, momentumTransport.alphaRhoPhi().group()\n            ),\n            momentumTransport.time().constant(),\n            momentumTransport.mesh(),\n            IOobject::READ_IF_PRESENT,\n            IOobject::NO_WRITE\n        )\n    ),\n\n    momentumTransportModel_(momentumTransport)\n{\n    // Add run-time re-reading of thermophysicalTransport dictionary\n    // after construction to avoid problems if the dictionary is not present\n    readOpt() = IOobject::MUST_READ_IF_MODIFIED;\n    addWatch();\n}\n\n\n// * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //\n\nbool Foam::thermophysicalTransportModel::read()\n{\n    return regIOobject::read();\n}\n\n\nvoid Foam::thermophysicalTransportModel::correct()\n{}\n\n\n// ************************************************************************* //\n",
+          "sha256": "b39bcb385bff6cc91b182e5e39008932aa92d35bd9e18066533d479708a69394"
+        },
+        {
+          "path": "manual/source_code/OpenFOAM-9/src/ThermophysicalTransportModels/laminar/laminarThermophysicalTransportModel/laminarThermophysicalTransportModel.C",
+          "start": 27,
+          "end": 176,
+          "quote": "#include \"unityLewisFourier.H\"\n\n// * * * * * * * * * * * * * Protected Member Functions  * * * * * * * * * * //\n\ntemplate<class BasicThermophysicalTransportModel>\nvoid Foam::laminarThermophysicalTransportModel\n<\n    BasicThermophysicalTransportModel\n>::printCoeffs\n(\n    const word& type)\n{\n    if (printCoeffs_)\n    {\n        Info<< coeffDict_.dictName() << coeffDict_ << endl;\n    }\n}\n\n\n// * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //\n\ntemplate<class BasicThermophysicalTransportModel>\nFoam::laminarThermophysicalTransportModel\n<\n    BasicThermophysicalTransportModel\n>::laminarThermophysicalTransportModel\n(\n    const word& type,\n    const momentumTransportModel& momentumTransport,\n    const thermoModel& thermo\n)\n:\n    BasicThermophysicalTransportModel(momentumTransport, thermo),\n    laminarDict_(this->subOrEmptyDict(\"laminar\")),\n    printCoeffs_(laminarDict_.lookupOrDefault<Switch>(\"printCoeffs\", false)),\n    coeffDict_(laminarDict_.optionalSubDict(type + \"Coeffs\"))\n{}\n\n\n// * * * * * * * * * * * * * * * * Selectors * * * * * * * * * * * * * * * * //\n\ntemplate<class BasicThermophysicalTransportModel>\nFoam::autoPtr\n<\n    Foam::laminarThermophysicalTransportModel\n    <\n        BasicThermophysicalTransportModel\n    >\n>\nFoam::laminarThermophysicalTransportModel\n<\n    BasicThermophysicalTransportModel\n>::New\n(\n    const momentumTransportModel& momentumTransport,\n    const thermoModel& thermo\n)\n{\n    IOobject header\n    (\n        IOobject::groupName\n        (\n            thermophysicalTransportModel::typeName,\n            momentumTransport.alphaRhoPhi().group()\n        ),\n        momentumTransport.time().constant(),\n        momentumTransport.mesh(),\n        IOobject::MUST_READ,\n        IOobject::NO_WRITE,\n        false\n    );\n\n    if (header.typeHeaderOk<IOdictionary>(true))\n    {\n        IOdictionary modelDict(header);\n\n        const word modelType(modelDict.subDict(\"laminar\").lookup( \"model\"));\n\n        Info<< \"Selecting laminar thermophysical transport model \"\n            << modelType << endl;\n\n        typename dictionaryConstructorTable::iterator cstrIter =\n        dictionaryConstructorTablePtr_->find(modelType);\n\n        if (cstrIter == dictionaryConstructorTablePtr_->end())\n        {\n            FatalErrorInFunction\n                << \"Unknown laminar thermophysical transport model \"\n                << modelType << nl << nl\n                << \"Available models:\" << endl\n                << dictionaryConstructorTablePtr_->sortedToc()\n                << exit(FatalError);\n        }\n\n        return autoPtr<laminarThermophysicalTransportModel>\n        (\n            cstrIter()(momentumTransport, thermo)\n        );\n    }\n    else\n    {\n        Info<< \"Selecting default laminar thermophysical transport model \"\n            << laminarThermophysicalTransportModels::unityLewisFourier<\n               BasicThermophysicalTransportModel>::typeName << endl;\n\n        return autoPtr<laminarThermophysicalTransportModel>\n        (\n            new laminarThermophysicalTransportModels::unityLewisFourier\n            <\n                BasicThermophysicalTransportModel\n            >(momentumTransport, thermo)\n        );\n    }\n}\n\n\n// * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //\n\ntemplate<class BasicThermophysicalTransportModel>\nbool Foam::laminarThermophysicalTransportModel\n<\n    BasicThermophysicalTransportModel\n>::read()\n{\n    if (BasicThermophysicalTransportModel::read())\n    {\n        laminarDict_ <<= this->subDict(\"laminar\");\n\n        coeffDict_ <<= laminarDict_.optionalSubDict(type() + \"Coeffs\");\n\n        return true;\n    }\n    else\n    {\n        return false;\n    }\n}\n\n\ntemplate<class BasicThermophysicalTransportModel>\nvoid Foam::laminarThermophysicalTransportModel\n<\n    BasicThermophysicalTransportModel\n>::correct()\n{\n    BasicThermophysicalTransportModel::correct();\n}\n\n\n// ************************************************************************* //\n",
+          "sha256": "4d19c250ad22b39f0606861823353a3a4cedada2e9c9b352aba882165e5e25f9"
+        },
+        {
+          "path": "manual/source_code/OpenFOAM-9/src/ThermophysicalTransportModels/laminar/unityLewisFourier/unityLewisFourier.C",
+          "start": 27,
+          "end": 159,
+          "quote": "#include \"fvmLaplacian.H\"\n#include \"fvcSnGrad.H\"\n#include \"surfaceInterpolate.H\"\n\n// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //\n\nnamespace Foam\n{\nnamespace laminarThermophysicalTransportModels\n{\n\n// * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //\n\ntemplate<class BasicThermophysicalTransportModel>\nunityLewisFourier<BasicThermophysicalTransportModel>::unityLewisFourier\n(\n    const momentumTransportModel& momentumTransport,\n    const thermoModel& thermo\n)\n:\n    unityLewisFourier\n    (\n        typeName,\n        momentumTransport,\n        thermo\n    )\n{}\n\n\ntemplate<class BasicThermophysicalTransportModel>\nunityLewisFourier<BasicThermophysicalTransportModel>::unityLewisFourier\n(\n    const word& type,\n    const momentumTransportModel& momentumTransport,\n    const thermoModel& thermo\n)\n:\n    laminarThermophysicalTransportModel<BasicThermophysicalTransportModel>\n    (\n        type,\n        momentumTransport,\n        thermo\n    )\n{}\n\n\n// * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //\n\ntemplate<class BasicThermophysicalTransportModel>\nconst dictionary&\nunityLewisFourier<BasicThermophysicalTransportModel>::coeffDict() const\n{\n    return dictionary::null;\n}\n\n\ntemplate<class BasicThermophysicalTransportModel>\nbool unityLewisFourier<BasicThermophysicalTransportModel>::read()\n{\n    return true;\n}\n\n\ntemplate<class BasicThermophysicalTransportModel>\ntmp<surfaceScalarField>\nunityLewisFourier<BasicThermophysicalTransportModel>::q() const\n{\n    return surfaceScalarField::New\n    (\n        IOobject::groupName\n        (\n            \"q\",\n            this->momentumTransport().alphaRhoPhi().group()\n        ),\n       -fvc::interpolate(this->thermo().alpha()*this->alpha())\n       *fvc::snGrad(this->thermo().he())\n    );\n}\n\n\ntemplate<class BasicThermophysicalTransportModel>\ntmp<fvScalarMatrix>\nunityLewisFourier<BasicThermophysicalTransportModel>::\ndivq(volScalarField& he) const\n{\n    return -fvm::laplacian(this->alpha()*this->thermo().alpha(), he);\n}\n\n\ntemplate<class BasicThermophysicalTransportModel>\ntmp<surfaceScalarField>unityLewisFourier<BasicThermophysicalTransportModel>::j\n(\n    const volScalarField& Yi\n) const\n{\n    return surfaceScalarField::New\n    (\n        IOobject::groupName\n        (\n            \"j(\" + Yi.name() + ')',\n            this->momentumTransport().alphaRhoPhi().group()\n        ),\n       -fvc::interpolate(this->thermo().alpha()*this->alpha())\n       *fvc::snGrad(Yi)\n    );\n}\n\n\ntemplate<class BasicThermophysicalTransportModel>\ntmp<fvScalarMatrix>\nunityLewisFourier<BasicThermophysicalTransportModel>::\ndivj(volScalarField& Yi) const\n{\n    return -fvm::laplacian(this->alpha()*this->DEff(Yi), Yi);\n}\n\n\ntemplate<class BasicThermophysicalTransportModel>\nvoid unityLewisFourier<BasicThermophysicalTransportModel>::correct()\n{\n    laminarThermophysicalTransportModel\n    <\n        BasicThermophysicalTransportModel\n    >::correct();\n}\n\n\n// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //\n\n} // End namespace laminarThermophysicalTransportModels\n} // End namespace Foam\n\n// ************************************************************************* //\n",
+          "sha256": "80130a905ccaa0b99f2e97e593c352bef5f137bed9c0e0612cf54547c3fb06a5"
+        }
+      ],
+      "runtime_guard": {
+        "relation": "GUARDED_BY",
+        "expression": "Foam::max(this->thermo().mu()).value() > small",
+        "review": "accept",
+        "evidence": [
+          {
+            "end": 59,
+            "path": "manual/source_code/blastfoam/src/compressibleSystem/compressibleSystem/compressibleSystem.C",
+            "quote": "void Foam::compressibleSystem::setModels()\n{\n    if (Foam::max(this->thermo().mu()).value() > small)\n    {\n        turbulence_ =\n        (\n            compressible::momentumTransportModel::New\n            (\n                rho(),\n                U(),\n                rhoPhi(),\n                this->thermo()\n            )\n        );\n        turbulence_->validate();\n",
+            "sha256": "9d91e75b1ae2c5855e588dd801f4527604673f82054bc6d3471b4325695cda74",
+            "start": 45
+          }
+        ],
+        "scope": "Source branch predicate only; parameter/model choice does not prove its runtime value or loaded-version applicability."
+      },
+      "preparation": {
+        "relation": "PREPARES_FOR",
+        "review": "accept",
+        "when": "任务要求黏性分支时先准备配置；运行激活、加载和实际黏度另验。",
+        "evidence": [
+          {
+            "end": 3,
+            "path": "manual/markdown/06_turbulence.md",
+            "quote": "When the maximum viscosity is zero, the constant/momentumTransport (or constant/turbulenceProperties) does not need to be included, however if any phase has viscous terms, this dictionary needs to be included along with the appropriate turbulence model (laminar is the same as no turbulence model).",
+            "sha256": "fa38c0fb329e3fd38bb65077dbb6162e5f47aece5bfc742975e132a89b6ffaec",
+            "start": 3
+          },
+          {
+            "end": 59,
+            "path": "manual/source_code/blastfoam/src/compressibleSystem/compressibleSystem/compressibleSystem.C",
+            "quote": "void Foam::compressibleSystem::setModels()\n{\n    if (Foam::max(this->thermo().mu()).value() > small)\n    {\n        turbulence_ =\n        (\n            compressible::momentumTransportModel::New\n            (\n                rho(),\n                U(),\n                rhoPhi(),\n                this->thermo()\n            )\n        );\n        turbulence_->validate();\n",
+            "sha256": "9d91e75b1ae2c5855e588dd801f4527604673f82054bc6d3471b4325695cda74",
+            "start": 45
+          }
+        ]
+      }
+    },
+    {
+      "id": "function_object_write_time_semantics",
+      "relation": "DESCRIBES_CONTROL",
+      "case_patterns": [
+        "tutorials/blastFoam/*"
+      ],
+      "dictionary_patterns": [
+        "functions/*"
+      ],
+      "when": "适用于本地OpenFOAM 9函数对象的writeControl/writeInterval，不是controlDict顶层全场输出设置。",
+      "required_files": [],
+      "required_files_semantics": "describes existing keys; no additional file implied",
+      "review": {
+        "status": "accept"
+      },
+      "evidence": [
+        {
+          "path": "manual/source_code/OpenFOAM-9/src/OpenFOAM/db/functionObjects/timeControl/timeControl.C",
+          "start": 165,
+          "end": 185,
+          "quote": "        case timeControls::runTime:\n        case timeControls::adjustableRunTime:\n        {\n            label executionIndex = label\n            (\n                (\n                    (time_.value() - time_.beginTime().value())\n                  + 0.5*time_.deltaTValue()\n                )\n               /interval_\n            );\n\n            if (executionIndex > executionIndex_)\n            {\n                executionIndex_ = executionIndex;\n                return true;\n            }\n            break;\n        }\n\n        case timeControls::cpuTime:\n",
+          "sha256": "792cd2b9350a822b6fde7a9e85924de5bf00c5f7a77fa8b7a6233ce87c9088c1"
+        }
+      ],
+      "examples": [],
+      "requirements_scope": "OpenFOAM-9 89839ae3b8cd7b7c8d044f6898d4991177b1db41; source-reviewed control semantics, not a runtime guarantee",
+      "requirements": [
+        {
+          "target": "system/controlDict",
+          "entry": "functions/<object>/writeControl and writeInterval",
+          "requirement": "按物理时间间隔触发可用runTime，writeInterval填写秒数；保留顶层全场输出和其他对象。触发索引采用(t-beginTime+0.5*deltaT)/interval，不保证严格等间隔时间点。adjustableRunTime额外报告下一写出时刻；步长是否对齐取决于外层Time控制，不能仅由对象设置保证。",
+          "evidence": [
+            {
+              "path": "manual/source_code/OpenFOAM-9/src/OpenFOAM/db/functionObjects/timeControl/timeControlFunctionObject.C",
+              "start": 154,
+              "end": 181,
+              "quote": "Foam::scalar Foam::functionObjects::timeControl::timeToNextWrite()\n{\n    if\n    (\n        active()\n     && writeControl_.control() ==\n        Foam::timeControl::timeControls::adjustableRunTime\n    )\n    {\n        const label  writeTimeIndex = writeControl_.executionIndex();\n        const scalar writeInterval = writeControl_.interval();\n\n        return\n            max\n            (\n                0.0,\n                (writeTimeIndex + 1)*writeInterval\n              - (time_.value() - time_.beginTime().value())\n            );\n    }\n\n    return vGreat;\n}\n\n\nbool Foam::functionObjects::timeControl::read(const dictionary& dict)\n{\n    writeControl_.read(dict);\n",
+              "sha256": "11d871282d55d3e24283077672b3c5d5f12500710f93423bb7eaf203d2fa2a07"
+            },
+            {
+              "path": "manual/source_code/OpenFOAM-9/src/OpenFOAM/db/Time/Time.C",
+              "start": 968,
+              "end": 976,
+              "quote": "void Foam::Time::setDeltaT(const scalar deltaT)\n{\n    setDeltaTNoAdjust(deltaT);\n\n    if (writeControl_ == writeControl::adjustableRunTime)\n    {\n        adjustDeltaT();\n    }\n}\n",
+              "sha256": "027b954773deceb380916c92620af5d60fff1f534d172d1a440dca3160255545"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "version": "conditional-requirements-v1",
+  "snapshot": "fc15b964eeda5996d2ef81d06b4a3cd78f1d20561f6e07963b34d5e82047877a"
+}

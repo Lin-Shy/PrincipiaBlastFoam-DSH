@@ -47,3 +47,22 @@ bundle 中的 MCP 行默认 `failOnStartupError: false`，便于 Python 环境�
 ## DSH 升级流程
 
 每次升级 DSH 时，先创建一次性 profile，安装当前精确 bundle 版本，执行 `--dump-config`，确认 MCP 工具存在，再完成兼容性验收矩阵。全部通过后才能提升已验证版本；原有已验证 profile 在此之前必须保留。
+
+## 字典定位、条件检查与编辑
+
+MCP 的三个只读工具供物理分析和案例设置角色使用；批量编辑工具仅向案例设置角色开放：
+
+- `locate_case_edits(query, tutorial_case, translation?, budget?)`：按自然语言需求返回完整字典位置、来源及审核过的条件依赖。`tutorial_case` 使用如 `blastFoam/freeField` 的案例标识。
+- `edit_case_dictionaries(case_path, edits, dry_run?)`：在已授权副本内按明确的 `path/entry/value` 批量编辑，全部修改文件经 OpenFOAM 解析后写回；null 删除，dry_run 只验证。支持直接位于 system、constant、0 下的字典，含指令/变量替换或新建场文件需另行处理；不推断物理配置。
+- `read_knowledge_source(path, start?, end?, budget?)`：读取定位器返回的语料路径；`complete=false` 表示只返回范围前缀，应缩小行范围继续取证。
+- `check_case_dependencies(case_path, tutorial_case, budget?)`：只读检查实际副本，路径必须位于 `PRINCIPIA_CASE_ROOT` 内。仅审核范围内全零常数黏度可排除当前黏性依赖；unknown 不表示适用或任务通过。
+
+三个只读工具返回紧凑 JSON 文本，默认 5000 字符预算。静态图在进程内延迟加载并缓存，来源读取校验索引散列。审核条件保存于知识技能的 `references/conditional_requirements.json`，修改后重启 MCP 进程。当前只覆盖有限的来源审核规则，不是通用 OpenFOAM 物理验证器。
+
+服务器在 stderr 输出工具名称、开始/结束和耗时，不记录查询参数或凭据，用于原生工作流采用率检查。这个日志不是模型 token 或完整耗时统计。新增工具的可用性不会自动保证 agent 采用，需要结合实际会话验证。
+
+评测时可显式设置 `PRINCIPIA_TOOL_TRACE_DIR`，将完整工具参数、返回内容及耗时写入该目录；默认关闭。该记录可能包含案例内容，应保存在实验归档目录中。统计模型可见返回量时只计算 MCP 文本内容，不重复计算 structured result。
+
+原生会话的 `session.v2.jsonl.zstd` 可能包含多个压缩帧，仅读首帧会误以为只有会话头。安装 dev 依赖后，使用 `experiments/retrieval_method/audit_native_session.py <会话文件> <归档JSON>` 统计全部工具、加载的技能和已报告用量。该统计不导出提示词内容；失败请求的未报告用量仍可能缺失。`totalTokens` 不应再次叠加缓存或推理字段。
+
+执行评测前核对 DSH 自身的权限模式。宿主机缺少沙箱后端时，`workspace-write` 的 shell 会被拒绝；这属于环境阻断。已获全访问授权的隔离实验可显式设置 `DSH_PERMISSION_MODE=danger-full-access`，并在协议中记录，不能把不同权限模式下的结果当作仅检索方法不同的严格对照。

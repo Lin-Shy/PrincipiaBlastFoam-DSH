@@ -1,0 +1,1 @@
+{"diagnostics":[],"entries":[],"kind":"text","steps":[],"text":"# Free field tutorial\n\n## Notes\nThis is a quarter symmetry case of a square charge with multiple detonation points in an open field. The charge is a 50 kg box of c-4.\n\nThe case uses adaptive mesh refinement, and took approximately 10 min to complete on a four core desktop.\n\n\n"}

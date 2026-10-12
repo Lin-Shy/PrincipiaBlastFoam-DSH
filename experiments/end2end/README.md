@@ -1,5 +1,7 @@
 # 第 3 章 DSH benchmark 适配器
 
+研究目标、章节关系与证据边界见[第3章共享设计](../../../graduation-research/chapters/chapter03.md)。本目录维护DSH适配与运行方式，具体实验活动另行冻结协议并归档结果；历史框架分数不作为DSH结果。
+
 `run_agent_benchmark.py` 是既有第 3 章评测框架与本 DeepSeek Harness 应用之间的兼容边界。外层评分脚本不需要实现 DSH 专用解析器：把它的 `--project-root` 指向本仓库，把 `--python` 指向本项目虚拟环境即可。
 
 适配器兼容两套第 3 章启动器使用的旧参数。每个用例启动一个 DSH headless 任务，并写出既有结果契约：

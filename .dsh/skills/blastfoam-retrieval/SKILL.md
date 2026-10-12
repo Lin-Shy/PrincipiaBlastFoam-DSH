@@ -1,11 +1,13 @@
 ---
 name: blastfoam-retrieval
-description: 通过 Principia MCP 服务执行可追溯的两阶段检索，获取 blastFoam 教程、字典、变量和用户手册证据。
+description: 兼容已有 Principia MCP 检索调用与 result_id 详情读取；新的教程和手册检索使用 blastfoam-knowledge。
 ---
 
 # blastFoam 知识检索
 
-工作流决策依赖 blastFoam 教程、字典条目、变量或用户手册结论时，使用本 Skill。
+新的教程选择、配置定位和用户手册检索使用 [blastfoam-knowledge](../blastfoam-knowledge/SKILL.md)，它保存固定版本语料、预构建图谱和本地查询脚本。已有 MCP 调用或 result_id 需要继续读取时，使用下面的兼容流程；两套索引的结果 ID 不可混用。
+
+未知位置的新任务通过 blastfoam-knowledge 的 `locate.py` 从需求定位来源及关联阅读位置；此处 MCP 是旧接口兼容流程。原文已足够时不追加图谱调用；以答案质量和累计检索/模型成本判断收益，不以全语料压缩比宣称 Token 节省。兼容入口不代表已启用新版手册语义补充。
 
 ## 操作步骤
 

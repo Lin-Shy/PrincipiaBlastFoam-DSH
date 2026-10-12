@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>blastFoam · 知识图谱浏览</title>
+<style>
+:root{--ink:#1c304a;--muted:#667991;--line:#dce5ef;--blue:#315eb0;--teal:#14838c}*{box-sizing:border-box}body{margin:0;color:var(--ink);background:#eef3f8;font:14px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select{font:inherit}button,select{cursor:pointer}button{padding:7px 12px;border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink)}button:hover{border-color:var(--blue);color:var(--blue)}button:focus-visible,input:focus,select:focus{outline:2px solid #799edc;outline-offset:2px}header{height:78px;padding:16px 26px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:16px}h1{font-size:21px;margin:0;letter-spacing:.02em}header p{margin:2px 0 0;color:var(--muted);font-size:12px}.badge{background:#e7f4f2;color:#17776b;padding:5px 12px;border-radius:20px;font-size:12px}main{height:calc(100vh - 78px);display:grid;grid-template-columns:282px minmax(300px,1fr) 345px}aside{background:white;overflow:auto;padding:20px;border-right:1px solid var(--line)}aside.right{border-left:1px solid var(--line);border-right:0}label.field{display:block;margin:0 0 15px;font-size:12px;font-weight:600;color:var(--muted)}select,input[type=search]{display:block;width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:7px;background:#fafcfe;color:var(--ink);margin-top:5px}h2{font-size:14px;margin:22px 0 10px}h3{font-size:16px;margin:4px 0 10px;overflow-wrap:anywhere}.small{color:var(--muted);font-size:12px}.checks{display:flex;align-items:center;gap:7px;font-size:12px;margin-bottom:15px}.stat{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;margin-top:12px}.stage{position:relative;min-width:0;background:radial-gradient(#c7d5e344 .8px,transparent .8px);background-size:18px 18px}canvas{width:100%;height:100%;display:block;touch-action:none}.toolbar{position:absolute;top:15px;left:15px;right:15px;display:flex;gap:6px;flex-wrap:wrap;pointer-events:none}.toolbar>*{pointer-events:auto}.stage-caption{position:absolute;bottom:14px;left:18px;right:18px;font-size:12px;color:#677a91;pointer-events:none}#tip{position:absolute;display:none;background:#17304aed;color:white;max-width:300px;padding:7px 10px;border-radius:6px;pointer-events:none;font-size:12px}#legend{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.key{font-size:11px;display:inline-flex;gap:5px;align-items:center}.dot{width:8px;height:8px;border-radius:100%;display:inline-block}.node-button{display:block;width:100%;text-align:left;padding:8px;margin:5px 0;overflow-wrap:anywhere;font-size:12px;border-radius:5px}.node-button.active{background:#ecf2ff;border-color:#93afe0}.node-button small{display:block;color:var(--muted)}.note{background:#f2f6fb;border-left:3px solid #648abf;padding:10px;font-size:12px;margin:12px 0;overflow-wrap:anywhere}.warning{background:#fff7e8;border-color:#b58a3a}details{border-top:1px solid var(--line);padding:10px 0}summary{cursor:pointer;font-size:12px;overflow-wrap:anywhere}pre{font:11px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;word-break:break-word;background:#f5f8fb;padding:12px;border-radius:6px;max-height:420px;overflow:auto}.meta{font-size:12px;color:var(--muted);overflow-wrap:anywhere;margin:5px 0}.pager{display:flex;justify-content:space-between;align-items:center;margin:10px 0;gap:6px}.pager button{padding:4px 9px}.legend-name{max-width:125px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.empty{padding:40px 8px;color:var(--muted);font-size:13px}a{color:var(--blue)}@media(max-width:1050px){main{grid-template-columns:235px minmax(250px,1fr) 295px}aside{padding:14px}}@media(max-width:800px){header{height:auto;min-height:78px;padding:12px 16px}main{height:auto;display:flex;flex-wrap:wrap}aside{width:100%;max-height:360px}.stage{height:60vh;width:100%;order:2}.right{order:3;max-height:none}aside.left{display:grid;grid-template-columns:1fr 1fr;gap:8px}.left h2,.left #node-list,.left #legend,.left .stat{grid-column:1/-1}header .badge{display:none}}
+</style></head><body>
+<header><div><h1>blastFoam <span style="font-weight:400;color:#71839a">/ 知识图谱</span></h1><p>定位配置 · 查看关系 · 核对原文</p></div><span class="badge">离线可用 · 来源可追溯</span></header>
+<main><aside class="left">
+<label class="field">图谱层<select id="layer"><option value="configuration">新增配置证据图</option><option value="semantic">原有语义定位图</option></select></label>
+<label class="field">显示粒度<select id="mode"><option value="files">文件总览</option><option value="nodes">片段／实体</option></select></label>
+<label class="field">来源范围<select id="case"><option value="">全部案例与手册</option></select></label>
+<label class="field">关系类型<select id="relation"><option value="">全部关系</option></select></label>
+<label class="field">搜索名称、文件或作用域<input id="search" type="search" placeholder="例如 pressureProbes、flap"></label>
+<label class="checks"><input id="manual" type="checkbox" checked>案例内同时显示相邻手册依据</label>
+<label class="field">每页显示上限<select id="limit"><option>150</option><option selected>300</option><option>600</option><option>1000</option></select></label>
+<div class="pager"><button id="prev">上一页</button><span id="page-count" class="small"></span><button id="next">下一页</button></div>
+<div id="stats" class="stat"></div><h2>来源分组</h2><div id="legend"></div><h2>当前页节点 <span class="small">点击查看原文</span></h2><div id="node-list"></div>
+</aside>
+<section class="stage" aria-label="交互图谱"><canvas id="canvas" aria-label="可拖动和缩放的图谱"></canvas><div class="toolbar"><button id="fit">居中</button><button id="zoom-in">＋</button><button id="zoom-out">－</button><button id="neighbors">仅看所选邻域</button><button id="clear-focus">退出邻域</button><button id="svg">导出当前 SVG</button><button id="json">导出当前 JSON</button></div><div id="tip"></div><div class="stage-caption" id="caption">滚轮缩放 · 拖动背景平移 · 拖动节点调整位置 · 连线含义见右侧关系详情</div></section>
+<aside class="right"><h2 style="margin-top:0">节点与来源</h2><div id="info"><div class="empty">在图中或左侧选择节点。<br>文件总览合并同文件片段；切换到片段模式可查看具体配置关系。</div></div><details><summary>图谱说明</summary><div id="about" class="small"></div><p class="small">颜色按案例与手册来源分组，并非自动社区发现。图中连线不自动等同物理因果、修改依赖或适用性保证。</p><p class="small">交互设计参考 <a href="https://github.com/Graphify-Labs/graphify/blob/v8/graphify/exporters/html.py" target="_blank" rel="noopener noreferrer">graphify 的 HTML 导出器</a>。此页面使用独立的离线绘图实现。</p></details></aside></main>
+<script id="graph-data" type="application/json">__GRAPH_DATA__</script>
+<script>
+'use strict';
+const DATA=JSON.parse(document.getElementById('graph-data').textContent), $=id=>document.getElementById(id), canvas=$('canvas'),ctx=canvas.getContext('2d');
+const colors=['#3d69b2','#12868f','#a57b32','#8065ad','#bd6a58','#427f65','#a6608a','#6284a1'];
+const state={layer:null,nodes:[],edges:[],visible:[],shownEdges:[],selected:null,focus:null,page:0,total:0,x:0,y:0,scale:1,width:1,height:1};
+function hash(s){let h=0;for(const c of s)h=(Math.imul(h,31)+c.charCodeAt(0))|0;return h>>>0}
+function color(group){return colors[hash(group)%colors.length]}
+function short(s,n=38){return s.length>n?s.slice(0,n-1)+'…':s}
+function groupName(g){return g==='manual'?'用户手册':g==='shared'?'跨来源实体':g.replace(/^tutorials\//,'')}
+function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n}
+function option(select,value,label){const o=el('option',label);o.value=value;select.append(o)}
+function aggregate(layer){
+ if($('mode').value==='nodes'||layer.id==='semantic')return {nodes:layer.nodes,edges:layer.edges};
+ const map=new Map(),owner=new Map();
+ for(const n of layer.nodes){const path=n.sources[0].path,id='file:'+path;owner.set(n.id,id);if(!map.has(id))map.set(id,{id,label:path.split('/').pop(),kind:'文件',group:n.group,cases:n.cases,scope:path,roles:[],description:'原文片段按文件聚合；切换片段模式查看细节。',status:n.status,sources:[],members:[],searchText:''});const f=map.get(id);f.sources.push(...n.sources);f.members.push(n.id);f.roles.push(...n.roles);f.searchText+=' '+n.label+' '+n.scope+' '+n.description}
+ const edgeMap=new Map();for(const e of layer.edges){const a=owner.get(e.source),b=owner.get(e.target);if(a===b)continue;const key=JSON.stringify([a,b,e.relation]);if(!edgeMap.has(key))edgeMap.set(key,{...e,id:'a'+edgeMap.size,source:a,target:b,count:0,sources:[]});const combined=edgeMap.get(key);combined.count++;for(const s of e.sources||[])if(!combined.sources.some(x=>x.path===s.path&&x.start===s.start&&x.end===s.end))combined.sources.push(s)}
+ return {nodes:[...map.values()],edges:[...edgeMap.values()]};
+}
+function setup(){
+ state.layer=DATA.layers.find(l=>l.id===$('layer').value);$('mode').disabled=state.layer.id==='semantic';
+ const g=aggregate(state.layer);state.nodes=g.nodes;state.edges=g.edges;state.byid=new Map(g.nodes.map(n=>[n.id,n]));state.adj=new Map(g.nodes.map(n=>[n.id,[]]));for(const e of g.edges){state.adj.get(e.source).push(e);state.adj.get(e.target).push(e)}
+ const oldCase=$('case').value,oldRel=$('relation').value;$('case').replaceChildren();option($('case'),'','全部案例与手册');const cases=[...new Set(g.nodes.flatMap(n=>n.cases))].sort();for(const c of cases)option($('case'),c,groupName(c));if(cases.includes(oldCase))$('case').value=oldCase;
+ $('relation').replaceChildren();option($('relation'),'','全部关系');const rels=[...new Set(g.edges.map(e=>e.relation))].sort();for(const r of rels)option($('relation'),r,r);if(rels.includes(oldRel))$('relation').value=oldRel;
+ $('about').textContent=state.layer.description+' 快照：'+state.layer.snapshot;
+ state.page=0;state.focus=null;state.selected=null;render();
+}
+function render(){
+ const c=$('case').value,q=$('search').value.trim().toLowerCase(),rel=$('relation').value;
+ let ids=new Set(state.nodes.filter(n=>!c||n.cases.includes(c)).map(n=>n.id));
+ if(c&&c!=='manual'&&$('manual').checked){const extra=[];for(const e of state.edges){if(ids.has(e.source)&&state.byid.get(e.target).cases.includes('manual'))extra.push(e.target);if(ids.has(e.target)&&state.byid.get(e.source).cases.includes('manual'))extra.push(e.source)}extra.forEach(x=>ids.add(x))}
+ if(rel){const touched=new Set(state.edges.filter(e=>e.relation===rel&&ids.has(e.source)&&ids.has(e.target)).flatMap(e=>[e.source,e.target]));ids=new Set([...ids].filter(x=>touched.has(x)))}
+ if(q)ids=new Set([...ids].filter(id=>{const n=state.byid.get(id);return [n.label,n.scope,n.description,n.group,n.searchText||'',...n.sources.map(s=>s.path)].join(' ').toLowerCase().includes(q)}));
+ if(state.focus){const near=new Set([state.focus]);for(const e of state.adj.get(state.focus)||[])if(!rel||e.relation===rel){near.add(e.source);near.add(e.target)}ids=new Set([...ids].filter(id=>near.has(id)))}
+ const matches=[...ids].map(id=>state.byid.get(id)).sort((a,b)=>(state.adj.get(b.id).length-state.adj.get(a.id).length)||a.label.localeCompare(b.label));
+ state.total=matches.length;const limit=Number($('limit').value),pages=Math.max(1,Math.ceil(matches.length/limit));state.page=Math.min(state.page,pages-1);state.visible=matches.slice(state.page*limit,(state.page+1)*limit).map(n=>({...n}));
+ const shown=new Set(state.visible.map(n=>n.id));state.shownEdges=state.edges.filter(e=>shown.has(e.source)&&shown.has(e.target)&&(!rel||e.relation===rel));
+ $('stats').textContent=`完整图 ${state.layer.nodes.length} 节点 / ${state.layer.edges.length} 连线。筛选匹配 ${matches.length} 个${$('mode').value==='files'&&state.layer.id==='configuration'?'文件':'节点'}；当前显示 ${state.visible.length} 个、${state.shownEdges.length} 条连线。`;
+ $('page-count').textContent=`${state.page+1} / ${pages}`;$('prev').disabled=state.page===0;$('next').disabled=state.page>=pages-1;
+ $('caption').textContent=(state.focus?'所选节点的一跳邻域 · ':'')+(matches.length>limit?'按页显示，跨页连线未绘制；完整数据保存在页面中。':'滚轮缩放 · 拖动背景平移 · 点击节点查看原文');
+ $('node-list').replaceChildren();for(const n of state.visible){const btn=el('button',n.label,'node-button'+(n.id===state.selected?' active':''));btn.append(el('small',groupName(n.group)));btn.onclick=()=>select(n.id);$('node-list').append(btn)}
+ if(!state.visible.length)$('node-list').append(el('div','没有匹配节点。请调整搜索或筛选条件。','empty'));
+ $('legend').replaceChildren();for(const g of [...new Set(state.visible.map(n=>n.group))]){const item=el('span',undefined,'key'),dot=el('span',undefined,'dot'),name=el('span',groupName(g),'legend-name');dot.style.background=color(g);name.title=groupName(g);item.append(dot,name);$('legend').append(item)}
+ layout();if(state.selected&&shown.has(state.selected))showInfo(state.selected);else{$('info').replaceChildren(el('div','选择节点查看来源、适用条件和相邻关系。','empty'));state.selected=null}draw();
+}
+function layout(){
+ const groups=new Map();for(const n of state.visible){if(!groups.has(n.group))groups.set(n.group,[]);groups.get(n.group).push(n)}
+ const cols=Math.max(1,Math.ceil(Math.sqrt(groups.size*state.width/state.height))),rows=Math.ceil(groups.size/cols),cw=Math.max(160,state.width/cols),ch=Math.max(150,state.height/Math.max(1,rows));let i=0;
+ for(const [g,ns] of groups){const cx=(i%cols+.5)*cw-cols*cw/2,cy=(Math.floor(i/cols)+.5)*ch-rows*ch/2;ns.forEach((n,j)=>{const angle=j*2.399963,rad=ns.length===1?0:Math.sqrt((j+.5)/ns.length)*Math.min(cw,ch)*.36;n.x=cx+Math.cos(angle)*rad;n.y=cy+Math.sin(angle)*rad;n.r=4+Math.min(7,Math.sqrt((state.adj.get(n.id)||[]).length)*.65)});i++}
+ state.x=state.width/2;state.y=state.height/2;state.scale=.9;
+}
+function draw(){
+ ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);ctx.clearRect(0,0,state.width,state.height);ctx.save();ctx.translate(state.x,state.y);ctx.scale(state.scale,state.scale);
+ const byid=new Map(state.visible.map(n=>[n.id,n]));
+ for(const e of state.shownEdges){const a=byid.get(e.source),b=byid.get(e.target),selected=e.source===state.selected||e.target===state.selected;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=selected?'#315eb0b0':'#91a5be30';ctx.lineWidth=selected?1.8:1;ctx.setLineDash(e.status.includes('unverified')||e.status.includes('候选')?[4,3]:[]);ctx.stroke();ctx.setLineDash([]);if(selected){const angle=Math.atan2(b.y-a.y,b.x-a.x),x=b.x-Math.cos(angle)*(b.r+3),y=b.y-Math.sin(angle)*(b.r+3);ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-7*Math.cos(angle-.4),y-7*Math.sin(angle-.4));ctx.lineTo(x-7*Math.cos(angle+.4),y-7*Math.sin(angle+.4));ctx.fillStyle='#315eb0';ctx.fill()}}
+ for(const n of state.visible){ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);ctx.fillStyle=color(n.group);ctx.fill();ctx.strokeStyle=n.id===state.selected?'#142e51':'#fff';ctx.lineWidth=n.id===state.selected?3:1.2;ctx.stroke();if(state.visible.length<80||state.scale>1.8||n.id===state.selected){ctx.font='11px system-ui';ctx.fillStyle='#213751';ctx.textAlign='center';ctx.fillText(short(n.label,34),n.x,n.y+n.r+14)}}ctx.restore();
+}
+function select(id){state.selected=id;showInfo(id);draw();for(const btn of $('node-list').children)btn.classList.remove('active')}
+function showInfo(id){
+ const n=state.byid.get(id),panel=$('info');if(!n)return;panel.replaceChildren(el('h3',n.label),el('div',groupName(n.group),'meta'),el('div',`类型：${n.kind} · 作用域：${n.scope||'未指定'}`,'meta'));if(n.description)panel.append(el('p',n.description));panel.append(el('div',n.status,'note'));if(n.conditions)panel.append(el('div','条件：'+n.conditions,'note warning'));if(n.visual_check_required)panel.append(el('div','涉及公式／图表，请另行核对原页图像。','note warning'));
+ if(n.members)panel.append(el('div',`聚合 ${n.members.length} 个原文片段；文件内连接在此粒度省略。`,'small'));
+ panel.append(el('h2',`原文依据 · ${n.sources.length} 段`));
+ for(const [i,s] of n.sources.entries()){const details=el('details'),summary=el('summary',`${s.path} : ${s.start}–${s.end}`),src=DATA.sources[s.path];details.append(summary);const text=src.text.split(/\r?\n/).slice(s.start-1,s.end).map((line,j)=>`${s.start+j}  ${line}`).join('\n');details.append(el('pre',text),el('div','SHA-256 '+src.sha256,'meta'));if(i===0)details.open=true;panel.append(details)}
+ if(!n.sources.length)panel.append(el('p','该实体的原文保存在相邻来源卡片中。','small'));
+ const edges=state.adj.get(id)||[];panel.append(el('h2',`相邻关系 · ${edges.length}`));
+ for(const e of edges){const other=state.byid.get(e.source===id?e.target:e.source);const det=el('details'),sum=el('summary',`${e.source===id?'→':'←'} ${e.relation}${e.count?' × '+e.count:''} · ${other.label}`);det.append(sum,el('p',e.status,'small'));const jump=el('button','查看相邻节点');jump.onclick=()=>{state.focus=other.id;state.selected=other.id;state.page=0;$('search').value='';$('case').value='';$('relation').value='';render();showInfo(other.id)};det.append(jump);for(const s of e.sources||[]){const text=DATA.sources[s.path].text.split(/\r?\n/).slice(s.start-1,s.end).join('\n');det.append(el('div',`${s.path}:${s.start}–${s.end}`,'meta'),el('pre',text))}panel.append(det)}
+}
+function position(event){const r=canvas.getBoundingClientRect();return {x:event.clientX-r.left,y:event.clientY-r.top}}
+function hit(p){return [...state.visible].reverse().find(n=>Math.hypot(p.x-(n.x*state.scale+state.x),p.y-(n.y*state.scale+state.y))<n.r*state.scale+5)}
+let drag=null;
+canvas.onpointerdown=e=>{const p=position(e),n=hit(p);drag={p,n,moved:false};canvas.setPointerCapture(e.pointerId)};
+canvas.onpointermove=e=>{const p=position(e);if(drag){const dx=p.x-drag.p.x,dy=p.y-drag.p.y;if(Math.abs(dx)+Math.abs(dy)>1)drag.moved=true;if(drag.n){drag.n.x+=dx/state.scale;drag.n.y+=dy/state.scale}else{state.x+=dx;state.y+=dy}drag.p=p;draw();return}const n=hit(p);canvas.style.cursor=n?'pointer':'grab';$('tip').style.display=n?'block':'none';if(n){$('tip').textContent=n.label+' · '+groupName(n.group);$('tip').style.left=Math.min(p.x+12,state.width-310)+'px';$('tip').style.top=Math.min(p.y+12,state.height-60)+'px'}};
+canvas.onpointerup=e=>{if(drag&&!drag.moved&&drag.n)select(drag.n.id);drag=null};canvas.onpointercancel=()=>drag=null;canvas.onpointerleave=()=>{$('tip').style.display='none'};
+function zoom(f,p={x:state.width/2,y:state.height/2}){const old=state.scale;state.scale=Math.min(8,Math.max(.15,old*f));state.x=p.x-(p.x-state.x)*state.scale/old;state.y=p.y-(p.y-state.y)*state.scale/old;draw()}
+canvas.addEventListener('wheel',e=>{e.preventDefault();zoom(Math.exp(-e.deltaY*.001),position(e))},{passive:false});
+function download(name,text,type){const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function xml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]))}
+$('svg').onclick=()=>{const ns=state.visible,ids=new Map(ns.map(n=>[n.id,n])),x=n=>n.x*state.scale+state.x,y=n=>n.y*state.scale+state.y;let lines=[`<svg xmlns="http://www.w3.org/2000/svg" width="${state.width}" height="${state.height}"><rect width="100%" height="100%" fill="#f4f7fb"/><g font-family="sans-serif">`];for(const e of state.shownEdges){const a=ids.get(e.source),b=ids.get(e.target);lines.push(`<line x1="${x(a)}" y1="${y(a)}" x2="${x(b)}" y2="${y(b)}" stroke="#a9b8ca" stroke-width="1"><title>${xml(e.relation)}</title></line>`)}for(const n of ns)lines.push(`<circle cx="${x(n)}" cy="${y(n)}" r="${n.r*state.scale}" fill="${color(n.group)}"/><text x="${x(n)}" y="${y(n)+n.r*state.scale+13}" text-anchor="middle" font-size="10" fill="#20344b">${xml(short(n.label))}</text>`);lines.push('</g></svg>');download('blastfoam-current-view.svg',lines.join(''),'image/svg+xml')};
+$('json').onclick=()=>{const paths=new Set(state.visible.flatMap(n=>n.sources.map(s=>s.path)));state.shownEdges.forEach(e=>(e.sources||[]).forEach(s=>paths.add(s.path)));const sources=Object.fromEntries([...paths].map(p=>[p,DATA.sources[p]]));download('blastfoam-current-view.json',JSON.stringify({snapshot:state.layer.snapshot,layer:state.layer.id,grouping:DATA.grouping,visible_only:true,nodes:state.visible,edges:state.shownEdges,sources},null,2),'application/json')};
+$('layer').onchange=setup;$('mode').onchange=setup;for(const id of ['case','relation','manual','limit'])$(id).onchange=()=>{state.page=0;state.focus=null;render()};let timer;$('search').oninput=()=>{clearTimeout(timer);timer=setTimeout(()=>{state.page=0;state.focus=null;render()},140)};
+$('prev').onclick=()=>{state.page--;render()};$('next').onclick=()=>{state.page++;render()};$('fit').onclick=()=>{layout();draw()};$('zoom-in').onclick=()=>zoom(1.25);$('zoom-out').onclick=()=>zoom(.8);$('neighbors').onclick=()=>{if(state.selected){state.focus=state.selected;$('search').value='';state.page=0;render()}};$('clear-focus').onclick=()=>{state.focus=null;state.page=0;render()};
+new ResizeObserver(()=>{const r=canvas.getBoundingClientRect();state.width=r.width;state.height=r.height;canvas.width=r.width*devicePixelRatio;canvas.height=r.height*devicePixelRatio;if(state.layer){layout();draw()}}).observe(canvas);
+state.width=canvas.clientWidth;state.height=canvas.clientHeight;setup();
+window.graphViewer={state,data:DATA,select,render,setup};
+</script></body></html>

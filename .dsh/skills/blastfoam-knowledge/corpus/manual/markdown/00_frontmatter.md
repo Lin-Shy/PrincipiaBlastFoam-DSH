@@ -1,0 +1,268 @@
+# blastFoam Theory and User Guide
+
+**Version 6.0**
+
+JeffHeylmun, Peter Vonk, Benjamin Shields, and Timothy Brewer
+
+Synthetik Applied Technologies
+
+info@synthetik-technologies.com
+
+https://github.com/synthetik-technologies/blastFoam
+
+August 30, 2022
+
+## Abstract
+
+blastFoam is an open-source toolbox for simulating detonations based on the OpenFOAM ®1 framework (OpenCFD Ltd., 2018a). blastFoam provides solutions to highly compressible systems including single- and multi-phase compressible flow, including single- and multi-velocity systems, based on the work of Zheng et al. (2011), Shyue (2001), and Houim and Oran (2016). blastFoam provides implementations of the essential numerical methods (e.g. 2nd and 3rd order schemes), equations of state (e.g. ideal gas, stiffened gas, Jones-Wilkins-Lee, etc.), run-time selectable flux schemes (e.g. HLL, HLLC, AUSM+, Kurganov/Tadmor), and high-order explicit time integration (e.g. 2nd, 3rd, and 4th order). blastFoam provides activation and explosive burn models to simulate the initiation and expansion of energetic materials, as well as afterburn models to simulate under-oxygenated explosives that exhibit delayed energy release.
+
+> 1DISCLAIMER: This offering is not approved or endorsed by OpenCFD Limited, producer and distributor of the OpenFOAM software via www.openfoam.org, and owner of the OpenFOAM and OpenCFD trade marks.
+
+## Contents
+
+- 1 Introduction
+- 1.1 System Requirements
+- 1.2 Downloading
+- 1.3 Compilation
+- 1.4 Executable
+- 1.5 Getting Help
+- 2 Governing equations
+- 2.1 Single-fluid model
+- 2.2 Multi-fluid
+- 2.2.1 Granular phases
+- 3 Interfacial models
+- 3.1 Drag models
+- 3.1.1 SchillerNaumann
+- 3.1.2 WenYu
+- 3.1.3 Ergun
+- 3.1.4 Gibilaro
+- 3.1.5 SyamlalOBrien
+- 3.1.6 GidaspowErgunWenYu
+- 3.1.7 GidaspowSchillerNaumann
+- 3.2 Lift models
+- 3.2.1 constant
+- 3.3 Heat transfer models
+- 3.3.1 RanzMarshall
+- 3.3.2 noneNu
+- 3.4 Nusselt number models
+- 3.4.1 constant
+- 3.4.2 duct
+- 3.4.3 GelperinEinstein
+- 3.4.4 Gunn
+- 3.4.5 RanzMarschall
+- 3.4.6 sphere
+- 3.5 Mass transfer models
+- 3.5.1 none
+- 3.5.2 reactingParticle
+- 3.6 Interfacial pressure models
+- 3.6.1 single
+- 3.6.2 volumeAveraged
+- 3.6.3 totalPressure
+- 3.7 Interfacial velocity models
+- 3.7.1 single
+- 3.7.2 massAveraged
+- 4 Granular models
+- 4.1 Radial distribution models
+- 4.1.1 CarnahanStarling
+- 4.1.2 SinclairJackson
+- 4.1.3 LunSavage
+- 4.1.4 Gao
+- 4.1.5 Lebowitz
+- 4.2 Granular viscosity models
+- 4.2.1 Gidaspow
+- 4.2.2 HrenyaSinclair
+- 4.2.3 Princeton
+- 4.2.4 Syamlal
+- 4.2.5 none
+- 4.3 Granular conductivity models
+- 4.3.1 Chao
+- 4.3.2 Gidaspow
+- 4.3.3 HrenyaSinclair
+- 4.3.4 Princeton
+- 4.3.5 Syamlal
+- 4.4 Granular pressure models
+- 4.4.1 Huilin
+- 4.4.2 Lun
+- 4.5 Frictional stress models
+- 4.5.1 JohnsonJackson
+- 4.5.2 Schaeffer
+- 4.5.3 JohnsonJacksonSchaeffer
+- 4.5.4 Princeton
+- 4.6 Packing limit models
+- 4.6.1 constant
+- 4.6.2 YuStandish
+- 4.6.3 FedorsLandel
+- 4.7 Granular drag models
+- 4.7.1 Chao
+- 4.7.2 Syamlal
+- 5 Fluid and solid thermodynamic models
+- 5.1 Thermodynamic models
+- 5.1.1 eConst
+- 5.1.2 ePolynomial
+- 5.1.3 ePower
+- 5.1.4 eIcoTabulated
+- 5.1.5 eTabulated
+- 5.1.6 hConst
+- 5.1.7 hPolynomial
+- 5.1.8 hPower
+- 5.1.9 hIcoTabulated
+- 5.1.10 hTabulated
+- 5.1.11 JANAF
+- 5.2 Equation of states
+- 5.2.1 rhoConst
+- 5.2.2 Internal energy based (Mie-Grüneisen form)
+- 5.2.2.1 idealGas
+- 5.2.2.2 stiffenedGas
+- 5.2.2.3 (linearTillotson
+- 5.2.2.4 Tillotson
+- 5.2.2.5 Tait
+- 5.2.2.6 vanderWaals
+- 5.2.2.7 LSZK
+- 5.2.2.8 JWL
+- 5.2.2.9 CochranChan
+- 5.2.2.10 DoanNickel
+- 5.2.3 Temperature-based
+- 5.2.3.1 perfectGas
+- 5.2.3.2 JWLC
+- 5.2.3.3 AbelNobel
+- 5.2.3.4 BKW
+- 5.2.3.5 BWR
+- 5.2.3.6 Murnaghan
+- 5.2.4 tabulatedEOS
+- 5.2.4.1 BirchMurnaghan2
+- 5.2.4.2 BirchMurnaghan3
+- 5.2.5 eTabulated/tabulatedMG
+- 5.3 Fluid Transport
+- 5.3.1 const
+- 5.3.2 sutherland
+- 5.3.3 logPolynomial
+- 5.3.4 polynomial
+- 5.3.5 WLF
+- 5.3.6 icoTabulated
+- 5.3.7 tabulated
+- 5.4 Solid Transport
+- 5.4.1 constIso
+- 5.4.2 constAnIso
+- 5.4.3 exponential
+- 5.4.4 polynomial
+- 5.4.5 tabulatedIso
+- 5.4.6 tabulatedAnIso
+- 5.5 Basic thermodynamic model
+- 5.6 Detonating thermodynamic model
+- 5.6.1 Activation Models
+- 5.6.1.1 none
+- 5.6.1.2 linear
+- 5.6.1.3 programmedIgnition
+- 5.6.1.4 pressureBased
+- 5.6.1.5 ArrheniusRate
+- 5.6.2 Afterburn Models
+- 5.6.2.1 none [default]
+- 5.6.2.2 constant
+- 5.6.2.3 linear
+- 5.6.2.4 Miller
+- 5.7 Multicomponent thermodynamic model
+- 5.8 Two/multiphase models
+- 5.9 Initialization
+- 5.10 Example
+- 6 Turbulence
+- 7 Burst patches
+- 7.1 Burst models
+- 7.1.1 pressure
+- 7.1.2 impulse
+- 7.1.3 pressureAndImpulse
+- 7.1.4 field
+- 8 Region models
+- 8.1 Boundary conditions
+- 8.1.1 globalMapped
+- 8.1.2 globalInterpolated
+- 8.1.3 globalTemperatureCoupled
+- 9 Diameter models
+- 9.1 constant
+- 9.2 constantMass
+- 9.3 reacting
+- 9.4 Reaction Rates
+- 9.4.1 pressureBased
+- 9.4.2 Arrhenius
+- 10 Flux Evaluation
+- 10.1 Riemann Solvers
+- 10.1.1 HLL
+- 10.1.2 HLLC
+- 10.1.3 HLLCP
+- 10.1.4 AUSM+
+- 10.1.5 AUSM+up
+- 10.1.6 AUSM+up (granular)
+- 10.1.7 Tadmor/Kurganov
+- 10.2 Riemann advection scheme
+- 10.3 Time integration
+- 10.3.1 Euler
+- 10.3.2 RK1SSP
+- 10.3.3 RK2
+- 10.3.4 RK2SSP
+- 10.3.5 RK3SSP
+- 10.3.6 RK4
+- 10.3.7 RK4SSP
+- 11 Adaptive Mesh Refinement (AMR)
+- 11.1 Error estimators
+- 11.1.1 cellSize
+- 11.1.2 fieldValue
+- 11.1.3 delta
+- 11.1.4 scaledDelta
+- 11.1.5 Density gradient (densityGradient)
+- 11.1.6 Lohner
+- 11.1.7 multiComponent
+- 11.2 Dynamic Load Balancing
+- 11.3 Example
+- 12 Numerics
+- 12.1 Lookup tables
+- 12.1.1 Modifiers
+- 12.1.2 Interpolation schemes
+- 12.1.3 1D lookup tables
+- 12.1.4 2D lookup table
+- 12.1.5 3D lookup tables
+- 12.2 Equations
+- 12.3 Root solvers
+- 12.4 Minimization
+- 12.5 Integrators
+- 13 Solid models
+- 14 Coupling to preCICE’s OpenFOAM adapter
+- 15 Function objects
+- 15.1 blastProbes
+- 15.2 fieldMinMax (fieldMax)
+- 15.3 writeTimeList
+- 15.4 conservedQuantities
+- 15.5 vtkTimeSeries surface writer
+- 15.6 Schlieren (grad)
+- 15.7 shadowgrap (laplacian)
+- 15.8 blastMachNo
+- 15.9 dynamicPressure
+- 15.10 overpressure
+- 15.11 impulse
+- 15.12 timeOfArrival
+- 16 Utilities
+- 16.1 setRefinedFields
+- 16.2 blastToVTK
+- 16.3 createTimeSeries
+- 16.4 mergeProbes
+- 16.5 calculateImpulse
+- 16.6 initializeAtmosphere
+- 16.7 rotateFields
+- 16.8 convertLagrangianPositions
+- 16.9 reconstructParAll
+- 17 fvModels and fvConstraints
+- 18 Optional libraries
+- 19 Solvers
+- 19.1 blastFoam
+- 19.2 blastEulerFoam
+- 19.3 blastFSIFoam
+- 19.4 blastXiFoam (Experimental)
+- 19.5 blastReactingFoam (Experimental)
+- 19.6 blastMultiRegionFoam (Experimental)
+- 19.7 blastParcelFoam (Experimental)
+- 19.8 blastEquation
+- 20 Examples
+- 20.1 Double Mach reflection
+- 20.2 Shock Tube - Two Fluid
+- 20.3 Two charge detonation
+- 20.4 Mine (buried charge)
+- 20.5 Bursting windows
+- References

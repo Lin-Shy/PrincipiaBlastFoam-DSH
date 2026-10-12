@@ -14,12 +14,11 @@ from dotenv import load_dotenv
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 load_dotenv(PROJECT_ROOT / ".env", override=False)
 
-from principia_core.retrieval.case_content_knowledge_graph import (  # noqa: E402
-    CaseContentKnowledgeGraphRetriever,
-)
 from principia_core.config.retrieval_llm import resolve_retrieval_llm_config  # noqa: E402
-from principia_core.retrieval.user_guide_knowledge_graph import (  # noqa: E402
-    UserGuideKnowledgeGraphRetriever,
+from mcp_servers.principia_retrieval.skill_index import (  # noqa: E402
+    SkillCaseRetriever,
+    SkillKnowledgeIndex,
+    SkillUserGuideRetriever,
 )
 
 
@@ -233,13 +232,9 @@ class PrincipiaRetrievalService:
         if tutorials:
             os.environ["BLASTFOAM_TUTORIALS"] = os.path.expanduser(tutorials)
 
-        llm_config = resolve_retrieval_llm_config()
-        self.case_retriever = CaseContentKnowledgeGraphRetriever(
-            llm_api_key=llm_config["api_key"],
-            llm_base_url=llm_config["base_url"],
-            llm_model=llm_config["model"],
-        )
-        self.user_guide_retriever: Optional[UserGuideKnowledgeGraphRetriever] = None
+        self.knowledge_index = SkillKnowledgeIndex()
+        self.case_retriever = SkillCaseRetriever(self.knowledge_index)
+        self.user_guide_retriever = SkillUserGuideRetriever(self.knowledge_index)
         self._detail_cache: Dict[str, Dict[str, Any]] = {}
         self._detail_cache_order: List[str] = []
 
@@ -321,13 +316,6 @@ class PrincipiaRetrievalService:
             return detail
 
         if kind == "user_guide_node":
-            if self.user_guide_retriever is None:
-                llm_config = resolve_retrieval_llm_config()
-                self.user_guide_retriever = UserGuideKnowledgeGraphRetriever(
-                    llm_api_key=llm_config["api_key"],
-                    llm_base_url=llm_config["base_url"],
-                    llm_model=llm_config["model"],
-                )
             node_id = str(entry.get("node_id") or "")
             content = self.user_guide_retriever._retrieve_full_content([node_id])
             node = self.user_guide_retriever.id_to_node.get(node_id, {})
@@ -350,11 +338,14 @@ class PrincipiaRetrievalService:
             "case_nodes": len(self.case_retriever.nodes),
             "case_relationships": len(self.case_retriever.relationships),
             "known_cases": sorted(self.case_retriever.case_path_to_node_id.keys()),
+            "knowledge_snapshot": self.knowledge_index.graph["snapshot"],
+            "knowledge_index": str(self.knowledge_index.release),
             "retrieval_llm": resolve_retrieval_llm_config()["model"],
         }
 
     def _resolve_case_path(self, query_or_case_path: str) -> Optional[str]:
         raw = str(query_or_case_path).strip().strip("/")
+        raw = self.knowledge_index.aliases.get(raw, raw)
         if raw in self.case_retriever.case_path_to_node_id:
             return raw
 
@@ -394,7 +385,7 @@ class PrincipiaRetrievalService:
             "found": True,
             "case_path": case_path,
             "node_id": node_id,
-            "properties": node.get("properties", {}),
+            "properties": {key: node[key] for key in ("label", "path") if key in node},
         }
 
     def get_files_for_case(self, case_path: str) -> Dict[str, Any]:
@@ -407,13 +398,13 @@ class PrincipiaRetrievalService:
             node = self.case_retriever.id_to_node.get(file_id)
             if not node:
                 continue
-            full_path = str(node.get("properties", {}).get("path") or "")
+            full_path = str(node.get("path") or "")
             rel_path = self.case_retriever._normalize_file_reference(full_path, resolved_case)
             files.append(
                 {
                     "file_path": rel_path,
                     "node_id": file_id,
-                    "name": node.get("properties", {}).get("name"),
+                    "name": Path(full_path).name,
                 }
             )
 
@@ -434,22 +425,27 @@ class PrincipiaRetrievalService:
             node = self.case_retriever.id_to_node.get(file_id)
             if not node:
                 continue
-            full_path = str(node.get("properties", {}).get("path") or "")
+            full_path = str(node.get("path") or "")
             rel_path = self.case_retriever._normalize_file_reference(full_path, resolved_case)
             for variable_id in self.case_retriever.file_to_variable_ids.get(file_id, []):
                 variable_node = self.case_retriever.id_to_node.get(variable_id)
                 if not variable_node:
                     continue
-                props = variable_node.get("properties", {})
-                name = str(props.get("name") or "")
-                if _normalize(name) == variable_norm:
+                name = str(variable_node.get("key") or "")
+                dictionary_path = str(variable_node.get("dictionary_path") or "")
+                if _normalize(name) == variable_norm or _normalize(dictionary_path) == variable_norm:
                     matches.append(
                         {
                             "case_path": resolved_case,
                             "file_path": rel_path,
                             "variable_name": name,
                             "variable_id": variable_id,
-                            "properties": props,
+                            "properties": {
+                                "name": name,
+                                "dictionary_path": dictionary_path,
+                                "value": variable_node.get("value"),
+                                "resolved": variable_node.get("resolved"),
+                            },
                         }
                     )
 
@@ -714,14 +710,6 @@ class PrincipiaRetrievalService:
         detail_level: str = "candidates",
         result_id: Optional[str] = None,
     ) -> Dict[str, Any]:
-        if self.user_guide_retriever is None:
-            llm_config = resolve_retrieval_llm_config()
-            self.user_guide_retriever = UserGuideKnowledgeGraphRetriever(
-                llm_api_key=llm_config["api_key"],
-                llm_base_url=llm_config["base_url"],
-                llm_model=llm_config["model"],
-            )
-
         normalized_detail_level = str(detail_level or "candidates").strip().lower()
         if normalized_detail_level in {"detail", "content"}:
             detail = self._detail_from_result_id(result_id, max_lines=120)
@@ -734,24 +722,27 @@ class PrincipiaRetrievalService:
             }
 
         if normalized_detail_level in {"full", "legacy", "all"}:
-            result = self.user_guide_retriever.search_detailed(query, top_k=top_k)
-            result["detail_level"] = "full"
-            return result
+            hits = self.user_guide_retriever.candidates(query, top_k)
+            results = []
+            for hit in hits:
+                item = dict(hit)
+                item["node_id"] = hit["id"]
+                item["content"] = hit.get("excerpt", "")
+                results.append(item)
+            return {"found": bool(results), "detail_level": "full", "results": results,
+                    "structured_results": results,
+                    "node_ids": [item["node_id"] for item in results]}
 
-        chapter_ids = self.user_guide_retriever._identify_relevant_chapters(query)
-        section_ids = self.user_guide_retriever._identify_relevant_sections(query, chapter_ids)
-        subsection_ids = self.user_guide_retriever._identify_relevant_subsections(query, section_ids)
-        ranked_node_ids = self.user_guide_retriever._rank_candidates(
-            query=query,
-            chapter_ids=chapter_ids,
-            section_ids=section_ids,
-            subsection_ids=subsection_ids,
-            top_k=top_k,
-        )
-        structured_results = self.user_guide_retriever._build_structured_results(
-            ranked_node_ids,
-            top_k=top_k,
-        )
+        structured_results = []
+        for hit in self.user_guide_retriever.candidates(query, top_k):
+            evidence = hit.get("evidence", {})
+            structured_results.append({
+                "node_id": hit["id"],
+                "title": hit.get("excerpt", "").splitlines()[0][:200],
+                "score": hit.get("score"),
+                "evidence": evidence,
+                "path": evidence.get("path"),
+            })
         candidates = [self._candidate_user_guide_node(item) for item in structured_results]
         return {
             "found": bool(candidates),

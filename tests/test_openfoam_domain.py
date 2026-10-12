@@ -31,6 +31,23 @@ from mcp_servers.principia_retrieval import server as mcp_server
 TUTORIAL_ROOT = Path(__file__).resolve().parents[2] / "blastFoam_tutorials"
 
 
+def test_initializer_honors_explicit_case_without_reranking(tmp_path: Path) -> None:
+    source = TUTORIAL_ROOT / "blastFoam" / "freeField"
+    before = (source / "constant" / "phaseProperties").read_bytes()
+    result = initialize_case_from_tutorial(
+        case_path=tmp_path,
+        user_request="Shock tube keywords must not replace the explicitly selected case.",
+        tutorial_path=source,
+    )
+    assert result["initialized"] is True
+    assert Path(result["tutorial_source_path"]) == source.resolve()
+    assert (tmp_path / "constant" / "phaseProperties").read_bytes() == before
+    assert (source / "constant" / "phaseProperties").read_bytes() == before
+    (tmp_path / "user.txt").write_text("keep")
+    again = initialize_case_from_tutorial(case_path=tmp_path, user_request="copy", tutorial_path=source)
+    assert again["skipped"] and (tmp_path / "user.txt").read_text() == "keep"
+
+
 def test_initializer_selects_axisymmetric_charge(tmp_path: Path) -> None:
     result = initialize_case_from_tutorial(
         case_path=tmp_path,
@@ -398,7 +415,9 @@ def test_mcp_case_path_rejects_symlink_escape(tmp_path: Path, monkeypatch) -> No
 def test_mcp_schemas_bound_expensive_arguments() -> None:
     tools = {tool.name: tool for tool in asyncio.run(mcp_server.mcp.list_tools())}
 
-    assert len(tools) == 17
+    assert len(tools) == 21
+    for name in ('locate_case_edits','check_case_dependencies','read_knowledge_source'):
+        assert tools[name].inputSchema['properties']['budget']['maximum']==24000
     assert tools["search_case_content"].inputSchema["properties"]["top_k"]["maximum"] == 20
     assert tools["search_case_content"].inputSchema["properties"]["max_iterations"]["maximum"] == 10
     assert tools["get_file_content"].inputSchema["properties"]["max_lines"]["maximum"] == 1000

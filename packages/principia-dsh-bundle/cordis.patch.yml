@@ -20,6 +20,7 @@
           RETRIEVAL_LLM_API_KEY: !!js process.env.RETRIEVAL_LLM_API_KEY ?? ''
           ENABLE_EXECUTION: !!js process.env.ENABLE_EXECUTION ?? 'true'
           REQUIRE_EXECUTION: !!js process.env.REQUIRE_EXECUTION ?? 'true'
+          PRINCIPIA_TOOL_TRACE_DIR: !!js process.env.PRINCIPIA_TOOL_TRACE_DIR ?? ''
           OPENFOAM_BASHRC: !!js process.env.OPENFOAM_BASHRC ?? ''
           BLASTFOAM_BASHRC: !!js process.env.BLASTFOAM_BASHRC ?? ''
           OPENFOAM_EXECUTION_USER: !!js process.env.OPENFOAM_EXECUTION_USER ?? ''
@@ -62,6 +63,9 @@
             - mcp__principia_retrieval__find_variable
             - mcp__principia_retrieval__get_file_content
             - mcp__principia_retrieval__get_modification_targets
+            - mcp__principia_retrieval__locate_case_edits
+            - mcp__principia_retrieval__read_knowledge_source
+            - mcp__principia_retrieval__check_case_dependencies
             - mcp__principia_retrieval__search_case_content
             - mcp__principia_retrieval__search_user_guide
 
@@ -93,8 +97,12 @@
             - mcp__principia_retrieval__find_variable
             - mcp__principia_retrieval__get_file_content
             - mcp__principia_retrieval__get_modification_targets
+            - mcp__principia_retrieval__locate_case_edits
+            - mcp__principia_retrieval__read_knowledge_source
+            - mcp__principia_retrieval__check_case_dependencies
             - mcp__principia_retrieval__search_case_content
             - mcp__principia_retrieval__search_user_guide
+            - mcp__principia_retrieval__edit_case_dictionaries
             - mcp__principia_retrieval__initialize_case
             - mcp__principia_retrieval__case_digest
 

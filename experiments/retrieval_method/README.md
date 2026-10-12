@@ -1,20 +1,25 @@
-# 第2章检索实验代码
+# 第2章检索实现与评测
 
-论文数据、冻结结果与取材说明统一位于 `graduation-experiment-results/chapter2_retrieval/`，从该目录的 `论文取材入口.md` 开始。此目录保存实现和评测脚本，不是实验结果归档。2026-09-23 已按用户要求删除旧轮次及淘汰方案的原始运行目录；`最新进展.md` 和 `历史实验简表.md` 保留简要结果与原哈希，旧运行不可再逐项重放。
+新协议维护入口为[基础agent检索增强实验](AUGMENTATION_PLAN.md)：四组共同保留grep、定位与原文读取，分别新增BM25、E5或图谱，使用用户授权qwen_proxy。归档`grep_augmentation_v4/`的正式8B作答、证据/资源/消融及原评分网格完成，正文和正式图件已同步；原8B评分失败保留未知，后注册14B裁判及同请求网络恢复完成；419全项有效/171部分无效/291输出失败/271空答案。旧`aliyun_8b_cross_source_v1/`保持历史冻结身份，完整回答图谱[14.24,15.28]%/基础1.04%，格式未知保留，主检验不宣布显著优越。
 
-## 当前自研方法
+本目录维护算法、评测适配器和审计脚本。实验唯一归档为 `../../../graduation-experiment-results/chapter2_retrieval/`，统一题集为其 `datasets/natural_navigation_qa/`。当前检索增强为`grep_augmentation_v4/`，正式证据/资源结果已同步论文，后注册14B裁判评分及网络恢复完成，修订报告与严格一致性审计独立归档；`aliyun_8b_cross_source_v1/`是历史冻结证据。取材从归档 `论文取材入口.md` 开始。
 
-- `index_free_graph_evidence.py`：查询时扫描已持久化图的节点、边、标签、角色、作用域和来源路径，返回候选与遍历信息；不建立 E5、BM25、向量、倒排或预计算 passage 索引。
-- `candidate_qa.py`：默认使用 `navigation_only=true`、`source_context_lines=16`。模型先看图导航卡片，再选原始来源并由 `read_sources` 读取权威原文；所选范围可向前后扩展最多 16 行，同文件重叠范围合并，引用仍须指向实际支持主张的精确行。原候选 010 证据直出可显式设 `navigation_only=false`。
-- `export_runtime_graph.py`：从完整图导出只含必要运行字段的图副本，不删节点、不改边、不建立外部检索索引。
+研究问题、论证主线与方法边界见[第2章共享设计](../../../graduation-research/chapters/chapter02.md)。本目录维护具体实现与验证，冻结协议和证据继续由实验归档保存。
 
-当前默认方法是第五轮正式门禁之后单独标注的 post-hoc 开发集选择结果。原第五轮预注册总门禁失败，保留集仍锁定；不得把当前默认替换写成原门禁通过或保留集验证。
+## 当前正式实现
 
-## 比较、评分与复核
+- `chapter2_graph_retriever.py`：免外部索引图检索与结构化原文回读。
+- `chapter2_canonical_delivery.py`：权威证据映射、去重、原生排名与实际字符预算。
+- `chapter2_role_graph.py`：角色增强和跨来源关系。
+- `chapter2_common_planner.py`、`chapter2_cited_answer.py`：轻量模型公共规划和带引用回答。
+- `chapter2_formal_*`：正式输入、实现冻结、执行和评分；现有冻结运行自带 runtime 快照。
 
-- `graphify_qa.py`、`graphify_query_backend.py`：Graphify 基线查询与问答；`.txt` 适配仅供 Graphify 摄取，输出必须映射回原路径。
-- `retrieval_leaderboard.py`、`navigation_catalogue_evaluation.py`、`vector_comparator_evaluation.py`：正式第五轮及补充对照的运行入口。保留的冻结运行目录自带对应代码快照。
-- `leaderboard_admission.py`、`leaderboard_review.py`、`leaderboard_adjudication.py`、`leaderboard_results.py`：预算/模型身份准入、来源审阅、裁决和质量汇总。
-- `canonical_evidence_v1.py`、`trace_retrieval_evaluation.py`、`first_call_file_retrieval.py`：补充性证据层和检索分析。冻结会话的首次调用只能称为 `whole-system first-call`，多步轨迹只能称为实际证据送达质量。
+离线构图/语义校验使用 `deepseek-flash`，在线过程按轻量模型协议，最新为 `qwen3-8b`。留出集不锁定，gold 仅由评测侧读取。自研链路只持久化图与构图清单；E5/BM25是隔离对照，不进入自研最终方法。
 
-最终论文图件位于 `graduation-visualization/chapter_02_knowledge_graph_retrieval/`：方法框架图用 imagegen 生成，实测比较图从冻结质量 JSON 绘制。
+历史 `candidate_qa.py` 的二阶段默认替换、旧轮次和 post-hoc 指标只解释当时开发实验，不作为当前正式结果入口或新实验停止条件。历史冻结源码/回答/评分不改；当前源文件的更改不等于重新生成冻结结果。
+
+论文仅在 `../../../graduation-manuscript/` 以 LaTeX 维护；最终图件与 CSV 位于该项目 `assets/chapter2/`。制图脚本在 `../../../graduation-visualization/`。
+
+## 历史本地人工评分（新协议不使用）
+
+`chapter2_human_rating.py` 生成48份冻结回答的离线HTML，支持事实/引用两项五分制、选填备注、缓存续审、JSON/CSV导出及封存后解盲。用法与新增量表协议见 [human_rating_README.md](human_rating_README.md)。原二元盲审脚本和冻结评分保持原样；此入口不调用模型，不自动生成真人判断。

@@ -1,0 +1,1 @@
+{"diagnostics":[],"entries":[],"kind":"shell","steps":[],"text":"#!/bin/sh\ncd ${0%/*} || exit 1    # run from this directory\n\n# Source tutorial clean functions\n. $WM_PROJECT_DIR/bin/tools/CleanFunctions\n\ncleanCase\n\n# ----------------------------------------------------------------- end-of-file\n"}

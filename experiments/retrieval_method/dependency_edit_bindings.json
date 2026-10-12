@@ -1,0 +1,44 @@
+{
+  "condition_snapshot": "fc15b964eeda5996d2ef81d06b4a3cd78f1d20561f6e07963b34d5e82047877a",
+  "bindings": [
+    {
+      "id": "laminar_reference",
+      "rule": "viscosity_requires_momentum_dictionary",
+      "review": "accept",
+      "example_index": 0,
+      "source_parent": "",
+      "target_parents": [
+        ""
+      ]
+    },
+    {
+      "id": "viscous_div_reference",
+      "rule": "viscosity_requires_momentum_dictionary",
+      "review": "accept",
+      "example_index": 1,
+      "source_parent": "divSchemes",
+      "target_parents": [
+        "divSchemes"
+      ]
+    },
+    {
+      "id": "implicit_solver_reference",
+      "rule": "viscosity_requires_momentum_dictionary",
+      "review": "accept",
+      "example_index": 2,
+      "source_parent": "solvers/(U|e|Yi)",
+      "target_parents": [],
+      "lookup_requirement": 1,
+      "target_state_policy": {
+        "selector": "solver",
+        "replace_values": [
+          "diagonal"
+        ],
+        "existing": "preserve_without_runtime_validity_claim",
+        "unresolved": "no_automatic_proposal"
+      }
+    }
+  ],
+  "review_basis": "Existing blastFoam/OpenFOAM9 reviewed dependency rule and source snippets; DIC reference independently runtime-tested in effective_lookup_v1. Explicit concrete solver targets avoid copying example regex; caller must activate the future condition.",
+  "snapshot": "a494ac1d6fe924ade1ce1b4932db8d71d49be4b370295ce1fa1dd08d7a3b0b6d"
+}

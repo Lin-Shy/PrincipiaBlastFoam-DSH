@@ -1,0 +1,54 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      dynamicMeshDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dynamicFvMesh dynamicMotionSolverFvMesh;
+
+
+protectedPatches (flap);
+
+motionSolver      displacementLaplacian;
+
+displacementLaplacianCoeffs
+{
+    diffusivity quadratic inverseDistance (flap);
+}
+errorEstimator delta;      // Model used to estimate error
+deltaField p;               // Field used to estimate error
+epsilon 0.5;                // Error coefficient
+
+beginUnrefine 1e-6;         // At what time does unrefinement start (default is 0)
+
+
+balance no;
+
+// How often to refine
+refineInterval  2;
+
+// Field to be refinement on
+field           error;
+
+// Refine field in between lower..upper (varies based on errorEstimator)
+lowerRefineLevel 0.1;
+
+// If value < unrefineLevel unrefine
+unrefineLevel   0.1;
+
+// Number of cells refined around high error cells
+nBufferLayers   1;
+
+// Refine cells only up to maxRefinement levels
+maxRefinement   1;
+
+// Stop refinement if maxCells reached
+maxCells        100000000;
+
+// Write the refinement level as a volScalarField
+dumpLevel       true;

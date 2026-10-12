@@ -1,0 +1,3 @@
+# 14 Coupling to preCICE's OpenFOAM adapter
+
+With the addition of moving meshes, the ability to couple blastFoam to an external solver through preCICE is possible. There is no special setup required, and it is ready to be used upon install. There are no limitations for the standard blastFoam moving mesh classes. However, when using the movingAdaptiveFvMesh, the coupled boundary cannot change within the simulation. For this reason, balancing is not allowed and the optional "protectedPatches" keyword must be used to specify boundaries which cannot be refined. Checkpointing can also not be used with refinement due to limitations on the mesh.
