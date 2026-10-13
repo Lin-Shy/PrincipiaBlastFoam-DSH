@@ -206,9 +206,10 @@ def main():
     from chapter2_qwen_proxy_config import settings
     base, _key = settings(args.proxy_settings)
     availability = {}
+    allowed_proof_models = set(models) if args.stage == 'generation' else {'qwen3-14b'}
     for folder in args.availability_receipt:
         model = read(folder / 'summary.json').get('expected_model')
-        if model not in models or model in availability:
+        if model not in allowed_proof_models or model in availability:
             raise ValueError('one fresh availability receipt per admitted model')
         availability[model] = folder
         verify_availability(folder, model, base + '/chat/completions')
@@ -226,8 +227,10 @@ def main():
         complete = {r['cell_id']: r['complete'] for r in summary['admitted_cell_state']}
         def run_model(model):
             rows = []
+            model_stopped = False
             for cell in [c for c in plan['cells'] if c['model'] == model]:
-                if stopped.is_set():
+                if args.stage == 'grading' and stopped.is_set():
+                    model_stopped = True
                     break
                 if complete[cell['id']]:
                     rows.append({'cell_id': cell['id'], 'skipped_bound_complete_cell': True})
@@ -256,16 +259,18 @@ def main():
                 rows.append(record)
                 print(record, flush=True)
                 if result.returncode or state.get('transport_circuit_open') is not False:
-                    stopped.set()
+                    model_stopped = True
+                    if args.stage == 'grading':
+                        stopped.set()
                     break
-            return {'model': model, 'records': rows}
+            return {'model': model, 'records': rows, 'stopped_for_failure': model_stopped}
         with ThreadPoolExecutor(max_workers=2) as pool:
             futures = [pool.submit(run_model, model) for model in models]
             rows = [future.result() for future in as_completed(futures)]
         write_new(args.output / 'execution-summary.json', {'schema': 'billing_resume_execution_summary_v1',
             'stage': args.stage, 'package_manifest_sha256': sha(package / 'manifest.json'),
             'plan_sha256': sha(args.plan), 'preselected_scores_enabled': False,
-            'stopped_for_failure': stopped.is_set(), 'models': rows,
+            'stopped_for_failure': any(row['stopped_for_failure'] for row in rows), 'models': rows,
             'full_registered_comparison_complete': False})
 
 

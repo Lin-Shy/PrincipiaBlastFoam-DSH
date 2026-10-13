@@ -21,15 +21,15 @@ from test_chapter2_knowledge_formal import plan
 ENDPOINT = 'https://registered/chat/completions'
 
 
-def availability(folder, started=None):
+def availability(folder, started=None, model='qwen3-14b'):
     started = time.time() if started is None else started
-    body = {'model': 'qwen3-14b', 'messages': [{'role': 'user', 'content': 'Return OK'}]}
+    body = {'model': model, 'messages': [{'role': 'user', 'content': 'Return OK'}]}
     fingerprint = hashlib.sha256(json.dumps(body, separators=(',', ':')).encode()).hexdigest()
     save(folder / 'requests/00.json', {'status': 'response', 'endpoint': ENDPOINT,
         'request': body, 'request_sha256': fingerprint,
-        'response': {'model': 'qwen3-14b', 'choices': [{}], 'usage': {'prompt_tokens': 10, 'completion_tokens': 2}},
+        'response': {'model': model, 'choices': [{}], 'usage': {'prompt_tokens': 10, 'completion_tokens': 2}},
         'events': [{'status': 'response', 'started_unix': started, 'seconds': .1}]})
-    save(folder / 'summary.json', {'status': 'response', 'expected_model': 'qwen3-14b', 'exact_model_match': True})
+    save(folder / 'summary.json', {'status': 'response', 'expected_model': model, 'exact_model_match': True})
 
 
 def failure(folder, code=403, error=None, started=None):
@@ -210,6 +210,48 @@ def test_embedding_cache_must_match_frozen_revision_and_model_bytes(tmp_path):
     with pytest.raises(FileNotFoundError): verify_embedding_cache(resources, p, tmp_path / 'wrong-cache')
     model.write_bytes(b'changed')
     with pytest.raises(ValueError, match='model byte drift'): verify_embedding_cache(resources, p, tmp_path / 'cache')
+
+
+def test_generation_circuit_only_stops_its_exact_model_queue(tmp_path, monkeypatch):
+    import chapter2_billing_resume_controller as controller
+    import chapter2_prepare_billing_resume as preparer
+    package, plan_path, resources, activation = package_fixture(tmp_path)
+    p = guard.read(plan_path)
+    from chapter2_knowledge_formal_plan import digest
+    from chapter2_knowledge_formal_review import selected_cases
+    selection = tmp_path / 'selection.json'
+    save(selection, {'schema': 'prospective_knowledge_qa_original_review_v1', 'plan_sha256': sha(plan_path),
+        'policy_sha256': digest(p['independent_review']), 'implementation_sha256': 'a' * 64,
+        'cases': [{'review_id': format(i, '032x'), 'cell_id': c, 'question_id': q}
+                  for i, (c, q) in enumerate(selected_cases(p))]})
+    evaluation = tmp_path / 'evaluation.json'; e = guard.read(evaluation)
+    e['review_selection_sha256'] = sha(selection); save(evaluation, e)
+    package2 = tmp_path / 'package2'; preparer.prepare(plan_path, evaluation, package2, PROJECT, PROJECT)
+    monkeypatch.setattr(controller, '__file__', str(package2 / 'controller.py'))
+    monkeypatch.setattr(controller, 'verify_embedding_cache', lambda *args: {'verified_files': 0, 'network_requests': 0})
+    import chapter2_qwen_proxy_config
+    monkeypatch.setattr(chapter2_qwen_proxy_config, 'settings', lambda _: ('https://registered', 'test-key'))
+    calls = []
+    def worker(command, **kwargs):
+        cell_id = command[command.index('--cell') + 1]
+        calls.append(cell_id)
+        output = Path(command[command.index('--output') + 1])
+        save(output / 'summary.json', {'transport_circuit_open': 'qwen3-8b_' in cell_id, 'sessions': []})
+        return type('Result', (), {'returncode': 0})()
+    monkeypatch.setattr(controller.subprocess, 'run', worker)
+    a8, a14 = tmp_path / 'proof8', tmp_path / 'proof14'
+    availability(a8, model='qwen3-8b'); availability(a14)
+    args = ['controller', '--stage', 'generation', '--plan', str(plan_path), '--evaluation', str(evaluation),
+        '--activation', str(activation), '--resources', str(resources), '--dataset', str(tmp_path / 'dataset'),
+        '--results', str(tmp_path / 'gen/cells'), '--generation-output', str(tmp_path / 'gen'),
+        '--score-output', str(tmp_path / 'scores'), '--review-selection', str(selection), '--proxy-settings', 'not-read',
+        '--hf-cache', str(tmp_path / 'cache'), '--output', str(tmp_path / 'run'),
+        '--availability-receipt', str(a8), '--availability-receipt', str(a14)]
+    monkeypatch.setattr(sys, 'argv', args); controller.main()
+    assert sum('qwen3-8b_' in c for c in calls) == 1
+    assert sum('qwen3-14b_' in c for c in calls) == 75
+    summary = guard.read(tmp_path / 'run/execution-summary.json')
+    assert summary['stopped_for_failure'] and not summary['full_registered_comparison_complete']
 
 
 def test_real_grading_keeps_billing_unknown_and_preselected_gate(tmp_path, monkeypatch):
