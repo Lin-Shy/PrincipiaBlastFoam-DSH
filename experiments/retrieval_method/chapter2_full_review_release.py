@@ -97,6 +97,12 @@ def verify_complete_release(args, selection=None, setup=None, loader=None, *, pe
     citation_review = validate_review(citation_value, list(citation_inputs.values()))
     if set(citation_review) != {r['review_id'] for r in selection['cases']}:
         raise ValueError('every prospective citation opinion must precede selected grading')
+    try:
+        from full_snapshot import verify_primary_snapshot
+    except ModuleNotFoundError:
+        from chapter2_full_review_snapshot_binding import verify_primary_snapshot
+    snapshot_proof = verify_primary_snapshot(args, selection, primary_receipt, citation_receipt,
+                                             citation_value, primary_keys)
     activation = read(args.activation)
     validate_activation(activation, plan, plan_hash)
     if citation_receipt.get('activation_sha256') != sha(args.activation):
@@ -120,9 +126,10 @@ def verify_complete_release(args, selection=None, setup=None, loader=None, *, pe
         result_hash = sha(path)
         for key in [primary_keys[rid], citation_keys[rid]]:
             if (key.get('cell_id') != cell_id or key.get('question_id') != qid
-                    or key.get('result_sha256') != result_hash
-                    or Path(key['result_file']).resolve() != path.resolve()):
+                    or key.get('result_sha256') != result_hash):
                 raise ValueError('full review key does not bind the current original answer')
+        if Path(citation_keys[rid]['result_file']).resolve() != path.resolve():
+            raise ValueError('full citation key does not bind the current original answer')
         if bindings[(cell_id, qid)] != result_hash:
             raise ValueError('full primary opinion binds a different answer')
         payload = scoring_payload(questions[qid]['question'], annotations[qid], evidence,
@@ -135,7 +142,7 @@ def verify_complete_release(args, selection=None, setup=None, loader=None, *, pe
              'selection': args.review_selection, 'primary_pack_receipt': args.review_pack / 'pack-receipt.json',
              'primary_verdicts': args.review_verdicts, 'citation_policy': args.citation_policy,
              'citation_pack_receipt': args.citation_pack / 'receipt.json', 'citation_verdicts': args.citation_verdicts}
-    receipt = {'schema': 'global_preselected_source_first_release_v1',
+    receipt = {'schema': 'global_preselected_source_first_release_v1', **snapshot_proof,
         'all_planned_primary_opinions': len(reviews), 'all_planned_citation_opinions': len(citation_review),
         'registered_cases': len(expected), 'input_sha256': {k: sha(p) for k, p in files.items()},
         'primary_inputs_sha256': primary_receipt['inputs_sha256'],

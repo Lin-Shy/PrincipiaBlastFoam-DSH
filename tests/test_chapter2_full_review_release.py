@@ -2,6 +2,7 @@
 import copy
 import importlib.util
 import json
+import os
 from pathlib import Path
 import sys
 from types import SimpleNamespace
@@ -141,6 +142,44 @@ def full_cohort(tmp_path, monkeypatch):
         'human_truth': False, 'reference_before_automatic_scores': True, 'rows': primary_rows})
     save(citation_verdicts, {'schema': 'source_first_citation_original_review_v1', 'reviewer': 'Codex (AI)',
         'human_truth': False, 'before_automatic_scores': True, 'gold_points_read': False, 'rows': opinions})
+    # Reproduce004's real source-snapshot lineage; primary keys must point
+    # to the immutable view rather than the growing original result root.
+    snapshot_parent = tmp_path / 'source_snapshot'
+    snapshot_root = snapshot_parent / 'evaluation_only/results'
+    snapshot_hashes, snapshot_rows, primary_keys = {}, [], []
+    for key in keys:
+        cid, qid = key['cell_id'], key['question_id']
+        relative = Path(cid) / 'sessions' / qid / 'result.json'
+        for item in [Path(cid) / 'protocol.json', relative, relative.with_name('result-binding.json')]:
+            copied = snapshot_root / item
+            if not copied.exists():
+                copied.parent.mkdir(parents=True, exist_ok=True)
+                os.link(results / item, copied)
+            snapshot_hashes[item.as_posix()] = sha(copied)
+        primary_keys.append({**key, 'result_file': str((snapshot_root / relative).resolve())})
+        snapshot_rows.append({'review_id': key['review_id'], 'original_result_file': key['result_file'],
+            'result_sha256': key['result_sha256'], 'protocol_sha256': sha(results / cid / 'protocol.json')})
+    save(primary_pack / 'evaluation_only/blind-key.json', primary_keys)
+    primary_receipt = json.loads((primary_pack / 'pack-receipt.json').read_text('utf-8'))
+    primary_receipt['blind_key_sha256'] = sha(primary_pack / 'evaluation_only/blind-key.json')
+    save(primary_pack / 'pack-receipt.json', primary_receipt)
+    snapshot_path = snapshot_parent / 'source-snapshot.json'
+    save(snapshot_path, {'schema': 'source_reviewed_generation_snapshot_v1',
+        'citation_pack_receipt_sha256': sha(citation_pack / 'receipt.json'),
+        'citation_opinions_sha256': sha(citation_verdicts), 'plan_sha256': sha(plan_path),
+        'selection_sha256': sha(selection_path), 'available_cases': len(keys),
+        'pending_review_ids_at_citation_capture': [], 'gold_points_read': False,
+        'automatic_scores_read': 0, 'model_requests': 0, 'rows': snapshot_rows,
+        'file_sha256': snapshot_hashes})
+    save(primary_pack / 'citation-release.json', {'schema': 'source_citation_before_primary_review_release_v1',
+        'citation_pack_receipt_sha256': sha(citation_pack / 'receipt.json'),
+        'citation_opinions_sha256': sha(citation_verdicts),
+        'primary_pack_receipt_sha256': sha(primary_pack / 'pack-receipt.json'),
+        'source_opinion_row_sha256': {r['review_id']: digest(r) for r in opinions},
+        'available_cases': len(keys), 'pending_generation': 0, 'human_truth': False,
+        'source_citation_gate_before_gold_read': True, 'model_requests': 0,
+        'generation_snapshot_receipt_file': str(snapshot_path.resolve()),
+        'generation_snapshot_receipt_sha256': sha(snapshot_path)})
     base = tmp_path / 'base'
     prepare_base(plan_path, evaluation, base, PROJECT, runtime)
     package = tmp_path / 'full_package'
@@ -159,6 +198,7 @@ def test_full1248_unknown_opinions_release_without_claiming_correctness(full_coh
     assert len(reviews) == len(rows) == receipt['registered_cases'] == 1248
     assert all(value is None for value in reviews.values())
     assert receipt['all_planned_citation_opinions'] == 1248
+    assert receipt['verified_snapshot_cases'] == 1248
     assert receipt['automatic_score_files_read'] == receipt['network_requests'] == 0
     assert len(list((args.output / 'full-review-releases').glob('*.json'))) == 1
     assert not list(args.output.rglob('score.json'))
@@ -198,7 +238,7 @@ def test_partial_missing_drift_and_early_selected_scores_all_rejected(full_cohor
     changed[0]['result_file'] = 'wrong-result.json'
     save(key_path, changed)
     receipt = json.loads(receipt_original); receipt['blind_key_sha256'] = sha(key_path); save(receipt_path, receipt)
-    with pytest.raises(ValueError, match='current original answer'):
+    with pytest.raises(ValueError, match='provenance drift|current original answer'):
         verify_complete_release(args)
     key_path.write_bytes(key_original); receipt_path.write_bytes(receipt_original)
     input_path = args.citation_pack / 'evaluation_only/inputs.json'
@@ -206,7 +246,7 @@ def test_partial_missing_drift_and_early_selected_scores_all_rejected(full_cohor
     input_original, receipt_original = input_path.read_bytes(), receipt_path.read_bytes()
     changed = json.loads(input_original); changed[0]['candidate_answer'] = 'Different answer.'; save(input_path, changed)
     receipt = json.loads(receipt_original); receipt['inputs_sha256'] = sha(input_path); save(receipt_path, receipt)
-    with pytest.raises(ValueError, match='actual delivered'):
+    with pytest.raises(ValueError, match='provenance drift|actual delivered'):
         verify_complete_release(args)
     input_path.write_bytes(input_original); receipt_path.write_bytes(receipt_original)
     row = selection['cases'][0]
@@ -271,3 +311,33 @@ def test_real_worker_blocks_partial_then_preserves_fixed_request_bytes(full_coho
     monkeypatch.setattr(sys, 'argv', baseline_argv); original.main()
     assert calls == released_requests
     assert len(list(args.output.rglob('full-review-releases/*.json'))) == 1
+
+
+def test_snapshot_provenance_and_bytes_cannot_be_replaced_by_live_paths(full_cohort):
+    args, _, selection = full_cohort
+    release_path = args.review_pack / 'citation-release.json'
+    release_original = release_path.read_bytes()
+    release = json.loads(release_original)
+    snapshot_path = Path(release['generation_snapshot_receipt_file'])
+    snapshot_original = snapshot_path.read_bytes()
+    for mutate, message in [
+        (lambda v: v['rows'][0].update(original_result_file='another-original.json'), 'current original answer'),
+        (lambda v: v['file_sha256'].pop(next(iter(v['file_sha256']))), 'file cohort drift'),
+        (lambda v: v.update(automatic_scores_read=1), 'snapshot scope drift')]:
+        value = json.loads(snapshot_original); mutate(value); save(snapshot_path, value)
+        updated = json.loads(release_original); updated['generation_snapshot_receipt_sha256'] = sha(snapshot_path)
+        save(release_path, updated)
+        with pytest.raises(ValueError, match=message): verify_complete_release(args)
+        snapshot_path.write_bytes(snapshot_original); release_path.write_bytes(release_original)
+        assert not args.output.exists()
+    key_path = args.review_pack / 'evaluation_only/blind-key.json'
+    receipt_path = args.review_pack / 'pack-receipt.json'
+    key_original, receipt_original = key_path.read_bytes(), receipt_path.read_bytes()
+    keys = json.loads(key_original); case = selection['cases'][0]
+    keys[0]['result_file'] = str(args.results / case['cell_id'] / 'sessions' / case['question_id'] / 'result.json')
+    save(key_path, keys)
+    receipt = json.loads(receipt_original); receipt['blind_key_sha256'] = sha(key_path); save(receipt_path, receipt)
+    updated = json.loads(release_original); updated['primary_pack_receipt_sha256'] = sha(receipt_path); save(release_path, updated)
+    with pytest.raises(ValueError, match='snapshot does not bind'): verify_complete_release(args)
+    key_path.write_bytes(key_original); receipt_path.write_bytes(receipt_original); release_path.write_bytes(release_original)
+    assert verify_complete_release(args, persist=False)[3]['verified_snapshot_cases'] == 1248

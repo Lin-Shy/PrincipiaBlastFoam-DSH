@@ -75,6 +75,7 @@ def prepare(base_package, citation_policy, output):
         files[name] = transform(files[name].decode('utf-8'), replacements).encode('utf-8')
     app = Path(__file__).resolve().parent
     files['full_review.py'] = (app / 'chapter2_full_review_release.py').read_bytes()
+    files['full_snapshot.py'] = (app / 'chapter2_full_review_snapshot_binding.py').read_bytes()
     for name in ['chapter2_citation_original_review.py', 'chapter2_citation_support.py']:
         relative = 'experiments/retrieval_method/' + name
         source = citation_policy.parent / 'runtime' / relative
