@@ -42,6 +42,23 @@ class StageCostTests(unittest.TestCase):
         self.assertEqual(r['stages']['connectivity_diagnostics']['known_total_tokens'], 13)
         self.assertEqual(r['grand_total']['usage_unknown_attempts'], 1)
 
+    def test_capacity_probe_and_derived_availability_copy_count_once(self):
+        self.record('audit/transport_capacity_probe_014b_001/requests/01.json', [self.event()])
+        self.record('audit/transport_recovery_014b_capacity_001/requests/00.json', [self.event()])
+        r = reconcile(self.root)
+        self.assertEqual(r['request_record_files'], 2)
+        self.assertEqual(r['grand_total']['physical_attempts'], 1)
+        self.assertEqual(r['stages']['connectivity_diagnostics']['known_total_tokens'], 13)
+        self.assertEqual(r['duplicate_physical_events_not_recharged'], 1)
+        self.assertEqual(r['physical_event_snapshot'][0]['subphase'], 'audit/transport_capacity_probe_014b_001')
+
+    def test_capacity_copy_conflict_rejected_instead_of_silently_deduplicated(self):
+        self.record('audit/transport_capacity_probe_014b_001/requests/01.json', [self.event()])
+        changed = self.event(); changed['usage']['completion_tokens'] = 4
+        self.record('audit/transport_recovery_014b_capacity_001/requests/00.json', [changed])
+        with self.assertRaisesRegex(ValueError, 'conflicting'):
+            reconcile(self.root)
+
     def test_unresolved_start_does_not_invent_zero_duration_or_usage(self):
         self.record('development/score_calibration_001/requests/a.json', [self.event(), {'attempt': 2, 'started_unix': 2, 'status': 'in_flight'}])
         r = reconcile(self.root)['grand_total']
@@ -112,6 +129,37 @@ class StageCostTests(unittest.TestCase):
             row = event_rows(path, self.root)
         self.assertEqual(row['sha256'], hashlib.sha256(original).hexdigest())
         self.assertEqual(row['events'][0][1]['usage']['prompt_tokens'], 10)
+
+    def test_local_write_failure_snapshot_is_not_read_or_recharged(self):
+        self.record('formal_scores/main/requests/01.json', [self.event()])
+        copied = 'audit/local_request_replace_stop_001/original-files/formal_scores/main/requests/01.json'
+        self.record(copied, [{'attempt': 1, 'started_unix': 1, 'status': 'in_flight'}])
+        snapshot = self.root / copied
+        original_read = Path.read_bytes
+        def reject_snapshot_read(path):
+            if path == snapshot:
+                raise AssertionError('forensic snapshot must be excluded before reading')
+            return original_read(path)
+        with patch.object(Path, 'read_bytes', reject_snapshot_read):
+            result = reconcile(self.root)
+        self.assertEqual(result['request_record_files'], 1)
+        self.assertEqual(result['grand_total']['physical_attempts'], 1)
+        self.assertEqual(result['grand_total']['known_total_tokens'], 13)
+        self.assertEqual(result['grand_total']['usage_unknown_attempts'], 0)
+
+    def test_incomplete_forensic_json_does_not_hide_real_unknown_probe_usage(self):
+        self.record('formal_scores/main/requests/01.json', [self.event()])
+        self.record('audit/registered8_availability_036/requests/00.json',
+                    [self.event(start=i, attempt=i, known=False) for i in (2, 3, 4)], model='qwen3-8b')
+        snapshot = self.root / 'audit/local_request_replace_stop_002/original-files/setup/responses/incomplete.json'
+        snapshot.parent.mkdir(parents=True, exist_ok=True)
+        snapshot.write_text('incomplete forensic bytes; must not parse', encoding='utf-8')
+        result = reconcile(self.root)
+        self.assertEqual(result['request_record_files'], 2)
+        self.assertEqual(result['grand_total']['physical_attempts'], 4)
+        self.assertEqual(result['grand_total']['known_total_tokens'], 13)
+        self.assertEqual(result['grand_total']['usage_unknown_attempts'], 3)
+        self.assertEqual(result['stages']['connectivity_diagnostics']['physical_attempts'], 3)
 
 
 if __name__ == '__main__': unittest.main()

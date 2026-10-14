@@ -24,7 +24,8 @@ def stage_for(relative):
     parts = Path(relative).parts; first = parts[0]; second = parts[1] if len(parts) > 1 else ''
     if first in {'authoring', 'reviews'}: return 'dataset_design'
     if first == 'setup' and second.startswith('graph_'): return 'cold_graph_construction'
-    if first == 'audit' and second.startswith(('transport_recovery_', 'provider_field_probe_', 'registered8_availability_')):
+    if first == 'audit' and second.startswith(('transport_recovery_', 'transport_capacity_probe_',
+                                               'provider_field_probe_', 'registered8_availability_')):
         return 'connectivity_diagnostics'
     if first == 'development':
         if second.startswith(('connectivity_', 'scoring_connectivity_')): return 'connectivity_diagnostics'
@@ -107,6 +108,10 @@ def reconcile(root):
         # opened by the cost collector, including an incomplete source copy.
         if parts[0] in {'formal_original_review', 'formal_citation_review', 'formal_analysis'}: continue
         if parts[0] == 'audit' and len(parts) > 1 and parts[1].startswith('stage_costs_'): continue
+        # Local atomic-write failure snapshots preserve interrupted originals.
+        # Their canonical ledgers remain in the original stage; these copies
+        # must not be parsed as additional requests, including incomplete JSON.
+        if parts[0] == 'audit' and len(parts) > 1 and parts[1].startswith('local_request_replace_stop_'): continue
         # Registered activity API ledgers all live in requests/responses.
         # Select paths before parsing so score labels and answer JSON never load.
         if not any(part in {'requests', 'responses'} for part in parts): continue
@@ -155,7 +160,7 @@ def reconcile(root):
         'observed_started_unix': started, 'observed_finished_unix': time.time(),
         'request_binding_rule': 'Each hash binds exactly the bytes parsed at observation; live ledgers may subsequently be atomically replaced.',
         'gold_and_source_or_score_opinion_files_opened': False,
-        'ledger_path_rule': 'Only JSON files under requests/responses directories, excluding private/frozen-copy roots; score/result/opinion JSON is never parsed.',
+        'ledger_path_rule': 'Only JSON files under requests/responses directories, excluding private/frozen-copy roots and local request-replace forensic snapshots; score/result/opinion JSON is never parsed.',
         'stages': stages, 'subphases': subphases, 'grand_total': grand, 'request_record_files': len(records),
         'physical_event_snapshot': physical_snapshot,
         'duplicate_physical_events_not_recharged': duplicate_events, 'request_bindings': origins,
