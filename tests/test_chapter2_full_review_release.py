@@ -163,7 +163,7 @@ def full_cohort(tmp_path, monkeypatch):
     primary_receipt = json.loads((primary_pack / 'pack-receipt.json').read_text('utf-8'))
     primary_receipt['blind_key_sha256'] = sha(primary_pack / 'evaluation_only/blind-key.json')
     save(primary_pack / 'pack-receipt.json', primary_receipt)
-    snapshot_path = snapshot_parent / 'source-snapshot.json'
+    snapshot_path = snapshot_parent / 'evaluation_only/source-snapshot.json'
     save(snapshot_path, {'schema': 'source_reviewed_generation_snapshot_v1',
         'citation_pack_receipt_sha256': sha(citation_pack / 'receipt.json'),
         'citation_opinions_sha256': sha(citation_verdicts), 'plan_sha256': sha(plan_path),

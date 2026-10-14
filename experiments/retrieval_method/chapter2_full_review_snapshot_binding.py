@@ -21,13 +21,21 @@ def verify_primary_snapshot(args, selection, primary_receipt, citation_receipt, 
     release_path = args.review_pack / 'citation-release.json'
     release = read(release_path)
     source_rows = {r['review_id']: digest(r) for r in citation_value['rows']}
-    n = len(selection['cases'])
+    # This metadata validator also audits captured partial snapshots; only
+    # the caller's independent complete-pack gate authorizes any scoring.
+    all_ids = {r['review_id'] for r in selection['cases']}
+    ids = set(primary_keys)
+    pending = primary_receipt['pending_review_ids']
+    n = len(ids)
+    if (not ids <= all_ids or len(pending) != len(set(pending))
+            or ids & set(pending) or ids | set(pending) != all_ids):
+        raise ValueError('primary snapshot must partition the entire prospective cohort')
     if (release.get('schema') != 'source_citation_before_primary_review_release_v1'
             or release.get('citation_pack_receipt_sha256') != sha(args.citation_pack / 'receipt.json')
             or release.get('citation_opinions_sha256') != sha(args.citation_verdicts)
             or release.get('primary_pack_receipt_sha256') != sha(args.review_pack / 'pack-receipt.json')
             or release.get('source_opinion_row_sha256') != source_rows
-            or release.get('available_cases') != n or release.get('pending_generation') != 0
+            or release.get('available_cases') != n or release.get('pending_generation') != len(pending)
             or release.get('source_citation_gate_before_gold_read') is not True
             or release.get('human_truth') is not False or release.get('model_requests') != 0):
         raise ValueError('full primary source-first release provenance drift')
@@ -41,19 +49,20 @@ def verify_primary_snapshot(args, selection, primary_receipt, citation_receipt, 
             or snapshot.get('plan_sha256') != sha(args.plan)
             or snapshot.get('selection_sha256') != sha(args.review_selection)
             or snapshot.get('available_cases') != n
-            or snapshot.get('pending_review_ids_at_citation_capture') != []
+            or snapshot.get('pending_review_ids_at_citation_capture') != pending
             or snapshot.get('gold_points_read') is not False
             or snapshot.get('automatic_scores_read') != 0 or snapshot.get('model_requests') != 0):
         raise ValueError('full primary immutable snapshot scope drift')
-    ids = {r['review_id'] for r in selection['cases']}
     rows = snapshot['rows']
     if len(rows) != n or {r['review_id'] for r in rows} != ids:
         raise ValueError('full primary snapshot cohort drift')
     rows = {r['review_id']: r for r in rows}
-    root = snapshot_path.parent / 'evaluation_only/results'
+    root = snapshot_path.parent / 'results'
     expected_files = set()
     for case in selection['cases']:
         rid, cid, qid = case['review_id'], case['cell_id'], case['question_id']
+        if rid not in ids:
+            continue
         relative = Path(cid) / 'sessions' / qid / 'result.json'
         live = args.results / relative
         frozen = root / relative
@@ -76,4 +85,6 @@ def verify_primary_snapshot(args, selection, primary_receipt, citation_receipt, 
         if sha(path) != expected or sha(args.results / relative) != expected:
             raise ValueError('full primary snapshot file differs from original bound bytes')
     return {'citation_release_sha256': sha(release_path), 'generation_snapshot_receipt_sha256': sha(snapshot_path),
-            'verified_snapshot_cases': n, 'verified_snapshot_files': len(expected_files)}
+            'verified_snapshot_cases': n, 'verified_snapshot_files': len(expected_files),
+            'full_registered_snapshot_complete': n == len(all_ids) and not pending,
+            'snapshot_validation_is_not_a_partial_scoring_release': True}

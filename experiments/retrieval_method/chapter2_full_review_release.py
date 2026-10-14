@@ -103,6 +103,8 @@ def verify_complete_release(args, selection=None, setup=None, loader=None, *, pe
         from chapter2_full_review_snapshot_binding import verify_primary_snapshot
     snapshot_proof = verify_primary_snapshot(args, selection, primary_receipt, citation_receipt,
                                              citation_value, primary_keys)
+    if not snapshot_proof['full_registered_snapshot_complete']:
+        raise ValueError('partial snapshot metadata validation cannot release selected scores')
     activation = read(args.activation)
     validate_activation(activation, plan, plan_hash)
     if citation_receipt.get('activation_sha256') != sha(args.activation):
