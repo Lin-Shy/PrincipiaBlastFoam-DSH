@@ -6,11 +6,14 @@ ledger, not an inference of unrecorded CPU/GPU time or a monetary bill.
 """
 import argparse
 from collections import Counter
+from datetime import datetime
 import hashlib
 import json
 import math
 from pathlib import Path
 import time
+from urllib.parse import urlsplit
+from chapter2_local_score_interruption import has_unknown_interruption_duration
 
 OFFLINE_ENDPOINT = 'https://api.deepseek.com/chat/completions'
 
@@ -24,10 +27,13 @@ def stage_for(relative):
     parts = Path(relative).parts; first = parts[0]; second = parts[1] if len(parts) > 1 else ''
     if first in {'authoring', 'reviews'}: return 'dataset_design'
     if first == 'setup' and second.startswith('graph_'): return 'cold_graph_construction'
+    if first == 'audit' and second.startswith('local_qwen_transition_'): return 'local_migration_diagnostics'
+    if first == 'audit' and second.startswith('proxy_bulk_transition_'): return 'connectivity_diagnostics'
     if first == 'audit' and second.startswith(('transport_recovery_', 'transport_capacity_probe_',
                                                'provider_field_probe_', 'registered8_availability_')):
         return 'connectivity_diagnostics'
     if first == 'development':
+        if second.startswith(('local_score_calibration_', 'local_actual_answer_audit_')): return 'local_primary_scoring_development'
         if second.startswith(('connectivity_', 'scoring_connectivity_')): return 'connectivity_diagnostics'
         if second.startswith('pilot_matrix_'): return 'main_method_development'
         if second.startswith('ablation_pilot_'): return 'ablation_development'
@@ -35,6 +41,7 @@ def stage_for(relative):
         if second.startswith(('score_calibration_', 'actual_answer_scoring_')): return 'primary_scoring_development'
         if second.startswith('citation_calibration_'): return 'citation_scoring_development'
     if first == 'formal_generation': return 'formal_generation'
+    if first.startswith('formal_scores_local_'): return 'formal_local_primary_grading'
     if first in {'formal_grading', 'formal_scores'}: return 'formal_primary_grading'
     if first == 'formal_citations': return 'formal_citation_grading'
     raise ValueError('unclassified physical request archive: ' + str(relative))
@@ -53,13 +60,20 @@ def event_rows(path, root):
                       for s in (False, True)]
     if record['request_sha256'] not in [hashlib.sha256(v).hexdigest() for v in serializations]:
         raise ValueError('persisted physical request body/hash mismatch: ' + str(path))
-    events = record.get('events')
+    local = record.get('provider') == 'qwen_local'
+    native_single = local or (record.get('provider') == 'qwen_proxy' and 'events' not in record)
+    events = local_event_rows(record, model) if native_single else record.get('events')
     if not isinstance(events, list): raise ValueError('physical event ledger absent')
     endpoint = record.get('endpoint'); inferred = endpoint is None
     if inferred:
         if model != 'deepseek-flash': raise ValueError('only fixed offline DeepSeek endpoint may be inferred')
         endpoint = OFFLINE_ENDPOINT
-    if not isinstance(endpoint, str) or not endpoint.startswith('https://'): raise ValueError('invalid API endpoint')
+    if local:
+        url = urlsplit(endpoint or '')
+        if (url.scheme not in {'http', 'https'} or not url.hostname or url.username or url.password
+                or url.query or url.fragment or url.path != '/v1/chat/completions'):
+            raise ValueError('invalid local API endpoint')
+    elif not isinstance(endpoint, str) or not endpoint.startswith('https://'): raise ValueError('invalid API endpoint')
     relative = path.relative_to(root).as_posix(); stage = stage_for(relative)
     output = []
     for event in events:
@@ -67,7 +81,7 @@ def event_rows(path, root):
                 or type(event.get('started_unix')) not in (int, float) or not math.isfinite(event['started_unix'])):
             raise ValueError('physical attempt identity invalid')
         seconds = event.get('seconds')
-        if event.get('status') != 'in_flight' and (type(seconds) not in (int, float) or not math.isfinite(seconds) or seconds < 0):
+        if event.get('status') != 'in_flight' and not (local and has_unknown_interruption_duration(record)) and (type(seconds) not in (int, float) or not math.isfinite(seconds) or seconds < 0):
             raise ValueError('physical request terminal duration absent or invalid')
         identity = (endpoint, model, record['request_sha256'], event['attempt'], event['started_unix'])
         output.append((identity, event))
@@ -75,6 +89,28 @@ def event_rows(path, root):
             'model': model, 'endpoint': endpoint, 'endpoint_inferred_from_fixed_offline_client': inferred,
             'request_sha256': record['request_sha256'], 'status': record['status'], 'events': output,
             'is_curated_copy': 'raw_response_path_relative_to_authoring' in record}
+
+
+def local_event_rows(record, model):
+    """Normalize a native one-attempt record without repairing missing usage."""
+    if (type(record.get('transport_attempts')) is not int or record['transport_attempts'] != 1
+            or record.get('model') != model or 'events' in record):
+        raise ValueError('invalid native local attempt identity')
+    started = record.get('started_utc')
+    if not isinstance(started, str): raise ValueError('local UTC start absent')
+    stamp = datetime.fromisoformat(started)
+    if stamp.tzinfo is None: raise ValueError('local timestamp must specify timezone')
+    status = record.get('status')
+    if status not in {'in_flight', 'response', 'transport_error', 'http_rejected', 'model_mismatch', 'invalid_response'}:
+        raise ValueError('invalid native local terminal state')
+    event = dict(attempt=1, started_unix=stamp.timestamp(), status=status)
+    if status != 'in_flight':
+        event['seconds'] = record.get('seconds')
+        if has_unknown_interruption_duration(record): event['duration_unknown']=True
+        raw = record.get('raw_response')
+        if isinstance(raw, dict) and 'usage' in raw: event['usage'] = raw['usage']
+        if 'http_status' in record: event['code'] = record['http_status']
+    return [event]
 
 
 def empty_totals():
@@ -93,6 +129,7 @@ def add_event(totals, model, event):
         totals['known_total_tokens'] += usage['prompt_tokens'] + usage['completion_tokens']
     if event.get('status') == 'in_flight':
         totals['unresolved_attempt_starts'] += 1; totals['duration_unknown_attempts'] += 1
+    elif event.get('duration_unknown'): totals['duration_unknown_attempts'] += 1
     else: totals['sum_known_physical_request_seconds'] += event['seconds']
     for field, key in [('physical_status_counts', event.get('status', 'missing')), ('models', model)]:
         totals[field][key] = totals[field].get(key, 0) + 1
@@ -114,7 +151,10 @@ def reconcile(root):
         if parts[0] == 'audit' and len(parts) > 1 and parts[1].startswith('local_request_replace_stop_'): continue
         # Registered activity API ledgers all live in requests/responses.
         # Select paths before parsing so score labels and answer JSON never load.
-        if not any(part in {'requests', 'responses'} for part in parts): continue
+        proxy_probe = (parts[0] == 'audit' and len(parts) == 4
+            and parts[1].startswith('proxy_bulk_transition_')
+            and parts[2] in {'connectivity-8b', 'connectivity-14b'} and parts[3] == '00.json')
+        if not proxy_probe and not any(part in {'requests', 'responses'} for part in parts): continue
         row = event_rows(path, root)
         if row is not None: records.append(row)
     # Prefer an original response over its authoring curation; early calibration
@@ -144,7 +184,8 @@ def reconcile(root):
             add_event(target, origin['model'], origin['event'])
     planned_stages = ('dataset_design', 'cold_graph_construction', 'scoring_control_construction', 'connectivity_diagnostics',
         'main_method_development', 'ablation_development', 'primary_scoring_development', 'citation_scoring_development',
-        'formal_generation', 'formal_primary_grading', 'formal_citation_grading')
+        'formal_generation', 'formal_primary_grading', 'formal_citation_grading',
+        'local_migration_diagnostics', 'local_primary_scoring_development', 'formal_local_primary_grading')
     for stage in planned_stages: stages.setdefault(stage, empty_totals())
     # Retain only accounting metadata for a verifiable immutable observation.
     # No prompt, response, answer, source opinion, or grading label is exported.
@@ -160,7 +201,7 @@ def reconcile(root):
         'observed_started_unix': started, 'observed_finished_unix': time.time(),
         'request_binding_rule': 'Each hash binds exactly the bytes parsed at observation; live ledgers may subsequently be atomically replaced.',
         'gold_and_source_or_score_opinion_files_opened': False,
-        'ledger_path_rule': 'Only JSON files under requests/responses directories, excluding private/frozen-copy roots and local request-replace forensic snapshots; score/result/opinion JSON is never parsed.',
+        'ledger_path_rule': 'JSON under requests/responses plus explicit audit/proxy_bulk_transition_*/connectivity-{8b,14b}/00.json probes; private/frozen-copy roots and local request-replace forensic snapshots excluded; score/result/opinion JSON is never parsed.',
         'stages': stages, 'subphases': subphases, 'grand_total': grand, 'request_record_files': len(records),
         'physical_event_snapshot': physical_snapshot,
         'duplicate_physical_events_not_recharged': duplicate_events, 'request_bindings': origins,
@@ -172,6 +213,9 @@ def reconcile(root):
         'offline_endpoint_inference': 'Legacy exact deepseek-flash ledgers omit endpoint; their frozen client uses https://api.deepseek.com/chat/completions.',
         'wall_time_scope': 'Sum of recorded physical HTTP attempt durations, including failures; excludes retry waits and local preprocessing. Parallel durations are not elapsed project time.',
         'local_compute_cost': None, 'local_compute_reason': 'No complete CPU/GPU meter for tokenization, E5 embedding/indexing, deterministic graph compilation or source review.',
+        'local_native_ledgers_supported': True,
+        'proxy_native_single_attempt_ledgers_supported': True,
+        'deployment_scope': 'Legacy API events and native qwen_local attempts have separate development/formal stages; local inference is not assumed monetarily free.',
         'scope': 'Only this new QA activity. Historical grep activities and unrelated chapters excluded. Empty formal stages mean not run, not a measured free formal experiment.'}
 
 
