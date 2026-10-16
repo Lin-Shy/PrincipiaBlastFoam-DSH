@@ -73,6 +73,10 @@ def generate(args):
     for method in args.methods:
         if method=='graph_v1':engines[method]=KnowledgeGraphRetriever(resources['graph_full'],resources['corpus'],corpus_manifest=resources['source_map'])
         elif method=='graph_v2':engines[method]=EvidenceGraphV2(args.graph_v2,resources['corpus'],corpus_manifest=resources['source_map'],evidence_policy=args.evidence_policy)
+        elif method=='graph_v3':
+            from chapter2_knowledge_graph_v3 import SourceContextGraph
+            if args.graph_v3 is None:raise ValueError('Source-parent graph artifact required')
+            engines[method]=SourceContextGraph(args.graph_v3,resources['corpus'],corpus_manifest=resources['source_map'],context_characters=args.parent_characters)
         elif method=='bm25':
             from chapter2_baseline_native import NoGraphBM25
             engines[method]=NoGraphBM25(resources['corpus'],resources['source_map'])
@@ -95,6 +99,7 @@ def generate(args):
         PROJECT/'src/principia_core/retrieval/knowledge_agent.py',
         PROJECT/'src/principia_core/retrieval/knowledge_qa.py']
     if 'bm25' in args.methods:implementation.append(PROJECT/'experiments/retrieval_method/chapter2_baseline_native.py')
+    if 'graph_v3' in args.methods:implementation.append(PROJECT/'experiments/retrieval_method/chapter2_knowledge_graph_v3.py')
     protocol=dict(schema='matched_development_qa_v2',formal_result=False,workload=args.workload,
         workers_per_model=args.workers_per_model,models=list(MODELS),methods=args.methods,
         question_ids=[q['id'] for q in questions],questions_sha256=sha(args.questions),
@@ -104,6 +109,9 @@ def generate(args):
         implementation_sha256={str(p.relative_to(PROJECT)):sha(p) for p in implementation},
         max_transport_attempts=1,content_retries=0,local_proxy_pooling=False)
     protocol['common_answer_checklist']=ANSWER_CHECKLIST if args.answer_checklist else ''
+    if 'graph_v3' in args.methods:
+        protocol['graph_v3']=dict(graph_sha256=sha(args.graph_v3),parent_characters=args.parent_characters,
+            read_policy='literal_source_parent_with_original_owner_routes',external_index=False)
     protocol['matched_comparison_scope']='New development comparison only; shared prompt/output changes prevent treating historical sessions as matched controls.'
     save(args.output/'protocol.json',protocol)
     method_locks={m:RLock() for m in args.methods}
@@ -226,7 +234,9 @@ def main():
         if command=='generate':
             p.add_argument('--questions',type=Path,required=True)
             p.add_argument('--graph-v2',type=Path,required=True)
-            p.add_argument('--methods',nargs='+',choices=['bm25','graph_v1','graph_v2'],default=['bm25','graph_v1','graph_v2'])
+            p.add_argument('--graph-v3',type=Path)
+            p.add_argument('--parent-characters',type=int,default=2400)
+            p.add_argument('--methods',nargs='+',choices=['bm25','graph_v1','graph_v2','graph_v3'],default=['bm25','graph_v1','graph_v2'])
             p.add_argument('--evidence-policy',choices=['compact','whole'],default='compact')
             p.add_argument('--answer-checklist',action='store_true')
             p.add_argument('--output-tokens',type=int,choices=[2048,4096],default=2048)
