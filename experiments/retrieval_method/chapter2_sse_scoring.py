@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 import sys
 
@@ -21,6 +22,35 @@ def install_transport(router, amendment, amendment_sha256):
     return install(router, amendment_sha256)
 
 
+def validate_load_probe(path, amendment_sha256, *, now=None):
+    """Admit fresh physical SSE evidence, rather than its summary alone."""
+    path=Path(path);probe=read(path)
+    age=((now or datetime.now(timezone.utc))-datetime.fromisoformat(probe['created_utc'])).total_seconds()
+    rows=probe['results']
+    expected={(model,index) for model in ('qwen3-8b','qwen3-14b') for index in range(16)}
+    if (probe.get('transport_amendment_sha256')!=amendment_sha256
+        or probe.get('formal_result') is not False or probe.get('actual_test_questions_used') is not False
+        or probe.get('old_formal_requests_reissued') is not False or probe.get('workers_per_model')!=16
+        or not 0<=age<=600 or len(rows)!=32
+        or {(row['model'],row['index']) for row in rows}!=expected
+        or any(row['status']!='response' for row in rows)):
+        raise ValueError('Fresh independent exact-model 16-worker operational probe required')
+    for row in rows:
+        physical=path.parent/row['model']/str(row['index'])/'requests/00.json'
+        record=read(physical)
+        if (sha(physical)!=row['receipt_sha256'] or record.get('status')!='response'
+            or record.get('transport_revision_sha256')!=amendment_sha256
+            or record.get('model')!=row['model'] or record['response'].get('model')!=row['model']):
+            raise ValueError('Changed exact-model physical probe receipt')
+        raw=(physical.parent/record['raw_sse_file']).resolve()
+        if (raw.parent!=physical.parent.resolve() or sha(raw)!=record['raw_response_sha256']
+            or record.get('sse_done') is not True):
+            raise ValueError('Changed or incomplete physical SSE probe')
+        if record['request']!={**record['logical_request'],'stream':True,'stream_options':{'include_usage':True}}:
+            raise ValueError('Unexpected operational probe wire transform')
+    return probe
+
+
 def main():
     parser=argparse.ArgumentParser(add_help=False)
     parser.add_argument('--transport-amendment',type=Path,required=True)
@@ -32,12 +62,7 @@ def main():
     planpath=Path(remaining[remaining.index('--plan')+1]);frozen=planpath.parent/'runtime'
     if sha(planpath)!=amendment['plan_sha256'] or sha(frozen/'experiments/retrieval_method/chapter2_full_scoring.py')!=amendment['frozen_scoring_sha256']:
         raise ValueError('Changed frozen plan or v7 grading source')
-    probe=read(Path(amendment['required_probe_receipt']))
-    if (probe['transport_amendment_sha256']!=sha(args.transport_amendment)
-        or probe['actual_test_questions_used'] is not False or probe['old_formal_requests_reissued'] is not False
-        or len(probe['results'])!=32 or any(r['status']!='response' for r in probe['results'])
-        or any(sum(r['model']==m for r in probe['results'])!=16 for m in ['qwen3-8b','qwen3-14b'])):
-        raise ValueError('Independent exact-model operational probe required')
+    validate_load_probe(Path(amendment['required_probe_receipt']),sha(args.transport_amendment))
     sys.path[:0]=[str(frozen/'experiments/retrieval_method'),str(frozen/'src'),str(root/'runtime')]
     from chapter2_full_review import load_reviews
     def argument(name):return Path(remaining[remaining.index('--'+name)+1])
