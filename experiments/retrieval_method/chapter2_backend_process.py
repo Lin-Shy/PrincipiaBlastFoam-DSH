@@ -79,7 +79,7 @@ def serve(args):
     forbidden = [name for name in ('chapter2_baseline_native', 'sentence_transformers', 'torch') if name in sys.modules]
     graph = args.method == 'graph' or args.method in GRAPH_ABLATIONS
     if graph and forbidden:raise RuntimeError('Graph process imported baseline dependencies: ' + repr(forbidden))
-    if graph and args.context_policy is not None and args.method not in {'no_context','adjacent_only','parent_blanket'}:
+    if graph and args.context_policy is not None and args.method not in {'no_context','adjacent_only','parent_blanket','parent_adaptive'}:
         engine.engine.context_policy = args.context_policy
     print(json.dumps(dict(ready=True, method=args.method, pid=os.getpid(), input_guard=guard,
         graph_process=graph, baseline_dependencies_loaded=forbidden,

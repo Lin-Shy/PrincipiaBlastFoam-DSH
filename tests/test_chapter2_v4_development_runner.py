@@ -61,7 +61,7 @@ def test_real_graph_worker_has_no_baseline_dependencies_and_isolates_sessions(tm
 
 
 @pytest.mark.parametrize('method,expected', [('graph','adjacent'),('adjacent_only','adjacent'),
-    ('parent_blanket','blanket'),('no_context','none'),('no_cross','adjacent')])
+    ('parent_blanket','blanket'),('parent_adaptive','adaptive'),('no_context','none'),('no_cross','adjacent')])
 def test_selected_context_applies_to_structural_ablations_but_keeps_explicit_context_controls(tmp_path,method,expected):
     from test_chapter2_graph_source_context import fixture
     _, engine = fixture(tmp_path, {'manual/models.md': '# Models\n## Pressure\npressure target\n'})

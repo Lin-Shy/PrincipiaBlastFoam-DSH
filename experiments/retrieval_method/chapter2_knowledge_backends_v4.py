@@ -4,7 +4,7 @@ from pathlib import Path
 from chapter2_qa_backends import HybridBackend, NativeBackend, create_backend
 
 MAIN_METHODS = ('bm25', 'e5', 'hybrid', 'graph', 'none')
-GRAPH_ABLATIONS = ('no_cross', 'no_conditions', 'no_extension', 'no_context', 'adjacent_only', 'parent_blanket')
+GRAPH_ABLATIONS = ('no_cross', 'no_conditions', 'no_extension', 'no_context', 'adjacent_only', 'parent_blanket', 'parent_adaptive')
 METHODS = (*MAIN_METHODS, *GRAPH_ABLATIONS)
 
 
@@ -34,7 +34,7 @@ def backend(method, resources, *, context_characters=2400, parent_ratio=.5):
         return HybridNativeView(backend('bm25', resources), backend('e5', resources))
     from chapter2_knowledge_graph_v4 import AdaptiveSourceGraph
     variant = method if method in {'no_cross', 'no_conditions', 'no_extension'} else 'full'
-    policy = {'no_context': 'none', 'adjacent_only': 'adjacent', 'parent_blanket': 'blanket'}.get(method, 'adaptive')
+    policy = {'no_context': 'none', 'adjacent_only': 'adjacent', 'parent_blanket': 'blanket','parent_adaptive':'adaptive'}.get(method, 'adaptive')
     engine = AdaptiveSourceGraph(Path(resources['graph_' + variant]), corpus, corpus_manifest=source_map,
         context_policy=policy, context_characters=context_characters, parent_ratio=parent_ratio,
         options=dict(with_cross=variant != 'no_cross', with_conditions=variant != 'no_conditions', with_paths=variant != 'no_extension'))

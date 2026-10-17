@@ -34,7 +34,7 @@ def verify_dataset(dataset, expected_seal):
 def validate(plan):
     if set(plan) != FIELDS or plan['schema'] != 'complete_knowledge_qa_activity_v4' or plan['status'] != 'frozen_for_execution':
         raise ValueError('Strict new complete-activity protocol required')
-    audit = validate_matrix(plan['cells'], plan['test_ids'], plan['budget_ids'], plan['diagnostic_ids'])
+    audit = validate_matrix(plan['cells'], plan['test_ids'], plan['budget_ids'], plan['diagnostic_ids'],context_policy=plan['context_policy'])
     if plan['models'] != list(MODELS):raise ValueError('Both exact registered models required')
     if plan['tool_description_policy']!='neutral_shared_search_v1':raise ValueError('Identical model-facing retrieval descriptions required')
     if set(plan['artifacts_sha256']) != ARTIFACTS or not plan['runtime_source_sha256']:

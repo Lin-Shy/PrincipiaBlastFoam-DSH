@@ -4,7 +4,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'experiments/retrieval_method'))
 from chapter2_knowledge_formal_plan import cells as original_cells
-from chapter2_knowledge_full_matrix import cells, validate, PARENT_VARIANTS
+from chapter2_knowledge_full_matrix import cells, validate, PARENT_VARIANTS,parent_variants
 
 
 def cohorts():
@@ -38,3 +38,14 @@ def test_budget_controls_reference_main_repeat_without_extra_resampling():
             main = next(v for v in matrix if v['kind'] == 'main' and v['model'] == c['model'] and v['method'] == c['method'] and v['repeat'] == c['repeat'])
             assert set(c['question_ids']) <= set(main['question_ids'])
     with pytest.raises(ValueError):cells(t, b, d, repeats=1)
+
+
+@pytest.mark.parametrize('selected',['adaptive','adjacent','blanket'])
+def test_selected_policy_retains_all_four_distinct_context_treatments_without_duplicate_arm(selected):
+    t,b,d=cohorts();matrix=cells(t,b,d,context_policy=selected)
+    result=validate(matrix,t,b,d,context_policy=selected)
+    names={'parent_adaptive':'adaptive','adjacent_only':'adjacent','parent_blanket':'blanket','no_context':'none'}
+    assert {selected,*[names[v] for v in parent_variants(selected)]}=={'none','adaptive','adjacent','blanket'}
+    assert len(result['mechanism_comparisons'])==12 and result['sessions']==17136
+    if selected!='adaptive':
+        with pytest.raises(ValueError):validate(matrix,t,b,d)
