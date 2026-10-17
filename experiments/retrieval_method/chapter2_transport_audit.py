@@ -5,6 +5,7 @@ from datetime import datetime,timezone
 import hashlib
 from io import BytesIO
 import json
+import math
 from pathlib import Path
 import statistics
 
@@ -56,6 +57,13 @@ def audit(root,allow_inflight=False):
     cohorts=[]
     for (model,policy,revision),rows in sorted(groups.items(),key=lambda pair:str(pair[0])):
         durations=sorted(row['seconds'] for row in rows)
+        admission_waits=[]
+        for row in rows:
+            wait=row.get('request_admission_wait_seconds')
+            if wait is None:continue
+            if type(wait) not in (int,float) or not math.isfinite(wait) or wait<0:
+                raise ValueError('Invalid recorded admission waiting duration')
+            admission_waits.append(wait)
         known=[]
         for row in rows:
             payload=row.get('raw_response')
@@ -67,6 +75,9 @@ def audit(root,allow_inflight=False):
             started_utc_min=min(row['started_utc'] for row in rows),started_utc_max=max(row['started_utc'] for row in rows),
             latency_seconds_median=statistics.median(durations),latency_seconds_p95=durations[max(0,(95*len(durations)+99)//100-1)],
             sum_physical_seconds=sum(durations),usage_known_attempts=len(known),usage_unknown_attempts=len(rows)-len(known),
+            admission_wait_known_attempts=len(admission_waits),admission_wait_unknown_attempts=len(rows)-len(admission_waits),
+            sum_known_admission_wait_seconds=sum(admission_waits) if admission_waits else None,
+            admission_wait_seconds_median=statistics.median(admission_waits) if admission_waits else None,
             known_prompt_tokens=sum(v['prompt_tokens'] for v in known),known_completion_tokens=sum(v['completion_tokens'] for v in known),
             money_cost=None))
     return dict(schema='quality_independent_transport_cohort_audit_v1',created_utc=datetime.now(timezone.utc).isoformat(),
@@ -75,6 +86,7 @@ def audit(root,allow_inflight=False):
         limits=['Operational transport cohorts are post-start partitions, not randomized causal comparisons.',
             'A live snapshot is incomplete; no full-experiment completion or quality claim follows.',
             'Unknown usage remains unknown. No frozen monetary tariff or invoice is available.',
+            'Recorded admission waiting is separate from physical network seconds; missing legacy waiting is unknown, not zero. Summed worker waiting is not experiment wall-clock time. Complete-session elapsed time already includes admission waiting and must not add it again.',
             'SSE successful canonical responses are independently replayed from raw bytes; legacy buffered receipts retain their original recorded hashes/objects.'])
 
 def main():

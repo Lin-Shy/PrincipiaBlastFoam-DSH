@@ -50,3 +50,26 @@ def test_failed_stream_with_invalid_payload_still_has_unknown_cost(tmp_path):
     value=audit(tmp_path)
     assert value['cohorts'][0]['statuses']=={'invalid_response':1}
     assert value['cohorts'][0]['usage_unknown_attempts']==1
+
+def test_admission_wait_is_separate_from_physical_latency(tmp_path):
+    path,row=receipt(tmp_path)
+    row.update(request_admission_wait_seconds=3.5)
+    path.write_text(json.dumps(row),encoding='utf-8')
+    cohort=audit(tmp_path)['cohorts'][0]
+    assert cohort['sum_physical_seconds']==2.0
+    assert cohort['sum_known_admission_wait_seconds']==3.5
+    assert cohort['admission_wait_known_attempts']==1
+    assert cohort['admission_wait_unknown_attempts']==0
+
+def test_unrecorded_legacy_admission_wait_is_unknown(tmp_path):
+    receipt(tmp_path);cohort=audit(tmp_path)['cohorts'][0]
+    assert cohort['admission_wait_known_attempts']==0
+    assert cohort['admission_wait_unknown_attempts']==1
+    assert cohort['sum_known_admission_wait_seconds'] is None
+
+@pytest.mark.parametrize('wait',[-1,float('nan'),float('inf'),True,'3.5'])
+def test_invalid_admission_wait_is_rejected(tmp_path,wait):
+    path,row=receipt(tmp_path);row['request_admission_wait_seconds']=wait
+    path.write_text(json.dumps(row),encoding='utf-8')
+    with pytest.raises(ValueError,match='admission waiting'):
+        audit(tmp_path)
