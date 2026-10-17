@@ -19,7 +19,7 @@ def plan_fixture():
         dataset_id='a'*64, dataset_seal_sha256='b'*64, sampling_sha256='c'*64,
         test_ids=test, budget_ids=budget, diagnostic_ids=diagnostic, cells=matrix, models=list(MODELS),
         model_budget=asdict(ModelBudget(output_tokens_per_request=4096, final_output_reserve=4096, output_tokens_total=32768)),
-        knowledge_per_result_characters=6000, common_answer_checklist='common', system_prompt_sha256='d'*64,
+        knowledge_per_result_characters=6000, common_answer_checklist='common', system_prompt_sha256='d'*64,tool_description_policy='neutral_shared_search_v1',
         context_policy='adaptive', context_characters=2400, parent_ratio=.5,
         runtime_source_sha256={'runtime.py':'e'*64}, artifacts_sha256={k:'f'*64 for k in ARTIFACTS},
         design_sha256='a'*64, development_admission=dict(report_sha256='a'*64,

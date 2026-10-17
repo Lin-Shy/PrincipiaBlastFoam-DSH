@@ -16,6 +16,7 @@ from chapter2_v2_retrieval_probe import read, save, sha
 from chapter2_v2_development_runner import ANSWER_CHECKLIST, DeploymentResponse, token_counter
 from chapter2_backend_process import BackendProcess, RemoteBackend
 from chapter2_proxy_model_execution import MODELS, run_per_model
+from chapter2_common_qa_interface import neutral_messages, NeutralToolClient, POLICY as INTERFACE_POLICY
 
 
 def artifact_check(plan, resources, aliases):
@@ -37,6 +38,7 @@ def protocol(plan, plan_path, resources_path, diagnostic):
         forced_initial_retrieval=False, transport_attempts=1, content_retries=0,
         retrieval_isolation='One guarded deterministic worker per retrieval method; no LLM in these workers.',
         none_boundary='No corpus/backend/tools supplied to the none agent.',
+        tool_description_policy=INTERFACE_POLICY,
         privileged_input=diagnostic, diagnostic_boundary='Only confirmed necessary originals in separate phase; no ordinary retrieval use.')
 
 
@@ -85,7 +87,7 @@ def execute(args, plan, resources, servers):
         raw, tokenizers[model] = load_tokenizer(Path(resources['tokenizer_'+model]),model)
         lock = RLock()
         def count(messages,raw=raw,lock=lock):
-            with lock:return raw(messages)
+            with lock:return raw(neutral_messages(messages))
         counters[model] = token_counter(count,'bulk',ANSWER_CHECKLIST)
     budget = ModelBudget(**plan['model_budget'])
     statuses = Counter(r['status'] for r in existing)
@@ -101,7 +103,7 @@ def execute(args, plan, resources, servers):
     def worker(item):
         cell, q = item['cell'], item['question']; model = cell['model']
         folder = args.output / cell['id'] / 'sessions' / q['id']
-        client = DeploymentResponse(routed_client(model,folder/'requests',workload='bulk',settings_path=args.proxy_settings,timeout=args.timeout),model,ANSWER_CHECKLIST)
+        client = DeploymentResponse(NeutralToolClient(routed_client(model,folder/'requests',workload='bulk',settings_path=args.proxy_settings,timeout=args.timeout)),model,ANSWER_CHECKLIST)
         started = time.monotonic()
         if args.diagnostic:
             result = run_diagnostic(pack[q['id']],model,client,counters[model],budget)

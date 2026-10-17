@@ -11,7 +11,7 @@ FIELDS = {'schema', 'status', 'dataset_id', 'dataset_seal_sha256', 'sampling_sha
     'context_policy', 'context_characters', 'parent_ratio', 'runtime_source_sha256',
     'artifacts_sha256', 'design_sha256', 'development_admission', 'statistics',
     'primary_comparison_family', 'mechanism_comparison_family', 'independent_review',
-    'transport_attempts', 'content_retries', 'test_exposure', 'main_baseline_reuse'}
+    'transport_attempts', 'content_retries', 'test_exposure', 'main_baseline_reuse', 'tool_description_policy'}
 ARTIFACTS = {'questions', 'corpus_manifest', 'source_map', 'e5_manifest', 'materials',
     'review_receipt', 'tokenizer_qwen3-8b', 'tokenizer_qwen3-14b', 'graph_full',
     'graph_no_cross', 'graph_no_conditions', 'graph_no_extension'}
@@ -36,6 +36,7 @@ def validate(plan):
         raise ValueError('Strict new complete-activity protocol required')
     audit = validate_matrix(plan['cells'], plan['test_ids'], plan['budget_ids'], plan['diagnostic_ids'])
     if plan['models'] != list(MODELS):raise ValueError('Both exact registered models required')
+    if plan['tool_description_policy']!='neutral_shared_search_v1':raise ValueError('Identical model-facing retrieval descriptions required')
     if set(plan['artifacts_sha256']) != ARTIFACTS or not plan['runtime_source_sha256']:
         raise ValueError('Complete source and artifact identities required')
     hashes = [*plan['artifacts_sha256'].values(), *plan['runtime_source_sha256'].values(),
