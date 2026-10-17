@@ -98,3 +98,14 @@
 预选1536份复核已有`pack_001`至`pack_004`共112份两层意见闭合，见`audit/formal_review_progress_003.json`；1份内容完整性未决。引用层先封存，再打开评分点材料；完全重复输入复用、确定性未准入/生成失败与宿主独立阅读分别留痕，身份为Codex AI而非真人真值。尚未运行正式自动评分，Gold与方法修改数为0。论文112页工作构建及最新开发全表已经通过局部渲染，正式PDF及完整结果交付仍未完成。
 
 原文审核依赖快照补充见`audit/rubric_dependency_supplement_001/manifest.json`：补齐16模块静态依赖及相同函数AST对照，明确是执行后的重建，不冒充当时运行时import追踪。`archives/formal_prefix_001/`逐项核验封存截至1607终态的6004份原始文件；只是一段已闭合前缀，未覆盖后来新增结果，也不冒充完整实验。
+
+
+## 无损写盘修订与来源复核快照（2026-10-17 13:52 CST）
+
+`execution_005`已因一条返回JSON中的孤立Unicode代理字符触发写盘异常而退出1；停止准入并排空后，3097份结果完整，另1份结果写到final action处中断。物理响应已完整保存在原始SSE和请求凭据中。`audit/unbound_unicode_recovery_001/`保留全部不完整字节及原请求SHA，采用冻结agent、确定性检索与缓存响应进行**零模型调用的离线重建**，每个逻辑请求逐项相同才允许恢复。现有有绑定结果和物理请求均未改写，异常字符原样保留，未替换为Delta/dot或给出修复答案。该会话原始端到端耗时不可恢复；`seconds`只记录物理请求耗时之和并显式标注，正式端到端耗时统计应将该值视为缺失，不能当作完整运行时长。
+
+截至此闭合前缀共3098会话：2942回答、79截断、2动作无效、75历史通信失败。网页/对话曾误报3197完整，实际清单与修订均以3097完整加1重建为准。`setup/transport_stream_002/amendment.json`登记v2异常处理与`atomic_json_surrogate_escape_v1`：HTTPException（包括IncompleteRead）保留原始部分流并记单次失败；JSON以可逆反斜线转义保存未配对字符，正常Unicode的序列化字节不变，原子替换避免读到半写文件。冻结源码本身不修改；新修订包装其save，模型请求、提示、预算、数据、图谱、方法与v7评分定义不变。13项SSE/持久化检查通过，独立`diagnosis/proxy_sse_load_002/`两精确模型各16并发32/32响应后，`execution_006`只续接13942个未尝试普通会话。
+
+预选来源复核已有249/1536份两层意见完成，见`audit/formal_review_progress_006.json`；4份内容完整性未决。此为Codex AI来源意见，不是真人真值或正式自动指标。`pack_007`两次准备失败分别保存在`audit/review_pack_preparation_failure_001.json`及`audit/review_pack_preparation_failure_002/`；失败包未产生意见，重建后以新`pack_008`封包。评分侧同样使用无损JSON持久化，仅改变表示方式，不改遮蔽内容或Gold。第8包一条sutherland引用初读误判，重读发现实为multicomponent/const段；在任何答案Gold输入读取之前显式修正，原版本完整保留在`superseded_before_gold_001/`。修正封存后才读取答案评分材料，不依据自动评分回改意见。
+
+`audit/transport_cohort_snapshot_001.json`是后验运行快照：5060次终态物理请求、24次在途排除；其中SSE v1批次2121次响应、未观察到新增传输失败，75次历史失败仍在分母。原始SSE独立重放核对内容与哈希，来源代码/测试在相邻provenance目录绑定；不把此快照当长期可用性或随机因果试验，未封存费率/账单时金额保持未知。`archives/formal_prefix_002/`相对第一前缀增量封存至3098会话；未包含仍运行的execution_006，更不是全部17136会话完成证明。

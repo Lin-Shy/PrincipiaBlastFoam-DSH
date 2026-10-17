@@ -78,3 +78,26 @@ def test_adapter_failure_retains_raw_partial_and_never_retries(tmp_path):
     r=client(dict(model='qwen3-8b',stream=False),0)
     assert r['status']=='invalid_response' and len(calls)==1
     assert (tmp_path/'00.sse').read_bytes() and 'response' not in r
+
+
+def test_chunked_read_disconnect_is_terminal_transport_failure(tmp_path):
+    from http.client import IncompleteRead
+    class Frozen:
+        provider='qwen_proxy'
+        def __init__(self):
+            self.deployment=SimpleNamespace(model='qwen3-8b',endpoint='https://example.invalid/v1/chat/completions',key='private')
+            self.folder=tmp_path;self.timeout=10
+    router=SimpleNamespace(RecordedProxyQwenClient=Frozen);install(router,'c'*64)
+    client=router.RecordedProxyQwenClient();calls=[]
+    partial=events([chunk({'content':'partial'})],done=False)
+    class Response(BytesIO):
+        status=200
+        def __iter__(self):
+            yield from partial.splitlines(keepends=True)
+            raise IncompleteRead(b'cut',10)
+    def open_(request,**kwargs):calls.append(request);return Response()
+    client.opener=SimpleNamespace(open=open_)
+    r=client(dict(model='qwen3-8b',stream=False),0)
+    assert r['status']=='transport_error' and r['error_type']=='IncompleteRead'
+    assert len(calls)==1 and (tmp_path/'00.sse').read_bytes()==partial
+    assert json.loads((tmp_path/'00.json').read_text(encoding='utf-8'))['status']=='transport_error'

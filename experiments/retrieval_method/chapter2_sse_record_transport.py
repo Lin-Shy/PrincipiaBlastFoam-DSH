@@ -5,13 +5,14 @@ canonical completion is reconstructed from deltas without content repair/retry.
 """
 from copy import deepcopy
 from datetime import datetime, timezone
+from http.client import HTTPException
 import hashlib
 import json
 import time
 from urllib.error import HTTPError
 from urllib.request import Request
 
-POLICY = 'direct_https_tls12_write512_sse_v1'
+POLICY = 'direct_https_tls12_write512_sse_v2'
 
 
 class InvalidStream(ValueError):
@@ -168,7 +169,7 @@ def install(router, amendment_sha256):
                     record['status'] = 'model_mismatch'
                 except (ValueError, AttributeError, TypeError, KeyError):
                     record['status'] = 'invalid_response'
-                except OSError as exc:
+                except (OSError, HTTPException) as exc:
                     record.update(status='transport_error', error_type=type(exc).__name__)
                 finally:
                     record['seconds'] = time.monotonic()-started

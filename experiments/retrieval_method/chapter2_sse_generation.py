@@ -30,7 +30,13 @@ def main():
     import chapter2_qwen_routing as router
     from chapter2_sse_record_transport import install
     install(router,sha(args.transport_amendment))
-    from chapter2_full_generation import main as frozen_main
+    import chapter2_full_generation as generation
+    if amendment.get('persistence_policy'):
+        from chapter2_lossless_json import save, POLICY
+        if amendment['persistence_policy'] != POLICY:
+            raise ValueError('Unexpected persistence amendment')
+        generation.save = save
+    frozen_main = generation.main
     sys.argv=[str(frozen/'experiments/retrieval_method/chapter2_full_generation.py')]+remaining
     frozen_main()
 
