@@ -28,7 +28,10 @@ def main():
         raise ValueError('Changed frozen plan or generation source')
     sys.path[:0]=[str(frozen/'experiments/retrieval_method'),str(frozen/'src'),str(root/'runtime')]
     import chapter2_qwen_routing as router
-    if amendment.get('paced_transport_policy'):
+    if amendment.get('request_admission_policy'):
+        from chapter2_spaced_sse_transport import install,POLICY
+        if amendment['request_admission_policy']!=POLICY:raise ValueError('Unexpected request admission policy')
+    elif amendment.get('paced_transport_policy'):
         from chapter2_paced_sse_transport import install, POLICY
         if amendment['paced_transport_policy'] != POLICY:
             raise ValueError('Unexpected paced transport amendment')

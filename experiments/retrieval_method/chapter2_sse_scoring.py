@@ -13,7 +13,11 @@ def read(path):return json.loads(path.read_text(encoding='utf-8'))
 
 def install_transport(router, amendment, amendment_sha256):
     """Select only the exact transport registered for this grading phase."""
-    if amendment.get('paced_transport_policy'):
+    if amendment.get('request_admission_policy'):
+        from chapter2_spaced_sse_transport import install, POLICY
+        if amendment['request_admission_policy'] != POLICY:
+            raise ValueError('Unexpected request admission grading policy')
+    elif amendment.get('paced_transport_policy'):
         from chapter2_paced_sse_transport import install, POLICY
         if amendment['paced_transport_policy'] != POLICY:
             raise ValueError('Unexpected paced grading transport amendment')
