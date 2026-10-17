@@ -36,6 +36,13 @@ def main():
         if amendment['persistence_policy'] != POLICY:
             raise ValueError('Unexpected persistence amendment')
         generation.save = save
+    if amendment.get('admission_policy'):
+        from chapter2_generation_circuit import wrap_scheduler, POLICY
+        if amendment['admission_policy'] != POLICY:
+            raise ValueError('Unexpected admission amendment')
+        receipt=Path(remaining[remaining.index('--receipt')+1])
+        generation.run_per_model=wrap_scheduler(generation.run_per_model,
+            receipt/'admission-events.jsonl',sha(args.transport_amendment))
     frozen_main = generation.main
     sys.argv=[str(frozen/'experiments/retrieval_method/chapter2_full_generation.py')]+remaining
     frozen_main()
