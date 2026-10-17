@@ -77,6 +77,10 @@ def main():
     # before it admits its first worker/model request.
     import chapter2_qwen_routing as router
     install_transport(router,amendment,sha(args.transport_amendment))
+    if amendment.get('logical_scoring_view_policy'):
+        from chapter2_sse_scoring_view import install as install_view, POLICY as VIEW_POLICY
+        if amendment['logical_scoring_view_policy']!=VIEW_POLICY:raise ValueError('Unexpected logical scoring view policy')
+        install_view(router)
     import chapter2_score_knowledge_formal as scoring
     from chapter2_surrogate_scoring import wrap,POLICY
     if amendment['unicode_input_policy']!=POLICY:raise ValueError('Unexpected input-admission policy')
