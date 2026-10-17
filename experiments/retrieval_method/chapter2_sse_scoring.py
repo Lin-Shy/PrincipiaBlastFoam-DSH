@@ -10,6 +10,17 @@ def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def read(path):return json.loads(path.read_text(encoding='utf-8'))
 
 
+def install_transport(router, amendment, amendment_sha256):
+    """Select only the exact transport registered for this grading phase."""
+    if amendment.get('paced_transport_policy'):
+        from chapter2_paced_sse_transport import install, POLICY
+        if amendment['paced_transport_policy'] != POLICY:
+            raise ValueError('Unexpected paced grading transport amendment')
+    else:
+        from chapter2_sse_record_transport import install
+    return install(router, amendment_sha256)
+
+
 def main():
     parser=argparse.ArgumentParser(add_help=False)
     parser.add_argument('--transport-amendment',type=Path,required=True)
@@ -36,8 +47,7 @@ def main():
     # Frozen main additionally verifies every one of the 17136 result bindings
     # before it admits its first worker/model request.
     import chapter2_qwen_routing as router
-    from chapter2_sse_record_transport import install
-    install(router,sha(args.transport_amendment))
+    install_transport(router,amendment,sha(args.transport_amendment))
     import chapter2_score_knowledge_formal as scoring
     from chapter2_surrogate_scoring import wrap,POLICY
     if amendment['unicode_input_policy']!=POLICY:raise ValueError('Unexpected input-admission policy')
