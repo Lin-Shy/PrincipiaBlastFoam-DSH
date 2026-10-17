@@ -1,5 +1,7 @@
 # PrincipiaBlastFoam-DSH
 
+第一次使用请先读 [DSH 新手使用手册](docs/新手使用手册.md)：打开界面、选择章节、连接 Linux，以及当前实验启动的实际边界。
+
 PrincipiaBlastFoam-DSH 是一个独立的 DeepSeek Harness 应用，通过自然语言完成 blastFoam/OpenFOAM 物理分析、算例配置、求解执行、后处理和质量审查。
 
 业务源码由本仓库管理；上游 DeepSeek Harness 检出目录只是可替换的宿主运行时：
@@ -15,17 +17,17 @@ DeepSeek Harness profile
 
 ## 共享研究设计
 
-研究定位与章节边界统一引用 [共享设计入口](../graduation-research/README.md)和[总体设计](../graduation-research/OVERVIEW.md)。本项目分别对应[第2章检索](../graduation-research/chapters/chapter02.md)、[第3章多智能体执行](../graduation-research/chapters/chapter03.md)和[第4章独立单agent RSI](../graduation-research/chapters/chapter04.md)。共享设计说明研究目标，本项目维护源码、配置与详细实施计划，实验归档维护冻结协议和证据；当前实现状态须依据代码和验证记录核验。
+研究定位与章节边界统一引用 [共享设计入口](../graduation-thesis-materials/graduation-research/README.md)和[总体设计](../graduation-thesis-materials/graduation-research/OVERVIEW.md)。本项目分别对应[第2章检索](../graduation-thesis-materials/graduation-research/chapters/chapter02.md)、[第3章多智能体执行](../graduation-thesis-materials/graduation-research/chapters/chapter03.md)和[第4章独立单agent RSI](../graduation-thesis-materials/graduation-research/chapters/chapter04.md)。共享设计说明研究目标，本项目维护源码、配置与详细实施计划，实验归档维护冻结协议和证据；当前实现状态须依据代码和验证记录核验。
 
 ## 知识图谱与检索定位
 
-第2章维护实现位于 `experiments/retrieval_method/`，实验统一在外部 `graduation-experiment-results/chapter2_retrieval/`。题集入口为 `datasets/natural_navigation_qa/`；最新论文结果为 `aliyun_8b_cross_source_v1/`，使用离线 `deepseek-flash` 与在线 `qwen3-8b`。该正式实验独立冻结44事实组合族/132题，不与公共题集50族/300题混算。留出集不锁定，gold仅供评测，不进入生产检索或回答。
+第2章维护实现位于 `experiments/retrieval_method/`，实验统一在外部 `graduation-experiment-results/chapter2_retrieval/`。唯一题集为 `graduation-datasets/chapter02_knowledge_qa/formal_v1/` 的277题，开发77题、测试200题；全部方法、消融及诊断使用相同题集。父内容与完整比较入口为 `knowledge_qa_full_20261017/`。离线使用精确 `deepseek-flash`；批量代理、小批量本地，模型和预算由活动冻结。gold仅供评分，不进入构图、索引或常规问答。
 
 自研最终方法只持久化图谱与构图清单，读取原始权威文件核验；BM25/E5为隔离对照，Graphify `.txt`仅为可逆摄取适配。图关系表示文档/配置支持，不能直接声称物理运行条件已满足。最新实验的引用非劣效未获支持，同8B评分与AI复核仍有局限。实验适配器中的方法与生产MCP的接入状态须分别验证，不能因为论文成绩就假定线上集成完成。
 
 ## 论文与第4章方向
 
-本项目是当前唯一在开发的PrincipiaBlastFoam多智能体应用，后续第3、4章正文和实验基于DSH。论文直接在同级 `graduation-manuscript/` 以LaTeX维护，所有最终图件在其 `assets/`。
+本项目是当前唯一在开发的PrincipiaBlastFoam多智能体应用，后续第3、4章正文和实验基于DSH。论文直接在同级 `graduation-thesis-materials/graduation-manuscript/` 以LaTeX维护，所有最终图件在其 `assets/`。
 
 第4章独立研究单agent递归自改进（RSI），仅使用DSH框架，不继承第3章多角色系统。基线为冻结初始agent，对照为一次性自改进与多轮递归自改进；底层模型、工具权限和公共评分固定。设计、消融和实现顺序见 [DSH自进化计划](experiments/self_evolution/PLAN.md)。目前只有设计，没有DSH自进化正式收益结果；历史框架结果保留原身份。
 
@@ -70,6 +72,10 @@ principia-dsh --profile web
 ENABLE_EXECUTION=false REQUIRE_EXECUTION=false \
   principia-dsh --profile headless "检查算例配置，不运行求解器"
 ```
+
+## Windows 与 Linux 分工
+
+Windows 本地 DSH 启动、独立第4章配置与远程仿真接入见 [部署说明](deployment/dsh/README.md)。当前 SSH 工作区入口为 `./deployment/windows/Start-Principia.ps1 -Chapter 3 -Ssh`（第4章改为 `-Chapter 4`），使用独立 `web-ssh` profile 读取本机 OpenSSH Host；该插件的权限模式为 `danger-full-access`、审批为 `never`。本地 solver 明确阻断；当前已通过非 root Host 的 SSH、Agent Host、远程文件/Bash/搜索与 blastFoam 帮助检查，真实算例与正式实验仍待验收。此前独立仿真 MCP 方案保留为另一入口。
 
 ## 重建开发环境
 
