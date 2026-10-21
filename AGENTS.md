@@ -33,6 +33,8 @@
 
 ## 当前论文与实验入口
 
+当前Qwen接入（2026-10-21）：按需要显式选择模型，两者均可用于任意任务规模，统一使用32K（32768 tokens，输入＋输出）额度。本地`Qwen3-8B`端口8001，并发上限8；代理`qwen3-14b`并发上限20。接入与实测见[Qwen说明](../QWEN_MODEL_ROUTING.md)。正式实验沿用各自冻结协议。
+
 研究目标与章节边界先读 [共享设计入口](../graduation-thesis-materials/graduation-research/README.md)及[总体设计](../graduation-thesis-materials/graduation-research/OVERVIEW.md)，按任务引用[第2章](../graduation-thesis-materials/graduation-research/chapters/chapter02.md)、[第3章](../graduation-thesis-materials/graduation-research/chapters/chapter03.md)或[第4章](../graduation-thesis-materials/graduation-research/chapters/chapter04.md)。详细工程计划仍在本仓库维护，不复制一套章节设计。共享设计中的目标不能视为实现已完成或效果已验证，冻结实验结论以原协议和证据为准。
 
 本仓库是当前应用唯一开发入口，第3章与第4章基于DSH。

@@ -22,19 +22,29 @@ def body():
     return dict(model='qwen3-14b',messages=[dict(role='user',content='unchanged')],enable_thinking=False,max_tokens=4096)
 
 
-def test_bulk_routes_only_to_explicit_proxy_and_hides_key(tmp_path):
-    client=routed_client('qwen3-14b',tmp_path/'requests',workload='bulk',settings_path=config(tmp_path))
+@pytest.mark.parametrize('workload',[None,'small','bulk'])
+def test_14b_routes_to_proxy_for_any_task_size(tmp_path,workload):
+    client=routed_client('qwen3-14b',tmp_path/'requests',workload=workload,settings_path=config(tmp_path))
     assert isinstance(client,RecordedProxyQwenClient)
     assert client.deployment.endpoint=='https://example.com/v1/chat/completions'
     assert 'test-secret' not in repr(client.deployment)
 
 
-def test_small_routes_to_configured_local_model(tmp_path):
+@pytest.mark.parametrize('workload',[None,'small','bulk'])
+def test_8b_routes_to_local_for_any_task_size(tmp_path,workload):
     path=tmp_path/'local.env'
-    path.write_text('QWEN_LOCAL_API_KEY=local-secret\nQWEN_LOCAL_14B_BASE_URL=http://127.0.0.1:8001/v1\nQWEN_LOCAL_14B_MODEL=Qwen3-14B\n',encoding='utf-8')
-    client=routed_client('qwen3-14b',tmp_path/'requests',workload='small',settings_path=path)
+    path.write_text('QWEN_LOCAL_API_KEY=local-secret\nQWEN_LOCAL_8B_BASE_URL=http://127.0.0.1:8001/v1\nQWEN_LOCAL_8B_MODEL=Qwen3-8B\n',encoding='utf-8')
+    client=routed_client('qwen3-8b',tmp_path/'requests',workload=workload,settings_path=path)
     assert isinstance(client,LocalQwenClient)
-    assert client.deployment.model=='Qwen3-14B'
+    assert client.deployment.model=='Qwen3-8B'
+    assert client.deployment.max_concurrency==8
+
+
+@pytest.mark.parametrize('model',['qwen3-32b','auto',''])
+def test_unknown_models_rejected_before_config_or_network(tmp_path,model):
+    with pytest.raises(ValueError,match='Supported models'):
+        routed_client(model,tmp_path/'requests',settings_path=tmp_path/'absent')
+    assert not (tmp_path/'requests').exists()
 
 
 def test_missing_bulk_config_never_falls_back_to_local(tmp_path):
@@ -42,8 +52,8 @@ def test_missing_bulk_config_never_falls_back_to_local(tmp_path):
         routed_client('qwen3-14b',tmp_path,workload='bulk',settings_path=tmp_path/'absent')
 
 
-def test_explicit_workload_required(tmp_path):
-    with pytest.raises(ValueError):routed_client('qwen3-14b',tmp_path,workload='auto')
+def test_model_alone_selects_deployment(tmp_path):
+    assert isinstance(routed_client('qwen3-14b',tmp_path,settings_path=config(tmp_path)),RecordedProxyQwenClient)
 
 
 @pytest.mark.parametrize('error',[TimeoutError(),HTTPError('https://example.com',502,'bad gateway',{},None)])

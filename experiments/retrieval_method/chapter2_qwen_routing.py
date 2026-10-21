@@ -1,4 +1,4 @@
-"""按批量选择 Qwen 部署；冻结历史客户端保持不变。"""
+"""按显式模型选择 Qwen 部署。"""
 import argparse
 from copy import deepcopy
 from datetime import datetime, timezone
@@ -11,7 +11,8 @@ from urllib.error import HTTPError
 from urllib.request import Request, ProxyHandler, HTTPSHandler, build_opener
 
 from chapter2_qwen_local import LocalModel, LocalQwenClient
-from chapter2_qwen_proxy_config import settings
+from chapter2_qwen_proxy_config import load_settings
+from chapter2_qwen_limits import endpoint_limiter
 
 WORKSPACE = Path(__file__).resolve().parents[3]
 
@@ -21,15 +22,16 @@ class RecordedProxyQwenClient:
     provider = 'qwen_proxy'
 
     def __init__(self, model, folder, settings_path=None, timeout=180):
-        if model not in {'qwen3-8b', 'qwen3-14b'}:
-            raise ValueError('Unsupported exact Qwen model')
-        base, key = settings(settings_path or WORKSPACE / '.env.qwen_proxy')
-        self.deployment = LocalModel(base + '/chat/completions', model, key)
+        if model != 'qwen3-14b':
+            raise ValueError('Proxy deployment supports qwen3-14b only in this non-thinking adapter; 8B requires local')
+        base, key, maximum = load_settings(settings_path or WORKSPACE / '.env.qwen_proxy')
+        self.deployment = LocalModel(base + '/chat/completions', model, key, maximum)
         self.folder = Path(folder)
         self.timeout = timeout
         context = ssl.create_default_context()
         context.minimum_version = context.maximum_version = ssl.TLSVersion.TLSv1_2
         self.opener = build_opener(ProxyHandler({}), HTTPSHandler(context=context))
+        self.limiter = endpoint_limiter(self.deployment.endpoint, maximum)
 
     def __call__(self, body, turn):
         if type(turn) is not int or turn < 0:
@@ -48,9 +50,14 @@ class RecordedProxyQwenClient:
             tls_version='TLSv1.2', certificate_verification=True)
         with path.open('x', encoding='utf-8') as stream:
             json.dump(record, stream, ensure_ascii=False, indent=2)
-        started = time.monotonic()
         request = Request(self.deployment.endpoint, data=data, headers={
             'Authorization': 'Bearer ' + self.deployment.key, 'Content-Type': 'application/json'})
+        queued = time.monotonic()
+        self.limiter.acquire()
+        started = time.monotonic()
+        record.update(admission_wait_seconds=started - queued,
+                      started_utc=datetime.now(timezone.utc).isoformat(),
+                      max_concurrency=self.deployment.max_concurrency)
         try:
             with self.opener.open(request, timeout=self.timeout) as response:
                 raw = response.read()
@@ -75,24 +82,25 @@ class RecordedProxyQwenClient:
             record.update(status='transport_error', error_type=type(exc).__name__)
         finally:
             record['seconds'] = time.monotonic() - started
+            self.limiter.release()
             temp = path.with_suffix('.tmp')
             temp.write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
             temp.replace(path)
         return record
 
 
-def routed_client(model, folder, *, workload, settings_path=None, timeout=None):
-    """Bulk is proxy; small diagnosis is local. No implicit failover."""
-    if workload == 'bulk':
+def routed_client(model, folder, *, workload=None, settings_path=None, timeout=None):
+    """Route by model; legacy workload labels do not affect deployment selection."""
+    if model == 'qwen3-14b':
         return RecordedProxyQwenClient(model, folder, settings_path, timeout or 180)
-    if workload == 'small':
+    if model in {'qwen3-8b', 'Qwen3-8B'}:
         return LocalQwenClient(model, folder, settings_path or WORKSPACE / '.env.qwen_local', timeout or 120)
-    raise ValueError('Workload must be explicitly bulk or small')
+    raise ValueError('Supported models: qwen3-8b, qwen3-14b')
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--workload', choices=['bulk', 'small'], required=True)
+    p.add_argument('--workload', help=argparse.SUPPRESS)
     p.add_argument('--model', choices=['qwen3-8b', 'qwen3-14b'], required=True)
     p.add_argument('--settings', type=Path)
     p.add_argument('--output', type=Path, required=True)

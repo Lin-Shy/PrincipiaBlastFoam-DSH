@@ -1,4 +1,4 @@
-"""本地双 Qwen 接口；独立记录实际请求，不覆盖历史代理实验。"""
+"""当前本地 Qwen3-8B 接口；独立记录实际请求，不覆盖历史实验。"""
 import argparse
 from copy import deepcopy
 from dataclasses import dataclass, field
@@ -11,6 +11,8 @@ from urllib.error import HTTPError
 from urllib.parse import urlsplit
 from urllib.request import Request, ProxyHandler, build_opener
 
+from chapter2_qwen_limits import LOCAL_MAX_CONCURRENCY, concurrency_setting, endpoint_limiter
+
 
 DEFAULT_SETTINGS = Path(__file__).resolve().parents[3] / '.env.qwen_local'
 
@@ -20,15 +22,16 @@ class LocalModel:
     endpoint: str
     model: str
     key: str = field(repr=False)
+    max_concurrency: int = LOCAL_MAX_CONCURRENCY
 
 
 def load_model(model, path=DEFAULT_SETTINGS):
     """Read only the explicitly supplied local deployment; never fall back."""
-    size = {'qwen3-8b': '8B', 'qwen3-14b': '14B'}.get(model.lower())
-    if size is None:
-        raise ValueError('Local deployment supports Qwen3-8B and Qwen3-14B only')
-    allowed = {'QWEN_LOCAL_API_KEY'} | {
-        f'QWEN_LOCAL_{s}_{part}' for s in ('8B', '14B') for part in ('BASE_URL', 'MODEL')}
+    if model.lower() != 'qwen3-8b':
+        raise ValueError('Local deployment supports Qwen3-8B only; 14B requires the proxy deployment')
+    size = '8B'
+    allowed = {'QWEN_LOCAL_API_KEY', 'QWEN_LOCAL_MAX_CONCURRENCY',
+               'QWEN_LOCAL_8B_BASE_URL', 'QWEN_LOCAL_8B_MODEL'}
     values = {}
     for line in Path(path).read_text(encoding='utf-8-sig').splitlines():
         line = line.strip()
@@ -48,9 +51,10 @@ def load_model(model, path=DEFAULT_SETTINGS):
     name = values.get(f'QWEN_LOCAL_{size}_MODEL', '')
     if not key or any(c.isspace() for c in key) or key == 'replace-with-your-local-token':
         raise ValueError('Missing or invalid local API key')
-    if not name or any(c.isspace() for c in name):
-        raise ValueError('Missing or invalid local model identifier')
-    return LocalModel(base + '/chat/completions', name, key)
+    if name != 'Qwen3-8B':
+        raise ValueError('Current local model identifier must be Qwen3-8B')
+    maximum = concurrency_setting(values, 'QWEN_LOCAL_MAX_CONCURRENCY', LOCAL_MAX_CONCURRENCY)
+    return LocalModel(base + '/chat/completions', name, key, maximum)
 
 
 def prepare_body(body, deployment):
@@ -87,10 +91,13 @@ class LocalQwenClient:
         self.folder = Path(folder)
         self.timeout = timeout
         self.opener = build_opener(ProxyHandler({}))
+        self.limiter = endpoint_limiter(self.deployment.endpoint, self.deployment.max_concurrency)
 
     def __call__(self, body, turn):
         if type(turn) is not int or turn < 0:
             raise ValueError('turn must be a nonnegative integer')
+        if body.get('model', 'qwen3-8b') not in {'qwen3-8b', self.deployment.model}:
+            raise ValueError('Local request model must be Qwen3-8B; model substitution is forbidden')
         actual = prepare_body(body, self.deployment)
         data = json.dumps(actual, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode('utf-8')
         self.folder.mkdir(parents=True, exist_ok=True)
@@ -104,9 +111,14 @@ class LocalQwenClient:
         # Exclusive creation prevents reissuing completed or unresolved calls.
         with path.open('x', encoding='utf-8') as out:
             json.dump(record, out, ensure_ascii=False, indent=2)
-        started = time.monotonic()
         request = Request(self.deployment.endpoint, data=data, headers={
             'Authorization': 'Bearer ' + self.deployment.key, 'Content-Type': 'application/json'})
+        queued = time.monotonic()
+        self.limiter.acquire()
+        started = time.monotonic()
+        record.update(admission_wait_seconds=started - queued,
+                      started_utc=datetime.now(timezone.utc).isoformat(),
+                      max_concurrency=self.deployment.max_concurrency)
         try:
             with self.opener.open(request, timeout=self.timeout) as response:
                 raw = response.read()
@@ -129,6 +141,7 @@ class LocalQwenClient:
             record.update(status='transport_error', error_type=type(exc).__name__)
         finally:
             record['seconds'] = time.monotonic() - started
+            self.limiter.release()
             temp = path.with_suffix('.tmp')
             temp.write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
             temp.replace(path)
@@ -138,7 +151,7 @@ class LocalQwenClient:
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--settings', type=Path, default=DEFAULT_SETTINGS)
-    parser.add_argument('--model', required=True, choices=['qwen3-8b', 'qwen3-14b'])
+    parser.add_argument('--model', required=True, choices=['qwen3-8b'])
     parser.add_argument('--output', required=True, type=Path)
     args = parser.parse_args()
     client = LocalQwenClient(args.model, args.output, args.settings)

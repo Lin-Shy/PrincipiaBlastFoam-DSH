@@ -5,15 +5,17 @@ from pathlib import Path
 import threading
 from urllib.parse import urlsplit
 
+from chapter2_qwen_limits import PROXY_MAX_CONCURRENCY, concurrency_setting
 
-def settings(path):
+
+def load_settings(path):
     values = {}
-    for line in Path(path).read_text(encoding='utf-8').splitlines():
+    for line in Path(path).read_text(encoding='utf-8-sig').splitlines():
         line = line.strip()
         if not line or line.startswith('#'):
             continue
         name, value = (part.strip() for part in line.split('=', 1))
-        if name not in {'QWEN_PROXY_API_KEY', 'QWEN_PROXY_BASE_URL'} or name in values:
+        if name not in {'QWEN_PROXY_API_KEY', 'QWEN_PROXY_BASE_URL', 'QWEN_PROXY_MAX_CONCURRENCY'} or name in values:
             raise ValueError('Unknown or duplicate proxy setting')
         values[name] = value.strip('\"\'')
     base = values.get('QWEN_PROXY_BASE_URL', '').rstrip('/')
@@ -23,7 +25,13 @@ def settings(path):
     key = values.get('QWEN_PROXY_API_KEY', '')
     if not key or any(ch.isspace() for ch in key):
         raise ValueError('Missing or invalid proxy key')
-    return base, key
+    maximum = concurrency_setting(values, 'QWEN_PROXY_MAX_CONCURRENCY', PROXY_MAX_CONCURRENCY)
+    return base, key, maximum
+
+
+def settings(path):
+    """Keep the legacy two-value interface for historical offline consumers."""
+    return load_settings(path)[:2]
 
 
 def read_settings(path):

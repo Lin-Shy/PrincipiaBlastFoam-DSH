@@ -1,5 +1,7 @@
 # 第2章检索与专业问答实验
 
+Qwen模型、配置与调用统一见[接入说明](../../../QWEN_MODEL_ROUTING.md)。
+
 8B、14B均已完成全部200题的六方法与两项消融，生成、匿名AI评分及统计均已闭合；每模型1600、合计3200个比较会话。32B等待用户提供API，尚无结果。 研究设计由[共享入口](../../../graduation-thesis-materials/graduation-research/chapters/chapter02.md)维护，实施见[工程计划](KNOWLEDGE_QA_PLAN.md)，实际批次与结果见[实验总入口](../../../graduation-experiment-results/chapter2_retrieval/current/README.md)。
 
 正式图已获用户接受，不再择图。六方法包括基础搜索（glob/grep/原文读取）与模型直接作答（无工具）；原2800条证据和新增400条分别保留身份。主指标为端到端有效回答得分，严格完整有效率（整题全部正确）保留为辅助指标；失败计0、未知保留上下界，全部200题保留分母。

@@ -17,12 +17,11 @@ class LocalTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         self.settings = self.root / '.env'
         self.settings.write_text('QWEN_LOCAL_API_KEY=test-secret\n'
-            'QWEN_LOCAL_8B_BASE_URL=http://127.0.0.1:8000/v1\n'
-            'QWEN_LOCAL_14B_BASE_URL=http://127.0.0.1:8001/v1\n'
-            'QWEN_LOCAL_8B_MODEL=Qwen3-8B\nQWEN_LOCAL_14B_MODEL=Qwen3-14B\n')
+            'QWEN_LOCAL_8B_BASE_URL=http://127.0.0.1:8001/v1\n'
+            'QWEN_LOCAL_8B_MODEL=Qwen3-8B\nQWEN_LOCAL_MAX_CONCURRENCY=8\n')
 
     def test_routes_and_secret_repr(self):
-        for size, port in [('8b', 8000), ('14b', 8001)]:
+        for size, port in [('8b', 8001)]:
             model = local.load_model('qwen3-' + size, self.settings)
             self.assertEqual(model.endpoint, f'http://127.0.0.1:{port}/v1/chat/completions')
             self.assertNotIn('test-secret', repr(model))
@@ -30,7 +29,7 @@ class LocalTests(unittest.TestCase):
     def test_actual_body_preserves_original_and_limits(self):
         body = {'messages': [{'role': 'user', 'content': 'question'}],
                 'enable_thinking': False, 'temperature': 0, 'max_tokens': 4096}
-        deployment = local.load_model('qwen3-14b', self.settings)
+        deployment = local.load_model('qwen3-8b', self.settings)
         actual = local.prepare_body(body, deployment)
         self.assertEqual(body['messages'][0]['content'], 'question')
         self.assertEqual(actual['messages'][0]['content'], 'question\n/no_think')
@@ -63,8 +62,20 @@ class LocalTests(unittest.TestCase):
 
     def test_invalid_config_and_model_fail_closed(self):
         with self.assertRaises(ValueError): local.load_model('other', self.settings)
+        with self.assertRaises(ValueError): local.load_model('qwen3-14b', self.settings)
         with self.settings.open('a') as out: out.write('QWEN_LOCAL_API_KEY=duplicate\n')
         with self.assertRaises(ValueError): local.load_model('qwen3-8b', self.settings)
+
+    def test_stale_14b_config_is_rejected(self):
+        with self.settings.open('a') as out:
+            out.write('QWEN_LOCAL_14B_MODEL=Qwen3-14B\n')
+        with self.assertRaises(ValueError): local.load_model('qwen3-8b', self.settings)
+
+    def test_request_cannot_silently_substitute_14b(self):
+        client = local.LocalQwenClient('qwen3-8b', self.root / 'calls', self.settings)
+        with self.assertRaises(ValueError, msg='must reject before reserving or sending'):
+            client({'model': 'qwen3-14b', 'messages': [{'role': 'user', 'content': 'hello'}]}, 0)
+        self.assertFalse(client.folder.exists())
 
 
 if __name__ == '__main__': unittest.main()
