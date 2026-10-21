@@ -8,7 +8,7 @@ from mcp_servers.principia_retrieval.retrieval_service import PrincipiaRetrieval
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-TUTORIALS_ROOT = PROJECT_ROOT.parent / "blastFoam_tutorials"
+TUTORIALS_ROOT = PROJECT_ROOT.parent / "graduation-datasets/raw-corpus/blastfoam/blastFoam_tutorials"
 
 
 @pytest.fixture()
@@ -31,7 +31,7 @@ def test_status_loads_skill_knowledge_graph(service: PrincipiaRetrievalService) 
     assert status["case_nodes"] > 0
     assert status["case_relationships"] > 0
     assert "blastXiFoam/deflagrationToDetonationTransition" in status["known_cases"]
-    assert ".dsh/skills/blastfoam-knowledge/index/releases/" in status["knowledge_index"]
+    assert ".dsh/skills/blastfoam-knowledge/index/releases/" in Path(status["knowledge_index"]).as_posix()
 
 
 def test_case_alias_and_file_lookup_are_deterministic(service: PrincipiaRetrievalService) -> None:

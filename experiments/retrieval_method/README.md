@@ -1,13 +1,13 @@
-# 专业知识问答与图谱检索实现
+# 第2章检索与专业问答实验
 
-更新时间：2026-10-17。第2章只使用[277题专业知识问答集](../../../graduation-datasets/chapter02_knowledge_qa/README.md)，开发77题、测试200题；开发、方法比较、图谱消融及父内容处理共享该题集。实验归档见[第2章入口](../../../graduation-experiment-results/chapter2_retrieval/README.md)。
+8B、14B均已完成全部200题的六方法与两项消融，生成、匿名AI评分及统计均已闭合；每模型1600、合计3200个比较会话。32B等待用户提供API，尚无结果。 研究设计由[共享入口](../../../graduation-thesis-materials/graduation-research/chapters/chapter02.md)维护，实施见[工程计划](KNOWLEDGE_QA_PLAN.md)，实际批次与结果见[实验总入口](../../../graduation-experiment-results/chapter2_retrieval/current/README.md)。
 
-详细范围见[完整工程计划](KNOWLEDGE_QA_FULL_20261017.md)与[问答工程计划](KNOWLEDGE_QA_PLAN.md)。当前父内容策略开发1232会话及原v7评分完成，开发选择直接父内容；17136份正式回答和1536份双层AI来源意见已完成，自动评分与最终统计正在运行。基准图比较13536会话使用同一题集，不称为旧题集结果。
+正式图已获用户接受，不再择图。六方法包括基础搜索（glob/grep/原文读取）与模型直接作答（无工具）；原2800条证据和新增400条分别保留身份。主指标为端到端有效回答得分，严格完整有效率（整题全部正确）保留为辅助指标；失败计0、未知保留上下界，全部200题保留分母。
 
-`chapter2_knowledge_*`维护专业问答的图、题目接口、原文复核和评测；`chapter2_full_*`维护完整比较计划、执行、评分和统计。`chapter2_sse_*`为可审计的传输与逻辑请求适配，不修改冻结v7的语义规则。正式运行使用独立源码快照，维护源修改不追溯改变已生成答案或评分。
+离线交付核验均不调用模型：
 
-批量从`.env.qwen_proxy`读取配置，`qwen3-8b`及`qwen3-14b`每模型最多16并发。小批量从`.env.qwen_local`读取专用配置；名称和参数见[部署说明](../../../QWEN_LOCAL_MODELS.md)。不同部署的分数不混用。离线构图与语义校验精确使用`deepseek-flash`。
+- `chapter2_verify_basic_search_delivery.py`：当前3200条、六方法及两消融、原证据不变、图表与正式论文。
+- `chapter2_verify_model_scale_delivery.py`：原两模型七组2800条；当前论文范围另由前一核验器确认。
+- `chapter2_verify_revision_delivery_200.py`：原8B修订1400条、数据与构图来源重放。
 
-来源图只持久化图与必要构图清单；BM25、E5和混合检索作为隔离对照，不进入图检索链路。Gold、参考答案及评分意见不进入构图、索引或被测输入。根据开发反馈调整方法，正式测试只评估已登记实现；不以目标百分比改动题目、评分或分母。主指标、必要点覆盖、原文送达和引用支持分别解释。
-
-论文在[稿件项目](../../../graduation-thesis-materials/graduation-manuscript/README.md)直接以LaTeX维护；图表脚本在[制图项目](../../../graduation-thesis-materials/graduation-visualization/chapter_02_knowledge_graph_retrieval/README.md)，正式产物进入稿件assets。
+冻结实现不得随维护覆盖；新增实验另冻结。应用源码在本项目，运行及评分在实验归档，题库在统一数据集，正文与最终图表在统一材料仓库。

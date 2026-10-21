@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-project_root=${1:-/data/graduation-projects}
+script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+project_root=${1:-$(cd -- "$script_dir/../../.." && pwd)}
 cd "$project_root"
 
 required=(

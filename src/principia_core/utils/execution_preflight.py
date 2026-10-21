@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import os
-import pwd
+try:
+    import pwd
+except ImportError:  # Windows supports configuration/retrieval, not local solving.
+    pwd = None
 import re
 import shlex
 import shutil
@@ -54,6 +57,8 @@ def configured_execution_user() -> str | None:
 def _execution_user_error(user: str | None) -> str | None:
     if not user:
         return None
+    if pwd is None:
+        return "OPENFOAM_EXECUTION_USER requires Linux"
     try:
         info = pwd.getpwnam(user)
     except KeyError:
@@ -124,7 +129,7 @@ def _commands_available_after_setup(commands: set[str], execution_user: str | No
         + f"for command in {command_list}; do command -v \"$command\" >/dev/null 2>&1 && echo \"$command\"; done"
     )
     args = ["bash", "-lc", shell_command]
-    if os.geteuid() == 0 and execution_user:
+    if getattr(os, 'geteuid', lambda: -1)() == 0 and execution_user:
         args = ["su", "-s", "/bin/bash", execution_user, "-c", shell_command]
     try:
         result = subprocess.run(
@@ -159,6 +164,9 @@ def run_execution_preflight(case_path: str | os.PathLike[str] | None) -> Dict[st
     if user_error:
         blockers.append(user_error)
     _check_environment_scripts(blockers, warnings)
+    if os.name == "nt":
+        blockers.append("Local solver execution requires Linux; use the remote simulation MCP.")
+        return {"ok": False, "blockers": blockers, "warnings": warnings, "execution_user": execution_user}
 
     if not case_path:
         blockers.append("case_path is not set")
@@ -171,7 +179,7 @@ def run_execution_preflight(case_path: str | os.PathLike[str] | None) -> Dict[st
         if shutil.which("mpirun") is None and shutil.which("mpiexec") is None:
             blockers.append("Allrun uses parallel execution, but neither mpirun nor mpiexec is available")
 
-    if case_path and os.geteuid() == 0 and case_uses_dynamic_code(case_dir):
+    if case_path and getattr(os, 'geteuid', lambda: -1)() == 0 and case_uses_dynamic_code(case_dir):
         if execution_user:
             warnings.append(
                 f"case uses OpenFOAM dynamic code; solver will run as OPENFOAM_EXECUTION_USER={execution_user}"
@@ -181,7 +189,7 @@ def run_execution_preflight(case_path: str | os.PathLike[str] | None) -> Dict[st
                 "case uses OpenFOAM dynamic code (#calc/#codeStream), but execution is running as root"
             )
 
-    if case_path and os.geteuid() == 0 and execution_user and case_dir.exists():
+    if case_path and getattr(os, 'geteuid', lambda: -1)() == 0 and execution_user and case_dir.exists():
         if _bool_env("OPENFOAM_CHOWN_CASE", True):
             warnings.append(
                 f"case ownership will be changed to OPENFOAM_EXECUTION_USER={execution_user} before execution"

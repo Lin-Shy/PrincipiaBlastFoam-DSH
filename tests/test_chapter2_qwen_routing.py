@@ -8,7 +8,7 @@ import pytest
 SOURCE=Path(__file__).resolve().parents[1]/'experiments/retrieval_method'
 sys.path.insert(0,str(SOURCE))
 from chapter2_qwen_routing import routed_client, RecordedProxyQwenClient
-from chapter2_resume_proxy_bulk import recorded_or_new
+from chapter2_recorded_requests import recorded_or_new
 from chapter2_qwen_local import LocalQwenClient
 
 
@@ -90,3 +90,5 @@ def test_existing_terminal_request_binding_must_match(tmp_path):
     client.folder.mkdir()
     (client.folder/'00.json').write_text(json.dumps(dict(status='response',request=body(),endpoint='https://other.example/v1')),encoding='utf-8')
     with pytest.raises(ValueError,match='identity'):recorded_or_new(client,body(),0)
+
+

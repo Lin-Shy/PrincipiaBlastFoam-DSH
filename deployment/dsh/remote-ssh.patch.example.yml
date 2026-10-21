@@ -1,0 +1,17 @@
+# Overlay for a web-ssh profile that already installs dsh-remote-ssh.
+# Machine target/config/workspace values come from the ignored local config.
+# The full manager config is repeated because loader patches replace config.
+- id: remote-ssh-manager
+  config:
+    aliasRoot: !!js process.env.DSH_REMOTE_SSH_ALIAS_ROOT ?? dshHomePath('remote-ssh/workspaces')
+    sshConfigFile: !!js process.env.DSH_REMOTE_SSH_CONFIG || undefined
+    servers: !!js >-
+      [{ id: 'default', label: process.env.DSH_REMOTE_SSH_LABEL ?? process.env.DSH_REMOTE_SSH_TARGET,
+         sshTarget: process.env.DSH_REMOTE_SSH_TARGET,
+         sshArgs: [],
+         remoteCodeCommand: process.env.DSH_REMOTE_SSH_CODE ?? 'code' }]
+    workspaces: !!js >-
+      process.env.DSH_REMOTE_SSH_WORKSPACE
+        ? [{ id: 'default', serverId: 'default', remotePath: process.env.DSH_REMOTE_SSH_WORKSPACE,
+             ...(process.env.DSH_REMOTE_SSH_LOCAL_WORKSPACE ? { aliasPath: process.env.DSH_REMOTE_SSH_LOCAL_WORKSPACE } : {}) }]
+        : []

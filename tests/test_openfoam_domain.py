@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 import asyncio
+import os
+import shlex
 
 import pytest
 from mcp.server.fastmcp.exceptions import ToolError
@@ -28,7 +30,7 @@ from principia_core.utils.workflow_artifacts import validate_workflow_artifacts
 from mcp_servers.principia_retrieval import server as mcp_server
 
 
-TUTORIAL_ROOT = Path(__file__).resolve().parents[2] / "blastFoam_tutorials"
+TUTORIAL_ROOT = Path(__file__).resolve().parents[2] / "graduation-datasets/raw-corpus/blastfoam/blastFoam_tutorials"
 
 
 def test_initializer_honors_explicit_case_without_reranking(tmp_path: Path) -> None:
@@ -159,8 +161,8 @@ def test_openfoam_shell_command_sources_configured_environments(tmp_path: Path, 
 
     command = _build_allrun_shell_command(tmp_path)
 
-    assert f"source {openfoam_bashrc}" in command
-    assert f"MAKE=True source {blastfoam_bashrc}" in command
+    assert f"source {shlex.quote(str(openfoam_bashrc))}" in command
+    assert f"MAKE=True source {shlex.quote(str(blastfoam_bashrc))}" in command
     assert command.endswith("./Allrun")
 
 
@@ -176,7 +178,9 @@ def test_preflight_portable_defaults_rely_on_current_environment(
     result = run_execution_preflight(tmp_path)
     warnings = " ".join(result["warnings"])
 
-    assert result["ok"] is True
+    assert result["ok"] is (os.name != "nt")
+    if os.name == "nt":
+        assert any("requires Linux" in b for b in result["blockers"])
     assert DEFAULT_OPENFOAM_BASHRC == ""
     assert DEFAULT_BLASTFOAM_BASHRC == ""
     assert "OPENFOAM_BASHRC is not configured" in warnings
@@ -405,7 +409,12 @@ def test_mcp_case_path_rejects_symlink_escape(tmp_path: Path, monkeypatch) -> No
     outside = tmp_path / "outside"
     allowed.mkdir()
     outside.mkdir()
-    (allowed / "linked-case").symlink_to(outside, target_is_directory=True)
+    try:
+        (allowed / "linked-case").symlink_to(outside, target_is_directory=True)
+    except OSError as error:
+        if getattr(error, "winerror", None) == 1314:
+            pytest.skip("Windows symlink privilege is unavailable")
+        raise
     monkeypatch.setenv("PRINCIPIA_CASE_ROOT", str(allowed))
 
     with pytest.raises(ValueError, match="must stay within configured root"):

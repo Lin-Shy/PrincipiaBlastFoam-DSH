@@ -70,7 +70,7 @@ class TutorialInitializer:
                             # 这是一个完整的案例
                             case_info = {
                                 "path": item_path,
-                                "relative_path": item_relative,
+                                "relative_path": Path(item_relative).as_posix(),
                                 "readme_content": self._read_readme(item_path),
                                 "description": self._extract_case_description(item_path)
                             }

@@ -1,0 +1,36 @@
+diff --git a/package.json b/package.json
+index d5a1698..dcffc57 100644
+--- a/package.json
++++ b/package.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "dsh-remote-ssh",
+-  "version": "0.2.1",
++  "version": "0.2.1-principia.2",
+   "description": "Transparent local and Remote SSH workspaces for DeepSeek Harness",
+   "publishConfig": {
+     "access": "public",
+diff --git a/src/manager.ts b/src/manager.ts
+index 5de899f..c1761cf 100644
+--- a/src/manager.ts
++++ b/src/manager.ts
+@@ -7,7 +7,7 @@ import { posix } from 'node:path'
+ import { Context, Service } from '@deepseek-ai/cordis'
+ import type { FileSystem } from '@deepseek-ai/dsh-fs'
+ import type { ShellExecutor } from '@deepseek-ai/dsh-shell'
+-import { settingsNamespace } from '@deepseek-ai/dsh-settings'
++import * as dshSettings from '@deepseek-ai/dsh-settings'
+ import type { SettingsScope } from '@deepseek-ai/dsh-settings'
+ import type {} from '@deepseek-ai/dsh-workspace'
+ import type { WorkspaceRegistry } from '@deepseek-ai/dsh-workspace'
+@@ -107,7 +107,9 @@ export interface RemoteDirectoryListing {
+   entries: RemoteDirectoryEntry[]
+ }
+ 
+-const SETTINGS_NAMESPACE = settingsNamespace('remote-ssh')
++const SETTINGS_NAMESPACE = (typeof dshSettings.settingsNamespace === 'function'
++  ? dshSettings.settingsNamespace('remote-ssh')
++  : 'remote-ssh') as ReturnType<typeof dshSettings.settingsNamespace>
+ const ID_PATTERN = /^[a-zA-Z0-9][a-zA-Z0-9._-]*$/
+ 
+ const serverSchema: z<RemoteSshServer> = z.object({

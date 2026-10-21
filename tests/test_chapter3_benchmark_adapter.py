@@ -44,12 +44,13 @@ def test_builds_headless_dsh_command_without_secret_when_execution_disabled() ->
         [Path("/tmp/principia-patch.js")],
     )
 
-    assert command[:5] == [
-        "/opt/dsh/bin.js",
+    assert command[:6] == [
+        "node",
+        str(Path("/opt/dsh/bin.js")),
         "--profile",
         "headless",
         "--patch",
-        "/tmp/principia-patch.js",
+        str(Path("/tmp/principia-patch.js")),
     ]
     assert command[-1] == prompt
     assert "Execution is disabled" in prompt

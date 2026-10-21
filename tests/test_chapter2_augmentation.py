@@ -20,7 +20,7 @@ def corpus(tmp_path):
     (source / "manual/a.md").write_text(text)
     (source / "tutorials/b").write_text("alpha 3;\n")
     manifest = tmp_path / "manifest.json"
-    manifest.write_text(json.dumps({"files": {str(p.relative_to(source)): runner.sha(p) for p in source.rglob("*") if p.is_file()}}))
+    manifest.write_text(json.dumps({"files": {p.relative_to(source).as_posix(): runner.sha(p) for p in source.rglob("*") if p.is_file()}}))
     return {"corpus": str(source), "inputs": {"corpus_manifest": {"path": str(manifest)}}}
 
 

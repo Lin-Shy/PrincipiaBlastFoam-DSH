@@ -11,7 +11,7 @@ def test_source_is_bounded_and_cannot_escape_index(engine,monkeypatch):
     path='tutorials/caseA/system/controlDict'
     result=n.source(path,1,100,budget=1000)
     assert len(json.dumps(result,ensure_ascii=False,separators=(',',':')))<=1000
-    assert (engine.skill/'corpus'/path).read_text().startswith(result['text'])
+    assert (engine.skill/'corpus'/path).read_bytes().decode('utf-8').startswith(result['text'])
     with pytest.raises(ValueError):n.source('../../outside',1,2)
     with pytest.raises(ValueError):n.source(path,0,3)
 

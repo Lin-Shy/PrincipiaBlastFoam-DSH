@@ -5,9 +5,9 @@ import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'experiments/retrieval_method'))
 from chapter2_v2_retrieval_probe import covered
 from chapter2_v2_metric_diagnosis import macro
-from chapter2_v2_development_runner import DeploymentResponse,token_counter,prepared_messages
+from chapter2_qa_deployment import DeploymentResponse,token_counter,prepared_messages
 from chapter2_qwen_local import LocalModel
-from chapter2_v2_development_report import physical_requests
+from chapter2_request_accounting import physical_requests
 from chapter2_v2_retrieval_probe import save
 
 

@@ -29,3 +29,7 @@ logs/
 .DS_Store
 .idea/
 .vscode/
+
+# Machine-local Windows setup and remote deployment artifacts
+.local/
+*.local.html

@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 from collections import Counter, defaultdict
 import hashlib
+import importlib.util
 import json
 import math
 import os
@@ -25,7 +26,7 @@ def encoded(obj):
 
 
 def read_json(path):
-    return json.loads(path.read_text())
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def write_json(path, value):
@@ -280,7 +281,7 @@ def build(skill=ROOT, corpus=None, index=None, parse_included_dictionaries=False
         cases = set()
         for p in active_paths:
             if Path(p).name == 'Allrun':
-                cases.add(str(Path(p).parent))
+                cases.add(Path(p).parent.as_posix())
             if p.endswith('/system/controlDict'):
                 cases.add(p[:-len('/system/controlDict')])
         for c in sorted(cases):
@@ -289,7 +290,10 @@ def build(skill=ROOT, corpus=None, index=None, parse_included_dictionaries=False
         # 与独立手册图共用章节解析及完整证据单元，教程索引仍沿用现有协议。
         concepts = defaultdict(list)
         if any((corpus/'manual/markdown').glob('*.md')):
-            import manual_graph
+            module_path = Path(__file__).with_name("manual_graph.py")
+            module_spec = importlib.util.spec_from_file_location("principia_skill_manual_graph", module_path)
+            manual_graph = importlib.util.module_from_spec(module_spec)
+            module_spec.loader.exec_module(manual_graph)
             manual = manual_graph.build(corpus/'manual/markdown')
             manual_nodes = {n['id']: n for n in manual['nodes']}
             for section in (n for n in manual['nodes'] if n['kind'] == 'section'):
@@ -310,7 +314,7 @@ def build(skill=ROOT, corpus=None, index=None, parse_included_dictionaries=False
 
         # Version-pinned solver sources are a distinct source category, not manual prose.
         for path in sorted(p for p in inventory if p.startswith('manual/source_code/') and Path(p).suffix in ('.C','.H')):
-            text=confined(corpus,path).read_text()
+            text=confined(corpus,path).read_text(encoding="utf-8")
             fid=node('file:'+path,'file',path=path,file_kind='solver_code',sha256=inventory[path])
             lines=text.splitlines()
             for start in range(0,len(lines),48):
@@ -413,7 +417,7 @@ def build(skill=ROOT, corpus=None, index=None, parse_included_dictionaries=False
         # Preserve previously verified errata as evidence documents, not silent rewrites.
         if 'manual/compatibility.md' in inventory:
             path='manual/compatibility.md'
-            text=(corpus/path).read_text()
+            text=(corpus/path).read_text(encoding="utf-8")
             ev=evidence(path,1,len(text.splitlines()))
             node('errata','source_span',evidence=ev)
             document('errata',text,ev,title='版本 核对 冲突 勘误 compatibility',source_scope='manual')
@@ -422,7 +426,7 @@ def build(skill=ROOT, corpus=None, index=None, parse_included_dictionaries=False
             readme=c+'/README.md'
             if readme not in inventory:
                 continue
-            text=(corpus/readme).read_text()
+            text=(corpus/readme).read_text(encoding="utf-8")
             stated=re.findall(r'\b(linear|pressureBased|programmedIgnition) activation model\b',text,re.I)
             selectors=[n for n in nodes.values() if n['kind']=='configuration' and n.get('case')==c and n['key']=='activationModel']
             if len(selectors)==1 and stated and selectors[0]['value'].lower()!=stated[0].lower():
@@ -619,7 +623,7 @@ def source(path,start=1,end=None,skill=ROOT,corpus=None,index=None):
     p=confined(corpus,path)
     if digest(p.read_bytes())!=manifest['inventory'][path]:
         raise ValueError('source changed since build')
-    lines=p.read_text().splitlines()
+    lines=p.read_text(encoding="utf-8").splitlines()
     end=min(end or start+79,len(lines))
     if not 1<=start<=end or end-start>=400:
         raise ValueError('invalid range (maximum 400 lines)')

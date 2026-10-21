@@ -1,6 +1,6 @@
 # 基于DSH的单智能体RSI实验设计
 
-2026-10-04。状态：设计草案，尚未实现DSH自进化控制器，也没有DSH自进化收益数据。维护源码统一放本DSH项目，实验进入外部`chapter4_self_evolution/`归档，论文仅在`graduation-manuscript/`编写。
+2026-10-04。状态：设计草案，尚未实现DSH自进化控制器，也没有DSH自进化收益数据。维护源码统一放本DSH项目，实验进入外部`chapter4_self_evolution/`归档，论文仅在`graduation-thesis-materials/graduation-manuscript/`编写。
 
 ## 🧭 研究对象与现有基础
 

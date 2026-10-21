@@ -1,0 +1,29 @@
+- insert:
+    - id: principia-simulation-mcp
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: principia_simulation
+        transport: streamable-http
+        url: !!js process.env.PRINCIPIA_SIMULATION_URL ?? 'http://127.0.0.1:8000/mcp'
+        toolCallTimeoutMs: 60000
+        failOnStartupError: true
+        reconnect:
+          enabled: true
+          initialDelayMs: 500
+          maxDelayMs: 30000
+          maxAttempts: 10
+
+    - id: principia-simulation-files-mcp
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: principia_simulation_files
+        transport: stdio
+        command: !!js process.env.PRINCIPIA_PYTHON ?? 'python'
+        args: ['-m', 'mcp_servers.simulation.files']
+        cwd: !!js process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()
+        env:
+          PRINCIPIA_CASE_ROOT: !!js process.env.PRINCIPIA_CASE_ROOT
+          PRINCIPIA_REMOTE_SIMULATION_ROOT: !!js process.env.PRINCIPIA_REMOTE_SIMULATION_ROOT
+          PRINCIPIA_SSH_HOST: !!js process.env.PRINCIPIA_SSH_HOST ?? 'yan_yun'
+        toolCallTimeoutMs: 660000
+        failOnStartupError: true

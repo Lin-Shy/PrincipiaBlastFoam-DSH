@@ -21,7 +21,7 @@ def query_text(question, plan):
 class OriginalSources:
     def __init__(self, corpus, manifest):
         self.corpus = Path(corpus).resolve()
-        self.hashes = json.loads(Path(manifest).read_text())["files"]
+        self.hashes = json.loads(Path(manifest).read_text(encoding="utf-8"))["files"]
 
     def read(self, path, cache):
         if path not in self.hashes:
@@ -113,11 +113,11 @@ class DenseE5:
         from candidate_hybrid import model_load
         self.sources=OriginalSources(corpus,manifest)
         index=Path(index)
-        self.manifest=json.loads((index/"manifest.json").read_text())
+        self.manifest=json.loads((index/"manifest.json").read_text(encoding="utf-8"))
         for name,expected in self.manifest["files"].items():
             if digest((index/name).read_bytes())!=expected:
                 raise ValueError("frozen E5 index drift")
-        self.docs=json.loads((index/"passages.json").read_text())
+        self.docs=json.loads((index/"passages.json").read_text(encoding="utf-8"))
         if any(self.sources.hashes.get(d["path"])!=d["source_sha256"] for d in self.docs):
             raise ValueError("E5 passages outside authoritative corpus")
         self.vectors=np.load(index/"embeddings.npy",allow_pickle=False)

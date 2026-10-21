@@ -1,0 +1,17 @@
+# Copy to .local/windows.ps1 (ignored). Paths here belong to this machine only.
+# $env:DSH_CHECKOUT = '<workspace-parent>/deepseek-harness'
+$env:PRINCIPIA_SSH_HOST = 'yan_yun_agent'
+$env:PRINCIPIA_SIMULATION_URL = 'http://127.0.0.1:8000/mcp'
+# Set the actual runtime directory created on Linux:
+# $env:PRINCIPIA_REMOTE_SIMULATION_ROOT = '/actual/service/directory/runtime'
+# Model credentials/config belong outside Git, in this file or DSH settings.
+
+# Optional SSH workspace settings (used only with -Ssh):
+# $env:DSH_REMOTE_SSH_CONFIG = Join-Path $env:USERPROFILE ".ssh/config"
+# $env:DSH_REMOTE_SSH_WORKSPACE = "/actual/linux/workspace"
+# $env:DSH_REMOTE_SSH_CODE = "/path/to/existing/code"
+
+# Optional per-chapter Remote workspace mappings:
+# $env:PRINCIPIA_SSH_CHAPTER3_WORKSPACE = "/ssh-user-home/principia/chapter3"
+# $env:PRINCIPIA_SSH_CHAPTER4_WORKSPACE = "/ssh-user-home/principia/chapter4"
+# $env:PRINCIPIA_SSH_PROXY_PORT = "7897" # Requires the local proxy to be running.

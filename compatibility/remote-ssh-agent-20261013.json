@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-13",
+  "status": "non-root-ssh-transparent-tools-validated",
+  "supersedesLocalConnectionRecord": "remote-ssh-20261013.json",
+  "upstreamHarnessCommit": "d347e703908d0406b7a7ef80e3a0e594d86b2215",
+  "harnessVersion": "0.1.3-alpha.1",
+  "plugin": {
+    "upstreamVersion": "0.2.1",
+    "upstreamCommit": "6fe4c24a0386ba1047ec8d3919484f50dd3ebc6d",
+    "installedVersion": "0.2.1-principia.4",
+    "sdkVersion": "1.0.0",
+    "forwardProtocol": "0.10.0",
+    "patch": "deployment/windows/remote-ssh-agent.patch",
+    "tarballSha256": "56a5ef6bb27a8569bef8d403f6a07d4ee92d20dc43f7140671bc63af5d0afd04",
+    "boundary": "0.10 forward protocol acceptance proven by actual Resource and Terminal operations; other future versions not inferred."
+  },
+  "ssh": {
+    "hostAlias": "yan_yun_agent",
+    "executionUser": "agent",
+    "nonInteractiveAuthentication": "passed",
+    "rootExecution": "none; launcher rejects root SSH users",
+    "configModification": "none",
+    "workspaces": {
+      "chapter3": "<ssh-home>/principia/chapter3",
+      "chapter4": "<ssh-home>/principia/chapter4"
+    },
+    "serverSshArgs": [],
+    "reason": "ClearAllForwardings must not be passed to plugin-generated -L tunnels; read-only probes and scp retain it."
+  },
+  "remoteDependencies": {
+    "authorization": "User explicitly approved installation into agent user home.",
+    "scope": "<ssh-home>/.dsh-remote-ssh; no sudo, system installs or shell startup edits",
+    "officialCli": {
+      "version": "1.141.0",
+      "commit": "2a59476c9bfcb90b3ddc372c36762471b7dfad1c",
+      "download": "https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64",
+      "archiveSha256": "523b76cbd077413f1dbb71ec5de48d076d82e0bd564adeea3d5568fdbe95c18e"
+    },
+    "ripgrep": {
+      "version": "14.1.1",
+      "archiveSha256": "4cf9f2741e6c465ffdb7c26f38056a59e2a2544b51f7cc128ef28337eeae4d8e",
+      "publisherChecksum": "verified"
+    },
+    "solver": "existing OpenFOAM-9/blastFoam; bashrc loaded in private Agent Host wrapper; blastFoam -help exit 0",
+    "agentHost": {
+      "manager": "official CLI handles installation/cache",
+      "observedVersion": "1.141.0",
+      "acceptedProtocol": "^0.10.0",
+      "note": "An additional pinned CLI and newer caches retained; final wrapper uses recorded 1.141.0 CLI."
+    },
+    "proxy": {
+      "localPort": 7897,
+      "remoteBind": "127.0.0.1:7897",
+      "sshUser": "agent",
+      "startupHelper": "deployment/windows/Ensure-RemoteSshProxy.ps1",
+      "mode": "reuse healthy proxy or start hidden non-root SSH forwarding; process persists across chapters",
+      "machineState": "ignored .local PID/log/config only"
+    }
+  },
+  "checks": {
+    "pluginTypecheck": "passed",
+    "pluginBuild": "passed",
+    "pluginTests": {
+      "files": 11,
+      "passed": 40
+    },
+    "webAuthentication": {
+      "chapter3": 200,
+      "chapter4": 200
+    },
+    "sshPluginProbe": "reachable=true on yan_yun_agent",
+    "directoryRead": "both chapter workspaces passed through plugin API",
+    "transparentFileWriteRead": "passed through DSH fs router in Chapter3 remote workspace",
+    "remoteBash": "passed: user agent, correct remote cwd, existing blastFoam executable and ripgrep 14.1.1",
+    "remoteSearch": "passed: DSH routed subprocess rg found smoke marker at line 1",
+    "localFileRead": "passed through same fs router",
+    "dialectPolicy": {
+      "remote": "bash",
+      "local": "pwsh"
+    },
+    "chapter4Isolation": "no Chapter3 bundle/roles; subagent/fork/control/workflow tools disabled",
+    "managedProxy": "creation and reuse passed",
+    "userInstaller": "checksum, CLI help/version, ripgrep version, repeat installation passed",
+    "modelInvocations": 0,
+    "browserInteraction": "not-verified; no available in-app browser",
+    "realSimulationCase": "not-run",
+    "formalBenchmark": "not-run",
+    "rsi": "not-implemented-or-measured"
+  },
+  "notes": [
+    "Initial failed authentication/install records retained as historical evidence.",
+    "Smoke logs, access tokens, keys, personal paths and profile state excluded from this file.",
+    "Local domain MCP paths are not automatically remote; formal chapter experiment adaptation remains separate."
+  ]
+}

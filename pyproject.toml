@@ -32,6 +32,7 @@ packages = [
     "principia_core.utils",
     "mcp_servers",
     "mcp_servers.principia_retrieval",
+    "mcp_servers.simulation",
 ]
 package-dir = {principia_core = "src/principia_core", mcp_servers = "mcp_servers"}
 

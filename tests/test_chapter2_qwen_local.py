@@ -1,16 +1,13 @@
 """Local endpoint routing and immutable attempt recording."""
-import importlib.util
 import json
 from pathlib import Path
 import sys
 import tempfile
 import unittest
 
-MODULE = Path(__file__).resolve().parents[1] / 'experiments/retrieval_method/chapter2_qwen_local.py'
-spec = importlib.util.spec_from_file_location('chapter2_qwen_local', MODULE)
-local = importlib.util.module_from_spec(spec)
-sys.modules[spec.name] = local
-spec.loader.exec_module(local)
+SOURCE = Path(__file__).resolve().parents[1] / 'experiments/retrieval_method'
+sys.path.insert(0, str(SOURCE))
+import chapter2_qwen_local as local
 
 
 class LocalTests(unittest.TestCase):

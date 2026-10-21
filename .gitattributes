@@ -1,0 +1,8 @@
+# Linux scripts retain LF; PowerShell also accepts LF.
+*.sh text eol=lf
+**/Allrun text eol=lf
+**/Allclean text eol=lf
+*.ps1 text eol=lf
+# Last-match precedence: frozen inputs always preserve their exact bytes.
+.dsh/skills/blastfoam-knowledge/corpus/** -text
+.dsh/skills/blastfoam-knowledge/index/** -text

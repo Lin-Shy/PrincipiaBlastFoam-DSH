@@ -21,7 +21,7 @@ DeepSeek Harness profile
 
 ## 知识图谱与检索定位
 
-第2章维护实现位于 `experiments/retrieval_method/`，实验统一在外部 `graduation-experiment-results/chapter2_retrieval/`。唯一题集为 `graduation-datasets/chapter02_knowledge_qa/formal_v1/` 的277题，开发77题、测试200题；全部方法、消融及诊断使用相同题集。父内容与完整比较入口为 `knowledge_qa_full_20261017/`。离线使用精确 `deepseek-flash`；批量代理、小批量本地，模型和预算由活动冻结。gold仅供评分，不进入构图、索引或常规问答。
+第2章实现位于`experiments/retrieval_method/`，使用唯一200题。8B、14B均已完成全部200题的六方法与两项消融，生成、匿名AI评分及统计均已闭合；每模型1600、合计3200个比较会话。32B等待用户提供API，尚无结果。 主指标为端到端有效回答得分，完整有效率保留；正式图已接受，不再择图。入口为[工程计划](experiments/retrieval_method/KNOWLEDGE_QA_PLAN.md)与[实验总入口](../graduation-experiment-results/chapter2_retrieval/current/README.md)。gold仅供评分，原证据保持身份，停用题库不恢复。
 
 自研最终方法只持久化图谱与构图清单，读取原始权威文件核验；BM25/E5为隔离对照，Graphify `.txt`仅为可逆摄取适配。图关系表示文档/配置支持，不能直接声称物理运行条件已满足。最新实验的引用非劣效未获支持，同8B评分与AI复核仍有局限。实验适配器中的方法与生产MCP的接入状态须分别验证，不能因为论文成绩就假定线上集成完成。
 

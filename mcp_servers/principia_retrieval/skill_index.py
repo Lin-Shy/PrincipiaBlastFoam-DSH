@@ -87,7 +87,7 @@ class SkillKnowledgeIndex:
         source = self.api.confined(SKILL_ROOT / "corpus", path)
         if self.api.digest(source.read_bytes()) != self.manifest["inventory"][path]:
             raise ValueError("knowledge source changed since index publication")
-        lines = source.read_text().splitlines()
+        lines = source.read_text(encoding="utf-8").splitlines()
         start = max(1, int(evidence.get("line_start", 1)))
         end = min(len(lines), int(evidence.get("line_end", start + 119)))
         return "\n".join(lines[start - 1:end])

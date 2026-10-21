@@ -1,0 +1,19 @@
+[Unit]
+Description=Principia remote simulation MCP
+After=network.target
+
+[Service]
+Type=simple
+# Replace the paths and execution user in the installed machine-local unit.
+User=simulation
+WorkingDirectory=/absolute/path/to/simulation
+EnvironmentFile=/absolute/path/to/simulation/simulation.env
+ExecStart=/absolute/path/to/simulation/.venv/bin/python -m mcp_servers.simulation.server
+Restart=on-failure
+RestartSec=3
+# Independent job workers survive an MCP service restart.
+KillMode=process
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

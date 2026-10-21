@@ -2,7 +2,10 @@ from __future__ import annotations
 
 import json
 import os
-import pwd
+try:
+    import pwd
+except ImportError:  # Windows supports configuration/retrieval, not local solving.
+    pwd = None
 import signal
 import shlex
 import subprocess
@@ -54,7 +57,7 @@ def _configured_execution_user() -> str | None:
 
 
 def _prepare_case_for_execution_user(case_dir: Path, execution_user: str | None) -> dict[str, Any]:
-    if os.geteuid() != 0 or not execution_user:
+    if getattr(os, 'geteuid', lambda: -1)() != 0 or not execution_user:
         return {"changed_owner": False, "execution_user": execution_user}
 
     user_info = pwd.getpwnam(execution_user)
@@ -91,7 +94,7 @@ def _build_allrun_shell_command(case_dir: Path) -> str:
 
 
 def _execution_subprocess_args(case_dir: Path, shell_command: str, execution_user: str | None) -> tuple[list[str], Path]:
-    if os.geteuid() == 0 and execution_user:
+    if getattr(os, 'geteuid', lambda: -1)() == 0 and execution_user:
         return ["su", "-s", "/bin/bash", execution_user, "-c", shell_command], Path("/")
     return ["bash", "-lc", shell_command], case_dir
 

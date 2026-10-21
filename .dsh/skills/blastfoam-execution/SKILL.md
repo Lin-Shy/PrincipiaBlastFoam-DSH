@@ -18,3 +18,10 @@ description: 对已批准的 blastFoam/OpenFOAM 算例执行可复现预检和�
 ## 输出
 
 生成 `execution_report.md` 和 `execution_status.json`。JSON 必须包含状态、命令、退出码、开始/结束时间、日志路径、最后完成时间、检测到的失败标志和输出证据。环境不可用时使用 `blocked`；已经尝试执行但结果无效时使用 `failed`。
+
+
+## Windows 开发、Linux 远程执行
+
+当配置了 principia_simulation MCP 时，Windows 本地预检的 Linux 环境阻断不能用于判定远端环境不可用。先查询远端服务状态；用 principia_simulation_files.upload_simulation_case 上传已批准的本地算例，再将返回 case_id 传给 run_simulation。提交返回 job_id，随后轮询状态和有界日志，不把 MCP HTTP 请求保持到求解结束。
+
+终态后读取 get_simulation_result，再用 download_simulation_result 下载并核对 SHA256。本地解压、核对实际时间目录、字段和有限值后，生成本章 execution_report.md 与 execution_status.json。completed 仅表示进程退出码为0，不能据此宣布完整任务或物理验证成功。cleanup_simulation 只能在本地归档及证据检查完成后使用下载散列调用。Linux 服务不生成第3章七项产物，也不包含智能体角色。

@@ -32,7 +32,7 @@ DEFAULT_DSH_BIN = Path(
 )
 DEFAULT_DSH_HOME = Path(os.environ.get("DSH_HOME", WORKSPACE_ROOT / "dsh-home"))
 DEFAULT_TUTORIALS = Path(
-    os.environ.get("BLASTFOAM_TUTORIALS", PROJECT_ROOT.parent / "blastFoam_tutorials")
+    os.environ.get("BLASTFOAM_TUTORIALS", PROJECT_ROOT.parent / "graduation-datasets/raw-corpus/blastfoam/blastFoam_tutorials")
 )
 DEFAULT_OUTPUT_ROOT = (
     PROJECT_ROOT.parent
@@ -174,7 +174,8 @@ def build_dsh_command(
     prompt: str,
     patches: Iterable[Path] = (),
 ) -> list[str]:
-    command = [str(dsh_bin), "--profile", profile]
+    launcher = ["node", str(dsh_bin)] if dsh_bin.suffix in {".js", ".mjs"} else [str(dsh_bin)]
+    command = [*launcher, "--profile", profile]
     for patch in patches:
         command.extend(["--patch", str(patch)])
     command.append(prompt)
@@ -241,17 +242,23 @@ def run_command(
             stdout=log,
             stderr=subprocess.STDOUT,
             text=True,
-            start_new_session=True,
+            start_new_session=os.name != "nt",
         )
         try:
             exit_code = process.wait(timeout=timeout_seconds)
         except subprocess.TimeoutExpired:
             timed_out = True
-            os.killpg(process.pid, signal.SIGTERM)
+            if os.name == "nt":
+                subprocess.run(["taskkill", "/PID", str(process.pid), "/T", "/F"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            else:
+                os.killpg(process.pid, signal.SIGTERM)
             try:
                 exit_code = process.wait(timeout=10)
             except subprocess.TimeoutExpired:
-                os.killpg(process.pid, signal.SIGKILL)
+                if os.name == "nt":
+                    process.kill()
+                else:
+                    os.killpg(process.pid, signal.SIGKILL)
                 exit_code = process.wait()
     return {
         "exit_code": exit_code,

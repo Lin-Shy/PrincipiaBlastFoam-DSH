@@ -272,7 +272,7 @@ def main():
     if args.command == 'build':
         graph = build(args.source); write(args.output, graph)
     else:
-        graph = json.loads(args.output.read_text())
+        graph = json.loads(args.output.read_text(encoding="utf-8"))
     print(encoded(validate(graph, args.source)))
 
 

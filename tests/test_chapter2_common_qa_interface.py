@@ -6,7 +6,7 @@ from types import SimpleNamespace
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'experiments/retrieval_method'))
 from chapter2_common_qa_interface import neutral_messages,NeutralToolClient
-from chapter2_v2_development_runner import DeploymentResponse,token_counter,ANSWER_CHECKLIST
+from chapter2_qa_deployment import DeploymentResponse,token_counter,ANSWER_CHECKLIST
 from principia_core.retrieval.knowledge_agent import SYSTEM
 from principia_core.retrieval.knowledge_qa import tool_specs,wire
 

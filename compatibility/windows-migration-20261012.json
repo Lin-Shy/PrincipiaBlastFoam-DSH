@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-12",
+  "status": "windows-local-validated",
+  "upstreamCommit": "d347e703908d0406b7a7ef80e3a0e594d86b2215",
+  "harnessVersion": "0.1.3-alpha.1",
+  "nodeVersion": "24.14.0",
+  "pythonVersion": "3.11.5",
+  "packageManager": "pnpm@11.7.0",
+  "mcpVersion": "1.30.0",
+  "installation": {
+    "harness": "<workspace-parent>/deepseek-harness",
+    "profileHomes": [
+      "<workspace-parent>/dsh-home/chapter3",
+      "<workspace-parent>/dsh-home/chapter4"
+    ],
+    "python": "<application>/.venv"
+  },
+  "checks": {
+    "officialBuild": "passed: 222 recorded client artifacts",
+    "bundleTests": {
+      "passed": 3
+    },
+    "pythonTests": {
+      "passed": 64,
+      "skipped": 1,
+      "skipReason": "Windows symlink privilege unavailable"
+    },
+    "pipCheck": "passed",
+    "webStartup": "authenticated HTTP 200; smoke server stopped",
+    "retrievalMcp": "stdio initialize/list_tools/get_status passed (21 tools)",
+    "profileDump": "Chapter 3 and isolated Chapter 4 passed",
+    "chapter4Isolation": "no Chapter 3 bundle; subagent/fork/control/workflow tool rows disabled",
+    "benchmark": "real Chapter 3 dataset, limit 1, dry-run passed"
+  },
+  "realSolverSmoke": "not-run",
+  "remoteDeployment": "deferred-by-user",
+  "fullBenchmarkPassed": false,
+  "rsiControllerImplemented": false,
+  "notes": [
+    "Frozen experiment data, scoring and knowledge snapshots were not rewritten.",
+    "Remote tool code is retained as pending integration; no Linux service deployed.",
+    "This record adds Windows environment evidence and does not replace the historical Linux compatibility baseline."
+  ]
+}
