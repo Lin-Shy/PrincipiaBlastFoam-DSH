@@ -1,5 +1,7 @@
 # 当前Test160 GPT接口（2026-10-28）
 
+负责人追加Terra验证要求，进一步正式调用须先通过`terra_validation.py`的固定人工参考验收；协议为正式实验`release/protocol/terra_validation.json`。验证或重评未闭合时，不把Sol统计改称Terra统计。
+
 GPT新增补评使用 **gpt-6.1-terra**，DeepSeek继续使用 **deepseek-v4.1-flash**。活动运行配置为本目录 `test160_gpt_runtime.json`，入口为 `experiments/chapter2_rag_v3/test160_terra.py --authorization <正式test160_approval.json>`。不新增凭据文件，沿用已有独立Key和代理。
 
 该配置在冻结请求上仅替换body.model，其他输入、Prompt、Schema、额度及有界恢复规则保持原样。models.yaml/judging.yaml为冻结基础配置，不回写；gpt_sol是沿用的契约/存储槽标识，不代表新增响应仍由Sol生成。每份请求保存实际模型profile，响应须精确匹配gpt-6.1-terra，否则停止该分支。

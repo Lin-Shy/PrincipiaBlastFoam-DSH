@@ -127,11 +127,16 @@ def inspect(root, item):
     return True, 'pending'
 
 
-def run(auth, probe=False):
+def run(auth, probe=False, workers=1):
     cfg, a = amendment()
+    if (s.RUN/'release/protocol/terra_validation.json').exists():
+        gate=s.RUN/'evaluation/judges/terra_validation/results.json'
+        if not gate.exists() or s.load(gate).get('accepted') is not True:
+            raise PermissionError('Owner now requires Terra human-reference validation before further formal Terra grading')
     rec.dc.guard_operational()
     reg = Registry()
     jobs = []; held = Counter(); completed = Counter(); stop = threading.Event()
+    consecutive_unknown=0
     for mode, base in [('agentic', BASE), ('single_pass', BASE/'supplement/single_pass')]:
         ev.authorize(auth, mode)
         packet = s.load(base/'scoring/packet.json')
@@ -150,7 +155,7 @@ def run(auth, probe=False):
             break
     statusfile = BASE/'resume_gpt_terra_status.json'
     def progress(state):
-        s.save(statusfile, dict(utc=s.now(), pid=__import__('os').getpid(), state=state, model=cfg['api_model_id'], legacy_slot='gpt_sol', planned=len(jobs), completed=sum(completed.values()), states=dict(completed), held_preflight=dict(held), probe=probe, amendment_sha256=s.sha(s.RUN/cfg['amendment'])))
+        s.save(statusfile, dict(utc=s.now(), pid=__import__('os').getpid(), state=state, model=cfg['api_model_id'], legacy_slot='gpt_sol', planned=len(jobs), completed=sum(completed.values()), states=dict(completed), held_preflight=dict(held), probe=probe,workers=workers, amendment_sha256=s.sha(s.RUN/cfg['amendment'])))
     progress('running')
     print(__import__('json').dumps(dict(planned=len(jobs), held=dict(held))), flush=True)
     rec.request = request
@@ -168,6 +173,8 @@ def run(auth, probe=False):
             if result['status'] == 'valid':
                 inspect(root, item)
                 return 'valid'
+            if result['status']=='unknown':
+                return 'transport_unknown_no_resend'
             if result.get('reason') in ('model_identity_mismatch', 'usage_unknown_stop_and_reconcile', 'http_403', 'http_404'):
                 stop.set()
                 return 'provider_or_identity_stop'
@@ -178,7 +185,7 @@ def run(auth, probe=False):
     with exclusive_lock(BASE/'resume_gpt_sol.lock'):
         for base in [BASE, BASE/'supplement/single_pass']:
             s.OUT = base
-            with ThreadPoolExecutor(max_workers=2) as pool:
+            with ThreadPoolExecutor(max_workers=workers) as pool:
                 fs = {pool.submit(job, x): x for x in jobs if x[0] == base}
                 for f in as_completed(fs):
                     if f.cancelled():
@@ -188,6 +195,9 @@ def run(auth, probe=False):
                     except Exception as exc:
                         stop.set(); state = 'exception_'+type(exc).__name__+':'+str(exc)[:200]
                     completed[state] += 1
+                    consecutive_unknown=consecutive_unknown+1 if state=='transport_unknown_no_resend' else 0
+                    if consecutive_unknown>=6:
+                        stop.set()
                     print(__import__('json').dumps(dict(sample_id=fs[f][2]['sample_id'], status=state, utc=s.now())), flush=True)
                     progress('running')
                     if stop.is_set():
@@ -195,12 +205,13 @@ def run(auth, probe=False):
                             future.cancel()
             if stop.is_set():
                 break
-    progress('held' if stop.is_set() else 'finished')
+    progress('held' if stop.is_set() else 'paused' if (BASE/'PAUSE_gpt_terra').exists() else 'finished')
 
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser()
     p.add_argument('--authorization', type=Path, required=True)
     p.add_argument('--probe', action='store_true')
+    p.add_argument('--workers',type=int,choices=(1,2),default=1)
     a = p.parse_args()
-    run(a.authorization, a.probe)
+    run(a.authorization, a.probe,a.workers)
