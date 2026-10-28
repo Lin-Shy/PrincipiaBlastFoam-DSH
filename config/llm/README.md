@@ -1,26 +1,6 @@
-# Terra原生JSON验证入口（2026-10-28）
+# 当前Test160双裁判入口
 
-当前可成功返回控制评分的候选入口为`experiments/chapter2_rag_v3/terra_foreground.py --execute`，参数为原生Responses、非流式、none推理与JSON对象格式；并发1、输出6144、总预算32K。固定人工参考验证单独记录在正式实验`evaluation/judges/terra_candidate/foreground/validation/`，通过前不切换正式裁判。后台模式经实测不被当前代理支持。
-
-# Terra低延迟候选补充（2026-10-28）
-
-低延迟候选入口为`experiments/chapter2_rag_v3/terra_latency.py --execute`：测试`gpt-6.1-terra`的`none/low`推理强度，并发1，独立保留请求与响应。该入口不会更改冻结models.yaml或test160_gpt_runtime.json，不会自动解除正式评分的人工参考验收门控。配置依据与实测分别保存在正式实验`evaluation/judges/terra_candidate/latency/`。
-
-# Terra候选优化入口（2026-10-28）
-
-候选开发使用`terra_candidate.py --execute`；原生Responses候选使用同入口的`--native`。这是独立候选试验，未修改冻结Prompt、五档规则或原Sol结果。流重建、身份与usage校验由`terra_stream.py`/`terra_native.py`执行；候选协议与技术恢复修订在正式实验release/protocol中。请求medium/high不等于独立证实服务端内部推理等级。
-
-当前接口控制受上游过载和无回执断连阻塞，没有新候选通过验收，不能把候选评分用于正式替换。诊断入口为正式实验evaluation/judges/terra_candidate/index.html。原正式补评分支的验收门控继续保留；本候选入口不会自动解锁旧配置。
-
-# 当前Test160 GPT接口（2026-10-28）
-
-负责人追加Terra验证要求，进一步正式调用须先通过`terra_validation.py`的固定人工参考验收；协议为正式实验`release/protocol/terra_validation.json`。验证或重评未闭合时，不把Sol统计改称Terra统计。
-
-GPT新增补评使用 **gpt-6.1-terra**，DeepSeek继续使用 **deepseek-v4.1-flash**。活动运行配置为本目录 `test160_gpt_runtime.json`，入口为 `experiments/chapter2_rag_v3/test160_terra.py --authorization <正式test160_approval.json>`。不新增凭据文件，沿用已有独立Key和代理。
-
-该配置在冻结请求上仅替换body.model，其他输入、Prompt、Schema、额度及有界恢复规则保持原样。models.yaml/judging.yaml为冻结基础配置，不回写；gpt_sol是沿用的契约/存储槽标识，不代表新增响应仍由Sol生成。每份请求保存实际模型profile，响应须精确匹配gpt-6.1-terra，否则停止该分支。
-
-既有Sol分数复用并保留原身份；人工校准/审计仍属原Sol模型，Terra尚无人评验证。不得批量重命名历史响应。授权变更见正式实验release/protocol/test160_gpt_terra_amendment.json。以下为历史配置与执行范围说明。
+GPT裁判使用`gpt-6-sol`，DeepSeek裁判使用`deepseek-v4.1-flash`，读取本目录冻结models.yaml、judging.yaml及已有独立凭据。缺评恢复入口为`experiments/chapter2_rag_v3/test160_resume_scores.py --authorization <正式test160_approval.json> --judge gpt_sol`；仅复用有效评分、恢复允许的缺口，未决POST先核对回执，不盲目重发。生成、评分规则、Prompt和32K预算沿用冻结协议。
 
 # 历史五档双指标评分（2026-10-24）
 

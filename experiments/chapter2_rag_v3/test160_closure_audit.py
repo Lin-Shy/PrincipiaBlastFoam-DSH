@@ -36,10 +36,8 @@ def run():
                 folders=([root] if (root/'request.json').exists() else [])+sorted((root/'recovery').glob('attempt_*'),key=lambda p:int(p.name.split('_')[-1]))
                 for folder in folders:
                     req=read(folder/'request.json'); state=read(folder/'status.json') if (folder/'status.json').exists() else {}
-                    if req['request']['body']['model']=='gpt-6.1-terra':
-                        import test160_terra
-                        test160_terra.amendment()
-                        test160_terra.check_request(req,item)
+                    expected_model={'gpt_sol':'gpt-6-sol','deepseek_flash':'deepseek-v4.1-flash'}[judge]
+                    assert req['request']['body']['model']==expected_model, 'Judge differs from frozen model'
                     if 'request_sha256' in req:assert req['request_sha256']==digest(req['request']['body'])
                     if 'packet_item_sha256' in req:assert req['packet_item_sha256']==digest(item)
                     attempts.append(dict(path=str(folder.relative_to(s.RUN)),status=state.get('status'),reason=state.get('reason'),http_status=state.get('http_status')))
@@ -84,14 +82,10 @@ def run():
     valid=sum(r['answer_class']=='dual_valid' for r in rows); answered=sum(r['answer_class']!='formal_generation_failure' for r in rows)
     report=dict(schema='test160_raw_closure_audit',manifest_sha256=mh,generation_tasks=len(rows),answered=answered,formal_failures=len(rows)-answered,dual_valid=valid,dual_completion_rate=valid/answered,missing_dual=answered-valid,formal_experiment_complete=valid==answered,modes=summary,requests_sent=0,source_hashes=bindings,irrecoverable_missing_tasks='Not established: provider/account and unresolved transport states require external reconciliation',protocol_unchanged=True)
     report['judge_model_counts']={j:dict(Counter(r[j+'_response_model'] for r in rows if r[j]=='valid')) for j in s.JUDGES}
-    amended=(s.RUN/'release/protocol/test160_gpt_terra_amendment.json').exists()
-    report.update(protocol_unchanged=not amended,scoring_rules_and_generation_unchanged=True,judge_model_amended=amended,original_frozen_dual_model_experiment=not amended)
+    report.update(protocol_unchanged=True,scoring_rules_and_generation_unchanged=True,judge_model_amended=False,original_frozen_dual_model_experiment=True)
     report['audit_interval_utc']=[started,s.now()]
     report['live_progress_check_not_manuscript_statistical_snapshot']=True
-    gate=s.RUN/'evaluation/judges/terra_validation/results.json'
-    passed=gate.exists() and read(gate).get('accepted') is True
-    report['terra_human_reference_gate_passed']=passed
-    report['accepted_dual_valid']=sum(r['answer_class']=='dual_valid' and (r['gpt_sol_response_model']!='gpt-6.1-terra' or passed) for r in rows)
+    report['accepted_dual_valid']=valid
     report['formal_experiment_complete']=report['accepted_dual_valid']==answered
     s.save(BASE/'closure_audit.json',report)
     print(json.dumps({k:v for k,v in report.items() if k!='source_hashes'},ensure_ascii=False))

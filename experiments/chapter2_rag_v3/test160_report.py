@@ -129,14 +129,7 @@ def load_rows(authorization, policy):
             for judge in s.JUDGES:
                 root=out/'scoring'/judge/item['sample_id']
                 if (root/'parsed.json').exists():
-                    if judge=='gpt_sol' and s.load(root/'parsed.json').get('response_model')=='gpt-6.1-terra':
-                        gate=s.RUN/'evaluation/judges/terra_validation/results.json'
-                        if (s.RUN/'release/protocol/terra_validation.json').exists() and (not gate.exists() or s.load(gate).get('accepted') is not True):
-                            raise PermissionError('Terra grades remain provisional until owner-required human-reference validation passes')
-                        from test160_terra import verify_canonical
-                        state=verify_canonical(root,item)
-                    else:
-                        state=recovery.reconcile(root,judge,item)
+                    state=recovery.reconcile(root,judge,item)
                     if state!='valid':raise ValueError('Saved score is not valid')
                     bindings[str((root/'parsed.json').relative_to(s.RUN))]=s.sha(root/'parsed.json')
                     rec[judge]=s.load(root/'parsed.json')['record']
