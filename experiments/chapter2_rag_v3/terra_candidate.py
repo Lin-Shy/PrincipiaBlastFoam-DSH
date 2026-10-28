@@ -124,14 +124,14 @@ def run(execute=False,controls_only=False):
                     status=score('controls',effort,item,reg)
                     print(json.dumps(dict(effort=effort,sample_id=item['sample_id'],status=status)),flush=True)
                     if status=='provider_or_identity_hold':break
-            with ThreadPoolExecutor(max_workers=2) as pool:list(pool.map(probe,p['candidates']))
+            with ThreadPoolExecutor(max_workers=p.get('concurrency_per_judge',2)) as pool:list(pool.map(probe,p['candidates']))
             stream.terra.s.save(ROOT/'status.json',dict(state='controls_finished',utc=stream.terra.s.now()));return
         if not (ROOT/'selection.json').exists():
-            with ThreadPoolExecutor(max_workers=2) as pool:results=list(pool.map(lambda e:calibration(e,reg),p['candidates']))
+            with ThreadPoolExecutor(max_workers=p.get('concurrency_per_judge',2)) as pool:results=list(pool.map(lambda e:calibration(e,reg),p['candidates']))
             eligible=[r for r in results if r.get('identified_complete') and r.get('selection_loss') is not None]
             if not eligible:
                 stream.terra.s.save(ROOT/'status.json',dict(state='calibration_incomplete_or_failed_controls',utc=stream.terra.s.now(),candidates=results,formal_replacement=False));return
-            selected=min(eligible,key=lambda r:(r['selection_loss'],r['effort']!='medium'))
+            selected=min(eligible,key=lambda r:(r['selection_loss'],r['effort']!=p.get('tie_preference','medium')))
             stream.terra.s.save(ROOT/'selection.json',dict(effort=selected['effort'],utc=stream.terra.s.now(),calibration_only=True,audit_used_for_selection=False,selection_loss=selected['selection_loss'],candidate_summaries=results,protocol_sha256=core.sha(PROTOCOL)))
         selection=core.read(ROOT/'selection.json');assert selection['protocol_sha256']==core.sha(PROTOCOL)
         effort=selection['effort'];packet=core.read(core.DEFAULT_RUN/'evaluation/judges/audit/packet.json')

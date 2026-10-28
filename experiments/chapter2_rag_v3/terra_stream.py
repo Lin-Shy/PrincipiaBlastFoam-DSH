@@ -11,7 +11,7 @@ from judge_api_adapter import digest
 
 
 def request(item, effort):
-    if effort not in ('medium','high'):raise ValueError('Unapproved candidate')
+    if effort not in ('none','low','medium','high'):raise ValueError('Unapproved candidate')
     profile,req,count=terra.request('gpt_sol',item)
     profile=deepcopy(profile);req=deepcopy(req)
     profile.update(stream=True,wire_parameters=dict(profile['wire_parameters'],reasoning_effort=effort),output_token_cap=6144)

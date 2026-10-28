@@ -1,3 +1,11 @@
+# Terra原生JSON验证入口（2026-10-28）
+
+当前可成功返回控制评分的候选入口为`experiments/chapter2_rag_v3/terra_foreground.py --execute`，参数为原生Responses、非流式、none推理与JSON对象格式；并发1、输出6144、总预算32K。固定人工参考验证单独记录在正式实验`evaluation/judges/terra_candidate/foreground/validation/`，通过前不切换正式裁判。后台模式经实测不被当前代理支持。
+
+# Terra低延迟候选补充（2026-10-28）
+
+低延迟候选入口为`experiments/chapter2_rag_v3/terra_latency.py --execute`：测试`gpt-6.1-terra`的`none/low`推理强度，并发1，独立保留请求与响应。该入口不会更改冻结models.yaml或test160_gpt_runtime.json，不会自动解除正式评分的人工参考验收门控。配置依据与实测分别保存在正式实验`evaluation/judges/terra_candidate/latency/`。
+
 # Terra候选优化入口（2026-10-28）
 
 候选开发使用`terra_candidate.py --execute`；原生Responses候选使用同入口的`--native`。这是独立候选试验，未修改冻结Prompt、五档规则或原Sol结果。流重建、身份与usage校验由`terra_stream.py`/`terra_native.py`执行；候选协议与技术恢复修订在正式实验release/protocol中。请求medium/high不等于独立证实服务端内部推理等级。
