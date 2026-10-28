@@ -75,6 +75,21 @@ def configure():
     c.stream=sys.modules[__name__];c.collect=collect
 
 
+def report():
+    """Read-only fixed-denominator view, including unsent audit samples as missing."""
+    c.protocol()
+    c.original.ROOT=c.ROOT/'report';c.original.ROOT.mkdir(parents=True,exist_ok=True)
+    c.original.PROTOCOL=c.PROTOCOL
+    c.original.collect=lambda phase,packet:collect(phase,'none',packet['items'])
+    result=c.original.report()
+    result.update(configuration='native_responses_nonstream_none_json_object',
+                  selection_locked=(c.ROOT/'selection.json').exists(),
+                  replacement_completed=False)
+    terra.s.save(c.original.ROOT/'results.json',result)
+    return dict(accepted=result['accepted'],decision=result['decision'],missing=len(result['missing_or_unknown']))
+
+
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--execute',action='store_true');args=parser.parse_args()
-    configure();print(json.dumps(c.run(args.execute)))
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--execute',action='store_true');parser.add_argument('--report',action='store_true');args=parser.parse_args()
+    if args.execute and args.report:parser.error('Report is offline; choose execute or report')
+    configure();print(json.dumps(report() if args.report else c.run(args.execute)))

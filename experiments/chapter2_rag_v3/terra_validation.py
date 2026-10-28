@@ -2,6 +2,7 @@
 import argparse
 import json
 import csv
+import os
 import time
 from html import escape
 from pathlib import Path
@@ -120,7 +121,9 @@ def report():
             b=v['full_denominator_bounds'] if key=='terra_vs_human' else dict(K_exact=[z['K']['exact']]*2,**{n:dict(MAE=[z[n]['mae']]*2,Bias=[z[n]['bias_right_minus_left']]*2) for n in ['EAS_arith','EAS_geo']})
             complete=z['paired_answers']==v['expected'] and z['K']['unknown_pairs']==0
             h.append('<tr>'+''.join('<td>'+escape(str(x))+'</td>' for x in [phase,name,str(z['paired_answers'])+'/'+str(v['expected']),interval(b['K_exact']),fmt(z['K']['quadratic_kappa']) if complete else '待完整评分',interval(b['EAS_arith']['MAE'])+'/'+interval(b['EAS_arith']['Bias']),interval(b['EAS_geo']['MAE'])+'/'+interval(b['EAS_geo']['Bias'])])+'</tr>')
-    h.append('</table><p>全部区间使用固定完整分母，属于缺评识别界限，不是95%置信区间；完整结果上下界相等。部分评分的配对误差另保留在JSON中，不能代替全样本验收。原DeepSeek审计未通过的事实不因Terra验证改变。</p><p><a href="results.json">逐项统计与门槛</a> · <a href="../../../release/protocol/terra_validation.json">验证协议</a></p></body></html>')
+    try:protocol_href=os.path.relpath(PROTOCOL,ROOT).replace('\\','/')
+    except ValueError:protocol_href=PROTOCOL.resolve().as_uri()  # Cross-drive temporary report.
+    h.append('</table><p>全部区间使用固定完整分母，属于缺评识别界限，不是95%置信区间；完整结果上下界相等。部分评分的配对误差另保留在JSON中，不能代替全样本验收。原DeepSeek审计未通过的事实不因Terra验证改变。</p><p><a href="results.json">逐项统计与门槛</a> · <a href="'+escape(protocol_href,quote=True)+'">验证协议</a> · <a href="per_answer.csv">逐回答配对数据</a></p></body></html>')
     (ROOT/'index.html').write_text('\n'.join(h),encoding='utf-8')
     return result
 
