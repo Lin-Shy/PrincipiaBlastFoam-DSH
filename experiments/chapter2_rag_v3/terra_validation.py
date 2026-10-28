@@ -2,6 +2,7 @@
 import argparse
 import json
 import time
+from html import escape
 from pathlib import Path
 import scoring as core
 from judge_contract import joint_metrics
@@ -82,6 +83,16 @@ def report():
     decision='pending_missing_or_unknown' if missing else 'fail' if fail else 'manual_review' if audit_flags else 'pass_fixed_historical_reference_only'
     result=dict(created_utc=terra.s.now(),model='gpt-6.1-terra',accepted=accepted,decision=decision,failed_gates=fail,missing_or_unknown=missing,professional_red_flags=red,phases=out,protocol_sha256=core.sha(PROTOCOL),original_audit_modified=False,unseen_independent_audit=False,full_sol_replacement_permitted=accepted,full_sol_replacement_completed=False)
     terra.s.save(ROOT/'results.json',result)
+    def fmt(x):return '未识别' if x is None else f'{x:.4f}'
+    h=['<html lang="zh-CN"><meta charset="utf-8"><title>Terra固定人工参考验证</title><body style="font:16px/1.7 system-ui;max-width:1100px;margin:30px auto"><h1>Terra固定人工参考验证</h1>',
+       '<p>判定：'+escape(decision)+'；自动通过：'+str(accepted)+'。已有历史样本复用，不称新独立未见审计。缺评或Unknown阻止通过，不补零或择优重试。</p>',
+       '<table border="1" cellpadding="7" style="border-collapse:collapse"><tr><th>样本</th><th>裁判</th><th>已评分/固定回答数</th><th>K一致率</th><th>Kappa</th><th>算术MAE/Bias</th><th>几何MAE/Bias</th></tr>']
+    for phase,v in out.items():
+        for name,key in [('Terra','terra_vs_human'),('Sol（原记录）','sol_vs_human')]:
+            z=v[key]
+            h.append('<tr>'+''.join('<td>'+escape(str(x))+'</td>' for x in [phase,name,str(z['paired_answers'])+'/'+str(v['expected']),fmt(z['K']['exact']),fmt(z['K']['quadratic_kappa']),fmt(z['EAS_arith']['mae'])+'/'+fmt(z['EAS_arith']['bias_right_minus_left']),fmt(z['EAS_geo']['mae'])+'/'+fmt(z['EAS_geo']['bias_right_minus_left'])])+'</tr>')
+    h.append('</table><p>部分评分的误差仅描述已配对回答，不能代替全样本验收；原DeepSeek审计未通过的事实不因Terra验证改变。</p><p><a href="results.json">逐项统计与门槛</a> · <a href="../../../release/protocol/terra_validation.json">验证协议</a></p></body></html>')
+    (ROOT/'index.html').write_text('\n'.join(h),encoding='utf-8')
     return result
 
 

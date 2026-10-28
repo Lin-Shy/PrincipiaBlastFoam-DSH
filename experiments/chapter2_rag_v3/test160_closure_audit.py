@@ -88,6 +88,11 @@ def run():
     report.update(protocol_unchanged=not amended,scoring_rules_and_generation_unchanged=True,judge_model_amended=amended,original_frozen_dual_model_experiment=not amended)
     report['audit_interval_utc']=[started,s.now()]
     report['live_progress_check_not_manuscript_statistical_snapshot']=True
+    gate=s.RUN/'evaluation/judges/terra_validation/results.json'
+    passed=gate.exists() and read(gate).get('accepted') is True
+    report['terra_human_reference_gate_passed']=passed
+    report['accepted_dual_valid']=sum(r['answer_class']=='dual_valid' and (r['gpt_sol_response_model']!='gpt-6.1-terra' or passed) for r in rows)
+    report['formal_experiment_complete']=report['accepted_dual_valid']==answered
     s.save(BASE/'closure_audit.json',report)
     print(json.dumps({k:v for k,v in report.items() if k!='source_hashes'},ensure_ascii=False))
 if __name__=='__main__':run()
