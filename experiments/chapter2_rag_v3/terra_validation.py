@@ -89,6 +89,7 @@ def report():
                 red.append(dict(phase=phase,sample_id=sid,kind='potential_substantive_condition_error'))
         out[phase]=dict(expected=len(items),complete=len(current),terra_vs_human=agreement,
             sol_vs_human=core.pair_statistics(old['human'],old['gpt_sol'],items,private),
+            sol_vs_human_on_terra_valid_answers=core.pair_statistics(old['human'],old['gpt_sol'],[i for i in items if i['sample_id'] in current],private),
             terra_vs_sol=core.pair_statistics(old['gpt_sol'],current,items,private),
             terra_deepseek_mean_vs_human={'EAS_'+n:metric_error(ds) for n,ds in dual.items()},
             full_denominator_bounds=dict(K_exact=[matches/total_points,1-mismatches/total_points],necessary_points=total_points,
