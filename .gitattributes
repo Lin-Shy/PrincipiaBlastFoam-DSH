@@ -6,3 +6,10 @@
 # Last-match precedence: frozen inputs always preserve their exact bytes.
 .dsh/skills/blastfoam-knowledge/corpus/** -text
 .dsh/skills/blastfoam-knowledge/index/** -text
+
+# Chapter 2 frozen hashes bind exact bytes, including original line endings.
+experiments/chapter2_rag_v3/** -text
+config/llm/*.yaml -text
+config/llm/test160_gpt_runtime.json -text
+src/principia_core/config/llm.py -text
+config/llm/README.md -text
