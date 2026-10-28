@@ -1,3 +1,9 @@
+# Terra候选优化入口（2026-10-28）
+
+候选开发使用`terra_candidate.py --execute`；原生Responses候选使用同入口的`--native`。这是独立候选试验，未修改冻结Prompt、五档规则或原Sol结果。流重建、身份与usage校验由`terra_stream.py`/`terra_native.py`执行；候选协议与技术恢复修订在正式实验release/protocol中。请求medium/high不等于独立证实服务端内部推理等级。
+
+当前接口控制受上游过载和无回执断连阻塞，没有新候选通过验收，不能把候选评分用于正式替换。诊断入口为正式实验evaluation/judges/terra_candidate/index.html。原正式补评分支的验收门控继续保留；本候选入口不会自动解锁旧配置。
+
 # 当前Test160裁判接口（2026-10-28）
 
 GPT新增缺评由 `test160_terra.py` 调用 `gpt-6.1-terra`，配置在 `config/llm/test160_gpt_runtime.json`；DeepSeek继续原缺评队列。已有Sol评分与实际响应身份保留，不能追认为Terra评分。模型变更单列正式 `release/protocol/test160_gpt_terra_amendment.json`，不覆盖冻结Manifest。审计支持逐请求真实模型，最终统计须披露并分层核验此变更。
