@@ -1,0 +1,68 @@
+{
+  "schema": "principia_llm_providers_v1",
+  "providers": {
+    "qwen_proxy": {
+      "base_url": "https://api.sqhtoken.com/v1",
+      "base_url_env": "QWEN_PROXY_BASE_URL",
+      "auth_scheme": "Bearer",
+      "key_env": "QWEN_PROXY_API_KEY",
+      "credential_files": [
+        "project:config/llm/.env",
+        "project:config/llm/.env.private"
+      ],
+      "protocols": [
+        "chat_completions"
+      ],
+      "max_concurrency": 20
+    },
+    "xcm_gpt": {
+      "base_url": "https://xcmapi.org/v1",
+      "base_url_env": "XCM_BASE_URL",
+      "auth_scheme": "Bearer",
+      "key_env": "XCM_GPT_API_KEY",
+      "credential_files": [
+        "project:config/llm/.env",
+        "project:config/llm/.env.private",
+        "workspace:.env.xcm_gpt"
+      ],
+      "protocols": [
+        "responses",
+        "chat_completions"
+      ],
+      "billing_group": null,
+      "max_concurrency": 2
+    },
+    "xcm_deepseek": {
+      "base_url": "https://xcmapi.org/v1",
+      "base_url_env": "XCM_BASE_URL",
+      "auth_scheme": "Bearer",
+      "key_env": "XCM_DEEPSEEK_API_KEY",
+      "credential_files": [
+        "project:config/llm/.env",
+        "project:config/llm/.env.private",
+        "workspace:.env.xcm_deepseek"
+      ],
+      "protocols": [
+        "chat_completions",
+        "responses"
+      ],
+      "billing_group": null,
+      "max_concurrency": 1
+    },
+    "qwen_local": {
+      "base_url": null,
+      "base_url_env": "QWEN_LOCAL_8B_BASE_URL",
+      "auth_scheme": "Bearer",
+      "key_env": "QWEN_LOCAL_API_KEY",
+      "credential_files": [
+        "project:config/llm/.env",
+        "project:config/llm/.env.private"
+      ],
+      "protocols": [
+        "chat_completions"
+      ],
+      "allow_private_http": true,
+      "max_concurrency": 8
+    }
+  }
+}

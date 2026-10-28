@@ -1,0 +1,260 @@
+{
+  "schema": "principia_llm_models_v1",
+  "models": {
+    "qwen3_14b": {
+      "logical_id": "qwen3-14b",
+      "api_model_id": "qwen3-14b",
+      "allowed_response_model_ids": [
+        "qwen3-14b"
+      ],
+      "provider": "qwen_proxy",
+      "protocol": "chat_completions",
+      "deployment_version": null,
+      "last_historical_fingerprint": "vllm-0.30.0-7c571977",
+      "identity_evidence": "historical_requests_and_responses_not_current_probe",
+      "wire_parameters": {
+        "enable_thinking": false,
+        "temperature": 0
+      },
+      "capabilities": {
+        "thinking_control": "historically_accepted_not_current_verified",
+        "json_schema": "unverified",
+        "usage": "historically_returned"
+      },
+      "live_verified": false,
+      "role": "generation_only_historical_judge_scores_preserved"
+    },
+    "qwen3_8b": {
+      "logical_id": "qwen3-8b",
+      "api_model_id": "Qwen3-8B",
+      "allowed_response_model_ids": [
+        "Qwen3-8B"
+      ],
+      "provider": "qwen_local",
+      "protocol": "chat_completions",
+      "deployment_version": null,
+      "identity_evidence": "local_route_configuration_only",
+      "wire_parameters": {
+        "temperature": 0
+      },
+      "append_last_user_suffix": "/no_think",
+      "capabilities": {
+        "thinking_control": "local_template_no_think",
+        "json_schema": "unverified",
+        "usage": "unverified"
+      },
+      "live_verified": false,
+      "probe_deferred": true
+    },
+    "gpt_astra": {
+      "logical_id": "gpt-6-astra",
+      "api_model_id": "gpt-6-astra",
+      "allowed_response_model_ids": [
+        "gpt-6-astra"
+      ],
+      "provider": "xcm_gpt",
+      "protocol": "chat_completions",
+      "deployment_version": null,
+      "identity_evidence": "2026-10-22 bounded probe, exact API model ID and usage observed",
+      "wire_parameters": {
+        "reasoning_effort": "low"
+      },
+      "capabilities": {
+        "thinking_off": "upstream_not_supported",
+        "reasoning_low": "upstream_documented_xcm_unverified",
+        "json_schema": "upstream_documented_xcm_unverified",
+        "usage": "unverified",
+        "thinking_control_live": {
+          "requested": {
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          "response_effort": "low",
+          "reasoning_tokens": 0
+        }
+      },
+      "live_verified": true,
+      "repair_candidates": [
+        {
+          "name": "responses_low_longread",
+          "protocol": "responses",
+          "wire_parameters": {
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        },
+        {
+          "name": "chat_low_longread",
+          "protocol": "chat_completions",
+          "wire_parameters": {
+            "reasoning_effort": "low"
+          },
+          "output_token_field": "max_completion_tokens"
+        },
+        {
+          "name": "chat_low_stream",
+          "protocol": "chat_completions",
+          "wire_parameters": {
+            "reasoning_effort": "low"
+          },
+          "output_token_field": "max_completion_tokens",
+          "stream": true
+        }
+      ],
+      "selected_repair_variant": {
+        "name": "chat_low_longread",
+        "protocol": "chat_completions",
+        "wire_parameters": {
+          "reasoning_effort": "low"
+        },
+        "output_token_field": "max_completion_tokens"
+      },
+      "role": "historical_judge_only"
+    },
+    "deepseek": {
+      "logical_id": "deepseek-v4-pro",
+      "api_model_id": "deepseek-v4-pro",
+      "allowed_response_model_ids": [
+        "deepseek-v4-pro"
+      ],
+      "provider": "xcm_deepseek",
+      "protocol": "chat_completions",
+      "deployment_version": null,
+      "upstream_documented_version": "DeepSeek-V4-Pro-0813",
+      "identity_evidence": "2026-10-22 bounded probe, exact API model ID and usage observed",
+      "wire_parameters": {
+        "thinking": {
+          "type": "enabled"
+        },
+        "reasoning_effort": "low"
+      },
+      "capabilities": {
+        "thinking_control": "upstream_documented_xcm_unverified",
+        "json_object": "upstream_documented_xcm_unverified",
+        "json_schema": "unverified",
+        "usage": "unverified",
+        "thinking_control_live": {
+          "requested": {
+            "thinking": {
+              "type": "enabled"
+            },
+            "reasoning_effort": "low"
+          },
+          "reasoning_content_present": true,
+          "reasoning_tokens": 22
+        }
+      },
+      "live_verified": true,
+      "repair_candidates": [
+        {
+          "name": "responses_thinking_off",
+          "protocol": "responses",
+          "wire_parameters": {
+            "reasoning": {
+              "effort": "none"
+            }
+          }
+        },
+        {
+          "name": "chat_thinking_low",
+          "protocol": "chat_completions",
+          "wire_parameters": {
+            "thinking": {
+              "type": "enabled"
+            },
+            "reasoning_effort": "low"
+          }
+        },
+        {
+          "name": "chat_default_observed",
+          "protocol": "chat_completions",
+          "wire_parameters": {}
+        }
+      ],
+      "selected_repair_variant": {
+        "name": "chat_thinking_low",
+        "protocol": "chat_completions",
+        "wire_parameters": {
+          "thinking": {
+            "type": "enabled"
+          },
+          "reasoning_effort": "low"
+        }
+      },
+      "role": "historical_judge_only"
+    },
+    "gpt_sol": {
+      "logical_id": "gpt-6-sol",
+      "api_model_id": "gpt-6-sol",
+      "allowed_response_model_ids": [
+        "gpt-6-sol"
+      ],
+      "provider": "xcm_gpt",
+      "protocol": "chat_completions",
+      "deployment_version": null,
+      "wire_parameters": {
+        "reasoning_effort": "low"
+      },
+      "identity_evidence": "Two-stage synthetic functional probe; exact response model ID, JSON contract and usage checked",
+      "role": "active_judge",
+      "live_verified": true,
+      "capabilities": {
+        "json_object": "accepted_and_two_phase_contract_parsed",
+        "json_schema": "unverified",
+        "usage": "observed",
+        "reasoning_control": "low_requested_observed"
+      },
+      "selected_repair_variant": {
+        "output_token_field": "max_completion_tokens"
+      },
+      "response_format": {
+        "type": "json_object"
+      },
+      "low_fallback_wire": {
+        "reasoning_effort": "low"
+      },
+      "runtime_execution_status": "blocked_provider_output_budget_violation",
+      "output_cap_evidence": "Requested max_completion_tokens=4096; provider reports 6835 including reasoning; no further GPT calls"
+    },
+    "deepseek_flash": {
+      "logical_id": "deepseek-v4.1-flash",
+      "api_model_id": "deepseek-v4.1-flash",
+      "allowed_response_model_ids": [
+        "deepseek-v4.1-flash"
+      ],
+      "provider": "xcm_deepseek",
+      "protocol": "chat_completions",
+      "deployment_version": null,
+      "wire_parameters": {
+        "thinking": {
+          "type": "enabled"
+        },
+        "reasoning_effort": "low"
+      },
+      "identity_evidence": "Two-stage synthetic functional probe; exact response model ID, JSON contract and usage checked",
+      "role": "active_judge",
+      "live_verified": true,
+      "capabilities": {
+        "json_object": "accepted_and_two_phase_contract_parsed",
+        "json_schema": "unverified",
+        "usage": "observed",
+        "reasoning_control": "low_requested_observed"
+      },
+      "selected_repair_variant": {
+        "output_token_field": "max_tokens"
+      },
+      "response_format": {
+        "type": "json_object"
+      },
+      "low_fallback_wire": {
+        "thinking": {
+          "type": "enabled"
+        },
+        "reasoning_effort": "low"
+      },
+      "runtime_execution_status": "technical_candidate_only_pending_human_phase2_and_audit"
+    }
+  }
+}

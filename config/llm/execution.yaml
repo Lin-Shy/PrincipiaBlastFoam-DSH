@@ -1,0 +1,165 @@
+{
+  "schema": "principia_ch2_execution_authorization_v1",
+  "owner_scope_reference": "2026-10-23 owner-selected exact gpt-6-sol and deepseek-v4.1-flash; bounded dual calibration and gated audit",
+  "default_mode": "dry_run",
+  "probe_order": [
+    "gpt_sol",
+    "deepseek_flash"
+  ],
+  "probe_input_token_cap": 1024,
+  "probe_output_token_cap": 1024,
+  "probe_timeout_seconds": 60,
+  "require_all_three_connectivity_pass_before_dev120": false,
+  "require_confirmed_reasoning_control_before_dev120": true,
+  "stages": {
+    "connectivity_qwen3_14b": {
+      "scope_authorized": false,
+      "max_physical_requests": 1,
+      "max_sessions": 1,
+      "financial": {
+        "approved": false,
+        "currency": null,
+        "hard_limit": null,
+        "input_price_per_million": null,
+        "output_price_per_million": null
+      },
+      "control_mode": "owner_authorized_request_quota_v1",
+      "quota_scope": "connectivity"
+    },
+    "connectivity_gpt_astra": {
+      "scope_authorized": false,
+      "max_physical_requests": 1,
+      "max_sessions": 1,
+      "financial": {
+        "approved": false,
+        "currency": null,
+        "hard_limit": null,
+        "input_price_per_million": null,
+        "output_price_per_million": null
+      },
+      "control_mode": "owner_authorized_request_quota_v1",
+      "quota_scope": "connectivity"
+    },
+    "connectivity_deepseek": {
+      "scope_authorized": false,
+      "max_physical_requests": 1,
+      "max_sessions": 1,
+      "financial": {
+        "approved": false,
+        "currency": null,
+        "hard_limit": null,
+        "input_price_per_million": null,
+        "output_price_per_million": null
+      },
+      "control_mode": "owner_authorized_request_quota_v1",
+      "quota_scope": "connectivity"
+    },
+    "dev120": {
+      "scope_authorized": false,
+      "max_physical_requests": 1080,
+      "max_sessions": 120,
+      "financial": {
+        "approved": false,
+        "currency": null,
+        "hard_limit": null,
+        "input_price_per_million": null,
+        "output_price_per_million": null
+      },
+      "control_mode": "owner_authorized_request_quota_v1",
+      "quota_scope": "dev120"
+    },
+    "calibration_gpt_astra_first": {
+      "scope_authorized": false,
+      "max_physical_requests": 36,
+      "max_sessions": 18,
+      "financial": {
+        "approved": false,
+        "currency": null,
+        "hard_limit": null,
+        "input_price_per_million": null,
+        "output_price_per_million": null
+      },
+      "control_mode": "owner_authorized_request_quota_v1",
+      "quota_scope": "calibration_first"
+    },
+    "calibration_deepseek_first": {
+      "scope_authorized": false,
+      "max_physical_requests": 36,
+      "max_sessions": 18,
+      "financial": {
+        "approved": false,
+        "currency": null,
+        "hard_limit": null,
+        "input_price_per_million": null,
+        "output_price_per_million": null
+      },
+      "control_mode": "owner_authorized_request_quota_v1",
+      "quota_scope": "calibration_first"
+    },
+    "calibration_qwen3_14b_first": {
+      "scope_authorized": false,
+      "max_physical_requests": 36,
+      "max_sessions": 18,
+      "financial": {
+        "approved": false,
+        "currency": null,
+        "hard_limit": null,
+        "input_price_per_million": null,
+        "output_price_per_million": null
+      },
+      "control_mode": "owner_authorized_request_quota_v1",
+      "quota_scope": "calibration_first"
+    },
+    "ai_cross_calibration_v2": {
+      "scope_authorized": false,
+      "control_mode": "owner_authorized_request_quota_v1",
+      "quota_scope": "ai_cross_calibration",
+      "max_physical_requests": 162,
+      "max_sessions": 18,
+      "model_whitelist": [
+        "gpt_astra",
+        "deepseek",
+        "qwen3_14b"
+      ],
+      "max_new_probes_per_model": 3,
+      "max_reference_score_requests_per_model": 38,
+      "max_qwen_candidate_requests": 72,
+      "max_candidate_versions_including_baseline": 3,
+      "max_transport_retries_per_reference_model": 4,
+      "calibration_only": true,
+      "audit_release": false,
+      "human_required_now": false,
+      "owner_instruction": "2026-10-22 owner authorizes bounded repair requests, independent AI cross calibration on existing 18 answers and at most 3 Qwen prompt candidates; no audit, Test or full Dev tuning",
+      "technical_recovery_amendment": "bounded_runtime_and_instruction_delivery_v2",
+      "reference_request_caps": {
+        "gpt_astra": 40,
+        "deepseek": 44
+      }
+    },
+    "dual_judge_sol_flash": {
+      "scope_authorized": true,
+      "control_mode": "owner_authorized_request_quota_v1",
+      "quota_scope": "dual_judge_sol_flash",
+      "max_physical_requests": 276,
+      "max_sessions": 30,
+      "model_whitelist": [
+        "gpt_sol",
+        "deepseek_flash"
+      ],
+      "max_probe_requests_per_model": 4,
+      "max_calibration_requests_per_model": 108,
+      "max_audit_requests_per_model": 24,
+      "max_transport_retries_per_model": 2,
+      "max_prompt_versions": 3,
+      "owner_instruction": "2026-10-23 exact Sol/Flash judges; independent 18-answer calibration then one 12-answer audit after complete Human reference and configuration freeze; no new Dev120, no Qwen scoring, no Test now",
+      "audit_requires_complete_human_reference": true,
+      "audit_requires_final_configuration_freeze": true,
+      "automatic_audit_retries": 0
+    }
+  },
+  "audit_scoring_authorized": false,
+  "test160_authorized": false,
+  "automatic_retries": 0,
+  "model_substitution_allowed": false,
+  "quota_control_authorized": true
+}

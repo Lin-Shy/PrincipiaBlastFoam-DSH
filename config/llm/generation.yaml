@@ -1,0 +1,27 @@
+{
+  "schema": "principia_ch2_generation_v1",
+  "initial_model": "qwen3_14b",
+  "later_models": ["qwen3_8b", "qwen3_14b"],
+  "initial_methods": ["graph", "bm25", "bge_m3"],
+  "question_count": 40,
+  "max_sessions": 120,
+  "combined_context_tokens": 32768,
+  "concurrency": 1,
+  "model_budget": {
+    "input_tokens_per_request": 30720,
+    "input_tokens_total": 196608,
+    "output_tokens_per_request": 2048,
+    "output_tokens_total": 16384,
+    "final_output_reserve": 2048
+  },
+  "knowledge_budget": {"tool_calls": 8, "tool_characters": 6000, "total_characters": 24000},
+  "max_physical_requests_per_session": 9,
+  "max_physical_requests_total": 1080,
+  "request_timeout_seconds": 180,
+  "transport_attempts": 1,
+  "content_retries": 0,
+  "stop_on_timeout_or_infrastructure_error": true,
+  "reuse_old_answers": false,
+  "split_version": "scheme_b_v1",
+  "split_freeze_sha256": "002b1608d37fd937cc6851b18504f476034b7d14ecfd3ac03f144287c468064d"
+}

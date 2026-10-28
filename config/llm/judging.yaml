@@ -1,0 +1,123 @@
+{
+  "schema": "principia_ch2_judging_v1",
+  "judges": {
+    "human": null,
+    "gpt_sol": "gpt_sol",
+    "deepseek_flash": "deepseek_flash"
+  },
+  "prompt_version": "ch2_five_level_dual_eas",
+  "contract_version": "ch2_five_level_dual_eas",
+  "output_mode": "prompt_schema_and_strict_local_validation",
+  "input_token_cap": 26624,
+  "output_token_cap": 6144,
+  "combined_context_tokens": 32768,
+  "max_calibration_answers_per_judge": 18,
+  "max_first_calibration_phase_requests_per_judge": 36,
+  "calibration_question_ids": [
+    "E17-03",
+    "E30-02",
+    "E39-01",
+    "N57-01",
+    "N69-02",
+    "P06-03"
+  ],
+  "audit_question_ids": [
+    "E18-01",
+    "E21-03",
+    "E26-05",
+    "E54-02"
+  ],
+  "audit_released": false,
+  "prompt_revision_authorized": true,
+  "repeated_scoring_authorized": true,
+  "human_must_score_independently": true,
+  "human_reference_required_for_agreement_acceptance": true,
+  "test_generation_authorized": false,
+  "ai_cross_calibration": {
+    "stage": "ai_cross_calibration_v2",
+    "connect_timeout_seconds": 15,
+    "read_timeout_seconds": 300,
+    "probe_output_token_cap": 1024,
+    "score_output_token_cap": 4096,
+    "input_token_cap": 28672,
+    "prompt_candidates": [
+      "judge_common_initial_v1",
+      "judge_contract_source_v2",
+      "judge_evidence_semantics_v3"
+    ],
+    "max_versions": 3,
+    "human_phase": "deferred_independent_validation",
+    "audit_released": false
+  },
+  "historical_judges": {
+    "human": null,
+    "gpt_astra": "gpt_astra",
+    "deepseek": "deepseek",
+    "qwen3_14b": "qwen3_14b"
+  },
+  "dual_judge": {
+    "version": "ch2_five_level_dual_eas",
+    "stage": "dual_judge_sol_flash",
+    "active_judges": [
+      "gpt_sol",
+      "deepseek_flash"
+    ],
+    "connect_timeout_seconds": 15,
+    "read_timeout_seconds": 300,
+    "max_prompt_versions": 3,
+    "calibration_answers": 18,
+    "audit_answers": 12,
+    "audit_released": false,
+    "human_phase2_pending": false,
+    "composite": "For each metric EAS_arith/EAS_geo separately, arithmetic mean of two independent judges; no substitution for missing judge.",
+    "combined_context_tokens": 32768,
+    "input_token_cap": 26624,
+    "output_token_cap": 6144,
+    "human_labels_in_judge_input": false,
+    "formal_dev_tuning_authorized_now": false,
+    "test160_authorized_now": false,
+    "model_token_budgets": {
+      "gpt_sol": {
+        "input_token_cap": 26624,
+        "output_token_cap": 6144
+      },
+      "deepseek_flash": {
+        "input_token_cap": 26624,
+        "output_token_cap": 6144
+      }
+    },
+    "technical_budget_amendment": "DeepSeek v2 reasoning-output truncation; unchanged 32K combined cap; v1 retained",
+    "selected_prompt_versions": {
+      "gpt_sol": "ch2_five_level_dual_eas",
+      "deepseek_flash": "ch2_five_level_dual_eas"
+    },
+    "configuration_status": "human_reconfirmation_pending",
+    "calibration_reliability_accepted": false,
+    "source_prompt_project_relative": "experiments/chapter2_rag_v3/judge_prompt.txt",
+    "historical_source_prompt_run_relative": "02_judge_calibration/judges/human/versions/prepaid_20261022_v1"
+  },
+  "prompt_source_project_relative": "experiments/chapter2_rag_v3/judge_prompt.txt",
+  "rules_source_project_relative": "experiments/chapter2_rag_v3/scoring_rules.json",
+  "current_entry": "experiments/chapter2_rag_v3/scoring.py",
+  "current_output_run_relative": "scoring",
+  "legacy_prompt_sources": {
+    "prompt_source_run_relative": "02_judge_calibration/judges/{judge}/versions/prepaid_20261022_v1",
+    "coverage_prompt": "prompt.coverage.v1.txt",
+    "evidence_prompt": "prompt.evidence.v1.txt"
+  },
+  "five_level_calibration": {
+    "authorized_by": "2026-10-24 user: five-level scoring refactor; necessary Dev calibration calls authorized",
+    "answers": 18,
+    "judges": [
+      "gpt_sol",
+      "deepseek_flash"
+    ],
+    "max_attempts_per_answer": 2,
+    "max_physical_requests": 72,
+    "concurrency_per_judge": 2,
+    "read_timeout_seconds": 600,
+    "audit_released": false,
+    "test160_authorized": false,
+    "automatic_transport_retries": 0
+  }
+}

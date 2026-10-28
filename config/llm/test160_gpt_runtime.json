@@ -1,0 +1,15 @@
+{
+  "schema": "test160_gpt_runtime_v1",
+  "judge_slot": "gpt_sol",
+  "api_model_id": "gpt-6.1-terra",
+  "allowed_response_model_ids": [
+    "gpt-6.1-terra"
+  ],
+  "supersedes_model_for_new_requests": "gpt-6-sol",
+  "amendment": "release/protocol/test160_gpt_terra_amendment.json",
+  "historical_scores": "reuse_with_original_response_model",
+  "wire_change_allowlist": [
+    "body.model"
+  ],
+  "prompt_or_gold_changes": false
+}
