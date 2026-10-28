@@ -30,6 +30,9 @@ class AcceptanceBoundaryTests(TestCase):
             return x
         r=self.evaluate(omit)
         self.assertFalse(r['accepted']);self.assertEqual(r['decision'],'pending_missing_or_unknown')
+        b=r['phases']['audit']['full_denominator_bounds']
+        self.assertLess(b['K_exact'][0],1);self.assertEqual(b['K_exact'][1],1)
+        self.assertEqual(b['EAS_arith']['MAE'][0],0);self.assertGreater(b['EAS_arith']['MAE'][1],0)
 
     def test_perfect_knowledge_cannot_override_eas_error(self):
         def corrupt(phase,x):
