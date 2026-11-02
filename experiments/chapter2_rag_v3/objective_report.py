@@ -31,4 +31,7 @@ let page=0;function show(){let rows=DATA.rows.filter(r=>['model','method','type'
     if (out/'supplementary_parser/results/index.html').exists():
         template=template.replace('<h1>第2章客观题实验</h1>',
             '<h1>第2章客观题实验</h1><p><a href="../supplementary_parser/results/index.html">单行答案补充评分（事后解析）</a></p>')
+    if (out/'analysis/format_pairs.html').exists():
+        template=template.replace('<h2>逐题答案与评分</h2>',
+            '<p><a href="../analysis/format_pairs.html">单选与判断共享事实配对</a></p><h2>逐题答案与评分</h2>')
     (out/'results/index.html').write_text(template.replace('__DATA__',data),encoding='utf-8')
