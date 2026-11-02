@@ -31,7 +31,7 @@ def main():
     updates[paths['chap02.tex']]=insert_after(paths['chap02.tex'].read_text(encoding='utf8'),r'\input{docs/chap02_knowledge_qa_results.tex}',r'\input{docs/chap02_objective_results.tex}')
     p=paths['abstract.tex'];text=p.read_text(encoding='utf8')
     chinese=f'客观题172道、{n}项任务；完整图冻结准确率8B为{a:.2f}\\%、14B为{b:.2f}\\%（事后单行解析{alt14:.2f}\\%）。题目共享事实且未经独立专家审核。'
-    english=f'An additional 172-item objective set yields {n} tasks across 13 configurations per model. Under the frozen rule, full-graph accuracy is {a:.2f}\\% for 8B and {b:.2f}\\% for 14B. Items were not independently reviewed by domain experts, some share facts, and 14B full-graph accuracy is {alt14:.2f}\\% with a post hoc uniform parser, indicating substantial format sensitivity.'
+    english=f'On 172 objective items, frozen graph accuracy is {a:.2f}\\% (8B) and {b:.2f}\\% (14B; {alt14:.2f}\\% post hoc). Some facts recur; expert review is pending.'
     # One marked block per file; place Chinese and English content adjacent to their own paragraphs.
     ca='\n14B完整图自主模式的算术与几何EAS';ea='\nWith 14B, full-graph Agentic arithmetic/geometric EAS'
     if text.count(ca)!=1 or text.count(ea)!=1:raise ValueError('abstract anchors changed')
