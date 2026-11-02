@@ -6,6 +6,7 @@ import unittest
 from unittest.mock import patch
 
 import objective_audit as audit
+import objective_supplementary_audit as supplementary
 from objective_scoring import score
 
 def put(path,value):
@@ -40,5 +41,22 @@ class ClosureAuditTests(unittest.TestCase):
             put(out/'scores/per_answer.json',[]);put(out/'results/snapshot.json',{'status':'in_progress','completed':0})
             with patch.object(audit.experiment,'DATA',data),patch.object(audit.experiment,'OUT',out),patch.object(audit.experiment,'verify',return_value={'tasks':1}):
                 with self.assertRaisesRegex(ValueError,'closed complete'):audit.main()
+
+    def test_supplementary_reconstructs_bare_line_and_strict_link(self):
+        from objective_scoring_relaxed import score as relaxed_score
+        with TemporaryDirectory(dir=Path(__file__).resolve().parents[2]/'.local') as tmp:
+            root=Path(tmp);data=root/'data';out=root/'out';supp=out/'supplementary_parser'
+            q={'id':'Q1','type':'single','question':'q'};g={'id':'Q1','answer':'A'}
+            result={'status':'answered','answer':'A'}
+            put(data/'model/questions.json',[q]);put(data/'scoring/annotations.json',[g])
+            put(out/'generation/cfg/Q1/result.json',result)
+            original=score(q,g,result);original['config_id']='cfg';put(out/'scores/per_answer.json',[original])
+            revised=relaxed_score(q,g,result);revised.update(config_id='cfg',strict_score=original['score'],strict_reason=original['reason'])
+            put(supp/'scores/per_answer.json',[revised]);put(supp/'results/snapshot.json',{'status':'closed','completed':1})
+            with patch.object(audit.experiment,'DATA',data),patch.object(audit.experiment,'OUT',out),patch.object(audit.experiment,'verify',return_value={'tasks':1}):
+                supplementary.main()
+                self.assertEqual(audit.experiment.read(supp/'results/closure_audit.json')['status'],'passed')
+                revised['strict_score']=1;put(supp/'scores/per_answer.json',[revised])
+                with self.assertRaises(SystemExit):supplementary.main()
 
 if __name__=='__main__':unittest.main()
