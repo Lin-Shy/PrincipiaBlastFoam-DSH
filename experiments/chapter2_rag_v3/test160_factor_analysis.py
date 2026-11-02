@@ -52,13 +52,18 @@ def fmt(pair):
     return '[' + ', '.join(f'{x:.2f}' for x in pair) + ']'
 
 
-def main():
+def main(final=False):
     snapshot = read(RESULTS / 'manuscript_snapshot.json')
     for rel, expected in snapshot['statistical_source_hashes'].items():
         assert sha(s.WORKSPACE / rel) == expected, 'Manuscript snapshot drift: ' + rel
     source = RESULTS / 'test160_results.json'
     data = read(source)
     rows = data['per_answer']
+    if final:
+        audit = read(s.RUN/'test160_runs/closure_audit.json')
+        assert audit['formal_experiment_complete'] and audit['missing_dual'] == 0
+        assert all(r['generation_failed'] or r['evaluation_complete'] for r in rows)
+        assert all(r['score']['unknown_items'] == 0 for r in rows)
     lookup = {tuple(r[k] for k in ('mode', 'model', 'method', 'question_id')): r for r in rows}
     assert len(rows) == len(lookup) == 5120
     assert sum(not r['generation_failed'] and r['evaluation_complete'] for r in rows) == snapshot['dual_valid']
@@ -193,7 +198,7 @@ def main():
         shutil.copyfile(RESULTS/'figures'/('draft_factor_diagnostics.'+ext), ASSETS/('draft_factor_diagnostics.'+ext))
     outputs = [RESULTS/'tables'/n for n in ('snapshot_factor_per_answer.csv', 'snapshot_factor_summary.csv', 'snapshot_factor_judge_differences.csv', 'snapshot_factor_eas_decomposition.csv', 'snapshot_factor_types.csv')]
     outputs += list(ASSETS.glob('draft_factor*'))
-    report = dict(status='provisional_snapshot_diagnostics', background_recovery_excluded=True,
+    report = dict(status='final_closed_diagnostics' if final else 'provisional_snapshot_diagnostics', background_recovery_excluded=True,
                   snapshot_dual_valid=snapshot['dual_valid'], generation_tasks=5120,
                   units='K/F/A multiplied by 100; interval endpoints, not confidence intervals',
                   denominator='All answered tasks for K/F, answered conditional tasks for A; failures remain separate and EAS keeps 160 tasks',
