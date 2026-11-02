@@ -19,7 +19,7 @@ def main():
         seen.add(key)
         raw=exp.read(exp.OUT/'generation'/key[0]/key[1]/'result.json')
         expected=score(qs[key[1]],gs[key[1]],raw)
-        for name in ('score','reason','normalized_answer','format_valid','parse_route','scoring_version'):
+        for name in ('raw_answer','score','reason','normalized_answer','format_valid','parse_route','scoring_version'):
             if row[name]!=expected[name]:errors.append([*key,name])
         if row['strict_score']!=strict[key]['score'] or row['strict_reason']!=strict[key]['reason']:
             errors.append([*key,'strict_reference'])

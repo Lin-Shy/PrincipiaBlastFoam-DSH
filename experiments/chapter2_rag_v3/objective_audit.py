@@ -23,7 +23,7 @@ def main():
             result=experiment.read(result_file); row=records[key]
             if result.get('manifest_sha256')!=experiment.sha(experiment.MANIFEST):errors.append([*key,'manifest_mismatch'])
             expected=score(question,gold[key[1]],result)
-            for field in ('score','reason','normalized_answer','format_valid','scoring_version'):
+            for field in ('raw_answer','score','reason','normalized_answer','format_valid','scoring_version'):
                 if row[field]!=expected[field]:errors.append([*key,'scoring_mismatch:'+field])
             statuses[result['status']]+=1;n+=1
     groups={r['config_id']:r for r in snapshot['configurations']}
