@@ -27,9 +27,9 @@ def main():
     sources=['objective_experiment.py','objective_scoring.py','objective_statistics.py','objective_report.py',
              'objective_scoring_relaxed.py','objective_supplementary_report.py','objective_format_pairs.py',
              'objective_audit.py','objective_supplementary_audit.py','objective_assets.py','objective_manuscript.py',
-             'objective_provenance.py']
+             'objective_provenance.py','objective_statistics_audit.py']
     outputs=['results/snapshot.json','results/per_answer.csv','results/summary.csv','scores/per_answer.json',
-             'results/closure_audit.json','supplementary_parser/results/snapshot.json',
+             'results/closure_audit.json','results/statistics_audit.json','supplementary_parser/results/snapshot.json',
              'supplementary_parser/results/per_answer.csv','supplementary_parser/results/summary.csv',
              'supplementary_parser/results/closure_audit.json','analysis/format_pairs.csv',
              'results/raw_inventory.jsonl']

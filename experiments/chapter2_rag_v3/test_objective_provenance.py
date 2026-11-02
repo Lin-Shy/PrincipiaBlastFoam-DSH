@@ -11,7 +11,7 @@ class ProvenanceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[2]/'.local') as tmp:
             root=Path(tmp); manifest=root/'manifest.json'; manifest.write_text('{}')
             files=['results/per_answer.csv','results/summary.csv','scores/per_answer.json',
-                   'results/closure_audit.json','supplementary_parser/results/per_answer.csv',
+                   'results/closure_audit.json','results/statistics_audit.json','supplementary_parser/results/per_answer.csv',
                    'supplementary_parser/results/summary.csv','supplementary_parser/results/closure_audit.json',
                    'analysis/format_pairs.csv']
             for name in files:
