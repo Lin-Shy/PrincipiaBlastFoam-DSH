@@ -7,9 +7,20 @@ import time
 import unittest
 from unittest.mock import patch
 import test160_resume_scores as main
+import test160_capacity_monitor as monitor
+from datetime import datetime, timezone
 
 
 class MainDispatchTests(unittest.TestCase):
+    def test_capacity_monitor_accepts_blank_jsonl_lines(self):
+        with tempfile.TemporaryDirectory() as directory, patch.object(monitor, 'BASE', Path(directory)):
+            for base in (monitor.BASE, monitor.BASE/'supplement/single_pass'):
+                path = base/'scoring/gpt_sol/recovery_events.jsonl'
+                path.parent.mkdir(parents=True)
+                path.write_text('\n\r\n'+json.dumps(dict(completed_utc='2026-11-02T09:00:00+00:00',
+                                                       status='valid'))+'\n')
+            self.assertEqual(len(monitor.recent_events(datetime(2026, 11, 2, tzinfo=timezone.utc))), 2)
+
     def test_configuration_allows_eight_main_workers_under_shared_cap(self):
         with tempfile.TemporaryDirectory() as directory, patch.object(main, 'BASE', Path(directory)):
             path = main.BASE/'gpt_concurrency_control_20261102.json'

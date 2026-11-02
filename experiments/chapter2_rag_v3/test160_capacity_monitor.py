@@ -16,6 +16,8 @@ def recent_events(start):
     for base in (BASE, BASE/'supplement/single_pass'):
         path = base/'scoring/gpt_sol/recovery_events.jsonl'
         for line in path.read_text(encoding='utf-8-sig').splitlines(keepends=True):
+            if not line.strip():
+                continue
             if not line.endswith('\n'):
                 continue  # An append may still be in progress.
             row = json.loads(line)
