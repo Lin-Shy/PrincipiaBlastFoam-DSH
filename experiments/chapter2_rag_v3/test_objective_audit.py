@@ -52,8 +52,8 @@ class ClosureAuditTests(unittest.TestCase):
             put(out/'generation/cfg/Q1/result.json',result)
             original=score(q,g,result);original['config_id']='cfg';put(out/'scores/per_answer.json',[original])
             revised=relaxed_score(q,g,result);revised.update(config_id='cfg',strict_score=original['score'],strict_reason=original['reason'])
-            put(supp/'scores/per_answer.json',[revised]);put(supp/'results/snapshot.json',{'status':'closed','completed':1})
-            with patch.object(audit.experiment,'DATA',data),patch.object(audit.experiment,'OUT',out),patch.object(audit.experiment,'verify',return_value={'tasks':1}):
+            put(supp/'scores/per_answer.json',[revised]);put(supp/'results/snapshot.json',{'status':'closed','completed':1,'source_strict_sha256':audit.experiment.sha(out/'scores/per_answer.json'),'configurations':[{'config_id':'cfg','accuracy':1.0}]})
+            with patch.object(audit.experiment,'DATA',data),patch.object(audit.experiment,'OUT',out),patch.object(audit.experiment,'verify',return_value={'tasks':1,'configurations':[{'config_id':'cfg'}]}):
                 supplementary.main()
                 self.assertEqual(audit.experiment.read(supp/'results/closure_audit.json')['status'],'passed')
                 revised['strict_score']=1;put(supp/'scores/per_answer.json',[revised])
