@@ -1,12 +1,20 @@
 """Static offline, searchable per-answer score viewer."""
-import json
+import hashlib, json
+from pathlib import Path
 def render(out,rows,snapshot):
-    data=json.dumps(dict(rows=rows,snapshot=snapshot),ensure_ascii=False).replace('<','\\u003c')
+    label_path=out/'analysis/capability_labels_v2.json'
+    if label_path.exists():
+        labels=json.loads(label_path.read_text(encoding='utf-8'))
+        questions=Path(__file__).resolve().parents[3]/'graduation-datasets/chapter02_knowledge_qa/objective_v1_200/model/questions.json'
+        if hashlib.sha256(questions.read_bytes()).hexdigest()!=labels['question_sha256']:
+            raise ValueError('Exploratory capability labels do not match frozen questions')
+        rows=[{**r,'frozen_capability':r['capability'],'capability':labels['labels'][r['id']]} for r in rows]
+    data=json.dumps(dict(rows=rows,snapshot=snapshot,exploratory_capabilities=label_path.exists()),ensure_ascii=False).replace('<','\\u003c')
     template='''<!doctype html><html lang="zh"><meta charset="utf-8"><title>第2章客观题实验</title>
 <style>body{font:16px system-ui;margin:30px auto;max-width:1400px;color:#182334;background:#f5f7fa}h1{font-size:28px}table{border-collapse:collapse;width:100%;background:white}th,td{padding:9px;border-bottom:1px solid #dbe2ec;text-align:left}th{background:#eaf0f8}button,select,input{padding:9px;margin:5px}article{background:white;padding:20px;margin:15px 0;border-radius:10px}pre{white-space:pre-wrap;word-break:break-word}.muted{color:#56657a}summary{cursor:pointer}a{color:#1756a9}</style>
 <h1>第2章客观题实验</h1><p><a href="../../results/index.html">开放问答结果</a> · <a href="summary.csv">汇总CSV</a> · <a href="per_answer.csv">逐答CSV</a> · <a href="snapshot.json">统计快照</a></p>
 <p id="status"></p><p class="muted">题目经AI原文核验，未宣称独立人工审计通过。包含30组单选／判断跨题型配对；知识可与原开放题重叠。未完成配置不发布最终准确率。</p>
-<div id="summary"></div><h2>配对比较与Holm校正</h2><div id="comparisons"></div><h2>能力类别结果</h2><div id="capabilities"></div><h2>逐题答案与评分</h2><div id="filters"></div><input id="query" placeholder="搜索题号或题目" size="45"><button id="previous">上一页</button><button id="next">下一页</button><span id="count"></span><div id="answers"></div>
+<div id="summary"></div><h2>配对比较与Holm校正</h2><div id="comparisons"></div><h2>能力类别结果</h2><p id="capability-note" class="muted"></p><div id="capabilities"></div><h2>逐题答案与评分</h2><div id="filters"></div><input id="query" placeholder="搜索题号或题目" size="45"><button id="previous">上一页</button><button id="next">下一页</button><span id="count"></span><div id="answers"></div>
 <script>const DATA=__DATA__;
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pct=x=>x==null?'待完成':(100*x).toFixed(2)+'%';
@@ -16,6 +24,7 @@ const comparisons=document.querySelector('#comparisons');
 if(!s.statistics){comparisons.textContent='全部任务完成后计算配对比较。'}else{
 comparisons.innerHTML='<p>差值为完整图减对照方法；区间为关联簇bootstrap的95%区间。</p><table><tr><th>模型</th><th>对照</th><th>比较族</th><th>准确率差</th><th>95%区间</th><th>Holm校正p</th></tr>'+s.statistics.paired.map(p=>`<tr><td>${esc(p.model)}</td><td>${esc(p.comparison)}</td><td>${esc(p.family)}</td><td>${pct(p.difference)}</td><td>${pct(p.ci95[0])} 至 ${pct(p.ci95[1])}</td><td>${p.holm_p.toFixed(4)}</td></tr>`).join('')+'</table>';}
 const groups=new Map();for(const r of DATA.rows){const k=JSON.stringify([r.model,r.method,r.capability]);if(!groups.has(k))groups.set(k,{model:r.model,method:r.method,capability:r.capability,total:0,done:0,correct:0});const g=groups.get(k);g.total++;if(r.score!==null){g.done++;g.correct+=r.score}}
+document.querySelector('#capability-note').textContent=DATA.exploratory_capabilities?'能力标签在生成开始后仅依据题干与来源重新分类，未参考模型得分，属于探索性分析；逐答CSV保留原冻结标签。':'使用原冻结能力标签。';
 document.querySelector('#capabilities').innerHTML='<table><tr><th>模型／方法</th><th>能力类别</th><th>终态／计划</th><th>准确率</th></tr>'+[...groups.values()].map(g=>`<tr><td>${esc(g.model)} / ${esc(g.method)}</td><td>${esc(g.capability)}</td><td>${g.done}/${g.total}</td><td>${pct(g.done===g.total?g.correct/g.total:null)}</td></tr>`).join('')+'</table>';
 for(const [key,label] of [['model','模型'],['method','方法'],['type','题型'],['capability','能力类别'],['reason','评分原因']]){const select=document.createElement('select');select.id=key;select.innerHTML=`<option value="">全部${label}</option>`+[...new Set(DATA.rows.map(r=>r[key]))].map(v=>`<option>${esc(v)}</option>`).join('');select.onchange=()=>{page=0;show()};document.querySelector('#filters').append(select)}
 let page=0;function show(){let rows=DATA.rows.filter(r=>['model','method','type','capability','reason'].every(k=>!document.getElementById(k).value||r[k]===document.getElementById(k).value));const q=document.querySelector('#query').value.toLowerCase();rows=rows.filter(r=>(r.id+' '+r.question).toLowerCase().includes(q));page=Math.max(0,Math.min(page,Math.ceil(rows.length/20)-1));document.querySelector('#count').textContent=`共${rows.length}条 · 第${page+1}页`;document.querySelector('#answers').innerHTML=rows.slice(page*20,(page+1)*20).map(r=>`<article><strong>${esc(r.id)} · ${esc(r.model)} / ${esc(r.method)} · ${r.score==null?'待运行':r.score+'分'} · ${esc(r.reason)}</strong><pre>${esc(r.question)}</pre><p>标准答案：${esc(r.expected)} ｜ 解析答案：${esc(r.normalized_answer)}</p><pre>${esc(r.raw_answer||'暂无回答')}</pre><details><summary>来源证据与运行信息</summary><pre>${esc(r.evidence)}\n状态：${esc(r.generation_status)}\n工具调用：${r.tools}；耗时：${r.seconds.toFixed(2)}s</pre></details></article>`).join('')};document.querySelector('#query').oninput=()=>{page=0;show()};document.querySelector('#previous').onclick=()=>{page--;show()};document.querySelector('#next').onclick=()=>{page++;show()};show();</script></html>'''
