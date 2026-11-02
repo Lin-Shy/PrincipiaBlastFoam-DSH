@@ -107,7 +107,7 @@ def run(judge, workers=2):
             return 'existing_valid_reused'
         receipt = STATE/judge/(item['sample_id']+'.json')
         receipt.parent.mkdir(parents=True, exist_ok=True)
-        with exclusive_lock(root/(EPOCH+'.lock')):
+        with old.dispatch_lock(root), exclusive_lock(root/(EPOCH+'.lock')):
             history = old.read(receipt) if receipt.exists() else dict(
                 epoch=EPOCH, judge=judge, sample_id=item['sample_id'], attempts=[],
                 original_hold_reason=row['_plan']['hold_reason'], authorization_sha256=old.s.sha(AUTH))

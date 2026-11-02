@@ -14,12 +14,39 @@ if (BASE/'gpt_concurrency_control_20261102.json').exists():
     import test160_frozen_research_view
     test160_frozen_research_view.install(ev)
 def read(p):return s.load(p)
+def worker_count(judge):
+    control=BASE/'gpt_concurrency_control_20261102.json'
+    value=read(control).get('gpt_main_workers',2) if judge=='gpt_sol' and control.exists() else 2
+    assert type(value) is int and 1 <= value <= 16
+    return value
+
+def slot_count(judge):
+    control=BASE/'gpt_concurrency_control_20261102.json'
+    value=read(control).get('gpt_total_slot_cap',2) if judge=='gpt_sol' and control.exists() else 2
+    assert type(value) is int and value in (2,4,8,16)
+    return value
+
+def pause_requested(judge):
+    control=BASE/'gpt_concurrency_control_20261102.json'
+    return judge=='gpt_sol' and control.exists() and read(control).get('pause_main_dispatch') is True
+
+@contextmanager
+def dispatch_lock(root):
+    path=root/'gpt_dispatch.lock'
+    while True:
+        try:
+            with path.open('x',encoding='utf-8') as f:f.write(str(os.getpid()))
+            break
+        except FileExistsError:time.sleep(1)
+    try:yield
+    finally:path.unlink()
+
 @contextmanager
 def slot(judge):
     root=BASE/'service_slots';root.mkdir(exist_ok=True)
     while True:
         acquired=None
-        for i in range(2):
+        for i in range(slot_count(judge)):
             p=root/(judge+'_'+str(i)+'.lock')
             try:
                 with p.open('x',encoding='utf-8') as f:json.dump(dict(pid=os.getpid(),utc=s.now()),f)
@@ -32,6 +59,12 @@ def slot(judge):
 
 def eligible(root,judge,item,retry_rejected_model=False):
     if item['generation_failed'] or (root/'parsed.json').exists():return False,'reuse_or_failure'
+    dispatch=root/'gpt_dispatch.lock'
+    if dispatch.exists():
+        try:
+            if dispatch.read_text(encoding='utf-8').strip()!=str(os.getpid()):
+                return False,'scheduler_in_flight'
+        except FileNotFoundError:pass
     if (root/'input_hold.json').exists():return False,'input_hold'
     folders=rec.folders(root)
     if len(list((root/'recovery').glob('attempt_*')))>=3:return False,'attempt_limit'
@@ -80,10 +113,12 @@ def run(auth,judge,probe=False,retry_rejected_model=False):
     def progress(state):
         s.save(statusfile,dict(utc=s.now(),pid=os.getpid(),judge=judge,state=state,probe=probe,
           planned=len(jobs),completed=len(completed),states=dict(__import__('collections').Counter(completed.values())),
+          workers=worker_count(judge),total_slot_cap=slot_count(judge),
           held_preflight=held,prior_stop_preserved=True,manifest_sha256=s.sha(ev.runner.MANIFEST)))
     progress('running')
-    def job(args):
+    def job_locked(args):
         base,root,item=args
+        if pause_requested(judge):stop.set();return 'scheduler_paused_before_post'
         if stop.is_set():return 'provider_stopped'
         # attempt uses s.OUT for ledger/protocol; original request body is unchanged.
         # modes are run serially below to avoid the global output binding racing.
@@ -92,17 +127,22 @@ def run(auth,judge,probe=False,retry_rejected_model=False):
             if not ok:return reason
             if stop.is_set():return 'provider_stopped'
             ordinal=len(list((root/'recovery').glob('attempt_*')))+1
-            with slot(judge):result=rec.attempt(root,judge,item,ordinal,reg)
+            with slot(judge):
+                if pause_requested(judge):stop.set();return 'scheduler_paused_before_post'
+                result=rec.attempt(root,judge,item,ordinal,reg)
             if result['status']=='valid':return rec.reconcile(root,judge,item)
             if result.get('reason') in ['model_identity_mismatch','usage_unknown_stop_and_reconcile','http_403','http_404']:
                 stop.set();return 'provider_or_identity_stop'
             if result.get('http_status') not in rec.RETRY_HTTP:return 'held_after_attempt'
             time.sleep(5 if ordinal<2 else 20)
         return 'attempt_limit'
+    def job(args):
+        with dispatch_lock(args[1]):
+            return job_locked(args)
     with exclusive_lock(BASE/('resume_'+judge+'.lock')):
         for base in [BASE,BASE/'supplement/single_pass']:
             s.OUT=base
-            with ThreadPoolExecutor(max_workers=2) as pool:
+            with ThreadPoolExecutor(max_workers=worker_count(judge)) as pool:
                 fs={pool.submit(job,x):x for x in jobs if x[0]==base}
                 for f in as_completed(fs):
                     if f.cancelled():continue
@@ -114,6 +154,6 @@ def run(auth,judge,probe=False,retry_rejected_model=False):
                     if stop.is_set():
                         for future in fs:future.cancel()
             if stop.is_set():break
-    progress('held' if stop.is_set() else 'finished')
+    progress('paused' if pause_requested(judge) else ('held' if stop.is_set() else 'finished'))
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--authorization',type=Path,required=True);p.add_argument('--judge',choices=s.JUDGES,required=True);p.add_argument('--probe',action='store_true');p.add_argument('--retry-rejected-model',action='store_true',help='After owner-confirmed service restoration only; retry a complete model_not_found rejection within the existing attempt limit');a=p.parse_args();run(a.authorization,a.judge,a.probe,a.retry_rejected_model)
