@@ -22,6 +22,8 @@ class ProvenanceTests(unittest.TestCase):
             for section in ('results','supplementary_parser/results'):
                 snap=root/section/'snapshot.json'
                 (root/section/'closure_audit.json').write_text(json.dumps({'status':'passed','snapshot_sha256':exp.sha(snap)}),encoding='utf8')
+            snapshots=[exp.sha(root/section/'snapshot.json') for section in ('results','supplementary_parser/results')]
+            (root/'results/statistics_audit.json').write_text(json.dumps({'status':'passed','outputs':[{'snapshot_sha256':h} for h in snapshots]}),encoding='utf8')
             raw=root/'generation/cfg/Q/requests/request.json';raw.parent.mkdir(parents=True)
             raw.write_text('private-fixture-content',encoding='utf8')
             with patch.object(exp,'OUT',root),patch.object(exp,'MANIFEST',manifest):provenance.main()
