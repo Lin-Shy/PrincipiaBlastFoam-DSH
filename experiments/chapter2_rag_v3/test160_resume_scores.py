@@ -10,6 +10,9 @@ import test160_closure_audit as audit
 from central_execution import Registry,exclusive_lock
 
 BASE=s.RUN/'test160_runs'
+if (BASE/'gpt_concurrency_control_20261102.json').exists():
+    import test160_frozen_research_view
+    test160_frozen_research_view.install(ev)
 def read(p):return s.load(p)
 @contextmanager
 def slot(judge):
@@ -36,7 +39,14 @@ def eligible(root,judge,item,retry_rejected_model=False):
     for f in folders:
         if read(f/'request.json')['request']!=req:raise ValueError('Frozen request drift')
         state=read(f/'status.json') if (f/'status.json').exists() else {}
-        if not (f/'response.txt').exists():return False,'uncertain_no_response'
+        if not (f/'response.txt').exists():
+            # The transport resolves DNS in conn.connect(), before conn.request().
+            # A completed getaddrinfo failure therefore cannot be an uncertain POST.
+            # Keep all other no-response attempts isolated, including timeouts.
+            if (state.get('error_type')=='gaierror' and state.get('http_status') is None
+                and state.get('completed_utc') and 'getaddrinfo failed' in state.get('reason','')):
+                continue
+            return False,'uncertain_no_response'
         raw=read(f/'response.txt')
         # Complete explicit provider rejection is known not to contain a grade.
         explicit_error=isinstance(raw,dict) and isinstance(raw.get('error'),dict) and not raw.get('choices') and not raw.get('output')

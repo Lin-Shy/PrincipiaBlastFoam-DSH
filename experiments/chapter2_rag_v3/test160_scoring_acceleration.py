@@ -10,6 +10,7 @@ import os
 import time
 import test160_extra_recovery as engine
 import test160_gpt_transport91 as tail
+import test160_frozen_research_view as frozen_view
 
 BASE = engine.BASE
 CONTROL = BASE/'gpt_concurrency_control_20261102.json'
@@ -17,7 +18,7 @@ CONTROL = BASE/'gpt_concurrency_control_20261102.json'
 
 def capacity():
     value = engine.old.read(CONTROL)['gpt_total_slot_cap']
-    assert type(value) is int and value in (2, 4)
+    assert type(value) is int and value in (2, 4, 8, 16)
     return value
 
 
@@ -29,7 +30,7 @@ def slot(judge):
     acquired = None
     while acquired is None:
         limit = capacity()
-        for i in ([2, 3, 0, 1] if limit == 4 else [0, 1]):
+        for i in list(range(2, limit))+[0, 1]:
             path = root/(judge+'_'+str(i)+'.lock')
             try:
                 with path.open('x', encoding='utf-8') as f:
@@ -92,6 +93,7 @@ def wait_tail(judge):
 
 def main(lane):
     capacity()
+    frozen_view.install(engine.old.ev)
     deferred = []
     original_authorization = engine.allowed_authorization
     if lane == 'extra':
@@ -120,7 +122,7 @@ def main(lane):
         utc=engine.old.s.now(), pid=os.getpid(), total_slot_cap=capacity(),
         deferred_original_queue=[p['sample_id'] for p in deferred],
         unchanged_epoch_authorization=True, no_new_budget=True))
-    engine.run('gpt_sol')
+    engine.run('gpt_sol', workers=max(1, capacity()-2))
     if deferred:
         statusfile = BASE/'extra_recovery_20261102_gpt_sol_status.json'
         if engine.old.read(statusfile)['state'] != 'finished':
@@ -138,7 +140,7 @@ def main(lane):
                 completed_parallel_status='gpt_acceleration_extra_parallel_finished.json'))
             time.sleep(15)
         engine.allowed_authorization = original_authorization
-        engine.run('gpt_sol')
+        engine.run('gpt_sol', workers=max(1, capacity()-2))
 
 
 if __name__ == '__main__':

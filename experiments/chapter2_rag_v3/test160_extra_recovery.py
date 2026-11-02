@@ -77,7 +77,8 @@ def wait_baseline(judge):
         time.sleep(15)
 
 
-def run(judge):
+def run(judge, workers=2):
+    assert type(workers) is int and 1 <= workers <= 14
     a, plan = allowed_authorization()
     selected = [p for p in plan if p['judge'] == judge]
     APPROVED.update((judge, p['sample_id']) for p in selected if p['hold_reason'] == 'input_budget_hold')
@@ -163,7 +164,7 @@ def run(judge):
                 jobs.append(row)
             old.s.OUT = base
             progress('running')
-            with ThreadPoolExecutor(max_workers=2) as pool:
+            with ThreadPoolExecutor(max_workers=workers) as pool:
                 futures = {pool.submit(job, row, base):row for row in jobs}
                 for future in as_completed(futures):
                     sid = futures[future]['item']['sample_id']

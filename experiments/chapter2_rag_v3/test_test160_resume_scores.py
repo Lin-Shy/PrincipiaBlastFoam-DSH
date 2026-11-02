@@ -21,6 +21,22 @@ class RecoveryBoundaries(unittest.TestCase):
         root,req=self.case(None,{},response=False)
         with patch.object(r.rec,'request',return_value=({},req,1)):
             self.assertFalse(r.eligible(root,'gpt_sol',{'generation_failed':False})[0])
+    def test_completed_dns_failure_before_post_can_recover(self):
+        root,req=self.case(None,{},response=False)
+        (root/'recovery/attempt_1/status.json').write_text(json.dumps({
+            'http_status':None,'error_type':'gaierror',
+            'reason':'[Errno 11001] getaddrinfo failed','completed_utc':'2026-11-02T03:03:09Z'
+        }),encoding='utf-8')
+        with patch.object(r.rec,'request',return_value=({},req,1)):
+            self.assertTrue(r.eligible(root,'gpt_sol',{'generation_failed':False})[0])
+    def test_timeout_without_response_remains_uncertain(self):
+        root,req=self.case(None,{},response=False)
+        (root/'recovery/attempt_1/status.json').write_text(json.dumps({
+            'http_status':None,'error_type':'TimeoutError',
+            'reason':'timed out','completed_utc':'2026-11-02T03:03:09Z'
+        }),encoding='utf-8')
+        with patch.object(r.rec,'request',return_value=({},req,1)):
+            self.assertFalse(r.eligible(root,'gpt_sol',{'generation_failed':False})[0])
     def test_model_unavailable_is_held(self):
         root,req=self.case(404,{'error':{'type':'invalid_request_error','code':'model_not_found'}})
         with patch.object(r.rec,'request',return_value=({},req,1)):
