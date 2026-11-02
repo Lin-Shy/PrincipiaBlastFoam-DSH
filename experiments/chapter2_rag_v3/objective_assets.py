@@ -10,6 +10,10 @@ def main():
     snap=experiment.read(path)
     if snap['status']!='closed' or snap['completed']!=snap['planned']:
         raise ValueError('objective experiment must be closed before producing manuscript assets')
+    supplement_path=experiment.OUT/'supplementary_parser/results/snapshot.json'
+    supplement=experiment.read(supplement_path)
+    if supplement['status']!='closed' or supplement['completed']!=snap['planned'] or supplement['manifest_sha256']!=snap['manifest_sha256']:
+        raise ValueError('complete supplementary snapshot for the same manifest required')
     stats=snap['statistics']; rows=snap['configurations']; style.setup()
     fig,axes=plt.subplots(1,2,figsize=(7.2,4.1),sharey=True)
     for ax,model in zip(axes,('qwen3-8b','qwen3-14b')):
@@ -33,8 +37,18 @@ def main():
             lines.append(model.replace('-','\\mbox{-}')+' & '+style.NAMES[method]+' & '+str(r['completed'])+'/'+str(r['planned'])+' & '+' & '.join(f'{x*100:.1f}' for x in nums)+r' \\')
     lines.extend([r'\bottomrule\end{tabular}',r'\end{table}'])
     (assets/'objective_metrics.tex').write_text('\n'.join(lines)+'\n',encoding='utf-8',newline='\n')
+    lines=[r'\begin{table}[htbp]\centering\footnotesize',r'\caption{客观题严格评分与单行答案补充解析的准确率（\%）}\label{tab:ch2-objective-parsing}',r'\begin{tabular}{llrr}\toprule',r'模型 & 方法 & 冻结规则 & 补充解析 \\ \midrule']
+    for model in ('qwen3-8b','qwen3-14b'):
+        for method in style.NAMES:
+            original=next(x for x in rows if x['model']==model and x['method']==method)
+            alternate=next(x for x in supplement['configurations'] if x['model']==model and x['method']==method)
+            lines.append(model.replace('-','\\mbox{-}')+' & '+style.NAMES[method]+f" & {original['accuracy']*100:.1f} & {alternate['accuracy']*100:.1f}"+r' \\')
+    lines.extend([r'\bottomrule\end{tabular}',r'\end{table}'])
+    (assets/'objective_parsing_comparison.tex').write_text('\n'.join(lines)+'\n',encoding='utf-8',newline='\n')
     experiment.save(experiment.OUT/'results/objective_assets_provenance.json',dict(snapshot_sha256=experiment.sha(path),
+        supplementary_snapshot_sha256=experiment.sha(supplement_path),
         figure_sha256=experiment.sha(assets/'objective_main_accuracy.pdf'),table_sha256=experiment.sha(assets/'objective_metrics.tex'),
+        parsing_table_sha256=experiment.sha(assets/'objective_parsing_comparison.tex'),
         source_sha256=experiment.sha(Path(__file__))))
     print('objective manuscript assets generated')
 
