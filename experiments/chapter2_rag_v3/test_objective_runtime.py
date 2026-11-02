@@ -9,6 +9,15 @@ from unittest.mock import patch
 import objective_experiment as exp
 
 class RuntimeTests(unittest.TestCase):
+    def test_duplicate_start_is_blocked_by_exclusive_lock(self):
+        from central_execution import exclusive_lock
+        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[2]/'.local') as tmp:
+            path=Path(tmp)/'lane.lock'
+            with exclusive_lock(path):
+                with self.assertRaises(FileExistsError):
+                    with exclusive_lock(path):pass
+            self.assertFalse(path.exists())
+
     def test_resume_unknown_hold_and_retry_limit(self):
         calls=[];events=[];makes=[]
         configs=[dict(config_id='c'+str(i),model_key='qwen3_8b',method_id='direct',logical_model='qwen3-8b') for i in range(13)]
