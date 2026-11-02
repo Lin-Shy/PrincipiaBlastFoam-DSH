@@ -11,6 +11,12 @@ def main():
         raise ValueError('closed scoring snapshots required')
     if supplement['source_strict_sha256']!=exp.sha(exp.OUT/'scores/per_answer.json'):
         raise ValueError('supplementary snapshot does not bind strict snapshot')
+    strict_audit=exp.read(exp.OUT/'results/closure_audit.json')
+    supplemental_audit=exp.read(exp.OUT/'supplementary_parser/results/closure_audit.json')
+    if strict_audit['status']!='passed' or supplemental_audit['status']!='passed':
+        raise ValueError('both closure audits must pass')
+    if strict_audit['snapshot_sha256']!=exp.sha(exp.OUT/'results/snapshot.json') or supplemental_audit['snapshot_sha256']!=exp.sha(exp.OUT/'supplementary_parser/results/snapshot.json'):
+        raise ValueError('audit snapshot mismatch')
     raw=exp.OUT/'generation'
     entries=[]
     for path in sorted(p for p in raw.rglob('*') if p.is_file()):
