@@ -149,10 +149,23 @@ def build():
         assert (A/name).is_file(), 'Run final factor analysis before building final assets'
     for p in figdir.glob('final_*.*'):
         shutil.copyfile(p,A/p.name)
+    html = ['<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>Test160最终结果</title>',
+        '<style>body{font:15px system-ui;max-width:1200px;margin:30px auto;padding:0 18px}table{border-collapse:collapse;width:100%}td,th{padding:7px;border-bottom:1px solid #ddd;text-align:right}td:first-child,th:first-child{text-align:left}img{max-width:100%}</style>',
+        '<h1>第2章 Test160最终结果</h1><p>5120任务：4989份回答全部双裁判有效评分，131份生成失败。K/F/A未识别项为0。</p>',
+        '<p>K/F以有效回答n为分母，A以条件回答c为分母，均乘100；生成失败的分项未定义。两项EAS逐回答、逐裁判计算再平均，每配置固定160题，生成失败计零。不可由组均K/F/A反推EAS。</p>',
+        '<p>原独立人工审计未达门槛，知情使用不等于审计通过。20关联簇置信区间为逐项区间；主比较/消融/模式比较分别沿用32/16/12项Holm族。</p>',
+        '<p><a href="tables/final_metrics.csv">32配置统一指标CSV</a> · <a href="tables/per_answer.csv">逐题结果</a> · <a href="tables/paired_comparisons.csv">配对与Holm检验</a> · <a href="final_assets_provenance.json">最终资产哈希</a></p>',
+        '<table><tr><th>模式/模型/方法</th><th>n/c</th><th>K</th><th>F</th><th>A</th><th>EAS算术</th><th>EAS几何</th></tr>']
+    for g in unified:
+        html.append('<tr><td>'+('固定检索' if g['mode']=='single_pass' else '自主取证')+'/'+g['model']+'/'+st.NAMES[g['method']]+'</td><td>'+str(g['answered_n'])+'/'+str(g['conditional_answered_n'])+'</td>'+''.join(f"<td>{g[k]:.2f}</td>" for k in ('K','F','A','EAS_arith','EAS_geo'))+'</tr>')
+    html.append('</table>')
+    for stem, title in [('final_main_scores','九方法EAS'),('final_factor_diagnostics','K/F/A与EAS差分解'),('final_type_scores','题型结果'),('final_ablation_differences','消融差值'),('final_mode_differences','模式差值'),('final_backend_evidence','固定检索证据'),('final_tool_adoption','工具采用')]:
+        html.append('<h2>'+title+'</h2><img src="figures/'+stem+'.svg" alt="'+title+'">')
+    (R/'index.html').write_text(''.join(html)+'</html>',encoding='utf-8')
     result=dict(status='final_assets_ready_for_manuscript_review',font=font,groups=32,answered=4989,dual_valid=4989,
                 source_snapshot_sha256=s.sha(R/'manuscript_snapshot.json'),
                 source_hashes={str(p.relative_to(s.WORKSPACE)):s.sha(p) for p in [R/'test160_results.json',R/'factor_analysis_provenance.json',Path(__file__),Path(st.__file__)]},
-                outputs={str(p.relative_to(s.WORKSPACE)):s.sha(p) for p in A.glob('final_*')})
+                outputs={str(p.relative_to(s.WORKSPACE)):s.sha(p) for p in list(A.glob('final_*'))+[R/'index.html',R/'tables/final_metrics.csv']})
     s.save(R/'final_assets_provenance.json',result)
     return result
 
