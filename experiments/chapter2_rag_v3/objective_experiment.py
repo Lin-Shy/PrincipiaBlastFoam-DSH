@@ -56,6 +56,10 @@ def supercomputer_client(folder):
 def prepare():
     if MANIFEST.exists():return verify()
     qs=read(DATA/'model/questions.json');gs=read(DATA/'scoring/annotations.json')
+    dataset=read(DATA/'dataset.json')
+    if dataset.get('context_review_complete') is not True:
+        raise ValueError('Candidate dataset has not completed contextual review')
+    if dataset.get('count')!=len(qs):raise ValueError('Dataset count does not match questions')
     assert qs and len(qs)==len(gs) and len({q['id'] for q in qs})==len(qs)
     assert {q['id'] for q in qs}=={g['id'] for g in gs}
     assert all(set(q)<= {'id','question','type','options'} for q in qs)
