@@ -105,7 +105,7 @@ def run(snapshot=False):
     fig,ax=plt.subplots(figsize=(6.8,2.4));x=np.arange(3);width=.32
     for i,m in enumerate(models):
         own=[next(g for g in groups if (g['mode'],g['model'],g['method'])==('agentic',m,method)) for method in ['graph','bm25','bge_m3']]
-        ax.bar(x+(i-.5)*width,[100*float(g['tool_adoption_rate']) for g in own],width,color=plt.get_cmap('coolwarm')([.12,.88][i]),label=m)
+        ax.bar(x+(i-.5)*width,[100*float(g['tool_adoption_rate']) for g in own],width,color=st.MODEL_COLORS[m],label=m)
     ax.set(xticks=x,xticklabels=[st.NAMES[x] for x in ['graph','bm25','bge_m3']],ylabel='至少调用一次工具（%）',ylim=(0,105));ax.legend(loc='upper center',bbox_to_anchor=(.5,1.2),ncol=2);ax.grid(axis='y',alpha=.18);st.save(fig,figdir,'draft_tool_adoption')
     A.mkdir(exist_ok=True,parents=True)
     for p in figdir.glob('draft_*.*'):shutil.copyfile(p,A/p.name)

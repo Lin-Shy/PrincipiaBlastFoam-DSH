@@ -7,7 +7,9 @@ from matplotlib import font_manager
 
 NAMES=dict(graph='完整来源图',bm25='BM25',e5='E5',bge_m3='BGE-M3',bm25_e5='BM25+E5',bm25_bge_m3='BM25+BGE-M3',bm25_parent='BM25父上下文',basic='基础搜索',direct='直接回答',no_cross='去来源关联',no_aliases='去中文别名',no_traversal='关闭关系遍历',anchor_only='仅交付锚点')
 MAIN=list(NAMES)[:9]
-COLORS=dict(zip(NAMES,['#b40426','#3b4cc0','#6f92f3','#5977e3','#9abbff','#d7dce3','#efcfbf','#f7ac8e','#e7745b','#4961d2','#7597f6','#f4987a','#d24b40']))
+COLORS=dict(zip(NAMES,['#1f77b4','#ff7f0e','#2ca02c','#9467bd','#8c564b','#e377c2','#17becf','#bcbd22','#7f7f7f','#d62728','#aec7e8','#ffbb78','#98df8a']))
+MODEL_COLORS={'qwen3-8b':'#0072B2','qwen3-14b':'#E69F00'}
+FACTOR_COLORS={'K':'#009E73','F':'#CC79A7','A':'#D55E00'}
 CMAP='coolwarm'
 HEATMAP_NUM_SIZE=8
 HEATMAP_AXIS_SIZE=8

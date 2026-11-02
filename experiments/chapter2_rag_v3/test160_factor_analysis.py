@@ -53,6 +53,7 @@ def fmt(pair):
 
 
 def main(final=False):
+    prefix = 'final_' if final else 'draft_'
     snapshot = read(RESULTS / 'manuscript_snapshot.json')
     for rel, expected in snapshot['statistical_source_hashes'].items():
         assert sha(s.WORKSPACE / rel) == expected, 'Manuscript snapshot drift: ' + rel
@@ -151,15 +152,15 @@ def main(final=False):
             cells = [st.NAMES[g['method']]+'/'+('单次' if g['mode']=='single_pass' else '自主'), g['model'].replace('qwen3-', ''),
                      f"{g['answered_n']}/{g['conditional_answered_n']}"]
             cells[1] = cells[1].upper()
-            cells += [fmt(g[f+'_bounds']) for f in FACTORS]
+            cells += [f"{g[f+'_bounds'][0]:.2f}" if final else fmt(g[f+'_bounds']) for f in FACTORS]
             if long:
                 cells += ['/'.join(str(g[f+'_known_n']) for f in FACTORS)]
             lines.append(' & '.join(cells)+r' \\')
         lines += [r'\bottomrule', r'\end{longtable}' if long else r'\end{tabular}\end{table}', r'\endgroup']
         (ASSETS/path).write_text('\n'.join(lines)+'\n', encoding='utf-8')
     core = [g for g in groups if g['method'] in ('graph', 'bm25', 'bge_m3')]
-    table('draft_factors.tex', '三个后端两种模式的分项评分：同一统计快照，括号内为识别边界', 'tab:ch2-factors', core)
-    table('draft_factors_all.tex', '32个配置的K/F/A分项与评分识别情况', 'tab:ch2-factors-all', groups, True)
+    table(prefix+'factors.tex', '三个后端两种模式的最终K/F/A分项均值' if final else '三个后端两种模式的分项评分：同一统计快照，括号内为识别边界', 'tab:ch2-factors', core)
+    table(prefix+'factors_all.tex', '32个配置的最终K/F/A分项与有效分母' if final else '32个配置的K/F/A分项与评分识别情况', 'tab:ch2-factors-all', groups, True)
     types = []
     for typ, name in [('S0','单资料非条件'), ('S1','单资料条件'), ('M0','多资料非条件'), ('M1','多资料条件')]:
         own = [r for r in rows if (r['mode'],r['model'],r['method'],r['type']) == ('agentic','qwen3-14b','graph',typ)]
@@ -172,7 +173,7 @@ def main(final=False):
     for row in types:
         lines.append(row['name']+' & '+' & '.join('--' if row[f] is None else f'{row[f]:.2f}' for f in FACTORS)+r' \\')
     lines += [r'\bottomrule\end{tabular}\end{table}']
-    (ASSETS/'draft_factor_types.tex').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+    (ASSETS/(prefix+'factor_types.tex')).write_text('\n'.join(lines)+'\n',encoding='utf-8')
     font = st.setup()
     fig, axes = plt.subplots(1, 2, figsize=(7.1, 3.0))
     x = np.arange(3)
@@ -182,7 +183,7 @@ def main(final=False):
         axes[0].bar(x+(i-1)*.25, values, width=.25, color=st.COLORS[method], label=st.NAMES[method])
     axes[0].set(xticks=x, xticklabels=['覆盖K', '事实F', '条件A'], ylim=(0,100), ylabel='分项均值 × 100', title='14B自主模式：分项质量')
     axes[0].legend(loc='upper center', ncol=3, fontsize=7)
-    colors = plt.get_cmap(st.CMAP)([.12, .5, .88])
+    colors = [st.FACTOR_COLORS[k] for k in ('K', 'F', 'A')]
     for i, factor in enumerate(FACTORS):
         values = [r[factor] for r in decomposition]
         bars = axes[1].bar(np.arange(2)+(i-1)*.25, values, width=.25, color=colors[i], label=factor)
@@ -193,14 +194,14 @@ def main(final=False):
     for ax in axes:
         ax.grid(axis='y', alpha=.18)
         ax.set_axisbelow(True)
-    st.save(fig, RESULTS/'figures', 'draft_factor_diagnostics')
+    st.save(fig, RESULTS/'figures', prefix+'factor_diagnostics')
     for ext in ('pdf', 'svg', 'png'):
-        shutil.copyfile(RESULTS/'figures'/('draft_factor_diagnostics.'+ext), ASSETS/('draft_factor_diagnostics.'+ext))
+        shutil.copyfile(RESULTS/'figures'/(prefix+'factor_diagnostics.'+ext), ASSETS/(prefix+'factor_diagnostics.'+ext))
     outputs = [RESULTS/'tables'/n for n in ('snapshot_factor_per_answer.csv', 'snapshot_factor_summary.csv', 'snapshot_factor_judge_differences.csv', 'snapshot_factor_eas_decomposition.csv', 'snapshot_factor_types.csv')]
-    outputs += list(ASSETS.glob('draft_factor*'))
+    outputs += list(ASSETS.glob(prefix+'factor*'))
     report = dict(status='final_closed_diagnostics' if final else 'provisional_snapshot_diagnostics', background_recovery_excluded=True,
                   snapshot_dual_valid=snapshot['dual_valid'], generation_tasks=5120,
-                  units='K/F/A multiplied by 100; interval endpoints, not confidence intervals',
+                  units='K/F/A multiplied by 100; final point means' if final else 'K/F/A multiplied by 100; interval endpoints, not confidence intervals',
                   denominator='All answered tasks for K/F, answered conditional tasks for A; failures remain separate and EAS keeps 160 tasks',
                   per_answer_comparison_to_bound_csv_passed=True, font=font,
                   groups=groups, judge_disparities=disparities, eas_arithmetic_decomposition=decomposition,

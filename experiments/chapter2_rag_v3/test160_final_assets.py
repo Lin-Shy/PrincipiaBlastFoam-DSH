@@ -116,13 +116,37 @@ def build():
             ax.set(yticks=range(len(own)),yticklabels=[st.NAMES[p['right_method'] if family=='ablation' else p['left_method']] for p in own],xlabel='配对EAS算术差及95%置信区间（分）',title=model)
             ax.invert_yaxis();ax.axvline(0,color='#666666',lw=.7);ax.grid(axis='x',alpha=.18)
         st.save(fig,figdir,filename)
-    # Evidence and adoption do not depend on ratings; their bound snapshot was
-    # already validated against unchanged generations. Reuse their exact bytes.
-    for stem in ('backend_evidence','tool_adoption'):
-        for ext in ('pdf','svg','png'):
-            shutil.copyfile(figdir/('draft_'+stem+'.'+ext),figdir/('final_'+stem+'.'+ext))
-    for p in list(A.glob('draft_factor*')):
-        shutil.copyfile(p,A/p.name.replace('draft_','final_',1))
+    # Rebuild observed-process figures from the same final rows and current style.
+    backends = ('graph', 'bm25', 'bge_m3')
+    models = ('qwen3-8b', 'qwen3-14b')
+    fig, ax = plt.subplots(figsize=(6.8, 2.7))
+    mat = np.array([[100*np.mean([r['evidence']['line_recall'] for r in rows
+        if (r['mode'], r['model'], r['method'], r['type']) ==
+        ('single_pass', 'qwen3-14b', method, typ)])
+        for typ in ('S0', 'S1', 'M0', 'M1')] for method in backends])
+    im = ax.imshow(mat, cmap=st.CMAP, vmin=0, vmax=100, aspect='auto')
+    ax.set(xticks=range(4), xticklabels=['单资料非条件','单资料条件','多资料非条件','多资料条件'],
+           yticks=range(3), yticklabels=[st.NAMES[m] for m in backends])
+    for i in range(3):
+        for j in range(4):
+            ax.text(j, i, f'{mat[i,j]:.1f}', ha='center', va='center', fontsize=8,
+                    color='white' if mat[i,j] > 85 else '#222222')
+    fig.colorbar(im, ax=ax, pad=.03).set_label('必要原文行召回率（%）')
+    st.save(fig, figdir, 'final_backend_evidence')
+    fig, ax = plt.subplots(figsize=(6.8, 2.4))
+    x = np.arange(3); width = .32
+    for i, model in enumerate(models):
+        own = [next(g for g in groups if (g['mode'],g['model'],g['method']) ==
+                    ('agentic',model,method)) for method in backends]
+        ax.bar(x+(i-.5)*width, [100*g['tool_adoption_rate'] for g in own], width,
+               color=st.MODEL_COLORS[model], label=model)
+    ax.set(xticks=x, xticklabels=[st.NAMES[m] for m in backends],
+           ylabel='至少调用一次工具（%）', ylim=(0,105))
+    ax.legend(loc='upper center', bbox_to_anchor=(.5,1.2), ncol=2)
+    ax.grid(axis='y', alpha=.18)
+    st.save(fig, figdir, 'final_tool_adoption')
+    for name in ('final_factors.tex','final_factors_all.tex','final_factor_types.tex'):
+        assert (A/name).is_file(), 'Run final factor analysis before building final assets'
     for p in figdir.glob('final_*.*'):
         shutil.copyfile(p,A/p.name)
     result=dict(status='final_assets_ready_for_manuscript_review',font=font,groups=32,answered=4989,dual_valid=4989,
