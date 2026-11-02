@@ -51,6 +51,7 @@ def main():
     if labels.exists():exp.save(out/'analysis/capability_labels_v2.json',exp.read(labels))
     render(out,rows,snap)
     page=out/'results/index.html';html=page.read_text(encoding='utf8')
+    html=html.replace('>开放问答结果</a>', '>冻结规则结果</a>')
     html=html.replace('<h1>第2章客观题实验</h1>',
         '<h1>第2章客观题：单行答案补充评分</h1><p>事后补充解析：在原标记规则之外接受无歧义单行答案。原冻结评分独立保留，不覆盖。</p>')
     page.write_text(html,encoding='utf8',newline='\n')
