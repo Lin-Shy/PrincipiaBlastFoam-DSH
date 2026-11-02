@@ -34,4 +34,15 @@ class ScoringTests(unittest.TestCase):
         self.assertEqual(result['raw_response']['model'],'Qwen3-8B')
         with patch('chapter2_qwen_routing.routed_client',return_value=lambda body,turn:{'status':'model_mismatch'}):
             self.assertEqual(experiment.supercomputer_client(Path('unused'))({'max_tokens':8},0)['status'],'model_identity_mismatch')
+    def test_supplementary_single_line_parser(self):
+        from objective_scoring_relaxed import score
+        q={'id':'fixture','type':'single'};g={'answer':'A'}
+        def result(answer):return score(q,g,{'status':'answered','answer':answer})
+        self.assertEqual(result('A')['score'],1)
+        self.assertEqual(result('B')['score'],0)
+        self.assertEqual(result('A')['parse_route'],'bare_single_line')
+        for answer in ('A 或 B','A\nB','解释提到 A','FINAL: A\nFINAL: B'):
+            self.assertEqual(result(answer)['score'],0)
+            self.assertEqual(result(answer)['parse_route'],'unparsed')
+        self.assertEqual(result('FINAL: A')['parse_route'],'explicit_marker')
 if __name__=='__main__':unittest.main()
