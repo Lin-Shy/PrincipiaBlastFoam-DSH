@@ -24,7 +24,9 @@ def main():
     for model,label in [('qwen3-8b','8B'),('qwen3-14b','14B')]:
         graph=cfg(a,model,'graph');bm=cfg(a,model,'bm25');comparison=pair(model)
         lines.append(f'{label}完整图和BM25的冻结规则准确率分别为{pct(graph["accuracy"])}\\%和{pct(bm["accuracy"])}\\%；完整图减BM25的差值为{pct(comparison["difference"])}个百分点，95\\%区间为$[{pct(comparison["ci95"][0])},{pct(comparison["ci95"][1])}]$个百分点，Holm校正后$p={comparison["holm_p"]:.4f}$。')
-    lines += ['运行中发现，部分模型在最终JSON的答案字段中直接给出单行答案，未附规定标记。为分析格式约束的影响，本文事后增加统一补充解析：仅额外接受符合题型要求的完整单行答案，不从解释中猜测答案。该补充分析对所有模型、方法和题目一致应用，保留原冻结结果，不作为预注册主分析。',
+    alt8=cfg(b,'qwen3-8b','graph');alt14=cfg(b,'qwen3-14b','graph')
+    lines += [f'在事后补充解析下，8B与14B完整图准确率分别为{pct(alt8["accuracy"])}\\%和{pct(alt14["accuracy"])}\\%；14B完整图在冻结规则下仅{cfg(a,"qwen3-14b","graph")["format_valid"]}份回答格式有效，因此冻结主结果受格式遵从显著限制。',
+        '运行中发现，部分模型在最终JSON的答案字段中直接给出单行答案，未附规定标记。为分析格式约束的影响，本文事后增加统一补充解析：仅额外接受符合题型要求的完整单行答案，不从解释中猜测答案。该补充分析对所有模型、方法和题目一致应用，保留原冻结结果，不作为预注册主分析。',
         r'\input{assets/objective_parsing_comparison.tex}',
         '两种规则的差异同时反映格式遵从与可解析性，不能直接解释为领域知识质量的变化。客观题多数来自文档中的明确事实，部分单选干扰项较易排除；题目、知识来源和事后能力标签的关联限制了结论的外推。客观准确率与开放问答EAS分别报告，不合成为统一总分；本补充实验也不替代原裁判的独立人工审计。']
     target=exp.WORK/'graduation-thesis-materials/graduation-manuscript/docs/chap02_objective_results.tex'

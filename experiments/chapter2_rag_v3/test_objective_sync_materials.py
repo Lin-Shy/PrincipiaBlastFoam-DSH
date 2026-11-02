@@ -17,7 +17,7 @@ class MaterialSyncTests(unittest.TestCase):
             for name,text in files.items():(docs/name).write_text(text,encoding='utf8')
             for p in (research/'README.md',research/'OVERVIEW.md',research/'chapters/chapter02.md'):p.write_text('# existing\nprior content\n',encoding='utf8')
             s={'status':'closed','planned':4472,'configurations':[{'model':'qwen3-8b','method':'graph','accuracy':.2},{'model':'qwen3-14b','method':'graph','accuracy':.3}]}
-            a=out/'results/snapshot.json';b=out/'supplementary_parser/results/snapshot.json';a.write_text(json.dumps(s),encoding='utf8');b.write_text('{"status":"closed"}',encoding='utf8')
+            a=out/'results/snapshot.json';b=out/'supplementary_parser/results/snapshot.json';a.write_text(json.dumps(s),encoding='utf8');b.write_text(json.dumps({'status':'closed','configurations':[{'model':'qwen3-14b','method':'graph','accuracy':.4}]}),encoding='utf8')
             (out/'results/statistics_audit.json').write_text(json.dumps({'status':'passed','outputs':[{'snapshot_sha256':e.sha(a)},{'snapshot_sha256':e.sha(b)}]}),encoding='utf8')
             with patch.object(e,'WORK',root),patch.object(e,'OUT',out):
                 sync.main()
