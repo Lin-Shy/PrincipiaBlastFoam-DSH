@@ -11,7 +11,7 @@ from pathlib import Path
 import objective_experiment as base
 import objective_scoring as rules
 
-ROOT = base.BASE / 'objective_json_v1'
+ROOT = base.BASE / 'objective_json_v2'
 PILOT = ROOT / 'pilot'
 ORIGINAL = base.OUT
 SOURCE_DATA = base.DATA
@@ -120,13 +120,15 @@ def report():
                               old_fixed_valid_rate=sum(r['old_valid'] for r in group)/n if n else 0,
                               new_correct=sum(r['new_score'] for r in group), old_correct=sum(r['old_score'] for r in group))
     complete = len(rows) == manifest['tasks']
+    # Infrastructure outages cannot establish whether an output contract works.
+    sufficient = all(s['answered'] >= 30 for s in summary.values())
     improvement = (sum(r['new_valid'] for r in rows)-sum(r['old_valid'] for r in rows))/len(rows) if rows else 0
-    passed = complete and improvement >= .15 and all(
+    passed = complete and sufficient and improvement >= .15 and all(
         s['valid_among_answered'] >= .8 and s['new_fixed_valid_rate'] >= s['old_fixed_valid_rate']-.05
         for s in summary.values())
     result = dict(manifest_sha256=base.sha(PILOT / 'manifest.json'), complete=complete,
                   rows=len(rows), planned=manifest['tasks'], pooled_valid_improvement=improvement,
-                  decision='pass' if passed else ('fail' if complete else 'pending'), models=summary,
+                  decision='pass' if passed else ('inconclusive_infrastructure' if complete and not sufficient else ('fail' if complete else 'pending')), models=summary,
                   caveat='Same questions as historical experiment; 8B service saw gold during later review; not a blinded knowledge test.')
     base.save(PILOT / 'report.json', result)
     base.save(PILOT / 'per_answer.json', rows)
