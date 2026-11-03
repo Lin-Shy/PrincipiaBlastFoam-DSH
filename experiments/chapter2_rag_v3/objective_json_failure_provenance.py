@@ -22,7 +22,8 @@ def main():
     names=['manifest_public.json','reuse_inventory.json','rerun_inventory.json','analysis/capability_labels_v2.json',
            'results/snapshot.json','results/per_answer.csv','results/summary.csv','results/index.html',
            'results/json_audit.json','scores/per_answer.json','results/raw_inventory.jsonl',
-           'analysis/thesis_audit.json','results/publish_final.json']
+           'analysis/thesis_audit.json','results/publish_final.json','results/publish_provenance.json',
+           'results/sync_provenance.json']
     exp.save(out/'results/provenance.json',dict(schema='objective-failure-recovery-provenance-v1',manifest_sha256=exp.sha(out/'manifest.json'),
         parent_manifest_sha256=exp.sha(run.PARENT/'manifest.json'),raw_file_count=count,outputs={x:exp.sha(out/x) for x in names},
         code_sha256=exp.sha(Path(__file__)),note='Original and new requests remain local; only relative names, lengths and hashes are public.'))
