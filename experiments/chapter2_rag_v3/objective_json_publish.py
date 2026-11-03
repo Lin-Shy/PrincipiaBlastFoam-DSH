@@ -54,10 +54,10 @@ def main():
         '整体准确率为主指标；按12个资料关联簇进行10000次配对自助抽样，报告95\\%区间。两模型16项主比较和8项消融比较分别进行Holm校正。簇数有限，统计结论依赖簇间独立与符号翻转假设，应谨慎解释。',
         r'\input{assets/objective_metrics.tex}',
         r'\begin{figure}[htbp]\centering', r'\includegraphics[width=0.95\textwidth]{assets/objective_main_accuracy.pdf}',
-        r'\caption{客观题主方法准确率和逐项95\%关联簇自助区间。}\label{fig:ch2-objective}', r'\end{figure}']
+        r'\caption{客观题主方法准确率和逐项95\%关联簇自助区间。}\label{fig:ch2-objective}', r'\end{figure}', r'\FloatBarrier']
     for model, label in [('qwen3-8b', '8B'), ('qwen3-14b', '14B')]:
         g, b, p = cfg(model, 'graph'), cfg(model, 'bm25'), pair(model)
-        text.append(f'{label}完整图与BM25准确率分别为{pct(g["accuracy"])}\\%和{pct(b["accuracy"])}\\%；完整图减BM25为{pct(p["difference"])}个百分点，95\\%区间为$[{pct(p["ci95"][0])},{pct(p["ci95"][1])}]$个百分点，Holm校正后$p={p["holm_p"]:.4f}$。')
+        text.append(r'\begin{samepage}'+'\n'+f'{label}完整图与BM25准确率分别为{pct(g["accuracy"])}\\%和{pct(b["accuracy"])}\\%；完整图减BM25为{pct(p["difference"])}个百分点，95\\%区间为$[{pct(p["ci95"][0])},{pct(p["ci95"][1])}]$个百分点，Holm校正后$p={p["holm_p"]:.4f}$。'+'\n'+r'\end{samepage}')
     text.append('客观准确率与开放问答EAS分别报告，不合成为统一总分；本实验不能替代开放问答裁判的独立人工审计。')
     (manuscript / 'docs/chap02_objective_results.tex').write_text('\n\n'.join(text) + '\n', encoding='utf8')
     exp.save(full.OUT / 'results/publish_provenance.json', dict(snapshot_sha256=exp.sha(path),

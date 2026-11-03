@@ -8,7 +8,7 @@ import objective_json_publish as publish
 
 class PublishTests(unittest.TestCase):
     def test_closed_snapshot_generates_table_and_insert(self):
-        fixture = publish.exp.BASE / 'objective200/results/snapshot.json'
+        fixture = publish.exp.BASE / 'objective_json_v4/results/snapshot.json'
         with tempfile.TemporaryDirectory(dir=publish.exp.WORK/'PrincipiaBlastFoam-DSH/.local') as temp:
             work = Path(temp)
             out = work/'run'; (out/'results').mkdir(parents=True)

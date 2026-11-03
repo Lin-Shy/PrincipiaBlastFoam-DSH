@@ -30,6 +30,11 @@ def main():
         '这些任务未盲目重发，依冻结规则计零。其余未发起任务在同模型的新端点续跑。'
         '因此8B的端到端得分包含服务故障影响，不可解释为正常部署下的纯模型能力。')
     add_once(ms/'docs/abstract.tex', '存在潜在材料暴露。', '8B服务故障造成大量任务计零，限制其结果解释。')
+    abstract = ms/'docs/abstract.tex'
+    text = abstract.read_text(encoding='utf8').replace(
+        'Some facts recur; expert review is pending and prior answer exposure limits 8B inference.',
+        'Some facts recur; expert review is pending. Prior answer exposure and zero-scored service failures limit 8B inference.')
+    abstract.write_text(text, encoding='utf8', newline='\n')
     add_once(ms/'docs/chap05.tex', '潜在暴露限制其结果解释。', '此外8B服务故障造成大量任务计零。')
     appendix = ms/'docs/appendix_ch02.tex'
     text = appendix.read_text(encoding='utf8').replace('objective_json_v2/full/', 'objective_json_v4/')

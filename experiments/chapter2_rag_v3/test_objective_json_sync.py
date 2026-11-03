@@ -9,16 +9,18 @@ import objective_json_sync as sync
 
 class SyncTests(unittest.TestCase):
     def test_preserves_unrelated_text_and_updates_objective_markers(self):
-        source = sync.exp.WORK / 'graduation-thesis-materials'
-        names = ['graduation-manuscript/docs/abstract.tex', 'graduation-manuscript/docs/chap05.tex',
-                 'graduation-manuscript/docs/appendix_ch02.tex', 'graduation-manuscript/docs/chap02_objective_review.tex',
-                 'graduation-research/chapters/chapter02.md']
+        names = {
+            'graduation-manuscript/docs/abstract.tex': '% OBJECTIVE-20261102-BEGIN\nold\n% OBJECTIVE-20261102-END\nOn 172 objective items, expert review is pending.\nDev40/Test160',
+            'graduation-manuscript/docs/chap05.tex': '客观题补充评价覆盖172题和4472个任务，旧内容；题目共享事实且缺少独立领域专家复核。',
+            'graduation-manuscript/docs/appendix_ch02.tex': '% OBJECTIVE-20261102-BEGIN\nold\n% OBJECTIVE-20261102-END',
+            'graduation-manuscript/docs/chap02_objective_review.tex': 'old',
+            'graduation-research/chapters/chapter02.md': '% OBJECTIVE-20261102-BEGIN\nold\n% OBJECTIVE-20261102-END'}
         with tempfile.TemporaryDirectory(dir=sync.exp.WORK / 'PrincipiaBlastFoam-DSH/.local') as temp:
             work = Path(temp)
-            for name in names:
+            for name, content in names.items():
                 dest = work / 'graduation-thesis-materials' / name
                 dest.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copyfile(source / name, dest)
+                dest.write_text(content, encoding='utf8')
             out = work / 'experiment'; (out/'results').mkdir(parents=True)
             snap = {'status': 'closed', 'configurations': [{'model': 'qwen3-8b', 'method': 'graph', 'accuracy': .4},
                     {'model': 'qwen3-14b', 'method': 'graph', 'accuracy': .5}]}
