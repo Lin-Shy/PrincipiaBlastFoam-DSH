@@ -13,8 +13,15 @@ def main():
     sys.modules['objective_scoring'] = adapter
     experiment.report()
     page = full.OUT / 'results/index.html'
-    page.write_text(page.read_text(encoding='utf-8').replace(
-        'href="../../results/index.html"', 'href="../../../results/index.html"'), encoding='utf-8')
+    html = page.read_text(encoding='utf-8').replace(
+        'href="../../results/index.html"', 'href="../../../results/index.html"')
+    incident = full.OUT / 'service_incident_20261103.json'
+    if incident.exists():
+        html = html.replace('<h1>第2章客观题实验</h1>',
+            '<h1>第2章客观题实验</h1><p><strong>8B服务发生过故障；'
+            '请结合故障记录和最新运行状态解读进度，不能假定未决请求已安全恢复。</strong> '
+            '<a href="../service_incident_20261103.json">故障记录</a></p>')
+    page.write_text(html, encoding='utf-8')
 
 
 if __name__ == '__main__':
