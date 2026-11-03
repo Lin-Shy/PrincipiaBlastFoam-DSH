@@ -21,7 +21,8 @@ def main():
                 f.write(json.dumps(dict(path=str(p.relative_to(exp.BASE)).replace('\\','/'),sha256=exp.sha(p),bytes=p.stat().st_size),ensure_ascii=False,sort_keys=True)+'\n');count+=1
     names=['manifest_public.json','reuse_inventory.json','rerun_inventory.json','analysis/capability_labels_v2.json',
            'results/snapshot.json','results/per_answer.csv','results/summary.csv','results/index.html',
-           'results/json_audit.json','scores/per_answer.json','results/raw_inventory.jsonl']
+           'results/json_audit.json','scores/per_answer.json','results/raw_inventory.jsonl',
+           'analysis/thesis_audit.json','results/publish_final.json']
     exp.save(out/'results/provenance.json',dict(schema='objective-failure-recovery-provenance-v1',manifest_sha256=exp.sha(out/'manifest.json'),
         parent_manifest_sha256=exp.sha(run.PARENT/'manifest.json'),raw_file_count=count,outputs={x:exp.sha(out/x) for x in names},
         code_sha256=exp.sha(Path(__file__)),note='Original and new requests remain local; only relative names, lengths and hashes are public.'))
