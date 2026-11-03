@@ -27,11 +27,11 @@ def main():
     p = ms / 'docs/abstract.tex'; t = p.read_text(encoding='utf8')
     t = replace_once(t, r'% OBJECTIVE-20261102-BEGIN.*?% OBJECTIVE-20261102-END',
         '% OBJECTIVE-20261102-BEGIN\n客观题172道、4472项任务；严格JSON答案字段评分下完整图准确率8B为'+a+r'\%、14B为'+b+r'\%。题目共享事实且未经独立专家审核；8B服务先前收到答案，存在潜在材料暴露。'+'\n% OBJECTIVE-20261102-END')
-    t = replace_once(t, r'On 172 objective items,.*?expert review is pending\.',
+    t = replace_once(t, r'(?m)^On 172 objective items,[^\r\n]*$',
         'On 172 objective items, graph accuracy under strict JSON scoring is '+a+r'\% (8B) and '+b+r'\% (14B). Some facts recur; expert review is pending and prior answer exposure limits 8B inference.')
     edits[p] = t
     p = ms / 'docs/chap05.tex'; t = p.read_text(encoding='utf8')
-    t = replace_once(t, r'客观题补充评价覆盖172题和4472个任务，.*?题目共享事实且缺少独立领域专家复核。',
+    t = replace_once(t, r'客观题补充评价覆盖172题和4472个任务，[^\r\n]*',
         '客观题补充评价覆盖172题和4472个任务，严格JSON答案字段规则下8B和14B完整图准确率分别为'+a+r'\%与'+b+r'\%。客观准确率与开放问答EAS分别解释；题目共享事实且缺少独立领域专家复核，8B服务先前收到答案的潜在暴露限制其结果解释。')
     edits[p] = t
     p = ms / 'docs/appendix_ch02.tex'; t = p.read_text(encoding='utf8')
