@@ -7,6 +7,7 @@ import objective_json_pilot as pilot
 OUT = base.BASE / 'objective_json_v2' / 'full'
 ORIGINAL = base.BASE / 'objective200'
 DATA = base.DATA
+pilot.PILOT = base.BASE / 'objective_json_v3' / 'pilot'
 
 
 def prepare():
