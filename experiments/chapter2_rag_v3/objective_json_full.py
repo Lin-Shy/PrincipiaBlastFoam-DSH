@@ -11,16 +11,19 @@ DATA = base.DATA
 
 def prepare():
     pilot_result = base.read(pilot.PILOT / 'report.json')
-    if pilot_result.get('decision') != 'pass' or pilot_result.get('manifest_sha256') != base.sha(pilot.PILOT / 'manifest.json'):
-        raise ValueError('Closed and passing bound pilot required')
+    if (pilot_result.get('decision') != 'pass'
+            or pilot_result.get('scoring_version') != 'json_answer_strict_v2'
+            or pilot_result.get('manifest_sha256') != base.sha(pilot.PILOT / 'manifest.json')):
+        raise ValueError('Closed and passing bound pilot using strict JSON scoring required')
     if (OUT / 'manifest.json').exists():
         return
     m = base.read(ORIGINAL / 'manifest.json')
     bindings = dict(m['bindings'])
-    for p in (Path(__file__), Path(pilot.__file__), pilot.PILOT / 'manifest.json', pilot.PILOT / 'report.json'):
+    import objective_json_strict
+    for p in (Path(__file__), Path(pilot.__file__), Path(objective_json_strict.__file__), pilot.PILOT / 'manifest.json', pilot.PILOT / 'report.json'):
         bindings[str(p.relative_to(base.WORK)).replace('\\', '/')] = base.sha(p)
     m.update(schema='objective_json_full_v1', created=base.now(), bindings=bindings,
-             format_instruction=pilot.FORMAT, scoring='json_answer_v1; fixed denominator',
+             format_instruction=pilot.FORMAT, scoring='json_answer_strict_v2; fixed denominator',
              pilot_manifest_sha256=base.sha(pilot.PILOT / 'manifest.json'),
              pilot_report_sha256=base.sha(pilot.PILOT / 'report.json'),
              limitation='Repeat on previously used items; 8B service received answer keys in prior source review; not unseen knowledge evaluation.')
@@ -50,6 +53,6 @@ if __name__ == '__main__':
         elif args.command == 'run':
             base.run(args.model, workers=args.workers)
         else:
-            import objective_scoring
-            objective_scoring.score = pilot.score
+            import objective_scoring, objective_json_strict
+            objective_scoring.score = objective_json_strict.score
             base.report()
