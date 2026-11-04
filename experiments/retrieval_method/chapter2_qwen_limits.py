@@ -2,7 +2,7 @@
 from threading import BoundedSemaphore, Lock
 
 
-LOCAL_MAX_CONCURRENCY = 8
+SUPERCOMPUTER_MAX_CONCURRENCY = 8
 PROXY_MAX_CONCURRENCY = 20
 _lock = Lock()
 _limits = {}

@@ -68,6 +68,6 @@ def create_backend(method,corpus,source_map,*,e5_index=None,graph=None,graph_opt
         return HybridBackend(create_backend('bm25',corpus,source_map),create_backend('e5',corpus,source_map,e5_index=e5_index))
     if method=='graph':
         if graph is None:raise ValueError('frozen independent-corpus graph required')
-        from chapter2_knowledge_graph_retriever import KnowledgeGraphRetriever
+        from source_graph import KnowledgeGraphRetriever
         return NativeBackend(KnowledgeGraphRetriever(graph,corpus,options=graph_options,corpus_manifest=source_map),graph=True)
     raise ValueError('no ranking adapter for method')

@@ -21,9 +21,9 @@ DeepSeek Harness profile
 
 ## 知识图谱与检索定位
 
-第2章实现位于`experiments/retrieval_method/`，使用唯一200题。8B、14B均已完成全部200题的六方法与两项消融，生成、匿名AI评分及统计均已闭合；每模型1600、合计3200个比较会话。32B等待用户提供API，尚无结果。 主指标为端到端有效回答得分，完整有效率保留；正式图已接受，不再择图。入口为[工程计划](experiments/retrieval_method/KNOWLEDGE_QA_PLAN.md)与[实验总入口](../graduation-experiment-results/chapter2_retrieval/current/README.md)。gold仅供评分，原证据保持身份，停用题库不恢复。
+第2章唯一源码入口为[experiments/chapter2](experiments/chapter2/README.md)，公共检索模块在experiments/retrieval_method。客观200＋开放100全量评价，不设开发集；三模型均比较单步和多步，分别报告准确率与EAS。旧题、回答和成绩当前文件已授权清理，Git历史未处理；新正式实验待协议冻结。配置与压力测试见[接入说明](../QWEN_MODEL_ROUTING.md)。
 
-自研最终方法只持久化图谱与构图清单，读取原始权威文件核验；BM25/E5为隔离对照，Graphify `.txt`仅为可逆摄取适配。图关系表示文档/配置支持，不能直接声称物理运行条件已满足。最新实验的引用非劣效未获支持，同8B评分与AI复核仍有局限。实验适配器中的方法与生产MCP的接入状态须分别验证，不能因为论文成绩就假定线上集成完成。
+自研方法只扫描持久来源图并回读原文，BM25/E5/BGE为隔离对照。Gold只供评分；图关系不直接证明物理条件已满足。双裁判评分与题目人工审核分别报告，原独立审计未达到门槛，客观题独立专家审核未完成。论文结果与生产MCP接入状态分别核验。
 
 ## 论文与第4章方向
 

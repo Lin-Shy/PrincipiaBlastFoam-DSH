@@ -10,11 +10,12 @@ import time
 from urllib.error import HTTPError
 from urllib.request import Request, ProxyHandler, HTTPSHandler, build_opener
 
-from chapter2_qwen_local import LocalModel, LocalQwenClient
+from chapter2_qwen_supercomputer import ModelDeployment, SupercomputerQwenClient
 from chapter2_qwen_proxy_config import load_settings
 from chapter2_qwen_limits import endpoint_limiter
 
 WORKSPACE = Path(__file__).resolve().parents[3]
+PROJECT_SETTINGS = Path(__file__).resolve().parents[2] / 'config' / 'llm' / '.env'
 
 
 class RecordedProxyQwenClient:
@@ -23,9 +24,9 @@ class RecordedProxyQwenClient:
 
     def __init__(self, model, folder, settings_path=None, timeout=180):
         if model != 'qwen3-14b':
-            raise ValueError('Proxy deployment supports qwen3-14b only in this non-thinking adapter; 8B requires local')
-        base, key, maximum = load_settings(settings_path or WORKSPACE / '.env.qwen_proxy')
-        self.deployment = LocalModel(base + '/chat/completions', model, key, maximum)
+            raise ValueError('Proxy deployment supports qwen3-14b only in this non-thinking adapter; 8B requires the supercomputer service')
+        base, key, maximum = load_settings(settings_path or PROJECT_SETTINGS)
+        self.deployment = ModelDeployment(base + '/chat/completions', model, key, maximum)
         self.folder = Path(folder)
         self.timeout = timeout
         context = ssl.create_default_context()
@@ -94,7 +95,7 @@ def routed_client(model, folder, *, workload=None, settings_path=None, timeout=N
     if model == 'qwen3-14b':
         return RecordedProxyQwenClient(model, folder, settings_path, timeout or 180)
     if model in {'qwen3-8b', 'Qwen3-8B'}:
-        return LocalQwenClient(model, folder, settings_path or WORKSPACE / '.env.qwen_local', timeout or 120)
+        return SupercomputerQwenClient(model, folder, settings_path or WORKSPACE / '.env.supercomputer', timeout or 120)
     raise ValueError('Supported models: qwen3-8b, qwen3-14b')
 
 

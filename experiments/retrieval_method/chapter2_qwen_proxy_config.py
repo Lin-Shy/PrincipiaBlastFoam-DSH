@@ -15,7 +15,10 @@ def load_settings(path):
         if not line or line.startswith('#'):
             continue
         name, value = (part.strip() for part in line.split('=', 1))
-        if name not in {'QWEN_PROXY_API_KEY', 'QWEN_PROXY_BASE_URL', 'QWEN_PROXY_MAX_CONCURRENCY'} or name in values:
+        allowed = {'QWEN_PROXY_API_KEY', 'QWEN_PROXY_BASE_URL', 'QWEN_PROXY_MAX_CONCURRENCY'}
+        if name not in allowed:
+            continue
+        if name in values:
             raise ValueError('Unknown or duplicate proxy setting')
         values[name] = value.strip('\"\'')
     base = values.get('QWEN_PROXY_BASE_URL', '').rstrip('/')
@@ -38,13 +41,6 @@ def read_settings(path):
     return settings(path)[1]
 
 
-def configure_qa(qa, path, expected_base):
-    from chapter2_aliyun_config import configure_qa as frozen_configure
-    frozen_configure(qa)  # 原冻结模型、请求生成函数与参数逐字复用。
-    base, _ = settings(path)
-    if base != expected_base:
-        raise ValueError('Proxy endpoint differs from sealed amendment')
-    qa.ENDPOINT = base + '/chat/completions'
 
 
 def install_provenance(net, qa, root, amendment, config_sha):

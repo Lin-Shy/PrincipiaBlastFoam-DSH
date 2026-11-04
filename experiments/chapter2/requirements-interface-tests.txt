@@ -1,0 +1,4 @@
+# Offline EBNF acceptance tests only; QA generation does not import XGrammar.
+xgrammar==0.1.25
+pydantic==2.14.2
+ninja==1.13.2

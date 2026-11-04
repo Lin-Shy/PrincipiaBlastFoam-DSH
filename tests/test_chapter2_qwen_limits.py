@@ -9,16 +9,16 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'experiments/retrieval_method'))
 import chapter2_qwen_limits as limits
-from chapter2_qwen_local import load_model
+from chapter2_qwen_supercomputer import load_model
 from chapter2_qwen_proxy_config import load_settings, settings
 from chapter2_qwen_routing import routed_client
 
 
 def config(tmp_path, provider, maximum):
     path = tmp_path / (provider + '.env')
-    text = ('QWEN_LOCAL_API_KEY=test-secret\n'
-            'QWEN_LOCAL_8B_BASE_URL=http://127.0.0.1:8001/v1\nQWEN_LOCAL_8B_MODEL=Qwen3-8B\n'
-            if provider == 'local' else
+    text = ('QWEN_SUPERCOMPUTER_API_KEY=test-secret\n'
+            'QWEN_SUPERCOMPUTER_BASE_URL=https://inference.example/v1\nQWEN_SUPERCOMPUTER_MODEL=Qwen3-8B\n'
+            if provider == 'supercomputer' else
             'QWEN_PROXY_API_KEY=test-secret\nQWEN_PROXY_BASE_URL=https://example.com/v1\n')
     path.write_text(text + f'QWEN_{provider.upper()}_MAX_CONCURRENCY={maximum}\n', encoding='utf-8')
     return path
@@ -29,19 +29,19 @@ def test_defaults_and_legacy_two_value_proxy_interface(tmp_path):
     path.write_text('QWEN_PROXY_API_KEY=test-secret\nQWEN_PROXY_BASE_URL=https://example.com/v1\n')
     assert load_settings(path)[2] == 20
     assert settings(path) == ('https://example.com/v1', 'test-secret')
-    assert load_model('qwen3-8b', config(tmp_path, 'local', 8)).max_concurrency == 8
+    assert load_model('qwen3-8b', config(tmp_path, 'supercomputer', 8)).max_concurrency == 8
 
 
-@pytest.mark.parametrize('provider,invalid', [('local', '9'), ('proxy', '21'),
-    ('local', '0'), ('proxy', '-1'), ('local', '1.5'), ('proxy', 'true'), ('proxy', '')])
+@pytest.mark.parametrize('provider,invalid', [('supercomputer', '9'), ('proxy', '21'),
+    ('supercomputer', '0'), ('proxy', '-1'), ('supercomputer', '1.5'), ('proxy', 'true'), ('proxy', '')])
 def test_invalid_concurrency_fails_before_network(tmp_path, provider, invalid):
     path = config(tmp_path, provider, invalid)
     with pytest.raises(ValueError, match='CONCURRENCY'):
-        load_model('qwen3-8b', path) if provider == 'local' else load_settings(path)
+        load_model('qwen3-8b', path) if provider == 'supercomputer' else load_settings(path)
 
 
 @pytest.mark.parametrize('provider,model,workload',
-    [('local', 'qwen3-8b', 'small'), ('proxy', 'qwen3-14b', 'bulk')])
+    [('supercomputer', 'qwen3-8b', 'small'), ('proxy', 'qwen3-14b', 'bulk')])
 def test_multiple_clients_share_inflight_limit(tmp_path, monkeypatch, provider, model, workload):
     monkeypatch.setattr(limits, '_limits', {})
     path = config(tmp_path, provider, 2)

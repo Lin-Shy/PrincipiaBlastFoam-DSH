@@ -1,27 +1,60 @@
 {
-  "schema": "principia_ch2_generation_v1",
-  "initial_model": "qwen3_14b",
-  "later_models": ["qwen3_8b", "qwen3_14b"],
-  "initial_methods": ["graph", "bm25", "bge_m3"],
-  "question_count": 40,
-  "max_sessions": 120,
-  "combined_context_tokens": 32768,
-  "concurrency": 1,
-  "model_budget": {
-    "input_tokens_per_request": 30720,
-    "input_tokens_total": 196608,
-    "output_tokens_per_request": 2048,
-    "output_tokens_total": 16384,
-    "final_output_reserve": 2048
+  "schema": "current_generation_discussion",
+  "status": "formal_full_authorized_pending_preflight",
+  "question_count": 300,
+  "parts": {
+    "objective": 200,
+    "open": 100
   },
-  "knowledge_budget": {"tool_calls": 8, "tool_characters": 6000, "total_characters": 24000},
-  "max_physical_requests_per_session": 9,
-  "max_physical_requests_total": 1080,
-  "request_timeout_seconds": 180,
-  "transport_attempts": 1,
-  "content_retries": 0,
-  "stop_on_timeout_or_infrastructure_error": true,
+  "models": [
+    "qwen3-8b",
+    "qwen3-14b",
+    "llama3.1-8b"
+  ],
+  "modes": [
+    "single_pass",
+    "agentic"
+  ],
+  "combined_context_tokens": 32768,
   "reuse_old_answers": false,
-  "split_version": "scheme_b_v1",
-  "split_freeze_sha256": "002b1608d37fd937cc6851b18504f476034b7d14ecfd3ac03f144287c468064d"
+  "parameters_frozen": true,
+  "evidence_character_budgets": {
+    "S": 6000,
+    "M": 12000,
+    "L": 24000
+  },
+  "primary_budget": "M",
+  "output_tokens_per_request": 2048,
+  "cumulative_model_token_caps": null,
+  "agentic_tool_actions": 12,
+  "agentic_characters_per_action": 6000,
+  "formal_generation_authorized": true,
+  "matrix_source_project_relative": "experiments/chapter2/matrix.py",
+  "query_characters_max": 512,
+  "structured_output_transport": "explicit_compact_ebnf",
+  "calibration_plan": "adopt_unchanged_60_after_generation_equivalence_check",
+  "calibration_rerun_started": true,
+  "interface_acceptance_passed": false,
+  "protocol_sha256": "d658134e6df5053454ed78893523eb25320d8354dec558f689d4dacc4524ccf2",
+  "valid_calibration_answers": 59,
+  "calibration_generation_failures": 1,
+  "calibration_transport_unknown": 0,
+  "calibration_interrupted_tasks": 0,
+  "human_labels_completed": 60,
+  "calibration_rerun_dispatch_finished": true,
+  "calibration_protocol_sha256": "d658134e6df5053454ed78893523eb25320d8354dec558f689d4dacc4524ccf2",
+  "accepted_model_output_failures": true,
+  "transport_execution_overlay_sha256": "a1d2e3a24d9c5c2d7f36263c2805eb2459b22b1ef75f41d0890e84765d47a871",
+  "automatic_transport_retries": 2,
+  "transport_retry_policy": {
+    "max_attempts": 3,
+    "timeout_seconds": 600,
+    "backoff_seconds": [
+      5,
+      15
+    ]
+  },
+  "reuse_current_calibration_answers": true,
+  "acceptance_cancelled": true,
+  "active_entry": "experiments/chapter2/formal_experiment.py"
 }

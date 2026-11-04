@@ -2,6 +2,9 @@
 .env
 .env.*
 !.env.example
+/config/llm/*.private.yaml
+/config/llm/*.private.json
+/config/llm/*.key
 
 # Python
 .venv/

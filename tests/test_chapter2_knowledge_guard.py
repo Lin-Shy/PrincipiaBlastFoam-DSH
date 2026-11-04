@@ -4,7 +4,7 @@ import sys
 
 def test_guard_rejects_score_authoring_split_and_other_dataset_inputs(tmp_path):
     modules=Path(__file__).resolve().parents[1]/'experiments/retrieval_method'
-    paths=[tmp_path/'scoring/annotations.json',tmp_path/'authoring/catalog.json',tmp_path/'split.json',
+    paths=[tmp_path/'scoring/annotations.json',tmp_path/'authoring/catalog.json',tmp_path/'review/records.json',tmp_path/'split.json',
        tmp_path/'graduation-datasets/qa/model/other.json']
     allowed=tmp_path/'graduation-datasets/qa/model/questions.json'
     for path in paths+[allowed]:path.parent.mkdir(parents=True,exist_ok=True);path.write_text('[]')
