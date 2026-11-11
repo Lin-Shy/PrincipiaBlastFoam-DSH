@@ -1,6 +1,6 @@
 {
   "schema": "current_generation_discussion",
-  "status": "formal_full_authorized_pending_preflight",
+  "status": "formal_full_running_redeployed",
   "question_count": 300,
   "parts": {
     "objective": 200,
@@ -34,8 +34,8 @@
   "structured_output_transport": "explicit_compact_ebnf",
   "calibration_plan": "adopt_unchanged_60_after_generation_equivalence_check",
   "calibration_rerun_started": true,
-  "interface_acceptance_passed": false,
-  "protocol_sha256": "d658134e6df5053454ed78893523eb25320d8354dec558f689d4dacc4524ccf2",
+  "interface_acceptance_passed": true,
+  "protocol_sha256": "95a4872aacdd6be2568deddac67ec36dcf921ee063414b35429a8261a32b030d",
   "valid_calibration_answers": 59,
   "calibration_generation_failures": 1,
   "calibration_transport_unknown": 0,
@@ -56,5 +56,19 @@
   },
   "reuse_current_calibration_answers": true,
   "acceptance_cancelled": true,
-  "active_entry": "experiments/chapter2/formal_experiment.py"
+  "active_entry": "experiments/chapter2/formal_experiment.py",
+  "formal_generation_started": true,
+  "technical_preflight_passed": true,
+  "next_dispatch_requires_new_preparation": false,
+  "preflight_receipt": "graduation-experiment-results/chapter2_retrieval/release/frozen/formal_experiment/95a4872aacdd6be2568deddac67ec36dcf921ee063414b35429a8261a32b030d/preflight.json",
+  "execution_update_sha256": "ce2155fd55fa1a8d29a884d7e5fb8a29412136a76e66e5da00f5292f4fbb3e08",
+  "execution_update_entry_workspace_relative": "graduation-experiment-results/chapter2_retrieval/execution_updates/speedup_20261105/runner.py",
+  "concurrency_control_workspace_relative": "graduation-experiment-results/chapter2_retrieval/release/planning/formal_execution_control.json",
+  "latest_change": "14B resumed;8B concurrency16 to32 with backoff;upstream error-only envelopes mapped to transient transport failures",
+  "formal_scoring_authorized": true,
+  "paused_utc": "2026-11-05T01:14:11.4496549Z",
+  "last_pause_reason": "Owner redeploying both8B inference services; wait for explicit resume",
+  "paused": false,
+  "resumed_utc": "2026-11-05T02:00:54.189415+00:00",
+  "active_entry_workspace_relative": "graduation-experiment-results/chapter2_retrieval/execution_updates/redeploy_20261105/redeploy_runner.py"
 }

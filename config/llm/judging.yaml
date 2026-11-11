@@ -1,6 +1,6 @@
 {
   "schema": "current_judging_discussion",
-  "status": "current_dual_judge_adopted_for_formal_full",
+  "status": "formal_full_running_redeployed",
   "judges": {
     "gpt_sol": "gpt_sol",
     "deepseek_flash": "deepseek_flash"
@@ -50,5 +50,11 @@
     "EAS_arith_MAE_max": 5,
     "absolute_bias_max": 3,
     "K_F_A_within_025_min": 0.9
-  }
+  },
+  "paused_utc": "2026-11-05T01:14:11.4496549Z",
+  "paused": false,
+  "resumed_utc": "2026-11-05T02:00:54.189415+00:00",
+  "execution_update_sha256": "ce2155fd55fa1a8d29a884d7e5fb8a29412136a76e66e5da00f5292f4fbb3e08",
+  "active_entry_workspace_relative": "graduation-experiment-results/chapter2_retrieval/execution_updates/redeploy_20261105/redeploy_runner.py",
+  "concurrency_control_workspace_relative": "graduation-experiment-results/chapter2_retrieval/release/planning/formal_execution_control.json"
 }

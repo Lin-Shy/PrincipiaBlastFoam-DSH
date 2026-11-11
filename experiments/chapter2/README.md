@@ -1,5 +1,19 @@
 # 第2章全量运行实现
 
+2026-11-05 SSH恢复：负责人授权单卡A100运行两个8B。经三模型接口及双8B的16/32并发合成检查后，已从暂停断点恢复；原35,171份终态文件核验保留。8B经本机18000/18001的SSH回环隧道调用，guidance、BF16、上下文32768；正式查询512、输出2048、题集200＋100及评分规则不变。当前生成入口为`execution_updates/fast_resume_20261105/resume_runner.py`，评分沿用双裁判8／8。SSH中断需要恢复通道；已有尝试次数不清零。以下为此前阶段记录。
+
+2026-11-05当前状态：负责人为调试模型部署与镜像配置，已于北京时间2026-11-05 11:26:57暂停全部第2章实验。三模型生成、双裁判评分、监督和自动恢复进程均已停止，剩余进程0；派发授权关闭，禁止自动恢复。已有回答、评分及请求台账原样保留，题集200＋100、Gold和评分规则不变。须待负责人恢复指令及新服务配置核验后，按原尝试预算从断点继续。详见[暂停记录](D:/1/graduation-projects/graduation-experiment-results/chapter2_retrieval/FORMAL_PAUSE_20261105.md)。以下为此前阶段记录。
+
+2026-11-05解码排查与评分提速：双裁判已从GPT／DeepSeek的2／1提高至8／8，提示、模型参数和评分规则不变。监督及评分活动入口改为`graduation-experiment-results/chapter2_retrieval/execution_updates/throughput_20261105/operations.py`，安全启动用同目录`start.ps1`；生成仍使用ce2155fd55fa补充，当前Qwen／14B／Llama并发16／20／32，8B自动降档与回升继续有效。Qwen延迟已定位到服务端解码，硬关闭思考的合成对照没有消除差距，正式推理请求未改变。本次交接前29,315份终态文件逐一核验未改。详见[最新排查记录](D:/1/graduation-projects/graduation-experiment-results/chapter2_retrieval/REDEPLOYMENT_RESUME_20261105.md)。以下为此前阶段记录。
+
+2026-11-05重新部署后已恢复：两个8B的新URL已通过单步/多轮接口及16/32并发长输入检查，以Qwen3-8B／Qwen3-14B／Llama-3.1-8B并发32／20／32启动，实际并发及临时降档见运行状态。新执行补充ce2155fd55fa沿用原方法协议95a4872aacdd，保留全部旧回答、评分及台账。活动入口为`graduation-experiment-results/chapter2_retrieval/execution_updates/redeploy_20261105/redeploy_runner.py`；安全启动用同目录start.ps1。详见[恢复报告](D:/1/graduation-projects/graduation-experiment-results/chapter2_retrieval/REDEPLOYMENT_RESUME_20261105.md)。下文为此前阶段记录。
+
+2026-11-05暂停：负责人因重新部署两个8B推理服务，要求暂时停止全部实验。三模型生成、双裁判评分和监督进程均已停止，生成与评分授权已关闭，禁止自动恢复。已有回答、评分及请求台账保留；以`release/planning/formal_pause.json`和[暂停记录](D:/1/graduation-projects/graduation-experiment-results/chapter2_retrieval/FORMAL_PAUSE_20261105.md)为当前状态。服务部署完成后，先核验模型、接口及并发并取得恢复指令，再记录执行补充并断点继续。以下为此前运行记录。
+
+2026-11-05执行更新：14B已恢复；两个8B从8提高到16并发，并按成功请求观察自动尝试32，遇连续传输错误会降档。正式方法协议95a4872aacdd、题目、Gold及评分不变；执行补充c0d6407fa327记录传输错误映射和调度变更。当前监督与恢复入口为`graduation-experiment-results/chapter2_retrieval/execution_updates/speedup_20261105/runner.py supervise`，启动环境需包含`PrincipiaBlastFoam-DSH/experiments/retrieval_method`的PYTHONPATH。具体检查和运行状态见[执行更新报告](D:/1/graduation-projects/graduation-experiment-results/chapter2_retrieval/EXECUTION_UPDATE_20261105.md)。以下为原启动记录。
+
+当前已完成冻结与核验，三模型全量生成和评分已在后台启动。启动及检查记录见[FORMAL_RUN_REPORT.md](D:/1/graduation-projects/graduation-experiment-results/chapter2_retrieval/FORMAL_RUN_REPORT.md)。
+
 2026-11-04：负责人取消额外60份验收，采用现有60份人工参考及双裁判校准结果，授权技术核验通过后直接启动三模型全量。当前题目、Gold、人工评分及裁判提示和规则保持不变。
 
 正式题集为客观200＋开放100，不设开发集。171配置、51,300项逻辑任务；客观34,200、开放17,100。三模型独立并行，两个8B各8并发、14B为20，同模型全部题型共享限额。单步/多步均覆盖两类题，证据预算6k/12k/24k，M为主比较，全部报告。回答查询512字符、输出2048 tokens；双裁判输出8192（含思考）、输入24576。
