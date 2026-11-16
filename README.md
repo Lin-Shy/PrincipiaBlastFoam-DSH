@@ -29,7 +29,7 @@ DeepSeek Harness profile
 
 本项目是当前唯一在开发的PrincipiaBlastFoam多智能体应用，后续第3、4章正文和实验基于DSH。论文直接在同级 `graduation-thesis-materials/graduation-manuscript/` 以LaTeX维护，所有最终图件在其 `assets/`。
 
-第4章独立研究单agent递归自改进（RSI），仅使用DSH框架，不继承第3章多角色系统。基线为冻结初始agent，对照为一次性自改进与多轮递归自改进；底层模型、工具权限和公共评分固定。设计、消融和实现顺序见 [DSH自进化计划](experiments/self_evolution/PLAN.md)。目前只有设计，没有DSH自进化正式收益结果；历史框架结果保留原身份。
+第4章独立研究单agent递归自改进（RSI），仅使用DSH框架，不继承第3章多角色系统。2026-11-16设计允许任务执行、自改进逻辑、外部验收与持久经验演化；底层模型、基础权限、预算与研究侧审计口径固定。对照区分一次部署、固定改进者、验收固定的递归及完整递归，并以同一起点评价自改进能力。设计、消融和实现顺序见 [DSH自进化计划](experiments/self_evolution/PLAN.md)。目前只有设计，没有DSH自进化正式收益结果；历史框架结果保留原身份。
 
 ## 当前实现
 
