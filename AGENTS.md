@@ -20,7 +20,7 @@
 
 验证应覆盖当前bundle、Python相关回归、正常profile配置及无模型MCP/本地夹具。仅报告实际执行的检查；历史测试或冻结模块已退役时保留身份，不为通过旧测试恢复工作器。研究效果须以真实封存证据解释，部署与平台修复不算专业能力收益。第4章Pi独立维护。
 
-2026-11-23分工补充：第2章只在Windows开发维护，Linux第2章工作区及editable依赖已移除，第3章独立检查58通过、9跳过。GitHub读取及fetch已验证；仓库专用部署公钥已获GitHub写权限，git push --dry-run验证通过，未实际推送或创建远程分支。本次迁移及拆分改动尚未提交，禁止直接pull/rebase覆盖工作区。用户已明确确认清理四个历史恢复包及inactive raw目录，执行后核验活动配置与凭据不变；Windows恢复包保留，不改写原Git历史。
+2026-11-23分工补充：第2章只在Windows开发维护，Linux第2章工作区及editable依赖已移除，第3章独立检查58通过、9跳过。迁移拆分、调度与单算例验收、Web和文档已分四组提交，并实际推送codex/chapter3-linux-web；远端核验通过，main仍为ad364ba357f9857268a2283f4f26bbcfa507345e。后续修改先检查工作区，禁止覆盖其他未提交改动。用户已明确确认清理四个历史恢复包及inactive raw目录，执行后核验活动配置与凭据不变；Windows恢复包保留，不改写原Git历史。
 
 2026-11-23后续验收最终状态：本规划会话完成真实deepseek-v4.1-flash与一个100单元方腔功能链（含维护恢复）。唯一作业9283604，yhbatch分配cnode4754，COMPLETED/0:0，28秒到0.02秒；八项交付核验通过。总40请求含1未知用量，记录传输失败、输出截断、报告纠正及最终预算拒绝。既有控制实例未覆盖，无整章或第4章启动。详情 deployment/acceptance/README.md 与 workspace/runs/single-case-acceptance-delivery-20261123/verification.json。此前待执行是迁移阶段历史；禁止自动复用本次launch intent或额度。
 
