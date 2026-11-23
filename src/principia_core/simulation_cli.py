@@ -19,6 +19,30 @@ COMMANDS={
 TERMINAL={"completed","failed","cancelled","timed_out"}
 INPUT_CAP=32*1024*1024
 OUTPUT_CAP=128*1024*1024
+LOCAL_MAX_CPUS = 4
+LOCAL_MAX_MEMORY_MIB = 4096
+LOCAL_MAX_SECONDS = 180
+LOCAL_MEMORY_RESERVE_BYTES = 512 * 1024 * 1024
+
+def local_process_limits(plan):
+    """Translate requested resources into enforced affinity and per-process limits."""
+    cpus = plan["resources"].get("cpus", 1)
+    memory_mib = plan["resources"].get("memory_mib", 1024)
+    seconds = plan["timeout_seconds"]
+    if not 1 <= cpus <= LOCAL_MAX_CPUS or not 1 <= memory_mib <= LOCAL_MAX_MEMORY_MIB:
+        reject("resource_insufficient", "Local CPU or memory request exceeds deployment limits.")
+    if not 1 <= seconds <= LOCAL_MAX_SECONDS:
+        reject("resource_insufficient", "Local wall-time request exceeds deployment limit.")
+    available_cpus = sorted(os.sched_getaffinity(0))
+    if len(available_cpus) < cpus:
+        reject("resource_insufficient", "Requested CPU affinity is no longer available.")
+    match = re.search(r"^MemAvailable:\s+(\d+)", Path("/proc/meminfo").read_text(), re.M)
+    available_memory = int(match[1]) * 1024 if match else 0
+    if available_memory < memory_mib * 1048576 + LOCAL_MEMORY_RESERVE_BYTES:
+        reject("resource_insufficient", "Insufficient memory plus 512 MiB system reserve at worker start.")
+    return dict(cpu_affinity=available_cpus[:cpus], address_space_bytes=memory_mib * 1048576,
+                cpu_seconds=seconds * cpus, wall_seconds=seconds, threads=cpus)
+
 class Problem(Exception):
     def __init__(self,category,reason,suggestion="Inspect status() capabilities and task evidence."):
         self.data=dict(ok=False,category=category,reason=reason,suggestion=suggestion)
@@ -76,7 +100,10 @@ class SimulationCLI:
         return dict(ok=True,description=DESCRIPTION,commands=COMMANDS,
           local=dict(software="OpenCFD OpenFOAM 2412 h946d6a9_1",
             available_commands=[n for n in COMMANDS if (self.prefix/"bin"/n).is_file()],
-            max_cells=100000,max_seconds=30,memory_mib=1024,cpus=1,output_bytes=OUTPUT_CAP),
+            max_cells=100000,max_seconds=LOCAL_MAX_SECONDS,memory_mib=LOCAL_MAX_MEMORY_MIB,
+            cpus=LOCAL_MAX_CPUS,output_bytes=OUTPUT_CAP,
+            memory_reserve_bytes=LOCAL_MEMORY_RESERVE_BYTES,
+            defaults=dict(cpus=1,memory_mib=1024,timeout_seconds=30)),
           hpc=dict(configured=bool(self.config),software="Foundation 9 / separately bound blastFoam",
             grant=self.config.get("grant",{}) if self.config else None,
             available_commands=self.config.get("available_commands",[]) if self.config else [],
@@ -124,7 +151,9 @@ class SimulationCLI:
         reasons=[]
         if cells is None:reasons.append("unknown or above-cap mesh size")
         if command in {"Allrun","mpirun"}:reasons.append("script/MPI requires scheduler")
-        if timeout_seconds>30 or cpus>1 or memory>1024 or resources.get("expected_seconds",timeout_seconds)>30:
+        if (timeout_seconds > LOCAL_MAX_SECONDS or cpus > LOCAL_MAX_CPUS
+                or memory > LOCAL_MAX_MEMORY_MIB
+                or resources.get("expected_seconds", timeout_seconds) > LOCAL_MAX_SECONDS):
             reasons.append("requested resources exceed local bounds")
         if COMMANDS[effective]=="solver" and not resources.get("short_test"):reasons.append("local solver requires explicit bounded short_test")
         available=(self.prefix/"bin"/effective).is_file()
@@ -132,7 +161,10 @@ class SimulationCLI:
         free=shutil.disk_usage(case).free
         match=re.search(r"^MemAvailable:\s+(\d+)",Path("/proc/meminfo").read_text(),re.M)
         mem=int(match[1])*1024 if match else 0
-        if free<2*OUTPUT_CAP or mem<2*memory*1048576:reasons.append("insufficient current disk/memory headroom")
+        if free < 2 * OUTPUT_CAP or mem < memory * 1048576 + LOCAL_MEMORY_RESERVE_BYTES:
+            reasons.append("insufficient current disk/memory headroom; memory requires 512 MiB reserve")
+        if cpus > len(os.sched_getaffinity(0)):
+            reasons.append("requested CPUs exceed current process affinity")
         if location=="local" and reasons:reject("environment_missing" if not available else "resource_insufficient","; ".join(reasons),"Use auto/hpc with a scoped runtime binding.")
         chosen="hpc" if reasons or location=="hpc" else "local"
         if chosen=="hpc":
@@ -337,16 +369,18 @@ def worker(root,task_id):
         if inventory(case)[0]!=plan["input_sha256"]:reject("prohibited","Input changed while staging.")
         prefix=service.prefix;argv=[str(prefix/"bin"/plan["command"]),*plan["args"]]
         shell='export CONDA_PREFIX='+shlex.quote(str(prefix))+'\nsource "$CONDA_PREFIX/etc/conda/activate.d/openfoam_activate.sh"\nexport LD_LIBRARY_PATH="$CONDA_PREFIX/lib'+ '$' + '{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"\nexec "$@"'
-        cpu=str(min(os.sched_getaffinity(0)))
-        argv=["/usr/bin/prlimit","--as="+str(plan["resources"].get("memory_mib",1024)*1048576),
-              "--cpu="+str(plan["timeout_seconds"]),"--fsize=67108864","--",
+        limits = local_process_limits(plan)
+        cpu = ",".join(str(number) for number in limits["cpu_affinity"])
+        argv=["/usr/bin/prlimit","--as="+str(limits["address_space_bytes"]),
+              "--cpu="+str(limits["cpu_seconds"]),"--fsize=67108864","--",
               "/usr/bin/taskset","-c",cpu,"/bin/bash","--noprofile","--norc","-c",shell,"simulation-cli",*argv]
         env={k:v for k,v in os.environ.items() if not any(x in k.upper() for x in ("KEY","TOKEN","SECRET","PASSWORD"))}
-        env.update(OMP_NUM_THREADS="1",OPENBLAS_NUM_THREADS="1")
+        threads = str(limits["threads"])
+        env.update(OMP_NUM_THREADS=threads,OPENBLAS_NUM_THREADS=threads,MKL_NUM_THREADS=threads)
         if (folder/"cancel-requested").exists():t["state"]="cancelled";write(p,t);return
         with (folder/"execution.log").open("wb") as output:
             child=subprocess.Popen(argv,cwd=case,env=env,stdout=output,stderr=subprocess.STDOUT,start_new_session=True)
-            t.update(state="running",command_pid=child.pid,command_start=pid_identity(child.pid),started_unix=time.time());write(p,t)
+            t.update(state="running",command_pid=child.pid,command_start=pid_identity(child.pid),started_unix=time.time(),enforced_resources=limits);write(p,t)
             reason=None
             while child.poll() is None:
                 if (folder/"cancel-requested").exists():reason="cancelled"

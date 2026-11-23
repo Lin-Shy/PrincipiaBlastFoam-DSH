@@ -24,7 +24,7 @@
 
 操作类别与执行位置分别记录。保守规则检查参数、网格规模、输入体积、工具、当前内存和磁盘余量；估计不明明确记录并转向 HPC。没有学习模型，不声称准确预测耗时。
 
-本地使用独立前缀 `workspace/runtime/openfoam` 中的 conda-forge OpenCFD OpenFOAM **2412 / h946d6a9_1**。上限为 100,000 可识别单元、1 CPU、1 GiB 地址空间、30 秒、32 MiB 输入、128 MiB 总任务输出（单文件 64 MiB），运行时监测时间和输出。复杂/含动态指令字典可能无法保守估规模；二进制或超过单元上限的网格不自动判为本地可运行。求解器仅在显式 short_test=true 且其他条件满足时允许本地短测，时间上限会终止命令，不改 endTime。
+本地使用独立前缀 `workspace/runtime/openfoam` 中的 conda-forge OpenCFD OpenFOAM **2412 / h946d6a9_1**。上限为 100,000 可识别单元、最多 4 CPU、4 GiB 地址空间、180 秒、32 MiB 输入、128 MiB 总任务输出（单文件 64 MiB），运行时监测时间和输出。默认请求仍为1 CPU、1 GiB、30秒，更高资源须显式请求。CPU按请求设置亲和性与线程上限，CPU时间预算为墙钟上限乘CPU数量；内存须另留512 MiB系统余量，并在worker启动时再次检查。复杂/含动态指令字典可能无法保守估规模；二进制或超过单元上限的网格不自动判为本地可运行。求解器仅在显式 short_test=true 且其他条件满足时允许本地短测，时间上限会终止命令，不改 endTime。
 
 HPC 复用 `experiments/end2end/cluster_job.py` 和 `deployment/remote/linux_scheduler_bridge.py` 的计划、环境哈希及真实调度身份校验，不调用旧批量工作器。经 yhbatch 分配后，在计算节点校验 RUNNING、属主、NodeList 和当前主机，再加载绑定运行环境。公共登录节点只传输、提交、查询及有界证据读取。Foundation OpenFOAM 9 与本地 2412 的网格/求解产物兼容性未证明，验收分别从原始字典建网。
 
@@ -65,3 +65,8 @@ HPC 维护配置及单作业额度位于 `workspace/maintenance/simulation-cli-a
 未验项：运行中的 HPC 取消、真实断网提交恢复、MPI、大网格/长求解、转换及全部求解/重构命令、主机重启自启、完整模型 UI 新工具调用。已有超算算例的直接续接尚未实现；输入转移上限 32 MiB，不宣称通用大型任务全覆盖。
 
 Linux 证据根：`workspace/maintenance/simulation-cli-acceptance-20261123`。Windows 当前报告：`graduation-experiment-results/maintenance/simulation_cli_acceptance_20261123/README.md`。这些原始事件与此前 local_mesh_acceptance 是独立证据，不互相替代。正式第3章两臂评价、第4章和旧批量派发均未启动。
+
+
+2026-11-23资源上限调整：用户将本地部署上限提高为4 CPU、4 GiB、3分钟。其余输入/输出/网格及脚本/MPI边界保持；超算单作业额度不增加。对应维护证据另存于workspace/maintenance/simulation-cli-resource-limits-20261123，不回填此前单任务验收。
+
+本次资源调整核验：相关Python检查59通过；真实MCP建网通过，求解进程亲和性4核、RLIMIT_AS=4294967296字节、RLIMIT_CPU=720秒（180秒×4核）及线程环境=4；约33秒后主动取消成功，超过4CPU/4096MiB/180秒的本地请求均被拒绝。此核验没有分配并实际占满4 GiB，也未等待完整180秒墙钟超时；墙钟监控路径沿用已验收实现。

@@ -28,3 +28,5 @@
 同一内容默认只留最新有效版本；无依赖、已被替代且无独立价值的旧版本直接清理。不同实验、协议和唯一原始证据不是互相替代版本。确需额外保留旧版本时，必须向用户说明路径、用途、删除影响并询问是否保留；不得仅改名历史或归档规避清理。先核对版本关系和当前依赖，用户具体决定沿用，不输出凭据。
 
 2026-11-23 current simulation command entry: simulation_cli.execute/status/logs/cancel. Bounded local commands and short_test solvers use conservative scale/resource checks; scripts and heavy work use the scoped scheduler binding. The mesh_case/run_case MCP command tools and mesh-only backend have been retired. General shell remains available; no research planning or shell interception is added. See deployment/simulation_cli/README.md for actual capabilities, one-job grant consumption, evidence and unverified paths. No batch research or new model request was started.
+
+2026-11-23本地资源上限按用户要求提高为4 CPU、4 GiB地址空间、180秒；默认请求仍为1 CPU、1 GiB、30秒。按请求设置CPU亲和性、线程上限与CPU时间预算，保留512 MiB系统内存余量并在启动时重查。其余网格/输入/输出、Allrun与MPI边界不变，超算额度不增加。真实4CPU/4GiB进程和跨过旧30秒的运行/取消已核验；新维护证据为workspace/maintenance/simulation-cli-resource-limits-20261123。

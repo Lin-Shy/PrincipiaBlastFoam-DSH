@@ -12,7 +12,9 @@ def service(tmp_path,monkeypatch):
     return SimulationCLI(),case
 def test_capabilities(service):
     s,c=service
-    assert s.capabilities()["local"]["max_seconds"]==30
+    assert s.capabilities()["local"]["max_seconds"]==180
+    assert s.capabilities()["local"]["cpus"]==4
+    assert s.capabilities()["local"]["memory_mib"]==4096
     assert "Allrun" in s.capabilities()["commands"]
 @pytest.mark.parametrize("command,args,category",[
     ("git",[],"unsupported"),("blockMesh",["-case","elsewhere"],"unsupported"),
@@ -100,3 +102,33 @@ def test_dead_hpc_worker_reconciles_without_resubmitting(service,monkeypatch):
     monkeypatch.setattr("principia_core.simulation_cli.HPC",Recover)
     assert s.status(task_id)["state"]=="completed"
     assert calls==["read-only-reconcile"]
+
+
+@pytest.mark.parametrize("resources,seconds", [
+    ({"cpus":5},30), ({"memory_mib":4097},30), ({},181),
+    ({"expected_seconds":181},180),
+])
+def test_updated_local_ceiling_rejects_excess(service,resources,seconds):
+    s,c=service
+    with pytest.raises(Problem) as error:
+        s.execute("blockMesh",[],str(c),resources=resources,timeout_seconds=seconds,location="local",dry_run=True)
+    assert error.value.data["category"]=="resource_insufficient"
+
+def test_full_local_ceiling_and_enforced_limits(service,monkeypatch):
+    import principia_core.simulation_cli as cli
+    s,c=service
+    monkeypatch.setattr(cli.os,"sched_getaffinity",lambda pid:set(range(8)))
+    original=Path.read_text
+    def memory(path,*args,**kwargs):
+        return "MemAvailable: 6291456 kB" if str(path)=="/proc/meminfo" else original(path,*args,**kwargs)
+    monkeypatch.setattr(Path,"read_text",memory)
+    plan=s.plan("blockMesh",[],str(c),{"cpus":4,"memory_mib":4096},180,"local")
+    limits=cli.local_process_limits(plan)
+    assert plan["location"]=="local"
+    assert limits==dict(cpu_affinity=[0,1,2,3],address_space_bytes=4294967296,cpu_seconds=720,wall_seconds=180,threads=4)
+
+def test_worker_rechecks_memory_headroom(service,monkeypatch):
+    import principia_core.simulation_cli as cli
+    monkeypatch.setattr(Path,"read_text",lambda *args,**kwargs:"MemAvailable: 4194304 kB")
+    with pytest.raises(Problem,match="512 MiB"):
+        cli.local_process_limits({"resources":{"cpus":1,"memory_mib":4096},"timeout_seconds":180})

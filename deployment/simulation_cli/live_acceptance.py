@@ -62,7 +62,7 @@ async def main():
         OUT['cancel_request']=await call(s,'cancel',task_id=run['task_id'])
         OUT['cancel_status']=await done(s,run['task_id']);save()
         assert OUT['cancel_status']['state']=='cancelled',OUT['cancel_status']
-        OUT['over_limit']=await call(s,'execute',command='blockMesh',args=[],case_path='local',resources={'cpus':2},location='local',dry_run=True)
+        OUT['over_limit']=await call(s,'execute',command='blockMesh',args=[],case_path='local',resources={'cpus':5},location='local',dry_run=True)
         OUT['unsupported']=await call(s,'execute',command='git',args=['status'],case_path='local',dry_run=True)
         OUT['missing_mpi']=await call(s,'execute',command='mpirun',args=['-np','2','icoFoam'],case_path='local',resources={'cpus':2},dry_run=True)
         OUT['unreviewed_script']=await call(s,'execute',command='Allrun',args=[],case_path='hpc',dry_run=True)

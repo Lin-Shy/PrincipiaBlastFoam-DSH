@@ -11,7 +11,9 @@ def call(method,*args):
 async def execute(command:str,args:list[str],case_path:str,resources:dict|None=None,timeout_seconds:int=30,location:str="auto",dry_run:bool=False,request_id:str|None=None)->dict:
     """Execute/submit simulation command; returns persistent task_id. No mandatory evaluation step.
     args are individual argv strings; case_path is below configured root. No physics/numerical dictionaries rewritten.
-    resources: cpus, memory_mib, expected_seconds, short_test. Allrun requires reviewed_script_sha256.
+    resources: cpus, memory_mib, expected_seconds, short_test. Local ceilings: 4 CPUs, 4096 MiB, 180 seconds.
+    Defaults remain 1 CPU, 1024 MiB and 30 seconds; request higher resources explicitly.
+    Allrun requires reviewed_script_sha256.
     short_test explicitly permits bounded local solver tests; timeout terminates without editing endTime.
     status() lists actual software/commands/limits/script/MPI boundaries. request_id prevents repeat submissions.
     Local commands use snapshots: chain next command with returned result_path.
