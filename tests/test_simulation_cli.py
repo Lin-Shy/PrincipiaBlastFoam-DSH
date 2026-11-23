@@ -77,3 +77,26 @@ def test_reviewed_allrun_hash_must_match(service,tmp_path):
     (c/"Allrun").write_text("blockMesh\ncheckMesh\n")
     with pytest.raises(Problem) as e:s.execute("Allrun",[],str(c),resources={"reviewed_script_sha256":"0"*64},dry_run=True)
     assert e.value.data["category"]=="prohibited"
+
+def test_spawn_failure_is_terminal(service,monkeypatch):
+    s,c=service
+    def fail(*args,**kwargs):raise OSError("fixture launch failure")
+    monkeypatch.setattr("principia_core.simulation_cli.subprocess.Popen",fail)
+    task=s.execute("blockMesh",[],str(c),request_id="launch-failure")
+    assert task["state"]=="failed"
+    assert s.status(task["task_id"])["state"]=="failed"
+
+def test_dead_hpc_worker_reconciles_without_resubmitting(service,monkeypatch):
+    s,c=service
+    task_id="sim-"+"a"*24;folder=s.root/task_id;folder.mkdir()
+    write(folder/"task.json",dict(task_id=task_id,plan={"location":"hpc"},state="submitting",
+        worker_pid=999999999,worker_start="none",run_id="c3-fixture",created_unix=0))
+    calls=[]
+    class Recover:
+        def __init__(self,*args):pass
+        def reconcile(self,t):
+            calls.append("read-only-reconcile");return {**t,"job_id":"123","state":"submitted"}
+        def status(self,t):return {**t,"state":"completed"}
+    monkeypatch.setattr("principia_core.simulation_cli.HPC",Recover)
+    assert s.status(task_id)["state"]=="completed"
+    assert calls==["read-only-reconcile"]

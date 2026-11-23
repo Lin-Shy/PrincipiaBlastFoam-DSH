@@ -172,9 +172,14 @@ class SimulationCLI:
             t=dict(ok=True,task_id=task_id,request=request,plan=plan,state="queued",created_unix=time.time(),execution_host=socket.gethostname(),
                 result_path=str(folder/"case") if plan["location"]=="local" else None,exit_code=None,log_path=str(folder/"execution.log"))
             write(p,t)
-            with (folder/"worker.log").open("ab") as output:
-                child=subprocess.Popen([sys.executable,"-m","principia_core.simulation_cli",str(self.root),task_id],
-                    stdin=subprocess.DEVNULL,stdout=output,stderr=subprocess.STDOUT,start_new_session=True)
+            try:
+                with (folder/"worker.log").open("ab") as output:
+                    child=subprocess.Popen([sys.executable,"-m","principia_core.simulation_cli",str(self.root),task_id],
+                        stdin=subprocess.DEVNULL,stdout=output,stderr=subprocess.STDOUT,start_new_session=True)
+            except OSError as error:
+                t.update(state="failed",error=dict(type=type(error).__name__,reason="Worker launch failed: "+str(error)))
+                write(p,t)
+                return t
             t.update(worker_pid=child.pid,worker_start=pid_identity(child.pid));write(p,t);(folder/"go").touch()
             return dict(ok=True,task_id=task_id,state="queued",plan=plan)
     def status(self,task_id=None):
@@ -189,6 +194,10 @@ class SimulationCLI:
             latest=read(p)
             if latest["state"] in TERMINAL:return latest
             t.update(state="unknown",error="Worker lost; inspect evidence before retry.")
+            if t["plan"]["location"]=="hpc" and t.get("run_id"):
+                t=HPC(self,p.parent).reconcile(t)
+                if t.get("job_id"):t=HPC(self,p.parent).status(t)
+                write(p,t)
         return t
     def logs(self,task_id,max_bytes=16384):
         if type(max_bytes)!=int or not 1<=max_bytes<=65536:reject("unsupported","max_bytes must be 1..65536")
