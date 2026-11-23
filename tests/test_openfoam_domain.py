@@ -27,7 +27,7 @@ from principia_core.utils.openfoam_diagnostics import (
 )
 from principia_core.utils.report_contracts import report_error_reasons
 from principia_core.utils.workflow_artifacts import validate_workflow_artifacts
-from mcp_servers.principia_retrieval import server as mcp_server
+from mcp_servers.principia_domain import server as mcp_server
 
 
 TUTORIAL_ROOT = Path(__file__).resolve().parents[2] / "graduation-datasets/raw-corpus/blastfoam/blastFoam_tutorials"
@@ -315,7 +315,7 @@ def test_mcp_exposes_domain_tools_and_completes_without_execution(
         "diagnostics",
     } <= tool_names
     complete_tool = next(tool for tool in listed_tools if tool.name == "complete_workflow")
-    assert complete_tool.inputSchema["properties"]["require_execution"]["default"] is True
+    assert complete_tool.inputSchema["properties"]["require_execution"]["default"] is False
 
     monkeypatch.setenv("PRINCIPIA_CASE_ROOT", str(tmp_path))
     case_path = tmp_path / "safe-case"
@@ -423,28 +423,17 @@ def test_mcp_case_path_rejects_symlink_escape(tmp_path: Path, monkeypatch) -> No
 
 def test_mcp_schemas_bound_expensive_arguments() -> None:
     tools = {tool.name: tool for tool in asyncio.run(mcp_server.mcp.list_tools())}
-
-    assert len(tools) == 21
-    for name in ('locate_case_edits','check_case_dependencies','read_knowledge_source'):
-        assert tools[name].inputSchema['properties']['budget']['maximum']==24000
-    assert tools["search_case_content"].inputSchema["properties"]["top_k"]["maximum"] == 20
-    assert tools["search_case_content"].inputSchema["properties"]["max_iterations"]["maximum"] == 10
-    assert tools["get_file_content"].inputSchema["properties"]["max_lines"]["maximum"] == 1000
+    assert len(tools) == 11
+    assert "search_user_guide" not in tools
+    assert "read_knowledge_source" not in tools
     assert tools["run_case"].inputSchema["properties"]["timeout_seconds"]["maximum"] == 86400
+    assert tools["edit_case_dictionaries"].inputSchema["properties"]["edits"]["maxItems"] == 64
 
 
 def test_mcp_validation_rejects_out_of_range_arguments() -> None:
     async def exercise() -> None:
-        with pytest.raises(ToolError, match="less than or equal to 1000"):
-            await mcp_server.mcp.call_tool(
-                "get_file_content",
-                {
-                    "case_path": "blastFoam/freeField",
-                    "file_path": "system/controlDict",
-                    "max_lines": 1001,
-                },
-            )
+        with pytest.raises(ToolError, match="less than or equal to 86400"):
+            await mcp_server.mcp.call_tool("run_case", {"case_path": "case", "user_request": "fixture", "timeout_seconds": 86401})
         with pytest.raises(ToolError, match="greater than or equal to 1"):
-            await mcp_server.mcp.call_tool("search_user_guide", {"top_k": 0})
-
+            await mcp_server.mcp.call_tool("run_case", {"case_path": "case", "user_request": "fixture", "timeout_seconds": 0})
     asyncio.run(exercise())

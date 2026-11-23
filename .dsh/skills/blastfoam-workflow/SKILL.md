@@ -5,6 +5,8 @@ description: 编排完整 blastFoam 工作流，依次完成物理分析、算�
 
 # blastFoam 总工作流
 
+2026-11-23执行边界：agent和源码开发在Linux，Windows仅SSH控制；所有仿真及计算型后处理必须通过yhbatch在超算实际分配节点执行，不能在控制机/登录节点运行。大结果留超算，本机仅配置与有界控制记录。当前仅迁移维护，不启动实验。
+
 收到完整的自然语言 blastFoam/OpenFOAM 仿真需求时使用本 Skill。
 
 ## 阶段闸门

@@ -16,7 +16,6 @@
   },
   "profiles": {
     "chapter3": "<chapter3-home>/profiles/web-ssh",
-    "chapter4": "<chapter4-home>/profiles/web-ssh",
     "existingLocalProfiles": "preserved"
   },
   "ssh": {
@@ -55,7 +54,6 @@
     "retrievalMcp": "initialize/list_tools/get_status passed; 21 tools",
     "benchmarkAdapter": "4 tests passed, including dry-run",
     "profileComposition": "both passed",
-    "chapter4Isolation": "no Chapter 3 bundle/rows; subagent/fork/control/workflow tools disabled",
     "webStartup": "both profiles authenticated HTTP 200; smoke servers stopped after verification",
     "pluginState": "both profiles identify Host from OpenSSH config; no discovery errors",
     "pluginProbe": "failed honestly at SSH authentication",
@@ -67,7 +65,7 @@
   },
   "notes": [
     "Windows local domain MCP paths do not become remote paths through this plugin.",
-    "SSH workspace integration is not a completed Chapter 3 experiment adapter or Chapter 4 RSI implementation.",
+    "SSH workspace integration is not a completed Chapter 3 experiment adapter.",
     "No frozen experiment results, scoring, SSH private keys, passwords or Web tokens are included."
   ]
 }

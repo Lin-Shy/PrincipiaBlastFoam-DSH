@@ -22,8 +22,7 @@
     "rootExecution": "none; launcher rejects root SSH users",
     "configModification": "none",
     "workspaces": {
-      "chapter3": "<ssh-home>/principia/chapter3",
-      "chapter4": "<ssh-home>/principia/chapter4"
+      "chapter3": "<ssh-home>/principia/chapter3"
     },
     "serverSshArgs": [],
     "reason": "ClearAllForwardings must not be passed to plugin-generated -L tunnels; read-only probes and scp retain it."
@@ -66,8 +65,7 @@
       "passed": 40
     },
     "webAuthentication": {
-      "chapter3": 200,
-      "chapter4": 200
+      "chapter3": 200
     },
     "sshPluginProbe": "reachable=true on yan_yun_agent",
     "directoryRead": "both chapter workspaces passed through plugin API",
@@ -79,7 +77,6 @@
       "remote": "bash",
       "local": "pwsh"
     },
-    "chapter4Isolation": "no Chapter3 bundle/roles; subagent/fork/control/workflow tools disabled",
     "managedProxy": "creation and reuse passed",
     "userInstaller": "checksum, CLI help/version, ripgrep version, repeat installation passed",
     "modelInvocations": 0,

@@ -27,7 +27,7 @@ export interface PrincipiaContext {
 
 export const PRINCIPIA_POLICY = `PrincipiaBlastFoam workflow policy:
 - Treat physical analysis, case setup, solver execution, post-processing, and review as ordered phase gates. Do not claim a later phase succeeded when an earlier required phase failed.
-- Use the principia_retrieval MCP tools for tutorial, file, variable, and user-guide evidence. Cite the selected case paths and retrieved files in the workflow evidence.
+- Use ordinary read/search tools for public tutorial inputs; use principia_domain only for deterministic case and evidence operations. Cite the selected case paths and retrieved files in the workflow evidence.
 - Keep generated cases and reports inside the active workspace. Never modify OpenFOAM or blastFoam installation sources as part of a case task.
 - Preserve the deterministic artifact contract. A completed run must account for physics_report.md, execution_report.md, execution_status.json, post_processing_report.md, review_report.md, workflow_evidence.md, and artifact_contract.json. Mark an unavailable artifact explicitly instead of fabricating it.
 - The review phase is independent and read-only. It returns structured review content to the parent; a deterministic writer or the parent materializes review_report.md, workflow_evidence.md, and artifact_contract.json after preserving the reviewer response verbatim.

@@ -11,8 +11,7 @@
   "installation": {
     "harness": "<workspace-parent>/deepseek-harness",
     "profileHomes": [
-      "<workspace-parent>/dsh-home/chapter3",
-      "<workspace-parent>/dsh-home/chapter4"
+      "<workspace-parent>/dsh-home/chapter3"
     ],
     "python": "<application>/.venv"
   },
@@ -29,8 +28,7 @@
     "pipCheck": "passed",
     "webStartup": "authenticated HTTP 200; smoke server stopped",
     "retrievalMcp": "stdio initialize/list_tools/get_status passed (21 tools)",
-    "profileDump": "Chapter 3 and isolated Chapter 4 passed",
-    "chapter4Isolation": "no Chapter 3 bundle; subagent/fork/control/workflow tool rows disabled",
+    "profileDump": "Chapter 3 passed",
     "benchmark": "real Chapter 3 dataset, limit 1, dry-run passed"
   },
   "realSolverSmoke": "not-run",

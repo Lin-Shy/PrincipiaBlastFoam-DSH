@@ -36,3 +36,10 @@ logs/
 # Machine-local Windows setup and remote deployment artifacts
 .local/
 *.local.html
+
+# Private credentials, sessions and generated acceptance state
+*.pem
+*.key
+session*.jsonl*
+services/
+runs/

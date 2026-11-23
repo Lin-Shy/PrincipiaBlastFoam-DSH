@@ -5,13 +5,13 @@
     - id: principia-blastfoam-policy
       name: principia-blastfoam-dsh-bundle
 
-    - id: principia-retrieval-mcp
+    - id: principia-domain-mcp
       name: '@deepseek-ai/dsh-mcp-client'
       config:
-        serverName: principia_retrieval
+        serverName: principia_domain
         transport: stdio
         command: !!js process.env.PRINCIPIA_PYTHON ?? 'python3'
-        args: ['-m', 'mcp_servers.principia_retrieval.server']
+        args: ['-m', 'mcp_servers.principia_domain.server']
         cwd: !!js process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()
         env:
           PYTHONUTF8: '1'
@@ -58,17 +58,7 @@
             - skill
             - web_fetch
             - web_search
-            - mcp__principia_retrieval__get_status
-            - mcp__principia_retrieval__get_case_by_intent
-            - mcp__principia_retrieval__get_files_for_case
-            - mcp__principia_retrieval__find_variable
-            - mcp__principia_retrieval__get_file_content
-            - mcp__principia_retrieval__get_modification_targets
-            - mcp__principia_retrieval__locate_case_edits
-            - mcp__principia_retrieval__read_knowledge_source
-            - mcp__principia_retrieval__check_case_dependencies
-            - mcp__principia_retrieval__search_case_content
-            - mcp__principia_retrieval__search_user_guide
+            - mcp__principia_domain__get_status
 
     - id: principia-case-setup
       name: '@deepseek-ai/dsh-tool-subagent'
@@ -92,20 +82,10 @@
             - glob
             - grep
             - skill
-            - mcp__principia_retrieval__get_status
-            - mcp__principia_retrieval__get_case_by_intent
-            - mcp__principia_retrieval__get_files_for_case
-            - mcp__principia_retrieval__find_variable
-            - mcp__principia_retrieval__get_file_content
-            - mcp__principia_retrieval__get_modification_targets
-            - mcp__principia_retrieval__locate_case_edits
-            - mcp__principia_retrieval__read_knowledge_source
-            - mcp__principia_retrieval__check_case_dependencies
-            - mcp__principia_retrieval__search_case_content
-            - mcp__principia_retrieval__search_user_guide
-            - mcp__principia_retrieval__edit_case_dictionaries
-            - mcp__principia_retrieval__initialize_case
-            - mcp__principia_retrieval__case_digest
+            - mcp__principia_domain__get_status
+            - mcp__principia_domain__edit_case_dictionaries
+            - mcp__principia_domain__initialize_case
+            - mcp__principia_domain__case_digest
 
     - id: principia-execution-specialist
       name: '@deepseek-ai/dsh-tool-subagent'
@@ -127,9 +107,9 @@
             - glob
             - grep
             - skill
-            - mcp__principia_retrieval__case_digest
-            - mcp__principia_retrieval__execution_preflight
-            - mcp__principia_retrieval__run_case
+            - mcp__principia_domain__case_digest
+            - mcp__principia_domain__execution_preflight
+            - mcp__principia_domain__run_case
             - mcp__principia_simulation_files__upload_simulation_case
             - mcp__principia_simulation_files__download_simulation_result
             - mcp__principia_simulation__get_simulation_service_status
@@ -139,7 +119,7 @@
             - mcp__principia_simulation__get_simulation_result
             - mcp__principia_simulation__cancel_simulation
             - mcp__principia_simulation__cleanup_simulation
-            - mcp__principia_retrieval__diagnostics
+            - mcp__principia_domain__diagnostics
 
     - id: principia-postprocessor
       name: '@deepseek-ai/dsh-tool-subagent'
@@ -162,8 +142,8 @@
             - glob
             - grep
             - skill
-            - mcp__principia_retrieval__write_post_processing
-            - mcp__principia_retrieval__diagnostics
+            - mcp__principia_domain__write_post_processing
+            - mcp__principia_domain__diagnostics
 
     - id: principia-reviewer
       name: '@deepseek-ai/dsh-tool-subagent'
