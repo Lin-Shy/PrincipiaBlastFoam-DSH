@@ -423,7 +423,7 @@ def test_mcp_case_path_rejects_symlink_escape(tmp_path: Path, monkeypatch) -> No
 
 def test_mcp_schemas_bound_expensive_arguments() -> None:
     tools = {tool.name: tool for tool in asyncio.run(mcp_server.mcp.list_tools())}
-    assert len(tools) == 11
+    assert len(tools) == 12
     assert "search_user_guide" not in tools
     assert "read_knowledge_source" not in tools
     assert tools["run_case"].inputSchema["properties"]["timeout_seconds"]["maximum"] == 86400

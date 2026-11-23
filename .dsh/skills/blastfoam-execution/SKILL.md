@@ -5,7 +5,7 @@ description: 对已批准的 blastFoam/OpenFOAM 算例执行可复现预检和�
 
 # blastFoam 求解执行
 
-2026-11-23执行边界：agent和源码开发在Linux，Windows仅SSH控制；所有仿真及计算型后处理必须通过yhbatch在超算实际分配节点执行，不能在控制机/登录节点运行。大结果留超算，本机仅配置与有界控制记录。当前仅迁移维护，不启动实验。
+2026-11-23执行边界更新：agent和源码开发在Linux，Windows用于SSH维护及浏览器交互。按任务规模和资源需求选择执行位置：轻量建网、checkMesh、小规模初始化/预处理、摘要统计与绘图可在独立Linux本地执行；大型网格、长时或高资源求解、MPI并行及大型重构/后处理经yhbatch在超算分配节点执行。不得仅按命令名称一刀切；先核对工具、输入规模及CPU/内存/磁盘余量，并设置任务适用的超时和输出限制。公共登录节点仍只做轻量传输、提交和查询，不运行网格或求解。大结果留超算；本规则不自动启动批量实验。
 
 只有算例配置验证通过后，才能使用本 Skill。
 
@@ -24,6 +24,8 @@ description: 对已批准的 blastFoam/OpenFOAM 算例执行可复现预检和�
 
 ## Windows 开发、Linux 远程执行
 
-当配置了 principia_simulation MCP 时，Windows 本地预检的 Linux 环境阻断不能用于判定远端环境不可用。先查询远端服务状态；用 principia_simulation_files.upload_simulation_case 上传已批准的本地算例，再将返回 case_id 传给 run_simulation。提交返回 job_id，随后轮询状态和有界日志，不把 MCP HTTP 请求保持到求解结束。
+执行前先区分独立Linux本地轻量操作与超算重计算。当前principia_domain.run_case仍是整流程硬拒绝入口，不能用它完成本地轻量建网；不得为建网直接启用整条Allrun求解流水线。轻量操作使用已安装、已确认资源规模的独立命令；超算任务使用已验收的yhbatch提交/查询入口，不恢复旧Windows仿真服务路线。
 
-终态后读取 get_simulation_result，再用 download_simulation_result 下载并核对 SHA256。本地解压、核对实际时间目录、字段和有限值后，生成本章 execution_report.md 与 execution_status.json。completed 仅表示进程退出码为0，不能据此宣布完整任务或物理验证成功。cleanup_simulation 只能在本地归档及证据检查完成后使用下载散列调用。Linux 服务不生成第3章七项产物，也不包含智能体角色。
+超算终态后核对JobID、节点、退出码、输出路径及有界摘要；大结果留超算。轻量本地操作记录主机、工具版本、输入/输出身份、资源与终态，不能伪造调度回执。退出码0不等于完整任务或物理验证成功。
+
+Local mesh implementation (2026-11-23): use mesh_case for bounded local blockMesh/checkMesh; real 1,000-cell creation and Mesh OK check passed. Current bounds and pinned tool version: deployment/local_mesh/README.md. Full solver execution remains HPC-only. No batch experiment was started.

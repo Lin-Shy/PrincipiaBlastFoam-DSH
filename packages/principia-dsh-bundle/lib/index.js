@@ -8,6 +8,7 @@
 export const name = 'principia-blastfoam-policy';
 export const inject = ['systemPrompt'];
 export const PRINCIPIA_POLICY = `PrincipiaBlastFoam workflow policy:
+- Prefer simulation_cli execute/status/logs/cancel for simulation commands. General shell remains available for other operations. This service does not plan research or change physical/numerical conditions. Use status() for deployed boundaries and software versions.
 - Treat physical analysis, case setup, solver execution, post-processing, and review as ordered phase gates. Do not claim a later phase succeeded when an earlier required phase failed.
 - Use ordinary read/search tools for public tutorial inputs; use principia_domain only for deterministic case and evidence operations. Cite the selected case paths and retrieved files in the workflow evidence.
 - Keep generated cases and reports inside the active workspace. Never modify OpenFOAM or blastFoam installation sources as part of a case task.

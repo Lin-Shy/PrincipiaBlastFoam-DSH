@@ -54,9 +54,18 @@ def main():
  {'id':'principia-domain-mcp','name':'@deepseek-ai/dsh-mcp-client','config':{
  'serverName':'principia_domain','transport':'stdio','command':str(WS/'.venv/bin/python'),
  'args':['-m','mcp_servers.principia_domain.server'],'cwd':str(APP),
- 'env':{'PYTHONUTF8':'1','PYTHONPATH':str(APP/'src')+':'+str(APP),'PRINCIPIA_PROJECT_ROOT':str(APP),'PRINCIPIA_CASE_ROOT':str(work/'cases'),'ENABLE_EXECUTION':'false','REQUIRE_EXECUTION':'false','PRINCIPIA_TOOL_TRACE_DIR':str(ROOT/'tool-traces')},
+ 'env':{'PYTHONUTF8':'1','PYTHONPATH':str(APP/'src')+':'+str(APP),'PRINCIPIA_PROJECT_ROOT':str(APP),'PRINCIPIA_CASE_ROOT':str(work/'cases'),'ENABLE_EXECUTION':'false','REQUIRE_EXECUTION':'false','PRINCIPIA_LOCAL_MESH_ENABLED':'true','PRINCIPIA_LOCAL_MESH_BIN':str(WS/'runtime/mesh-bin'),'PRINCIPIA_TOOL_TRACE_DIR':str(ROOT/'tool-traces'),'PRINCIPIA_COMMAND_MCP_ENABLED':'true'},
  'toolCallTimeoutMs':60000,'failOnStartupError':True}}
  ]}]
+ patch[-1]['insert'].append({
+ 'id':'simulation-cli-mcp','name':'@deepseek-ai/dsh-mcp-client','config':{
+ 'serverName':'simulation_cli','transport':'stdio','command':str(WS/'.venv/bin/python'),
+ 'args':['-m','mcp_servers.simulation_cli.server'],'cwd':str(APP),
+ 'env':{'PYTHONUTF8':'1','PYTHONPATH':str(APP/'src')+':'+str(APP),
+ 'PRINCIPIA_CASE_ROOT':str(work/'cases'),'SIMULATION_CLI_STATE':str(ROOT/'simulation-cli/tasks'),
+ 'SIMULATION_CLI_OPENFOAM':str(WS/'runtime/openfoam'),
+ 'SIMULATION_CLI_HPC_CONFIG':str(WS/'maintenance/simulation-cli-acceptance-20261123/hpc-config.json')},
+ 'toolCallTimeoutMs':60000,'failOnStartupError':True}})
  (ROOT/'web.patch.yml').write_text(json.dumps(patch,indent=2))
  env={k:v for k,v in os.environ.items() if not any(s in k.upper() for s in ('API_KEY','TOKEN','SECRET','PASSWORD'))}
  env.update(ACCEPTANCE_LOCAL_KEY=gate.token,DSH_HOME=str(ROOT/'dsh-home'),DSH_AGENTS_HOME=str(ROOT/'agents-home'),ENABLE_EXECUTION='false',REQUIRE_EXECUTION='false',PYTHONDONTWRITEBYTECODE='1')

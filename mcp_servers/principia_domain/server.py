@@ -80,7 +80,7 @@ mcp = FastMCP(
     "principia-domain",
     instructions=(
         "Deterministic OpenFOAM case configuration and evidence tools for "
-        "PrincipiaBlastFoam. All simulation requires scheduled HPC compute nodes; local execution is blocked."
+        "PrincipiaBlastFoam. mesh_case runs bounded local blockMesh/checkMesh; heavy solvers use scheduled HPC nodes."
     ),
 )
 
@@ -218,9 +218,9 @@ def run_case(
     user_request: RequestText,
     timeout_seconds: TimeoutSeconds = 3600,
 ) -> Dict[str, Any]:
-    """Run case_path once unless ENABLE_EXECUTION is explicitly false."""
+    """Full solver execution uses HPC; use mesh_case for lightweight local meshing."""
     _validated_case_path(case_path)
-    raise ValueError("Simulation must be submitted through yhbatch on allocated HPC compute nodes")
+    raise ValueError("Full-case execution uses simulation_cli.execute; mesh_case is legacy bounded mesh compatibility only")
 
 
 @mcp.tool()
@@ -234,7 +234,7 @@ def complete_workflow(
 ) -> Dict[str, Any]:
     """Finalize and validate evidence; simulation must use the external scheduler."""
     if require_execution:
-        raise ValueError("Simulation must be submitted through yhbatch on allocated HPC compute nodes")
+        raise ValueError("Full-case execution uses simulation_cli.execute; mesh_case is legacy bounded mesh compatibility only")
     with redirect_stdout(sys.stderr):
         validated_case = _validated_case_path(case_path)
         validated_tutorial = (
@@ -316,11 +316,23 @@ mcp._mcp_server.call_tool(validate_input=False)(_traced_call_tool)
 
 
 @mcp.tool()
+def mesh_case(case_path: PathText, operation: Literal["blockMesh", "checkMesh"] = "blockMesh") -> Dict[str, Any]:
+    """Run bounded local meshing/checking only; never Allrun or a solver. Existing mesh is not overwritten."""
+    from principia_core.local_mesh import run_local_mesh
+    with _tool_observation("mesh_case"):
+        return run_local_mesh(_validated_case_path(case_path), operation)
+
+
+@mcp.tool()
 def get_status() -> Dict[str, Any]:
-    return {"service": "principia-domain", "chapter": 3, "execution": "scheduler-only", "knowledge_qa_loaded": False}
+    from principia_core.local_mesh import local_mesh_status
+    return {"service": "principia-domain", "chapter": 3, "execution": "local-mesh-and-scheduled-solvers", "local_mesh": local_mesh_status(), "knowledge_qa_loaded": False}
 
 
 def main() -> None:
+    if _bool_env("PRINCIPIA_COMMAND_MCP_ENABLED", False):
+        mcp.remove_tool("mesh_case")
+        mcp.remove_tool("run_case")
     mcp.run(transport="stdio")
 
 

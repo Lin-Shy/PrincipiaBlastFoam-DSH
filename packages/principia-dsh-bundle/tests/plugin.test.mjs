@@ -30,7 +30,7 @@ test('registers one TEAM_POLICY section', () => {
 
 test('bundle manifest and patch keep stable install seams', async () => {
   const manifest = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'))
-  const patch = await readFile(new URL('../cordis.patch.yml', import.meta.url), 'utf8')
+  const patch = (await readFile(new URL('../cordis.patch.yml', import.meta.url), 'utf8')).replace(/\r\n/g, '\n')
 
   assert.equal(manifest.dsh.bundle.patch, './cordis.patch.yml')
   assert.equal(manifest.main, 'lib/index.js')
@@ -38,11 +38,14 @@ test('bundle manifest and patch keep stable install seams', async () => {
   assert.match(patch, /name: principia-blastfoam-dsh-bundle/)
   assert.match(patch, /name: '@deepseek-ai\/dsh-mcp-client'/)
   assert.match(patch, /provider: spawn/)
+  assert.match(patch, /serverName: simulation_cli/)
+  assert.match(patch, /mcp__simulation_cli__execute/)
+  assert.doesNotMatch(patch, /mcp__principia_simulation__run_simulation/)
   assert.match(patch, /toolName: blastfoam_quality_reviewer/)
   assert.match(patch, /PRINCIPIA_CASE_ROOT:/)
   assert.match(patch, /BLASTFOAM_TUTORIALS:/)
-  assert.match(patch, /ENABLE_EXECUTION: !!js process\.env\.ENABLE_EXECUTION \?\? 'true'/)
-  assert.match(patch, /REQUIRE_EXECUTION: !!js process\.env\.REQUIRE_EXECUTION \?\? 'true'/)
+  assert.match(patch, /ENABLE_EXECUTION: !!js process\.env\.ENABLE_EXECUTION \?\? 'false'/)
+  assert.match(patch, /REQUIRE_EXECUTION: !!js process\.env\.REQUIRE_EXECUTION \?\? 'false'/)
   assert.match(patch, /OPENFOAM_EXECUTION_USER:/)
   assert.match(patch, /toolName: blastfoam_quality_reviewer[\s\S]*?allow: \[read, glob, grep, skill\]/)
   assert.doesNotMatch(patch, /toolFilter:\n\s+deny:/)
@@ -50,7 +53,7 @@ test('bundle manifest and patch keep stable install seams', async () => {
 })
 
 test('role allowlists preserve least-privilege boundaries', async () => {
-  const patch = await readFile(new URL('../cordis.patch.yml', import.meta.url), 'utf8')
+  const patch = (await readFile(new URL('../cordis.patch.yml', import.meta.url), 'utf8')).replace(/\r\n/g, '\n')
   const roleBlock = (id) => {
     const start = patch.indexOf(`    - id: ${id}\n`)
     assert.notEqual(start, -1, `missing role row ${id}`)

@@ -15,12 +15,13 @@
         cwd: !!js process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()
         env:
           PYTHONUTF8: '1'
+          PRINCIPIA_COMMAND_MCP_ENABLED: 'true'
           PRINCIPIA_PROJECT_ROOT: !!js process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()
           PRINCIPIA_CASE_ROOT: !!js process.env.PRINCIPIA_CASE_ROOT ?? (process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()) + '/outputs'
           BLASTFOAM_TUTORIALS: !!js process.env.BLASTFOAM_TUTORIALS ?? (process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()) + '/../graduation-datasets/raw-corpus/blastfoam/blastFoam_tutorials'
           RETRIEVAL_LLM_API_KEY: !!js process.env.RETRIEVAL_LLM_API_KEY ?? ''
-          ENABLE_EXECUTION: !!js process.env.ENABLE_EXECUTION ?? 'true'
-          REQUIRE_EXECUTION: !!js process.env.REQUIRE_EXECUTION ?? 'true'
+          ENABLE_EXECUTION: !!js process.env.ENABLE_EXECUTION ?? 'false'
+          REQUIRE_EXECUTION: !!js process.env.REQUIRE_EXECUTION ?? 'false'
           PRINCIPIA_TOOL_TRACE_DIR: !!js process.env.PRINCIPIA_TOOL_TRACE_DIR ?? ''
           OPENFOAM_BASHRC: !!js process.env.OPENFOAM_BASHRC ?? ''
           BLASTFOAM_BASHRC: !!js process.env.BLASTFOAM_BASHRC ?? ''
@@ -35,6 +36,22 @@
           initialDelayMs: 500
           maxDelayMs: 30000
           maxAttempts: 10
+
+    - id: simulation-cli-mcp
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: simulation_cli
+        transport: stdio
+        command: !!js process.env.PRINCIPIA_PYTHON ?? 'python3'
+        args: ['-m', 'mcp_servers.simulation_cli.server']
+        cwd: !!js process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()
+        env:
+          PYTHONUTF8: '1'
+          PRINCIPIA_CASE_ROOT: !!js process.env.PRINCIPIA_CASE_ROOT ?? (process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()) + '/outputs'
+          SIMULATION_CLI_STATE: !!js process.env.SIMULATION_CLI_STATE ?? (process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()) + '/outputs/simulation-cli'
+          SIMULATION_CLI_HPC_CONFIG: !!js process.env.SIMULATION_CLI_HPC_CONFIG ?? ''
+        toolCallTimeoutMs: 60000
+        failOnStartupError: true
 
     - id: principia-physics-analyst
       name: '@deepseek-ai/dsh-tool-subagent'
@@ -109,16 +126,10 @@
             - skill
             - mcp__principia_domain__case_digest
             - mcp__principia_domain__execution_preflight
-            - mcp__principia_domain__run_case
-            - mcp__principia_simulation_files__upload_simulation_case
-            - mcp__principia_simulation_files__download_simulation_result
-            - mcp__principia_simulation__get_simulation_service_status
-            - mcp__principia_simulation__run_simulation
-            - mcp__principia_simulation__get_simulation_status
-            - mcp__principia_simulation__get_simulation_log
-            - mcp__principia_simulation__get_simulation_result
-            - mcp__principia_simulation__cancel_simulation
-            - mcp__principia_simulation__cleanup_simulation
+            - mcp__simulation_cli__execute
+            - mcp__simulation_cli__status
+            - mcp__simulation_cli__logs
+            - mcp__simulation_cli__cancel
             - mcp__principia_domain__diagnostics
 
     - id: principia-postprocessor
