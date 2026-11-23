@@ -1,115 +1,24 @@
-# PrincipiaBlastFoam-DSH
+# PrincipiaBlastFoam-DSH：第3章专业执行系统
 
-第一次使用请先读 [DSH 新手使用手册](docs/新手使用手册.md)：打开界面、选择章节、连接 Linux，以及当前实验启动的实际边界。
+2026-11-23。源码开发、Git、依赖和agent运行均在Linux的agent账号完成；Windows只通过SSH下达命令和查看。开发工作区与已验收运行实例分开绑定版本，不自动部署或启动任务。
 
-PrincipiaBlastFoam-DSH 是一个独立的 DeepSeek Harness 应用，通过自然语言完成 blastFoam/OpenFOAM 物理分析、算例配置、求解执行、后处理和质量审查。
+## 当前入口
 
-业务源码由本仓库管理；上游 DeepSeek Harness 检出目录只是可替换的宿主运行时：
+- `src/principia_core/`：OpenFOAM配置、字典编辑、领域服务与证据处理。
+- `mcp_servers/principia_domain/`：第3章领域MCP；不加载知识问答服务，本机仿真入口关闭。
+- `mcp_servers/simulation/`：远端接口代码；是否已接入当前Linux操作者须按实测记录判断。
+- `experiments/end2end/`：第3章开发与评测实现，旧批次预算不自动沿用。
+- `packages/principia-dsh-bundle/`：可选领域bundle，旧五专家编排不是研究约束。
+- `deployment/dsh/linux-controller-plan.md`：部署规则、状态与后续单小算例验收条件。
 
-```text
-DeepSeek Harness profile
-  -> principia-blastfoam-dsh-bundle
-     -> 工作流策略与角色专属 subagent 工具
-     -> @deepseek-ai/dsh-mcp-client
-        -> Python Principia 检索与领域服务
-  -> 项目级 .dsh/skills
-```
+第2章实现、检索后端、知识资源和测试已完整迁回Windows的 `D:/1/graduation-projects/chapter2-knowledge-qa/`；Linux不保存第2章活动源码，不作为本项目子目录或默认依赖。原Git历史及迁移前未提交状态完整保存，源码移动不改写冻结研究证据。
 
-## 共享研究设计
+## 无模型维护
 
-研究定位与章节边界统一引用 [共享设计入口](../graduation-thesis-materials/graduation-research/README.md)和[总体设计](../graduation-thesis-materials/graduation-research/OVERVIEW.md)。本项目分别对应[第2章检索](../graduation-thesis-materials/graduation-research/chapters/chapter02.md)、[第3章多智能体执行](../graduation-thesis-materials/graduation-research/chapters/chapter03.md)和[第4章独立单agent RSI](../graduation-thesis-materials/graduation-research/chapters/chapter04.md)。共享设计说明研究目标，本项目维护源码、配置与详细实施计划，实验归档维护冻结协议和证据；当前实现状态须依据代码和验证记录核验。
+在Linux加载开发工作区的 `environment.sh` 后，可运行 `dsh-dev --profile headless --dump-config` 查看配置。该命令不请求模型。普通任务仍须明确模型、任务与预算；当前只迁移维护，不启动真实模型、小算例或正式实验。
 
-## 知识图谱与检索定位
+建网、checkMesh、初始化、分解、求解、重构和计算型后处理必须经yhbatch在超算实际分配节点执行。登录节点只做轻量传输、提交和查询。大结果留超算，Linux仅留源码、依赖、配置和有界控制记录/结果引用。agent直接使用所需私钥，不要求root代操作；完整账号权限不等于OS沙箱。
 
-第2章唯一源码入口为[experiments/chapter2](experiments/chapter2/README.md)，公共检索模块在experiments/retrieval_method。客观200＋开放100全量评价，不设开发集；三模型均比较单步和多步，分别报告准确率与EAS。旧题、回答和成绩当前文件已授权清理，Git历史未处理；新正式实验待协议冻结。配置与压力测试见[接入说明](../QWEN_MODEL_ROUTING.md)。
+## Git连接与恢复副本清理完成
 
-自研方法只扫描持久来源图并回读原文，BM25/E5/BGE为隔离对照。Gold只供评分；图关系不直接证明物理条件已满足。双裁判评分与题目人工审核分别报告，原独立审计未达到门槛，客观题独立专家审核未完成。论文结果与生产MCP接入状态分别核验。
-
-## 论文与第4章方向
-
-本项目是当前唯一在开发的PrincipiaBlastFoam多智能体应用，后续第3、4章正文和实验基于DSH。论文直接在同级 `graduation-thesis-materials/graduation-manuscript/` 以LaTeX维护，所有最终图件在其 `assets/`。
-
-第4章独立研究单agent递归自改进（RSI），仅使用DSH框架，不继承第3章多角色系统。2026-11-17设计允许任务执行、自改进逻辑、外部验收与持久经验演化；底层模型、基础权限、预算与研究侧审计口径固定。以同一起点评价自改进能力；一次部署、固定改进者等为候选对照，实际方案由agent结合研究主张和证据选择。具体路线与工作顺序自主探索，目标、边界和证据要求见 [DSH自进化计划](experiments/self_evolution/PLAN.md)。目前只有设计，没有DSH自进化正式收益结果；历史框架结果保留原身份。
-
-## 当前实现
-
-- 7 个项目级 Skill，覆盖总编排、知识检索和 5 个有序工作阶段。
-- 1 个可安装的 bundle，挂载稳定的工作流/产物策略，并通过 DSH 官方进程内 `spawn` provider 提供 5 个专职 subagent。
-- 1 个基于 stdio 的 Python MCP 服务，向 DSH 暴露 17 个工具，工具名格式为 `mcp__principia_retrieval__<tool>`。
-- `compatibility/` 保存精确的上游兼容版本、验收门槛和验证证据。
-
-工作流顺序如下：
-
-```text
-物理分析 -> 算例配置 -> 求解执行 -> 后处理 -> 独立审查
-```
-
-存在依赖关系的阶段不得并行；同一阶段内相互独立的证据检索可以并行。
-
-## 快速开始
-
-推荐把宿主、运行状态和业务源码分开存放：
-
-```text
-<workspace>/deepseek-harness                        可替换的上游 DSH 宿主
-<workspace>/dsh-home                               机器本地 DSH profile
-<workspace>/graduation-projects/PrincipiaBlastFoam-DSH
-                                                   受 Git 管理的业务应用
-```
-
-在已经安装本项目包装命令的机器上启动 Web 模式：
-
-```bash
-cd "$PRINCIPIA_PROJECT_ROOT"
-principia-dsh --profile web
-```
-
-无界面任务可在 `--profile headless` 后追加任务文本。包装命令只把机器本地 API Key 注入子进程，不会把凭据复制到本仓库或 DSH profile。
-
-本项目默认执行真实 solver。只做检索、配置或 CI 检查时，必须显式关闭：
-
-```bash
-ENABLE_EXECUTION=false REQUIRE_EXECUTION=false \
-  principia-dsh --profile headless "检查算例配置，不运行求解器"
-```
-
-## Windows 与 Linux 分工
-
-Windows 本地 DSH 启动、独立第4章配置与远程仿真接入见 [部署说明](deployment/dsh/README.md)。当前 SSH 工作区入口为 `./deployment/windows/Start-Principia.ps1 -Chapter 3 -Ssh`（第4章改为 `-Chapter 4`），使用独立 `web-ssh` profile 读取本机 OpenSSH Host；该插件的权限模式为 `danger-full-access`、审批为 `never`。本地 solver 明确阻断；当前已通过非 root Host 的 SSH、Agent Host、远程文件/Bash/搜索与 blastFoam 帮助检查，真实算例与正式实验仍待验收。此前独立仿真 MCP 方案保留为另一入口。
-
-## 重建开发环境
-
-创建 Python 环境：
-
-```bash
-python3 -m venv .venv
-. .venv/bin/activate
-python -m pip install -e '.[dev]'
-pytest
-```
-
-执行真实求解时，应在宿主环境设置 `OPENFOAM_BASHRC` 和 `BLASTFOAM_BASHRC`，指向该机器上的实际环境脚本。仓库不提供机器特定的绝对路径默认值。如果 MCP 进程已经继承完整的 OpenFOAM 环境，可以留空；预检会明确记录其正在依赖继承的 `PATH`。显式配置但文件不存在或不可读时，执行会被阻断。
-
-跟踪模板中的 `ENABLE_EXECUTION` 和 `REQUIRE_EXECUTION` 默认为 `true`；显式设为 `false` 是配置检查和紧急停用方式。DSH 以 root 启动时，还应设置非特权的 `OPENFOAM_EXECUTION_USER`。
-
-安装并检查 bundle：
-
-```bash
-npm --prefix packages/principia-dsh-bundle install
-npm --prefix packages/principia-dsh-bundle run check
-```
-
-导出 `PRINCIPIA_PROJECT_ROOT` 和 `PRINCIPIA_PYTHON` 后，把 bundle 安装到 DSH profile，并在启动前检查合成配置树。具体命令见 [DSH 部署说明](deployment/dsh/README.md)，升级门槛见 [兼容性验收矩阵](compatibility/acceptance-matrix.md)。
-
-## 评测
-
-- [第 3 章端到端适配器](experiments/end2end/README.md)：兼容已有黑盒评分器。
-- [批量评测指南](experiments/BATCH_EVALUATION.md)：介绍分层评测、用例筛选、分片并行、A/B 对照、结果归档和恢复策略。
-
-适配器的 `--dry-run` 只验证用例选择、命令和结果结构，不启动 DSH 或 solver；正常 benchmark 默认执行真实求解。
-
-## 仓库边界
-
-不得把业务代码写入上游 DeepSeek Harness 检出目录，也不得把实时 DSH profile 提交到 Git。本仓库只提交 bundle 源码与构建输入、Skills、MCP/领域代码、测试和配置模板。凭据、机器路径、生成算例、运行日志与实验结果保存在外部运行环境或毕业实验归档目录。
-
-DeepSeek Harness 当前仍处于预稳定阶段。`compatibility/dsh-version.json` 中的 commit 只代表已经验证的基线，不代表对任意新版本的兼容承诺。
+2026-11-23：GitHub读取、fetch和推送dry-run均验证通过，仓库专用Deploy key已启用写权限；没有实际推送代码或创建分支。收到用户明确确认后，已删除四个迁移恢复包和inactive raw目录，Windows完整恢复包仍保留。活动配置、集群凭据及原Git历史保持完整，pip check与DSH正常配置入口通过。本轮没有模型请求或仿真。

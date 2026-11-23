@@ -1,8 +1,18 @@
 # 第3章独立模型接入
 
-第3章使用与第2章相同的XCM端点及OpenAI兼容Chat Completions协议，当前用户指定的flash模型在XCM模型列表中对应`deepseek-v4.1-flash`。凭据单独保存在本目录已忽略的`.env.private`，变量为`CHAPTER3_API_KEY`；不得复制或回退到第2章key。
+2026-11-23迁移更新：DSH源码开发、Git操作、依赖维护与agent运行全部在Linux的agent账号下完成；Windows只通过SSH下达命令与查看，不再维护DSH源码。开发工作区与已验收运行实例分开绑定版本；本轮只迁移维护和无模型核验，不启动真实模型、仿真或总目标实验。大结果留超算，仿真仍只走调度分配节点。
 
-从`.env.example`建立私有配置，设置`CHAPTER3_BASE_URL`、`CHAPTER3_MODEL`和`CHAPTER3_API_KEY`。运行器只读取这一文件，缺少任一项就拒绝启动。它清除继承的其他模型认证变量，仅把独立key通过`PRINCIPIA_CHAPTER3_API_KEY`传给本次DSH子进程；不将key写入profile、报告、公开输入或远端上传包。
+## 当前Linux部署规则（2026-11-23）
+
+真实模型请求由Linux上的agent发起，模型推理由既有API服务完成，不在Windows或Linux控制机部署本地大模型。服务地址、模型名称和API凭据保存在agent可读的Linux私有配置，通过受控环境传给运行进程，不写入Git、报告、终端回显或聊天。Windows私有配置不会自动同步到Linux；不得把下面旧Windows环境文件视作Linux已接入的证据。
+
+当前仅完成本地固定SSE夹具验收，尚未接入或调用真实模型。下一阶段需从正常DSH入口验证鉴权、最小工具调用与账本，记录模型身份、实际请求、用量和失败；具体请求/token上限与停止条件随单个小算例维护验收登记，旧运行中的32768/8192及100请求等参数不是本次自动生效的预算。
+
+本轮先更新项目文档，不读取或迁移模型密钥、不发真实请求、不提交小算例。后续agent、exchange控制逻辑均在Linux；所有仿真经超算调度节点执行，大结果留超算。详见[当前部署方案](../../../deployment/dsh/linux-controller-plan.md)。
+
+## 历史Windows接入（保留原开发配置身份）
+
+第3章的 Windows 启动器和开发样本运行器均从工作区根目录的 `.env.chapter3_dsh` 读取模型配置。可参考本目录的 `.env.example` 设置 `CHAPTER3_BASE_URL`、`CHAPTER3_MODEL` 和 `CHAPTER3_API_KEY`。密钥通过环境变量传给 DSH 子进程。
 
 本次开发配置采用32768总上下文；初始单次输出上限4096，v10起因max-tokens截断改为8192，最多1次请求重试；这些是开发运行配置，不改第2章冻结协议。DSH原生会话保存模型和工具用量，失败调用中供应商未报告的用量保持未知。没有已知单价时不估造费用。
 
