@@ -9,3 +9,6 @@ Web入口为[启动实现](../web/serve_web.py)，状态在工作区services/cha
 加载工作区environment.sh后使用dsh-dev；只读配置为dsh-dev --profile headless --dump-config。现用Node/pnpm位于workspace/runtime；controller_20261122的source/application副本及退役启动器已验证清理。源码修改不自动部署。按任务规模和资源需求选择执行位置：轻量建网、checkMesh、小规模初始化/预处理、摘要统计与绘图可在独立Linux本地执行；大型网格、长时或高资源求解、MPI并行及大型重构/后处理经yhbatch在超算分配节点执行。不得仅按命令名称一刀切；先核对工具、输入规模及CPU/内存/磁盘余量，并设置任务适用的超时和输出限制。公共登录节点仍只做轻量传输、提交和查询，不运行网格或求解。大结果留超算。旧Windows启动器和历史工作器不是当前入口。详见[部署规则](linux-controller-plan.md)。当前只维护文档，不启动批量实验。
 
 2026-11-23运行组件整理：Node/pnpm已迁到workspace/runtime，正常Web配置、认证页面、只读领域MCP与持久账本检查通过；旧controller_20261122/source、application和退役启动器已删除。模型请求与节点作业均未增加。记录见workspace/runtime/verification.json与cleanup.json。
+
+
+2026-11-23 current simulation command entry: simulation_cli.execute/status/logs/cancel. Bounded local commands and short_test solvers use conservative scale/resource checks; scripts and heavy work use the scoped scheduler binding. The mesh_case/run_case MCP command tools and mesh-only backend have been retired. General shell remains available; no research planning or shell interception is added. See deployment/simulation_cli/README.md for actual capabilities, one-job grant consumption, evidence and unverified paths. No batch research or new model request was started.

@@ -15,7 +15,6 @@
         cwd: !!js process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()
         env:
           PYTHONUTF8: '1'
-          PRINCIPIA_COMMAND_MCP_ENABLED: 'true'
           PRINCIPIA_PROJECT_ROOT: !!js process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()
           PRINCIPIA_CASE_ROOT: !!js process.env.PRINCIPIA_CASE_ROOT ?? (process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()) + '/outputs'
           BLASTFOAM_TUTORIALS: !!js process.env.BLASTFOAM_TUTORIALS ?? (process.env.PRINCIPIA_PROJECT_ROOT ?? process.cwd()) + '/../graduation-datasets/raw-corpus/blastfoam/blastFoam_tutorials'

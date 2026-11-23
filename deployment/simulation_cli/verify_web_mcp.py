@@ -30,7 +30,7 @@ async def main():
     assert set(names)=={'execute','status','logs','cancel'}
     case=WEB/'workspace/cases/simulation-cli-web-maintenance'
     if not case.exists():shutil.copytree(ROOT/'cases/solver100',case)
-    task=await call(s,'execute',command='blockMesh',args=[],case_path=str(case),request_id='web-config-live-mesh')
+    task=await call(s,'execute',command='blockMesh',args=[],case_path=str(case),request_id='web-config-final-mesh')
     state=await wait(s,task['task_id']);OUT['mesh']=state
     assert state['state']=='completed',state
     OUT['mesh_logs']=await call(s,'logs',task_id=task['task_id'],max_bytes=8192)
@@ -43,17 +43,17 @@ async def main():
     OUT['exhausted_hpc_grant']=await call(s,'execute',command='Allrun',args=[],case_path=str(scriptcase),resources={'reviewed_script_sha256':sha},timeout_seconds=300,location='hpc',request_id='web-grant-must-refuse-second')
     assert OUT['exhausted_hpc_grant']['category']=='prohibited',OUT['exhausted_hpc_grant']
     # Initialization, decomposition and visualization use actual small local commands.
-    initialized=await call(s,'execute',command='setFields',args=[],case_path=state['result_path'],request_id='web-live-setfields')
+    initialized=await call(s,'execute',command='setFields',args=[],case_path=state['result_path'],request_id='web-final-setfields')
     initialized=await wait(s,initialized['task_id']);OUT['setFields']=initialized
     assert initialized['state']=='completed',initialized
     case2=WEB/'workspace/cases/simulation-cli-web-decomposition'
     if not case2.exists():
      shutil.copytree(initialized['result_path'],case2)
      (case2/'system/decomposeParDict').write_text('FoamFile { version 2.0; format ascii; class dictionary; object decomposeParDict; }\nnumberOfSubdomains 2; method simple; simpleCoeffs { n (2 1 1); delta 0.001; }\n')
-    d=await call(s,'execute',command='decomposePar',args=[],case_path=str(case2),request_id='web-live-decompose')
+    d=await call(s,'execute',command='decomposePar',args=[],case_path=str(case2),request_id='web-final-decompose')
     OUT['decomposePar']=await wait(s,d['task_id'])
     assert OUT['decomposePar']['state']=='completed',OUT['decomposePar']
-    vtk=await call(s,'execute',command='foamToVTK',args=[],case_path=initialized['result_path'],request_id='web-live-vtk')
+    vtk=await call(s,'execute',command='foamToVTK',args=[],case_path=initialized['result_path'],request_id='web-final-vtk')
     OUT['foamToVTK']=await wait(s,vtk['task_id'])
     assert OUT['foamToVTK']['state']=='completed',OUT['foamToVTK']
  (ROOT/'web-mcp-verification.json').write_text(json.dumps(OUT,indent=2))

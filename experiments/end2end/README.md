@@ -9,3 +9,6 @@
 当前没有通过本轮核验的正式批量入口。deployment/acceptance仅支持固定方腔维护任务；deployment/web是人工调试入口，simulation_jobs_max=0，不可用作研究批次。正式批次须独立绑定任务包、运行身份、模型与节点预算、停止规则和独立复核。
 
 实验、题集、研究设计和论文保留在Windows毕业工作区，Linux不依赖本README过去指向缺失同级目录的链接。当前证据导航为Windows的DSH_REMOTE_WORKSPACE.md及graduation-experiment-results/chapter3_end_to_end_evaluation/dsh/CURRENT_DEVELOPMENT.md。
+
+
+2026-11-23 current simulation command entry: simulation_cli.execute/status/logs/cancel. Bounded local commands and short_test solvers use conservative scale/resource checks; scripts and heavy work use the scoped scheduler binding. The mesh_case/run_case MCP command tools and mesh-only backend have been retired. General shell remains available; no research planning or shell interception is added. See deployment/simulation_cli/README.md for actual capabilities, one-job grant consumption, evidence and unverified paths. No batch research or new model request was started.

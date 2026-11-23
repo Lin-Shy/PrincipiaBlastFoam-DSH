@@ -24,8 +24,8 @@ description: 对已批准的 blastFoam/OpenFOAM 算例执行可复现预检和�
 
 ## Windows 开发、Linux 远程执行
 
-执行前先区分独立Linux本地轻量操作与超算重计算。当前principia_domain.run_case仍是整流程硬拒绝入口，不能用它完成本地轻量建网；不得为建网直接启用整条Allrun求解流水线。轻量操作使用已安装、已确认资源规模的独立命令；超算任务使用已验收的yhbatch提交/查询入口，不恢复旧Windows仿真服务路线。
+执行仿真命令优先使用 simulation_cli.execute；status 无参数查看当前能力与边界，再用任务ID查询状态、日志或取消。轻量操作和显式有界短测可在独立Linux执行；Allrun 当前须经审阅绑定哈希并走超算。未知规模或环境不满足时按返回原因处理，不自动改物理和数值条件。一般shell仍可直接使用，本服务不拦截shell。
 
 超算终态后核对JobID、节点、退出码、输出路径及有界摘要；大结果留超算。轻量本地操作记录主机、工具版本、输入/输出身份、资源与终态，不能伪造调度回执。退出码0不等于完整任务或物理验证成功。
 
-Local mesh implementation (2026-11-23): use mesh_case for bounded local blockMesh/checkMesh; real 1,000-cell creation and Mesh OK check passed. Current bounds and pinned tool version: deployment/local_mesh/README.md. Full solver execution remains HPC-only. No batch experiment was started.
+2026-11-23 current simulation command entry: simulation_cli.execute/status/logs/cancel. Bounded local commands and short_test solvers use conservative scale/resource checks; scripts and heavy work use the scoped scheduler binding. The mesh_case/run_case MCP command tools and mesh-only backend have been retired. General shell remains available; no research planning or shell interception is added. See deployment/simulation_cli/README.md for actual capabilities, one-job grant consumption, evidence and unverified paths. No batch research or new model request was started.

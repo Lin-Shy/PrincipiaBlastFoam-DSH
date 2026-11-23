@@ -25,48 +25,7 @@ def test_dynamic_or_external_input_rejected(suffix):
     with pytest.raises(ValueError):
         local_mesh.estimate_cells(DICT + suffix)
 
-def test_solver_is_not_an_operation(tmp_path):
-    with pytest.raises(ValueError, match="solvers use HPC"):
-        local_mesh.run_local_mesh(tmp_path, "icoFoam")
-
-def test_disabled_separate_from_full_execution_flag(tmp_path, monkeypatch):
-    monkeypatch.setenv("ENABLE_EXECUTION", "true")
-    monkeypatch.setenv("PRINCIPIA_LOCAL_MESH_ENABLED", "false")
-    with pytest.raises(ValueError, match="disabled"):
-        local_mesh.run_local_mesh(tmp_path, "blockMesh")
-
-def test_symlink_and_binary_inputs_rejected(tmp_path):
-    outside = tmp_path/"outside"; outside.write_text(DICT)
-    case = tmp_path/"case"; case.mkdir()
-    link = case/"blockMeshDict"; link.symlink_to(outside)
-    with pytest.raises(ValueError, match="Symlink"):
-        local_mesh._input(link, case)
-    link.unlink(); link.write_text(DICT.replace("format ascii", "format binary"))
-    with pytest.raises(ValueError, match="ASCII"):
-        local_mesh._input(link, case)
-
-def test_existing_mesh_is_never_overwritten(tmp_path, monkeypatch):
-    tools = tmp_path/"bin"; tools.mkdir()
-    for name in ("blockMesh", "checkMesh"):
-        f=tools/name; f.write_text("#!/bin/sh\nexit 99\n"); f.chmod(0o700)
-    monkeypatch.setenv("PRINCIPIA_LOCAL_MESH_BIN", str(tools))
-    monkeypatch.setenv("PRINCIPIA_LOCAL_MESH_ENABLED", "true")
-    (tmp_path/"system").mkdir(); (tmp_path/"system/blockMeshDict").write_text(DICT)
-    (tmp_path/"constant/polyMesh").mkdir(parents=True)
-    with pytest.raises(ValueError, match="not overwritten"):
-        local_mesh.run_local_mesh(tmp_path, "blockMesh")
-
-def test_wall_timeout_terminates_child_without_publishing(tmp_path, monkeypatch):
-    tools=tmp_path/"bin"; tools.mkdir()
-    for name in ("blockMesh","checkMesh"):
-        f=tools/name; f.write_text("#!/bin/sh\nsleep 10\n"); f.chmod(0o700)
-    monkeypatch.setenv("PRINCIPIA_LOCAL_MESH_BIN", str(tools))
-    monkeypatch.setenv("PRINCIPIA_LOCAL_MESH_ENABLED", "true")
-    monkeypatch.setattr(local_mesh,"MAX_SECONDS",1)
-    (tmp_path/"system").mkdir(); (tmp_path/"system/blockMeshDict").write_text(DICT)
-    result=local_mesh.run_local_mesh(tmp_path,"blockMesh")
-    assert result["passed"] is False
-    assert result["failure"] == "local time/output limit exceeded"
-    assert result["elapsed_seconds"] < 3
-    assert not (tmp_path/"constant/polyMesh").exists()
-    assert not list(tmp_path.glob(".local-mesh-*"))
+def test_owner_cell_count():
+    assert local_mesh._mesh_cells("FoamFile {} 3 (0 1 2)") == 3
+    with pytest.raises(ValueError):
+        local_mesh._mesh_cells("FoamFile {} 1 (1000000)")

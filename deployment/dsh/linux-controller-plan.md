@@ -48,3 +48,6 @@ C 集群公共登录节点：轻量传输、提交、查询
 ## 当前工具限制与部署待办
 
 上述为执行位置政策，不代表本地OpenFOAM已经安装。2026-11-23加载当前environment.sh后，blockMesh、checkMesh、setFields、icoFoam、blastFoam均未出现在PATH。领域MCP的run_case及require_execution=True仍无条件拒绝整流程；Web设置ENABLE_EXECUTION=false。该开关不能区分轻量建网和Allrun内重求解，不应直接全部打开。轻量步骤应使用可确认资源范围的独立命令或后续专用接口；本轮只更新说明和排查，不修改求解执行器、安装软件或运行仿真。集群提交器继续校验实际分配节点，该保护不应删除。
+
+
+2026-11-23 current simulation command entry: simulation_cli.execute/status/logs/cancel. Bounded local commands and short_test solvers use conservative scale/resource checks; scripts and heavy work use the scoped scheduler binding. The mesh_case/run_case MCP command tools and mesh-only backend have been retired. General shell remains available; no research planning or shell interception is added. See deployment/simulation_cli/README.md for actual capabilities, one-job grant consumption, evidence and unverified paths. No batch research or new model request was started.

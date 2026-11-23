@@ -54,7 +54,7 @@ def main():
  {'id':'principia-domain-mcp','name':'@deepseek-ai/dsh-mcp-client','config':{
  'serverName':'principia_domain','transport':'stdio','command':str(WS/'.venv/bin/python'),
  'args':['-m','mcp_servers.principia_domain.server'],'cwd':str(APP),
- 'env':{'PYTHONUTF8':'1','PYTHONPATH':str(APP/'src')+':'+str(APP),'PRINCIPIA_PROJECT_ROOT':str(APP),'PRINCIPIA_CASE_ROOT':str(work/'cases'),'ENABLE_EXECUTION':'false','REQUIRE_EXECUTION':'false','PRINCIPIA_LOCAL_MESH_ENABLED':'true','PRINCIPIA_LOCAL_MESH_BIN':str(WS/'runtime/mesh-bin'),'PRINCIPIA_TOOL_TRACE_DIR':str(ROOT/'tool-traces'),'PRINCIPIA_COMMAND_MCP_ENABLED':'true'},
+ 'env':{'PYTHONUTF8':'1','PYTHONPATH':str(APP/'src')+':'+str(APP),'PRINCIPIA_PROJECT_ROOT':str(APP),'PRINCIPIA_CASE_ROOT':str(work/'cases'),'ENABLE_EXECUTION':'false','REQUIRE_EXECUTION':'false','PRINCIPIA_TOOL_TRACE_DIR':str(ROOT/'tool-traces')},
  'toolCallTimeoutMs':60000,'failOnStartupError':True}}
  ]}]
  patch[-1]['insert'].append({

@@ -22,3 +22,8 @@
 ## Git连接与恢复副本清理完成
 
 2026-11-23：GitHub读取、fetch和推送dry-run均验证通过，仓库专用Deploy key已启用写权限；没有实际推送代码或创建分支。收到用户明确确认后，已删除四个迁移恢复包和inactive raw目录，Windows完整恢复包仍保留。活动配置、集群凭据及原Git历史保持完整，pip check与DSH正常配置入口通过。本轮没有模型请求或仿真。
+
+
+## Current simulation command service (2026-11-23)
+
+[simulation_cli tools, deployment and verified boundaries](deployment/simulation_cli/README.md). Command execution uses execute/status/logs/cancel; domain configuration/evidence tools remain separate. Single maintenance acceptance is not a research experiment.

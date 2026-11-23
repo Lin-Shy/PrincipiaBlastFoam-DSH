@@ -1,6 +1,6 @@
 # 第3章DSH源码与运行维护
 
-2026-11-23当前状态：迁移维护及真实模型单方腔功能验收已完成（含维护恢复）。DSH源码、Git、依赖和agent运行在Linux；Windows通过SSH维护、浏览器人工调试。Web基本交互验收已通过（含一次用户批准的恢复）；当前只维护文档，暂不启动批量实验或复用旧预算。
+2026-11-23当前状态：迁移维护及真实模型单方腔功能验收已完成（含维护恢复）。DSH源码、Git、依赖和agent运行在Linux；Windows通过SSH维护、浏览器人工调试。Web基本交互验收已通过（含一次用户批准的恢复）；simulation_cli 命令服务已重建并完成有界维护验收，暂不启动批量实验或复用旧预算。
 
 ## 目录边界
 
@@ -27,4 +27,4 @@
 ## 多版本清理（2026-11-23用户澄清）
 同一内容默认只留最新有效版本；无依赖、已被替代且无独立价值的旧版本直接清理。不同实验、协议和唯一原始证据不是互相替代版本。确需额外保留旧版本时，必须向用户说明路径、用途、删除影响并询问是否保留；不得仅改名历史或归档规避清理。先核对版本关系和当前依赖，用户具体决定沿用，不输出凭据。
 
-Local mesh implementation (2026-11-23): use mesh_case for bounded local blockMesh/checkMesh; real 1,000-cell creation and Mesh OK check passed. Current bounds and pinned tool version: deployment/local_mesh/README.md. Full solver execution remains HPC-only. No batch experiment was started.
+2026-11-23 current simulation command entry: simulation_cli.execute/status/logs/cancel. Bounded local commands and short_test solvers use conservative scale/resource checks; scripts and heavy work use the scoped scheduler binding. The mesh_case/run_case MCP command tools and mesh-only backend have been retired. General shell remains available; no research planning or shell interception is added. See deployment/simulation_cli/README.md for actual capabilities, one-job grant consumption, evidence and unverified paths. No batch research or new model request was started.

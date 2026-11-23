@@ -307,7 +307,6 @@ def test_mcp_exposes_domain_tools_and_completes_without_execution(
         "initialize_case",
         "case_digest",
         "execution_preflight",
-        "run_case",
         "complete_workflow",
         "write_evidence",
         "write_post_processing",
@@ -380,7 +379,6 @@ def test_mcp_domain_tools_reject_tutorial_path_escape(tmp_path: Path, monkeypatc
         ("initialize_case", {"user_request": "shock tube", "tutorial_path": "."}),
         ("case_digest", {}),
         ("execution_preflight", {}),
-        ("run_case", {"user_request": "do not execute"}),
         ("complete_workflow", {"user_request": "non-execution", "require_execution": False}),
         ("write_evidence", {}),
         ("write_post_processing", {}),
@@ -423,17 +421,18 @@ def test_mcp_case_path_rejects_symlink_escape(tmp_path: Path, monkeypatch) -> No
 
 def test_mcp_schemas_bound_expensive_arguments() -> None:
     tools = {tool.name: tool for tool in asyncio.run(mcp_server.mcp.list_tools())}
-    assert len(tools) == 12
+    assert len(tools) == 10
+    assert "run_case" not in tools and "mesh_case" not in tools
     assert "search_user_guide" not in tools
     assert "read_knowledge_source" not in tools
-    assert tools["run_case"].inputSchema["properties"]["timeout_seconds"]["maximum"] == 86400
+    assert tools["complete_workflow"].inputSchema["properties"]["timeout_seconds"]["maximum"] == 86400
     assert tools["edit_case_dictionaries"].inputSchema["properties"]["edits"]["maxItems"] == 64
 
 
 def test_mcp_validation_rejects_out_of_range_arguments() -> None:
     async def exercise() -> None:
         with pytest.raises(ToolError, match="less than or equal to 86400"):
-            await mcp_server.mcp.call_tool("run_case", {"case_path": "case", "user_request": "fixture", "timeout_seconds": 86401})
+            await mcp_server.mcp.call_tool("complete_workflow", {"case_path": "case", "user_request": "fixture", "timeout_seconds": 86401})
         with pytest.raises(ToolError, match="greater than or equal to 1"):
-            await mcp_server.mcp.call_tool("run_case", {"case_path": "case", "user_request": "fixture", "timeout_seconds": 0})
+            await mcp_server.mcp.call_tool("complete_workflow", {"case_path": "case", "user_request": "fixture", "timeout_seconds": 0})
     asyncio.run(exercise())
