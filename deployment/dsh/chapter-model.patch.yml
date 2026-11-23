@@ -1,0 +1,24 @@
+- id: llm-deepseek
+  disabled: true
+- id: llm-pi-ai
+  config:
+    providers:
+      principia-chapter:
+        api: !!js process.env.PRINCIPIA_DSH_MODEL_API
+        apiKeyEnv: PRINCIPIA_DSH_MODEL_API_KEY
+        baseURL: !!js process.env.PRINCIPIA_DSH_MODEL_BASE_URL
+        models:
+          - id: !!js process.env.PRINCIPIA_DSH_MODEL_MODEL
+            contextWindow: !!js Number(process.env.PRINCIPIA_DSH_MODEL_CONTEXT_WINDOW)
+            maxTokens: !!js Number(process.env.PRINCIPIA_DSH_MODEL_MAX_OUTPUT_TOKENS)
+            input: [text]
+        compat:
+          thinkingFormat: deepseek
+        timeoutMs: 180000
+        retryPolicy:
+          mode: normal
+          maxRetries: 1
+- id: agent-default-model
+  config:
+    provider: principia-chapter
+    model: !!js process.env.PRINCIPIA_DSH_MODEL_MODEL

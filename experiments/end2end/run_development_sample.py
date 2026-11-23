@@ -20,7 +20,7 @@ WORKSPACE = PROJECT.parent
 BASE = WORKSPACE.parent
 SAMPLE = WORKSPACE / "graduation-datasets/chapter03_simulation_tasks/benchmark/development_samples/b01_2_e2e_20261102"
 ARCHIVE = WORKSPACE / "graduation-experiment-results/chapter3_end_to_end_evaluation/development_samples/b01_2_dsh"
-SECRET = PROJECT / "config/llm/chapter3/.env.private"
+SECRET = WORKSPACE / ".env.chapter3_dsh"
 
 
 def write(path, value):
