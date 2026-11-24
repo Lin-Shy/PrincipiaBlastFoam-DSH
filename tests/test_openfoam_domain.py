@@ -421,7 +421,8 @@ def test_mcp_case_path_rejects_symlink_escape(tmp_path: Path, monkeypatch) -> No
 
 def test_mcp_schemas_bound_expensive_arguments() -> None:
     tools = {tool.name: tool for tool in asyncio.run(mcp_server.mcp.list_tools())}
-    assert len(tools) == 10
+    assert len(tools) == 12
+    assert {"blast_preflight_check", "pressure_probe_summary"}.issubset(tools)
     assert "run_case" not in tools and "mesh_case" not in tools
     assert "search_user_guide" not in tools
     assert "read_knowledge_source" not in tools

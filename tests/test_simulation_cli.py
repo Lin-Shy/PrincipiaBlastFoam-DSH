@@ -158,3 +158,126 @@ def test_mcp_schema_default_timeout_is_sixty():
     tools=asyncio.run(mcp.list_tools())
     execute=next(tool for tool in tools if tool.name=="execute")
     assert execute.inputSchema["properties"]["timeout_seconds"]["default"]==60
+
+
+def test_blastfoam_family_and_rhocentral_registered(service):
+    s, _ = service
+    cmds = s.capabilities()["commands"]
+    for name, role in [
+        ("setRefinedFields", "initialize"),
+        ("initializeAtmosphere", "initialize"),
+        ("rhoCentralFoam", "solver"),
+        ("blastEulerFoam", "solver"),
+        ("blastXiFoam", "solver"),
+        ("blastReactingFoam", "solver"),
+        ("blastParcelFoam", "solver"),
+        ("blastFSIFoam", "solver"),
+    ]:
+        assert cmds[name] == role
+
+
+def test_hpc_ulimit_and_mpi_launcher_helpers():
+    import principia_core.simulation_cli as cli
+
+    assert cli.hpc_ulimit_f_blocks({}) == 262144
+    assert cli.hpc_ulimit_f_blocks({"max_file_mib": 256}) == 524288
+    with pytest.raises(Problem):
+        cli.hpc_ulimit_f_blocks({"max_file_mib": 0})
+
+    plan_mpi = {"command": "mpirun", "args": ["-np", "64", "blastFoam", "-case", "."]}
+    assert cli.build_hpc_command_argv(plan_mpi, {"mpi_launcher": "mpirun"}) == ["mpirun", *plan_mpi["args"]]
+    assert cli.build_hpc_command_argv(plan_mpi, {"mpi_launcher": "srun_pmix"}) == [
+        "/usr/bin/srun", "--nodes=1", "--ntasks=64", "--mpi=pmix", "blastFoam", "-case", ".", "-parallel"
+    ]
+    plan_already_par = {"command": "mpirun", "args": ["-np", "16", "blastFoam", "-parallel"]}
+    assert cli.build_hpc_command_argv(plan_already_par, {"mpi_launcher": "srun_pmix"}) == [
+        "/usr/bin/srun", "--nodes=1", "--ntasks=16", "--mpi=pmix", "blastFoam", "-parallel"
+    ]
+    with pytest.raises(Problem):
+        cli.build_hpc_command_argv(plan_mpi, {"mpi_launcher": "bad_launcher"})
+
+
+def test_hpc_submit_uses_srun_pmix_and_262144_ulimit(service, tmp_path, monkeypatch):
+    import sys
+    import types
+    import principia_core.simulation_cli as cli
+
+    s, c = service
+    ledger = tmp_path / "allowance"
+    ledger.mkdir()
+    s.config = {
+        "live_enabled": True,
+        "available_commands": ["blastFoam"],
+        "mpi_verified": True,
+        "mpi_launcher": "srun_pmix",
+        "ssh_config": str(tmp_path / "ssh_cfg"),
+        "ssh_target": "dummy",
+        "grant": {
+            "enabled": True,
+            "max_cpus": 64,
+            "max_memory_mib": 65536,
+            "max_seconds": 3600,
+            "max_submissions": 1,
+            "ledger_path": str(ledger),
+        },
+    }
+    assert s.capabilities()["hpc"]["mpi_launcher"] == "srun_pmix"
+    assert s.capabilities()["hpc"]["max_file_mib"] == 128
+
+    fake_cluster = types.SimpleNamespace(ssh=lambda *a, **kw: None)
+    fake_bridge = types.SimpleNamespace(
+        guarded_plan=lambda core, cfg, run_id: {
+            "remote": str(tmp_path / "remote_job"),
+            "batch_script": "#!/bin/bash\nnode=$(hostname -s)\nbash payload/run_case.sh\n",
+            "submit_argv": ["sbatch", "batch.sh"],
+        }
+    )
+    monkeypatch.setitem(sys.modules, "cluster_job", fake_cluster)
+    monkeypatch.setitem(sys.modules, "linux_scheduler_bridge", fake_bridge)
+
+    folder = s.root / ("sim-" + "b" * 24)
+    folder.mkdir()
+    hpc = cli.HPC(s, folder)
+    captured = {}
+
+    def fake_ssh(cmd, timeout=45):
+        if "sha256sum" in cmd:
+            import hashlib
+            return hashlib.sha256((folder / "payload.tar").read_bytes()).hexdigest() + "  payload.tar\n"
+        if "sbatch" in cmd:
+            captured["run_case_sh"] = (folder / "payload/run_case.sh").read_text()
+            return "Submitted batch job 9999999\n"
+        return ""
+
+    monkeypatch.setattr(hpc, "ssh", fake_ssh)
+    monkeypatch.setattr(cli.subprocess, "run", lambda *a, **kw: None)
+
+    plan = s.plan("mpirun", ["-np", "64", "blastFoam"], str(c), {"cpus": 64}, 600, "hpc")
+    task = {"task_id": "sim-" + "b" * 24, "plan": plan, "created_unix": 0}
+    res = hpc.submit(task)
+    assert res["job_id"] == "9999999"
+    assert "ulimit -f 262144" in (folder / "batch.sh").read_text()
+    assert "/usr/bin/srun --nodes=1 --ntasks=64 --mpi=pmix blastFoam -parallel" in captured["run_case_sh"]
+def test_mpirun_checks_effective_command_and_foam_dictionary_registered(service, tmp_path):
+    s, c = service
+    assert s.capabilities()["commands"].get("foamDictionary") == "check"
+    ledger = tmp_path / "allowance"
+    ledger.mkdir()
+    s.config = {
+        "live_enabled": True,
+        "available_commands": ["blastFoam"],
+        "mpi_verified": True,
+        "mpi_launcher": "srun_pmix",
+        "grant": {
+            "enabled": True,
+            "max_cpus": 8,
+            "max_memory_mib": 4096,
+            "max_seconds": 600,
+            "max_submissions": 1,
+            "ledger_path": str(ledger),
+        },
+    }
+    with pytest.raises(Problem) as exc:
+        s.plan("mpirun", ["-np", "4", "blastXiFoam"], str(c), {"cpus": 4}, 300, "hpc")
+    assert exc.value.data["category"] == "environment_missing"
+    assert "blastXiFoam" in exc.value.data["reason"]

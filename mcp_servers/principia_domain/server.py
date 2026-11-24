@@ -309,6 +309,30 @@ def get_status() -> Dict[str, Any]:
     return {"service": "principia-domain", "chapter": 3, "execution_service": "simulation_cli", "command_execution": False, "knowledge_qa_loaded": False}
 
 
+@mcp.tool()
+def blast_preflight_check(case_path: PathText) -> Dict[str, Any]:
+    """Run read-only blastFoam/OpenFOAM structural, JWL, charge resolution, and patch consistency checks."""
+    from principia_core.blast_preflight import preflight_blast_case
+
+    validated_case = _validated_case_path(case_path)
+    with redirect_stdout(sys.stderr), _tool_observation("blast_preflight_check"):
+        return preflight_blast_case(validated_case)
+
+
+@mcp.tool()
+def pressure_probe_summary(
+    case_path: PathText,
+    ambient_pa: float = 101325.0,
+    probe_dir: PathText | None = None,
+) -> Dict[str, Any]:
+    """Extract pressure-time landmarks and positive-phase impulse from case probe files."""
+    from principia_core.pressure_postprocess import extract_pressure_summary
+
+    validated_case = _validated_case_path(case_path)
+    with redirect_stdout(sys.stderr), _tool_observation("pressure_probe_summary"):
+        return extract_pressure_summary(validated_case, ambient_pa=ambient_pa, probe_dir=probe_dir)
+
+
 def main() -> None:
     mcp.run(transport="stdio")
 

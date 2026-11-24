@@ -9,12 +9,15 @@ DESCRIPTION=("专门执行和管理仿真相关命令行操作，包括网格生
 "执行仿真命令时优先使用本服务。服务根据命令、算例规模、软件环境和资源需求，选择独立 Linux 本地执行或通过超算调度执行，并提供状态查询、日志和结果路径。"
 "非仿真操作使用其他工具。本服务不负责研究规划或自动改变算例的物理参数、数值方法与实验条件。无法执行时返回明确原因及处理建议。")
 COMMANDS={
-"blockMesh":"mesh","checkMesh":"check","snappyHexMesh":"mesh","surfaceFeatureExtract":"mesh",
+"blockMesh":"mesh","checkMesh":"check","foamDictionary":"check","snappyHexMesh":"mesh","surfaceFeatureExtract":"mesh",
 "gmshToFoam":"convert","fluentMeshToFoam":"convert","ideasUnvToFoam":"convert",
-"setFields":"initialize","mapFields":"initialize","potentialFoam":"initialize","topoSet":"initialize",
+"setFields":"initialize","setRefinedFields":"initialize","initializeAtmosphere":"initialize",
+"mapFields":"initialize","potentialFoam":"initialize","topoSet":"initialize",
 "decomposePar":"decompose","reconstructPar":"reconstruct","reconstructParMesh":"reconstruct",
 "renumberMesh":"mesh","transformPoints":"mesh","createPatch":"mesh",
-"icoFoam":"solver","simpleFoam":"solver","pimpleFoam":"solver","blastFoam":"solver",
+"icoFoam":"solver","simpleFoam":"solver","pimpleFoam":"solver","rhoCentralFoam":"solver",
+"blastFoam":"solver","blastEulerFoam":"solver","blastXiFoam":"solver",
+"blastReactingFoam":"solver","blastParcelFoam":"solver","blastFSIFoam":"solver",
 "postProcess":"postprocess","foamToVTK":"postprocess","Allrun":"script","mpirun":"parallel"}
 TERMINAL={"completed","failed","cancelled","timed_out"}
 INPUT_CAP=32*1024*1024
@@ -45,6 +48,32 @@ def local_process_limits(plan):
         reject("resource_insufficient", "Insufficient memory plus 512 MiB system reserve at worker start.")
     return dict(cpu_affinity=available_cpus[:cpus], address_space_bytes=memory_mib * 1048576,
                 cpu_seconds=seconds * cpus, wall_seconds=seconds, threads=cpus)
+
+def hpc_ulimit_f_blocks(cfg: dict) -> int:
+    """Convert max_file_mib into 512-byte POSIX blocks for batch ulimit -f (default 128 MiB -> 262144)."""
+    max_mib = cfg.get("max_file_mib", 128)
+    if type(max_mib) is not int or max_mib < 1:
+        reject("unsupported", "max_file_mib must be a positive integer.")
+    return max_mib * 2048
+
+def build_hpc_command_argv(plan: dict, cfg: dict) -> list[str]:
+    """Build HPC execution argv with configurable MPI launcher (mpirun or C-cluster srun_pmix)."""
+    cmd = plan["command"]
+    args = plan["args"]
+    if cmd == "Allrun":
+        return ["bash", "Allrun"]
+    if cmd == "mpirun":
+        if len(args) < 3 or args[0] != "-np" or not str(args[1]).isdigit() or int(args[1]) < 2:
+            reject("unsupported", "MPI syntax: -np N simulationCommand [args], N >= 2.")
+        launcher = cfg.get("mpi_launcher", "mpirun")
+        ranks, target, extra = str(args[1]), args[2], args[3:]
+        if launcher == "srun_pmix":
+            tail = list(extra) if "-parallel" in extra else [*extra, "-parallel"]
+            return ["/usr/bin/srun", "--nodes=1", f"--ntasks={ranks}", "--mpi=pmix", target, *tail]
+        if launcher == "mpirun":
+            return ["mpirun", *args]
+        reject("unsupported", f"Unknown HPC mpi_launcher: {launcher}")
+    return [cmd, *args]
 
 class Problem(Exception):
     def __init__(self,category,reason,suggestion="Inspect status() capabilities and task evidence."):
@@ -110,7 +139,9 @@ class SimulationCLI:
           hpc=dict(configured=bool(self.config),software="Foundation 9 / separately bound blastFoam",
             grant=self.config.get("grant",{}) if self.config else None,
             available_commands=self.config.get("available_commands",[]) if self.config else [],
-            mpi_enabled=bool(self.config and self.config.get("mpi_verified"))),
+            mpi_enabled=bool(self.config and self.config.get("mpi_verified")),
+            mpi_launcher=self.config.get("mpi_launcher","mpirun") if self.config else "mpirun",
+            max_file_mib=self.config.get("max_file_mib",128) if self.config else 128),
           boundaries=["No arbitrary shell expressions. General shell remains available outside this service; no bypass prevention.",
             "Allrun: HPC only, inspected case-local script with reviewed_script_sha256; no Allclean.",
             "mpirun -np N command requires verified MPI binding; disabled in current deployment.",
@@ -178,7 +209,7 @@ class SimulationCLI:
             if not grant.get("enabled"):reject("prohibited","No current simulation_cli submission grant.")
             if cpus>grant.get("max_cpus",0) or memory>grant.get("max_memory_mib",0) or timeout_seconds>grant.get("max_seconds",0):
                 reject("resource_insufficient","Requested resources exceed HPC maintenance grant.")
-            if command not in {"Allrun","mpirun"} and command not in self.config.get("available_commands",[]):reject("environment_missing","Command missing from bound HPC runtime: "+command)
+            if command != "Allrun" and effective not in self.config.get("available_commands",[]):reject("environment_missing","Command missing from bound HPC runtime: "+effective)
         return dict(command=command,args=args,case_path=str(case),resources=resources,timeout_seconds=timeout_seconds,location=chosen,
             estimated_cells=cells,input_bytes=size,input_sha256=hashes,routing_reasons=reasons or ["within local bounds; executable/headroom available"],
             estimate="conservative rules; runtime uncalibrated; no learned estimator",software="OpenCFD 2412" if chosen=="local" else "Foundation 9 / bound blastFoam",
@@ -282,12 +313,11 @@ class HPC:
             write(self.folder/"hpc-submit-intent.json",intent)
         payload=self.folder/"payload";shutil.copytree(plan["case_path"],payload/"case")
         if inventory(payload/"case")[0]!=plan["input_sha256"]:reject("prohibited","Input changed while staging.")
-        cmd=plan["command"];args=plan["args"]
-        argv=["bash","Allrun"] if cmd=="Allrun" else [cmd,*args]
+        argv=build_hpc_command_argv(plan,self.cfg)
         script="set -euo pipefail\ncd payload/case\n"+shlex.join(["timeout","--signal=TERM","--kill-after=5",str(plan["timeout_seconds"]),*argv])+"\n"
         (payload/"run_case.sh").write_text(script)
         batch=spec["batch_script"].replace('node=$(hostname -s)','printf "%s\\n" "$record" > logs/scheduler-allocation.txt\nnode=$(hostname -s)')
-        batch=batch.replace("bash payload/run_case.sh","ulimit -f 131072\nbash payload/run_case.sh")
+        batch=batch.replace("bash payload/run_case.sh",f"ulimit -f {hpc_ulimit_f_blocks(self.cfg)}\nbash payload/run_case.sh")
         (self.folder/"batch.sh").write_text(batch)
         archive=self.folder/"payload.tar"
         with tarfile.open(archive,"x") as tar:
