@@ -187,12 +187,19 @@ def test_hpc_ulimit_and_mpi_launcher_helpers():
     plan_mpi = {"command": "mpirun", "args": ["-np", "64", "blastFoam", "-case", "."]}
     assert cli.build_hpc_command_argv(plan_mpi, {"mpi_launcher": "mpirun"}) == ["mpirun", *plan_mpi["args"]]
     assert cli.build_hpc_command_argv(plan_mpi, {"mpi_launcher": "srun_pmix"}) == [
-        "/usr/bin/srun", "--nodes=1", "--ntasks=64", "--mpi=pmix", "blastFoam", "-case", ".", "-parallel"
+        "/usr/bin/srun", "--export=ALL", "--nodes=1", "--ntasks=64", "--mpi=pmix", "blastFoam", "-case", ".", "-parallel"
+    ]
+    assert cli.build_hpc_command_argv(
+        plan_mpi, {"mpi_launcher": "srun_pmix", "command_paths": {"blastFoam": "/opt/bf/bin/blastFoam"}}
+    ) == [
+        "/usr/bin/srun", "--export=ALL", "--nodes=1", "--ntasks=64", "--mpi=pmix", "/opt/bf/bin/blastFoam", "-case", ".", "-parallel"
     ]
     plan_already_par = {"command": "mpirun", "args": ["-np", "16", "blastFoam", "-parallel"]}
     assert cli.build_hpc_command_argv(plan_already_par, {"mpi_launcher": "srun_pmix"}) == [
-        "/usr/bin/srun", "--nodes=1", "--ntasks=16", "--mpi=pmix", "blastFoam", "-parallel"
+        "/usr/bin/srun", "--export=ALL", "--nodes=1", "--ntasks=16", "--mpi=pmix", "blastFoam", "-parallel"
     ]
+    with pytest.raises(Problem):
+        cli.build_hpc_command_argv(plan_mpi, {"mpi_launcher": "srun_pmix", "command_paths": {"blastFoam": "relative/blastFoam"}})
     with pytest.raises(Problem):
         cli.build_hpc_command_argv(plan_mpi, {"mpi_launcher": "bad_launcher"})
 
@@ -257,7 +264,7 @@ def test_hpc_submit_uses_srun_pmix_and_262144_ulimit(service, tmp_path, monkeypa
     res = hpc.submit(task)
     assert res["job_id"] == "9999999"
     assert "ulimit -f 262144" in (folder / "batch.sh").read_text()
-    assert "/usr/bin/srun --nodes=1 --ntasks=64 --mpi=pmix blastFoam -parallel" in captured["run_case_sh"]
+    assert "/usr/bin/srun --export=ALL --nodes=1 --ntasks=64 --mpi=pmix blastFoam -parallel" in captured["run_case_sh"]
 def test_mpirun_checks_effective_command_and_foam_dictionary_registered(service, tmp_path):
     s, c = service
     assert s.capabilities()["commands"].get("foamDictionary") == "check"

@@ -142,8 +142,18 @@ def build_hpc_command_argv(plan: dict, cfg: dict) -> list[str]:
         launcher = cfg.get("mpi_launcher", "mpirun")
         ranks, target, extra = str(args[1]), args[2], args[3:]
         if launcher == "srun_pmix":
+            command_paths = cfg.get("command_paths") or {}
+            if not isinstance(command_paths, dict):
+                reject("unsupported", "command_paths must be a mapping when configured.")
+            resolved_target = command_paths.get(target, target)
+            if target in command_paths and (
+                not isinstance(resolved_target, str)
+                or not resolved_target.startswith("/")
+                or any(ch.isspace() for ch in resolved_target)
+            ):
+                reject("unsupported", f"Invalid command_paths entry for {target}")
             tail = list(extra) if "-parallel" in extra else [*extra, "-parallel"]
-            return ["/usr/bin/srun", "--nodes=1", f"--ntasks={ranks}", "--mpi=pmix", target, *tail]
+            return ["/usr/bin/srun", "--export=ALL", "--nodes=1", f"--ntasks={ranks}", "--mpi=pmix", resolved_target, *tail]
         if launcher == "mpirun":
             return ["mpirun", *args]
         reject("unsupported", f"Unknown HPC mpi_launcher: {launcher}")
