@@ -19,6 +19,9 @@ COMMANDS={
 TERMINAL={"completed","failed","cancelled","timed_out"}
 INPUT_CAP=32*1024*1024
 OUTPUT_CAP=128*1024*1024
+DEFAULT_CPUS = 2
+DEFAULT_MEMORY_MIB = 2048
+DEFAULT_TIMEOUT_SECONDS = 60
 LOCAL_MAX_CPUS = 4
 LOCAL_MAX_MEMORY_MIB = 4096
 LOCAL_MAX_SECONDS = 180
@@ -26,8 +29,8 @@ LOCAL_MEMORY_RESERVE_BYTES = 512 * 1024 * 1024
 
 def local_process_limits(plan):
     """Translate requested resources into enforced affinity and per-process limits."""
-    cpus = plan["resources"].get("cpus", 1)
-    memory_mib = plan["resources"].get("memory_mib", 1024)
+    cpus = plan["resources"].get("cpus", DEFAULT_CPUS)
+    memory_mib = plan["resources"].get("memory_mib", DEFAULT_MEMORY_MIB)
     seconds = plan["timeout_seconds"]
     if not 1 <= cpus <= LOCAL_MAX_CPUS or not 1 <= memory_mib <= LOCAL_MAX_MEMORY_MIB:
         reject("resource_insufficient", "Local CPU or memory request exceeds deployment limits.")
@@ -103,7 +106,7 @@ class SimulationCLI:
             max_cells=100000,max_seconds=LOCAL_MAX_SECONDS,memory_mib=LOCAL_MAX_MEMORY_MIB,
             cpus=LOCAL_MAX_CPUS,output_bytes=OUTPUT_CAP,
             memory_reserve_bytes=LOCAL_MEMORY_RESERVE_BYTES,
-            defaults=dict(cpus=1,memory_mib=1024,timeout_seconds=30)),
+            defaults=dict(cpus=DEFAULT_CPUS,memory_mib=DEFAULT_MEMORY_MIB,timeout_seconds=DEFAULT_TIMEOUT_SECONDS)),
           hpc=dict(configured=bool(self.config),software="Foundation 9 / separately bound blastFoam",
             grant=self.config.get("grant",{}) if self.config else None,
             available_commands=self.config.get("available_commands",[]) if self.config else [],
@@ -147,7 +150,8 @@ class SimulationCLI:
             if not script.is_file() or resources.get("reviewed_script_sha256")!=digest(script):
                 reject("prohibited","Allrun requires matching reviewed_script_sha256.","Inspect all commands, physics and dependencies, then bind the script hash.")
             if re.search(r"\bAllclean\b",script.read_text()):reject("prohibited","Allclean unsupported.")
-        cells=cell_count(case);cpus=resources.get("cpus",1);memory=resources.get("memory_mib",1024)
+        resources = {"cpus": DEFAULT_CPUS, "memory_mib": DEFAULT_MEMORY_MIB, **resources}
+        cells=cell_count(case);cpus=resources.get("cpus",DEFAULT_CPUS);memory=resources.get("memory_mib",DEFAULT_MEMORY_MIB)
         reasons=[]
         if cells is None:reasons.append("unknown or above-cap mesh size")
         if command in {"Allrun","mpirun"}:reasons.append("script/MPI requires scheduler")
@@ -179,7 +183,7 @@ class SimulationCLI:
             estimated_cells=cells,input_bytes=size,input_sha256=hashes,routing_reasons=reasons or ["within local bounds; executable/headroom available"],
             estimate="conservative rules; runtime uncalibrated; no learned estimator",software="OpenCFD 2412" if chosen=="local" else "Foundation 9 / bound blastFoam",
             available_disk_bytes=free,available_memory_bytes=mem)
-    def execute(self,command,args,case_path,resources=None,timeout_seconds=30,location="auto",dry_run=False,request_id=None):
+    def execute(self,command,args,case_path,resources=None,timeout_seconds=DEFAULT_TIMEOUT_SECONDS,location="auto",dry_run=False,request_id=None):
         resources=resources or {}
         request=dict(command=command,args=args,case_path=case_path,resources=resources,timeout_seconds=timeout_seconds,location=location)
         identity=json.dumps(request,sort_keys=True);key=request_id or hashlib.sha256(identity.encode()).hexdigest()
@@ -265,7 +269,7 @@ class HPC:
         return self.core.ssh(self.cfg,command,capture_output=True,text=True,timeout=timeout).stdout
     def submit(self,t):
         plan=t["plan"]
-        self.cfg.update(tasks=plan["resources"].get("cpus",1),wall_minutes=math.ceil(plan["timeout_seconds"]/60),memory_mib=plan["resources"].get("memory_mib",1024))
+        self.cfg.update(tasks=plan["resources"].get("cpus",DEFAULT_CPUS),wall_minutes=math.ceil(plan["timeout_seconds"]/60),memory_mib=plan["resources"].get("memory_mib",DEFAULT_MEMORY_MIB))
         run_id="c3-"+t["task_id"];spec=self.guarded_plan(self.core,self.cfg,run_id);remote=spec["remote"]
         t.update(remote=remote,result_path=remote+"/payload/case",run_id=run_id,state="staging");write(self.folder/"task.json",t)
         ledger=Path(self.cfg["grant"]["ledger_path"]);ledger.mkdir(parents=True,exist_ok=True)

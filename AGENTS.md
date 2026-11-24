@@ -29,4 +29,4 @@
 
 2026-11-23 current simulation command entry: simulation_cli.execute/status/logs/cancel. Bounded local commands and short_test solvers use conservative scale/resource checks; scripts and heavy work use the scoped scheduler binding. The mesh_case/run_case MCP command tools and mesh-only backend have been retired. General shell remains available; no research planning or shell interception is added. See deployment/simulation_cli/README.md for actual capabilities, one-job grant consumption, evidence and unverified paths. No batch research or new model request was started.
 
-2026-11-23本地资源上限按用户要求提高为4 CPU、4 GiB地址空间、180秒；默认请求仍为1 CPU、1 GiB、30秒。按请求设置CPU亲和性、线程上限与CPU时间预算，保留512 MiB系统内存余量并在启动时重查。其余网格/输入/输出、Allrun与MPI边界不变，超算额度不增加。真实4CPU/4GiB进程和跨过旧30秒的运行/取消已核验；新维护证据为workspace/maintenance/simulation-cli-resource-limits-20261123。
+2026-11-23本地资源上限按用户要求提高为4 CPU、4 GiB地址空间、180秒；默认请求为2 CPU、2 GiB、60秒。按请求设置CPU亲和性、线程上限与CPU时间预算，保留512 MiB系统内存余量并在启动时重查。其余网格/输入/输出、Allrun与MPI边界不变，超算额度不增加。真实4CPU/4GiB进程和跨过旧30秒的运行/取消已核验；新维护证据为workspace/maintenance/simulation-cli-resource-limits-20261123。

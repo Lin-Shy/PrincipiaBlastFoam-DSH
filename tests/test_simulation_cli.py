@@ -70,7 +70,7 @@ def test_shared_allowance_prevents_second_state_root(service,tmp_path):
     s,c=service;ledger=bind_hpc(s,tmp_path)
     (ledger/"sim-existing.json").write_text("{}")
     s.root=tmp_path/"other-state";s.root.mkdir()
-    with pytest.raises(Problem) as e:s.execute("blockMesh",[],str(c),location="hpc",request_id="second")
+    with pytest.raises(Problem) as e:s.execute("blockMesh",[],str(c),resources={"cpus":1},location="hpc",request_id="second")
     assert e.value.data["category"]=="prohibited"
     assert list(s.root.glob("sim-*"))==[]
 
@@ -132,3 +132,29 @@ def test_worker_rechecks_memory_headroom(service,monkeypatch):
     monkeypatch.setattr(Path,"read_text",lambda *args,**kwargs:"MemAvailable: 4194304 kB")
     with pytest.raises(Problem,match="512 MiB"):
         cli.local_process_limits({"resources":{"cpus":1,"memory_mib":4096},"timeout_seconds":180})
+
+def test_new_defaults_are_recorded_and_enforced(service):
+    import principia_core.simulation_cli as cli
+    s,c=service
+    result=s.execute("blockMesh",[],str(c),location="local",dry_run=True)
+    plan=result["plan"]
+    assert plan["resources"]["cpus"]==2
+    assert plan["resources"]["memory_mib"]==2048
+    assert plan["timeout_seconds"]==60
+    limits=cli.local_process_limits(plan)
+    assert len(limits["cpu_affinity"])==2
+    assert limits["address_space_bytes"]==2147483648
+    assert limits["cpu_seconds"]==120
+    assert s.capabilities()["local"]["defaults"]==dict(cpus=2,memory_mib=2048,timeout_seconds=60)
+
+def test_partial_resources_preserve_new_defaults(service):
+    s,c=service
+    plan=s.execute("blockMesh",[],str(c),resources={"cpus":1},dry_run=True)["plan"]
+    assert plan["resources"]=={"cpus":1,"memory_mib":2048}
+
+def test_mcp_schema_default_timeout_is_sixty():
+    import asyncio
+    from mcp_servers.simulation_cli.server import mcp
+    tools=asyncio.run(mcp.list_tools())
+    execute=next(tool for tool in tools if tool.name=="execute")
+    assert execute.inputSchema["properties"]["timeout_seconds"]["default"]==60

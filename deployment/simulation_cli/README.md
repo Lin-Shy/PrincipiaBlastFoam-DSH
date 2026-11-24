@@ -6,7 +6,7 @@
 
 | 工具 | 行为 |
 | --- | --- |
-| execute(command, args, case_path, resources?, timeout_seconds=30, location="auto", dry_run=false, request_id?) | 一次调用直接执行或提交；返回持久 task_id。dry_run 仅为可选预览。 |
+| execute(command, args, case_path, resources?, timeout_seconds=60, location="auto", dry_run=false, request_id?) | 一次调用直接执行或提交；返回持久 task_id。dry_run 仅为可选预览。 |
 | status(task_id?) | 有 ID 查询状态、位置、退出结果及产物路径；无 ID 列出能力、版本、上限和限制。 |
 | logs(task_id, max_bytes=16384) | 最近有界输出，最多 65536 字节；不下载超算场数据。 |
 | cancel(task_id) | 本地记录进程身份后终止进程组，或校验超算 JobID、JobName、属主后取消指定作业；随后查询终态。 |
@@ -24,7 +24,7 @@
 
 操作类别与执行位置分别记录。保守规则检查参数、网格规模、输入体积、工具、当前内存和磁盘余量；估计不明明确记录并转向 HPC。没有学习模型，不声称准确预测耗时。
 
-本地使用独立前缀 `workspace/runtime/openfoam` 中的 conda-forge OpenCFD OpenFOAM **2412 / h946d6a9_1**。上限为 100,000 可识别单元、最多 4 CPU、4 GiB 地址空间、180 秒、32 MiB 输入、128 MiB 总任务输出（单文件 64 MiB），运行时监测时间和输出。默认请求仍为1 CPU、1 GiB、30秒，更高资源须显式请求。CPU按请求设置亲和性与线程上限，CPU时间预算为墙钟上限乘CPU数量；内存须另留512 MiB系统余量，并在worker启动时再次检查。复杂/含动态指令字典可能无法保守估规模；二进制或超过单元上限的网格不自动判为本地可运行。求解器仅在显式 short_test=true 且其他条件满足时允许本地短测，时间上限会终止命令，不改 endTime。
+本地使用独立前缀 `workspace/runtime/openfoam` 中的 conda-forge OpenCFD OpenFOAM **2412 / h946d6a9_1**。上限为 100,000 可识别单元、最多 4 CPU、4 GiB 地址空间、180 秒、32 MiB 输入、128 MiB 总任务输出（单文件 64 MiB），运行时监测时间和输出。默认请求为2 CPU、2 GiB、60秒，更高资源须显式请求。CPU按请求设置亲和性与线程上限，CPU时间预算为墙钟上限乘CPU数量；内存须另留512 MiB系统余量，并在worker启动时再次检查。复杂/含动态指令字典可能无法保守估规模；二进制或超过单元上限的网格不自动判为本地可运行。求解器仅在显式 short_test=true 且其他条件满足时允许本地短测，时间上限会终止命令，不改 endTime。
 
 HPC 复用 `experiments/end2end/cluster_job.py` 和 `deployment/remote/linux_scheduler_bridge.py` 的计划、环境哈希及真实调度身份校验，不调用旧批量工作器。经 yhbatch 分配后，在计算节点校验 RUNNING、属主、NodeList 和当前主机，再加载绑定运行环境。公共登录节点只传输、提交、查询及有界证据读取。Foundation OpenFOAM 9 与本地 2412 的网格/求解产物兼容性未证明，验收分别从原始字典建网。
 
@@ -70,3 +70,5 @@ Linux 证据根：`workspace/maintenance/simulation-cli-acceptance-20261123`。W
 2026-11-23资源上限调整：用户将本地部署上限提高为4 CPU、4 GiB、3分钟。其余输入/输出/网格及脚本/MPI边界保持；超算单作业额度不增加。对应维护证据另存于workspace/maintenance/simulation-cli-resource-limits-20261123，不回填此前单任务验收。
 
 本次资源调整核验：相关Python检查59通过；真实MCP建网通过，求解进程亲和性4核、RLIMIT_AS=4294967296字节、RLIMIT_CPU=720秒（180秒×4核）及线程环境=4；约33秒后主动取消成功，超过4CPU/4096MiB/180秒的本地请求均被拒绝。此核验没有分配并实际占满4 GiB，也未等待完整180秒墙钟超时；墙钟监控路径沿用已验收实现。
+
+2026-11-24默认请求调整：未指定资源时使用2 CPU、2048 MiB、60秒；部分指定时其余字段仍用此默认值，计划记录解析后的实际资源。4 CPU、4096 MiB、180秒上限及512 MiB系统余量不变，HPC授权与MPI限制不变。
