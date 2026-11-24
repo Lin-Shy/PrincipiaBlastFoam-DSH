@@ -383,7 +383,9 @@ class HPC:
         import cluster_job
         from linux_scheduler_bridge import guarded_plan
         self.core=cluster_job;self.guarded_plan=guarded_plan
-    def ssh(self,command,timeout=45):
+    def ssh(self,command,timeout=None):
+        if timeout is None:
+            timeout=int(self.cfg.get("ssh_timeout_seconds",120))
         return self.core.ssh(self.cfg,command,capture_output=True,text=True,timeout=timeout).stdout
     def submit(self,t):
         plan=t["plan"]
@@ -412,7 +414,8 @@ class HPC:
                 if p.is_file():tar.add(p,arcname="payload/"+p.relative_to(payload).as_posix(),recursive=False)
         q=shlex.quote(remote)
         self.ssh('umask 077; test "$(id -u)" = 15505 && mkdir '+q+' && mkdir '+q+'/logs '+q+'/tmp '+q+'/home')
-        subprocess.run(["scp","-q","-F",self.cfg["ssh_config"],str(archive),str(self.folder/"batch.sh"),self.cfg["ssh_target"]+":"+remote+"/"],check=True,timeout=90)
+        scp_timeout=max(90,int(self.cfg.get("scp_timeout_seconds",self.cfg.get("ssh_timeout_seconds",120))))
+        subprocess.run(["scp","-q","-F",self.cfg["ssh_config"],str(archive),str(self.folder/"batch.sh"),self.cfg["ssh_target"]+":"+remote+"/"],check=True,timeout=scp_timeout)
         if self.ssh("cd "+q+" && sha256sum payload.tar").split()[0]!=digest(archive):raise RuntimeError("payload transfer hash mismatch")
         self.ssh("cd "+q+" && tar -xf payload.tar")
         if (self.folder/"cancel-requested").exists():t["state"]="cancelled";return t

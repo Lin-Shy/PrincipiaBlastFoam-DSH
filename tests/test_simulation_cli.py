@@ -352,3 +352,30 @@ def test_system_openfoam_env_exposes_blastfoam_and_preserves_guardrails(service)
     assert caps["max_seconds"] == 180
     assert caps["memory_reserve_bytes"] == 512 * 1024 * 1024
     assert caps["defaults"] == dict(cpus=2, memory_mib=2048, timeout_seconds=60)
+def test_hpc_ssh_timeout_default_and_config_override(service, tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    from principia_core.simulation_cli import HPC
+
+    s, _ = service
+    recorded = []
+
+    def fake_ssh(cfg, command, capture_output=True, text=True, timeout=None):
+        recorded.append((command, timeout))
+        return SimpleNamespace(stdout="ok\n")
+
+    s.config = {"ssh_config": "/dev/null", "ssh_target": "stub"}
+    d1 = tmp_path / "task_default"
+    d1.mkdir()
+    h1 = HPC(s, d1)
+    monkeypatch.setattr(h1.core, "ssh", fake_ssh)
+    assert h1.ssh("echo 1") == "ok\n"
+    assert h1.ssh("echo 2", timeout=75) == "ok\n"
+
+    s.config = {"ssh_config": "/dev/null", "ssh_target": "stub", "ssh_timeout_seconds": 180}
+    d2 = tmp_path / "task_cfg"
+    d2.mkdir()
+    h2 = HPC(s, d2)
+    monkeypatch.setattr(h2.core, "ssh", fake_ssh)
+    assert h2.ssh("echo 3") == "ok\n"
+
+    assert recorded == [("echo 1", 120), ("echo 2", 75), ("echo 3", 180)]
