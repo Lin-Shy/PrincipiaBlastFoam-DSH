@@ -24,9 +24,9 @@
 
 操作类别与执行位置分别记录。保守规则检查参数、网格规模、输入体积、工具、当前内存和磁盘余量；估计不明明确记录并转向 HPC。没有学习模型，不声称准确预测耗时。
 
-本地使用独立前缀 `workspace/runtime/openfoam` 中的 conda-forge OpenCFD OpenFOAM **2412 / h946d6a9_1**。上限为 100,000 可识别单元、最多 4 CPU、4 GiB 地址空间、180 秒、32 MiB 输入、128 MiB 总任务输出（单文件 64 MiB），运行时监测时间和输出。默认请求为2 CPU、2 GiB、60秒，更高资源须显式请求。CPU按请求设置亲和性与线程上限，CPU时间预算为墙钟上限乘CPU数量；内存须另留512 MiB系统余量，并在worker启动时再次检查。复杂/含动态指令字典可能无法保守估规模；二进制或超过单元上限的网格不自动判为本地可运行。求解器仅在显式 short_test=true 且其他条件满足时允许本地短测，时间上限会终止命令，不改 endTime。
+本地默认通过外部环境脚本 `/data/OpenFOAM/env.sh`（可通过 `SIMULATION_CLI_OPENFOAM_ENV` 覆盖）加载系统级 **Foundation OpenFOAM-9 + blastFoam**，并从 `FOAM_USER_APPBIN` / `FOAM_APPBIN` 动态发现可用命令（已核验 `blockMesh`/`checkMesh`/`setFields`/`decomposePar`/`reconstructPar`/`foamDictionary`/`foamListTimes`/`postProcess`/`blastFoam`）。上限为 100,000 可识别单元、最多 4 CPU、4 GiB 地址空间、180 秒、32 MiB 输入、128 MiB 总任务输出（单文件 64 MiB），运行时监测时间和输出。默认请求为2 CPU、2 GiB、60秒，更高资源须显式请求。CPU按请求设置亲和性与线程上限，CPU时间预算为墙钟上限乘CPU数量；内存须另留512 MiB系统余量，并在worker启动时再次检查。复杂/含动态指令字典可能无法保守估规模；二进制或超过单元上限的网格不自动判为本地可运行。求解器仅在显式 short_test=true 且其他条件满足时允许本地短测，时间上限会终止命令，不改 endTime。
 
-HPC 复用 `experiments/end2end/cluster_job.py` 和 `deployment/remote/linux_scheduler_bridge.py` 的计划、环境哈希及真实调度身份校验，不调用旧批量工作器。经 yhbatch 分配后，在计算节点校验 RUNNING、属主、NodeList 和当前主机，再加载绑定运行环境。公共登录节点只传输、提交、查询及有界证据读取。Foundation OpenFOAM 9 与本地 2412 的网格/求解产物兼容性未证明，验收分别从原始字典建网。
+HPC 复用 `experiments/end2end/cluster_job.py` 和 `deployment/remote/linux_scheduler_bridge.py` 的计划、环境哈希及真实调度身份校验，不调用旧批量工作器。经 yhbatch 分配后，在计算节点校验 RUNNING、属主、NodeList 和当前主机，再加载绑定运行环境。公共登录节点只传输、提交、查询及有界证据读取。本地系统环境与 C 集群均统一采用 Foundation OpenFOAM-9 + blastFoam 运行栈；仍按各部署绑定核对实际可用二进制与身份哈希，不在未声明前提下混用旧版 2412 副本。
 
 当前 HPC 绑定仅真实确认 blockMesh、checkMesh、setFields、icoFoam；Allrun 可串联这些操作。Allrun 必须是 case/Allrun、无参数、提供人工审阅后的 reviewed_script_sha256，且无 Allclean；哈希是审阅声明与输入身份绑定，不是服务自动理解或安全证明。当前 Allrun 只走 HPC。MPI 语法预留 `mpirun -np N simulationCommand ...`，但当前 MPI 启动器/ABI 未验证、mpi_verified=false，明确返回 environment_missing，不能宣称已覆盖并行求解。
 
@@ -44,7 +44,7 @@ HPC 维护配置及单作业额度位于 `workspace/maintenance/simulation-cli-a
 
 - PRINCIPIA_CASE_ROOT：输入算例根。
 - SIMULATION_CLI_STATE：任务、日志与快照根；不进 Git。
-- SIMULATION_CLI_OPENFOAM：固定本地前缀；安装源和哈希见 runtime/local-mesh-identity.json（原始安装身份记录）。
+- SIMULATION_CLI_OPENFOAM_ENV：本地 OpenFOAM-9 + blastFoam 环境激活脚本路径（默认 `/data/OpenFOAM/env.sh`），服务从其导出的 `FOAM_USER_APPBIN` 和 `FOAM_APPBIN` 发现可执行命令；系统运行时身份见 `/data/OpenFOAM/runtime-identity.json`（早期 `runtime/local-mesh-identity.json` 保留为 2026-11-23 原始验收记录）。
 - SIMULATION_CLI_HPC_CONFIG：操作者绑定的调度配置；未绑定时只提供可满足条件的本地能力。
 
 正常 bundle 和 Web 均注册独立 simulation_cli。principia_domain 保留字典、配置和证据接口，不再注册 run_case/mesh_case；complete_workflow(require_execution=True) 明确要求使用 simulation_cli。ENABLE_EXECUTION/REQUIRE_EXECUTION 不被全局打开。旧 mesh-only 执行器、配置脚本和包装器已迁出当前路径，规模检查函数仍由新服务依赖。
@@ -72,3 +72,5 @@ Linux 证据根：`workspace/maintenance/simulation-cli-acceptance-20261123`。W
 本次资源调整核验：相关Python检查59通过；真实MCP建网通过，求解进程亲和性4核、RLIMIT_AS=4294967296字节、RLIMIT_CPU=720秒（180秒×4核）及线程环境=4；约33秒后主动取消成功，超过4CPU/4096MiB/180秒的本地请求均被拒绝。此核验没有分配并实际占满4 GiB，也未等待完整180秒墙钟超时；墙钟监控路径沿用已验收实现。
 
 2026-11-24默认请求调整：未指定资源时使用2 CPU、2048 MiB、60秒；部分指定时其余字段仍用此默认值，计划记录解析后的实际资源。4 CPU、4096 MiB、180秒上限及512 MiB系统余量不变，HPC授权与MPI限制不变。
+
+2026-11-24系统运行时迁移解耦：第3、4章求解栈统一锁定为系统级 Foundation OpenFOAM-9 + blastFoam（`/data/OpenFOAM/env.sh`），解除对原私有 conda 2412 前缀的硬编码；本地 4 CPU / 4 GiB / 180 秒上限、512 MiB 内存余量与 2 CPU / 2 GiB / 60 秒默认请求保持不变。

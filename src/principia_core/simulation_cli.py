@@ -29,6 +29,80 @@ LOCAL_MAX_CPUS = 4
 LOCAL_MAX_MEMORY_MIB = 4096
 LOCAL_MAX_SECONDS = 180
 LOCAL_MEMORY_RESERVE_BYTES = 512 * 1024 * 1024
+DEFAULT_OPENFOAM_ENV = "/data/OpenFOAM/env.sh"
+_OPENFOAM_DISCOVERY_CACHE: dict[tuple[str, int, int], dict] = {}
+
+def discover_local_openfoam(env_script: Path) -> dict:
+    """Discover Foundation OpenFOAM / blastFoam executables via external env script."""
+    resolved = Path(env_script).expanduser()
+    if not resolved.is_file():
+        return {
+            "available": False,
+            "env_script": str(resolved),
+            "foam_appbin": "",
+            "foam_user_appbin": "",
+            "version": "",
+            "commands": {},
+        }
+    try:
+        st = resolved.stat()
+        cache_key = (str(resolved), st.st_mtime_ns, st.st_size)
+    except OSError:
+        cache_key = (str(resolved), -1, -1)
+    cached = _OPENFOAM_DISCOVERY_CACHE.get(cache_key)
+    if cached is not None:
+        return cached
+
+    probe = (
+        'source "$1" >/dev/null 2>&1 || exit 1\n'
+        'printf "%s\\n%s\\n%s\\n" "${FOAM_USER_APPBIN:-}" "${FOAM_APPBIN:-}" "${WM_PROJECT_VERSION:-}"'
+    )
+    try:
+        proc = subprocess.run(
+            ["/bin/bash", "--noprofile", "--norc", "-c", probe, "simulation-cli-probe", str(resolved)],
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return {"available": False, "env_script": str(resolved), "foam_appbin": "", "foam_user_appbin": "", "version": "", "commands": {}}
+    if proc.returncode != 0:
+        return {"available": False, "env_script": str(resolved), "foam_appbin": "", "foam_user_appbin": "", "version": "", "commands": {}}
+    lines = proc.stdout.splitlines()
+    foam_user_appbin = lines[0].strip() if len(lines) > 0 else ""
+    foam_appbin = lines[1].strip() if len(lines) > 1 else ""
+    version = lines[2].strip() if len(lines) > 2 else ""
+    discovered: dict[str, str] = {}
+    for directory_str in (foam_user_appbin, foam_appbin):
+        if not directory_str:
+            continue
+        bin_dir = Path(directory_str)
+        if not bin_dir.is_dir():
+            continue
+        for name in COMMANDS:
+            if name in {"Allrun", "mpirun"} or name in discovered:
+                continue
+            candidate = bin_dir / name
+            if candidate.is_file() and os.access(candidate, os.X_OK):
+                discovered[name] = str(candidate)
+    result = {
+        "available": bool(discovered),
+        "env_script": str(resolved),
+        "foam_appbin": foam_appbin,
+        "foam_user_appbin": foam_user_appbin,
+        "version": version,
+        "commands": discovered,
+    }
+    _OPENFOAM_DISCOVERY_CACHE[cache_key] = result
+    return result
+
+def _local_software_label(rt: dict) -> str:
+    """Format local software string from discovered OpenFOAM metadata."""
+    if not rt.get("available"):
+        return "OpenFOAM env not configured"
+    version = rt.get("version") or "unknown"
+    base = f"Foundation OpenFOAM-{version}"
+    return f"{base} + blastFoam" if "blastFoam" in rt.get("commands", {}) else base
 
 def local_process_limits(plan):
     """Translate requested resources into enforced affinity and per-process limits."""
@@ -116,7 +190,7 @@ class SimulationCLI:
         self.root=Path(os.getenv("SIMULATION_CLI_STATE",str(APP/"outputs/simulation-cli"))).resolve()
         self.root.mkdir(parents=True,exist_ok=True)
         self.case_root=Path(os.getenv("PRINCIPIA_CASE_ROOT",str(APP/"outputs"))).resolve()
-        self.prefix=Path(os.getenv("SIMULATION_CLI_OPENFOAM",str(APP.parents[1]/"runtime/openfoam"))).resolve()
+        self.openfoam_env=Path(os.getenv("SIMULATION_CLI_OPENFOAM_ENV",DEFAULT_OPENFOAM_ENV)).expanduser().resolve()
         binding=os.getenv("SIMULATION_CLI_HPC_CONFIG")
         self.config=read(binding) if binding else None
     @contextmanager
@@ -129,9 +203,11 @@ class SimulationCLI:
         if not p.is_file():reject("unsupported","Unknown task ID.")
         return p,read(p)
     def capabilities(self):
+        rt=discover_local_openfoam(self.openfoam_env)
         return dict(ok=True,description=DESCRIPTION,commands=COMMANDS,
-          local=dict(software="OpenCFD OpenFOAM 2412 h946d6a9_1",
-            available_commands=[n for n in COMMANDS if (self.prefix/"bin"/n).is_file()],
+          local=dict(software=_local_software_label(rt),
+            env_script=str(self.openfoam_env),
+            available_commands=[n for n in COMMANDS if n in rt["commands"]],
             max_cells=100000,max_seconds=LOCAL_MAX_SECONDS,memory_mib=LOCAL_MAX_MEMORY_MIB,
             cpus=LOCAL_MAX_CPUS,output_bytes=OUTPUT_CAP,
             memory_reserve_bytes=LOCAL_MEMORY_RESERVE_BYTES,
@@ -146,7 +222,7 @@ class SimulationCLI:
             "Allrun: HPC only, inspected case-local script with reviewed_script_sha256; no Allclean.",
             "mpirun -np N command requires verified MPI binding; disabled in current deployment.",
             "Stage external argument inputs inside case. Local commands run on snapshots; chain via returned result_path.",
-            "No physical/numerical settings are rewritten. Local/HPC versions differ; compatibility not assumed.",
+            "No physical/numerical settings are rewritten. Local and HPC share Foundation OpenFOAM-9 / blastFoam family; per-deployment binaries depend on runtime bindings.",
             "Conservative rules, no learned estimator. Unknown scale routes to HPC.",
             "Input cap 32 MiB; remote existing-case attachment and automatic full result download not supported."])
     def plan(self,command,args,case_path,resources,timeout_seconds,location):
@@ -191,7 +267,8 @@ class SimulationCLI:
                 or resources.get("expected_seconds", timeout_seconds) > LOCAL_MAX_SECONDS):
             reasons.append("requested resources exceed local bounds")
         if COMMANDS[effective]=="solver" and not resources.get("short_test"):reasons.append("local solver requires explicit bounded short_test")
-        available=(self.prefix/"bin"/effective).is_file()
+        rt=discover_local_openfoam(self.openfoam_env)
+        available=effective in rt["commands"]
         if not available:reasons.append("local executable missing")
         free=shutil.disk_usage(case).free
         match=re.search(r"^MemAvailable:\s+(\d+)",Path("/proc/meminfo").read_text(),re.M)
@@ -212,7 +289,7 @@ class SimulationCLI:
             if command != "Allrun" and effective not in self.config.get("available_commands",[]):reject("environment_missing","Command missing from bound HPC runtime: "+effective)
         return dict(command=command,args=args,case_path=str(case),resources=resources,timeout_seconds=timeout_seconds,location=chosen,
             estimated_cells=cells,input_bytes=size,input_sha256=hashes,routing_reasons=reasons or ["within local bounds; executable/headroom available"],
-            estimate="conservative rules; runtime uncalibrated; no learned estimator",software="OpenCFD 2412" if chosen=="local" else "Foundation 9 / bound blastFoam",
+            estimate="conservative rules; runtime uncalibrated; no learned estimator",software=_local_software_label(rt) if chosen=="local" else "Foundation 9 / bound blastFoam",
             available_disk_bytes=free,available_memory_bytes=mem)
     def execute(self,command,args,case_path,resources=None,timeout_seconds=DEFAULT_TIMEOUT_SECONDS,location="auto",dry_run=False,request_id=None):
         resources=resources or {}
@@ -401,8 +478,11 @@ def worker(root,task_id):
             t=HPC(service,folder).submit(t);write(p,t);return
         plan=t["plan"];case=folder/"case";shutil.copytree(plan["case_path"],case)
         if inventory(case)[0]!=plan["input_sha256"]:reject("prohibited","Input changed while staging.")
-        prefix=service.prefix;argv=[str(prefix/"bin"/plan["command"]),*plan["args"]]
-        shell='export CONDA_PREFIX='+shlex.quote(str(prefix))+'\nsource "$CONDA_PREFIX/etc/conda/activate.d/openfoam_activate.sh"\nexport LD_LIBRARY_PATH="$CONDA_PREFIX/lib'+ '$' + '{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"\nexec "$@"'
+        rt=discover_local_openfoam(service.openfoam_env)
+        exe=rt["commands"].get(plan["command"])
+        if not exe:reject("environment_missing","Local executable missing for command: "+plan["command"])
+        argv=[exe,*plan["args"]]
+        shell="source "+shlex.quote(str(service.openfoam_env))+'\nexec "$@"'
         limits = local_process_limits(plan)
         cpu = ",".join(str(number) for number in limits["cpu_affinity"])
         argv=["/usr/bin/prlimit","--as="+str(limits["address_space_bytes"]),

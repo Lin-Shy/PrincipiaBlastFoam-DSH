@@ -63,7 +63,7 @@ def main():
  'args':['-m','mcp_servers.simulation_cli.server'],'cwd':str(APP),
  'env':{'PYTHONUTF8':'1','PYTHONPATH':str(APP/'src')+':'+str(APP),
  'PRINCIPIA_CASE_ROOT':str(work/'cases'),'SIMULATION_CLI_STATE':str(ROOT/'simulation-cli/tasks'),
- 'SIMULATION_CLI_OPENFOAM':str(WS/'runtime/openfoam'),
+ 'SIMULATION_CLI_OPENFOAM_ENV':'/data/OpenFOAM/env.sh',
  'SIMULATION_CLI_HPC_CONFIG':str(WS/'maintenance/simulation-cli-acceptance-20261123/hpc-config.json')},
  'toolCallTimeoutMs':60000,'failOnStartupError':True}})
  (ROOT/'web.patch.yml').write_text(json.dumps(patch,indent=2))

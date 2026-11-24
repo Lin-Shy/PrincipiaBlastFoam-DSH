@@ -44,7 +44,7 @@ def test_invalid_task(service):
     with pytest.raises(Problem):s.status("../../x")
 def test_local_solver_needs_explicit_short_test(service):
     s,c=service
-    with pytest.raises(Problem) as e:s.execute("icoFoam",[],str(c),location="local",dry_run=True)
+    with pytest.raises(Problem) as e:s.execute("blastFoam",[],str(c),location="local",dry_run=True)
     assert e.value.data["category"]=="resource_insufficient"
 def test_log_bound(service):
     s,c=service
@@ -281,3 +281,67 @@ def test_mpirun_checks_effective_command_and_foam_dictionary_registered(service,
         s.plan("mpirun", ["-np", "4", "blastXiFoam"], str(c), {"cpus": 4}, 300, "hpc")
     assert exc.value.data["category"] == "environment_missing"
     assert "blastXiFoam" in exc.value.data["reason"]
+
+
+def test_env_script_discovers_commands_and_user_bin_priority(tmp_path, monkeypatch):
+    appbin = tmp_path / "appbin"
+    userbin = tmp_path / "userbin"
+    appbin.mkdir()
+    userbin.mkdir()
+    for path in (appbin / "blockMesh", appbin / "blastFoam", userbin / "blastFoam"):
+        path.write_text("#!/bin/sh\necho ok\n")
+        path.chmod(0o755)
+    env_sh = tmp_path / "env.sh"
+    env_sh.write_text(
+        f'export WM_PROJECT_VERSION="9"\nexport FOAM_APPBIN="{appbin}"\nexport FOAM_USER_APPBIN="{userbin}"\n'
+    )
+    monkeypatch.setenv("SIMULATION_CLI_OPENFOAM_ENV", str(env_sh))
+    monkeypatch.setenv("SIMULATION_CLI_STATE", str(tmp_path / "state"))
+    monkeypatch.setenv("PRINCIPIA_CASE_ROOT", str(tmp_path / "cases"))
+    monkeypatch.delenv("SIMULATION_CLI_HPC_CONFIG", raising=False)
+    case = tmp_path / "cases/c"
+    (case / "system").mkdir(parents=True)
+    (case / "system/blockMeshDict").write_text("hex (0 1 2 3 4 5 6 7) (4 4 4) simpleGrading (1 1 1)")
+
+    s = SimulationCLI()
+    caps = s.capabilities()
+    assert caps["local"]["env_script"] == str(env_sh.resolve())
+    assert caps["local"]["software"] == "Foundation OpenFOAM-9 + blastFoam"
+    assert set(caps["local"]["available_commands"]) == {"blockMesh", "blastFoam"}
+
+    import principia_core.simulation_cli as cli
+    rt = cli.discover_local_openfoam(env_sh)
+    assert rt["commands"]["blastFoam"] == str(userbin / "blastFoam")
+    assert rt["commands"]["blockMesh"] == str(appbin / "blockMesh")
+
+
+def test_missing_openfoam_env_returns_environment_missing(tmp_path, monkeypatch):
+    monkeypatch.setenv("SIMULATION_CLI_OPENFOAM_ENV", str(tmp_path / "nonexistent-env.sh"))
+    monkeypatch.setenv("SIMULATION_CLI_STATE", str(tmp_path / "state"))
+    monkeypatch.setenv("PRINCIPIA_CASE_ROOT", str(tmp_path / "cases"))
+    monkeypatch.delenv("SIMULATION_CLI_HPC_CONFIG", raising=False)
+    case = tmp_path / "cases/c"
+    (case / "system").mkdir(parents=True)
+    (case / "system/blockMeshDict").write_text("hex (0 1 2 3 4 5 6 7) (4 4 4) simpleGrading (1 1 1)")
+
+    s = SimulationCLI()
+    caps = s.capabilities()
+    assert caps["local"]["available_commands"] == []
+    assert caps["local"]["software"] == "OpenFOAM env not configured"
+    with pytest.raises(Problem) as exc:
+        s.execute("blockMesh", [], str(case), location="local", dry_run=True)
+    assert exc.value.data["category"] == "environment_missing"
+
+
+def test_system_openfoam_env_exposes_blastfoam_and_preserves_guardrails(service):
+    s, c = service
+    caps = s.capabilities()["local"]
+    assert caps["env_script"] == "/data/OpenFOAM/env.sh"
+    assert "Foundation OpenFOAM-9" in caps["software"]
+    for cmd in ("blockMesh", "checkMesh", "setFields", "decomposePar", "reconstructPar", "foamDictionary", "postProcess", "blastFoam"):
+        assert cmd in caps["available_commands"]
+    assert caps["cpus"] == 4
+    assert caps["memory_mib"] == 4096
+    assert caps["max_seconds"] == 180
+    assert caps["memory_reserve_bytes"] == 512 * 1024 * 1024
+    assert caps["defaults"] == dict(cpus=2, memory_mib=2048, timeout_seconds=60)
