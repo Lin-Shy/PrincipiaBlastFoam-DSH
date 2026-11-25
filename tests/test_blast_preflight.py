@@ -145,3 +145,26 @@ def test_preflight_mcp_tool_registered(tmp_path, monkeypatch):
     tools = {t.name for t in asyncio.run(mcp.list_tools())}
     assert "blast_preflight_check" in tools
     assert "pressure_probe_summary" in tools
+
+
+def test_preflight_catches_non_integer_timestep_write_interval(tmp_path):
+    case = _make_valid_blast_case(tmp_path / "bad_probe_interval")
+    ctrl_path = case / "system" / "controlDict"
+    ctrl = ctrl_path.read_text(encoding="utf-8")
+    broken_ctrl = ctrl.replace(
+        "type probes;",
+        "type probes;\n        writeControl timeStep;\n        writeInterval 0.002;",
+        1,
+    )
+    ctrl_path.write_text(broken_ctrl, encoding="utf-8")
+    res = preflight_blast_case(case)
+    assert res["ok"] is False
+    assert any("functions.probes1" in err and "0.002" in err for err in res["errors"])
+
+    ctrl_path.write_text(
+        broken_ctrl.replace("writeInterval 0.002;", "writeInterval 1;", 1),
+        encoding="utf-8",
+    )
+    res_fixed = preflight_blast_case(case)
+    assert res_fixed["ok"] is True
+    assert res_fixed["errors"] == []

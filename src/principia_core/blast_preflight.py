@@ -60,6 +60,33 @@ def _extract_braced_block(text: str, name: str) -> str | None:
     return None
 
 
+def _iter_top_braced_blocks(text: str) -> list[tuple[str, str]]:
+    """Extract top-level `name { ... }` blocks inside a dictionary body."""
+    blocks: list[tuple[str, str]] = []
+    idx = 0
+    n = len(text)
+    while idx < n:
+        match = re.search(r"(?m)^[ \t]*([A-Za-z_][\w.-]*)\s*\{", text[idx:])
+        if not match:
+            break
+        name = match.group(1)
+        brace_open = idx + match.end() - 1
+        depth = 0
+        end = n
+        for pos in range(brace_open, n):
+            ch = text[pos]
+            if ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0:
+                    end = pos
+                    break
+        blocks.append((name, text[brace_open + 1 : end]))
+        idx = end + 1
+    return blocks
+
+
 def _extract_paren_block(text: str, name: str) -> str | None:
     pattern = re.compile(rf"(?m)(?:^|\s){re.escape(name)}\s*\(")
     match = pattern.search(text)
@@ -214,6 +241,22 @@ def preflight_blast_case(case_path: str | Path) -> dict[str, Any]:
                 warnings.append("Blast solver controlDict adjustTimeStep is not enabled (yes/true).")
             if not has_probes:
                 warnings.append("controlDict defines no probes functionObject for pressure-time extraction.")
+        def _check_timestep_write_interval(scope_label: str, block_txt: str) -> None:
+            wc = _extract_scalar(block_txt, "writeControl")
+            wi = _extract_scalar(block_txt, "writeInterval")
+            if wc == "timeStep" and wi is not None:
+                token = wi.split()[-1]
+                if not re.fullmatch(r"[1-9]\d*", token):
+                    errors.append(
+                        f"{scope_label} uses writeControl timeStep but writeInterval ({token}) is not a positive integer."
+                    )
+
+        fn_block = _extract_braced_block(ctrl_txt, "functions")
+        top_ctrl_txt = ctrl_txt.replace(fn_block, "") if fn_block else ctrl_txt
+        _check_timestep_write_interval("controlDict", top_ctrl_txt)
+        if fn_block:
+            for fn_name, sub_blk in _iter_top_braced_blocks(fn_block):
+                _check_timestep_write_interval(f"controlDict functions.{fn_name}", sub_blk)
     checks["controlDict"] = ctrl_info
 
     # 3. phaseProperties JWL + charge initialization + mesh resolution
