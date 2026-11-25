@@ -379,3 +379,28 @@ def test_hpc_ssh_timeout_default_and_config_override(service, tmp_path, monkeypa
     assert h2.ssh("echo 3") == "ok\n"
 
     assert recorded == [("echo 1", 120), ("echo 2", 75), ("echo 3", 180)]
+
+def test_build_hpc_run_case_script_exports_mpi_buffer_size():
+    from principia_core.simulation_cli import build_hpc_run_case_script
+
+    cfg = {
+        "mpi_launcher": "srun_pmix",
+        "command_paths": {"blastFoam": "/opt/openfoam/bin/blastFoam"},
+    }
+    mpi_plan = {
+        "command": "mpirun",
+        "args": ["-np", "2", "blastFoam"],
+        "timeout_seconds": 180,
+    }
+    mpi_script = build_hpc_run_case_script(mpi_plan, cfg)
+    assert 'export MPI_BUFFER_SIZE="${MPI_BUFFER_SIZE:-20000000}"' in mpi_script
+    assert "/usr/bin/srun --export=ALL --nodes=1 --ntasks=2 --mpi=pmix /opt/openfoam/bin/blastFoam -parallel" in mpi_script
+
+    serial_plan = {
+        "command": "blockMesh",
+        "args": [],
+        "timeout_seconds": 60,
+    }
+    serial_script = build_hpc_run_case_script(serial_plan, cfg)
+    assert "MPI_BUFFER_SIZE" not in serial_script
+    assert "timeout --signal=TERM --kill-after=5 60 blockMesh" in serial_script

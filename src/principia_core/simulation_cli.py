@@ -159,6 +159,16 @@ def build_hpc_command_argv(plan: dict, cfg: dict) -> list[str]:
         reject("unsupported", f"Unknown HPC mpi_launcher: {launcher}")
     return [cmd, *args]
 
+def build_hpc_run_case_script(plan: dict, cfg: dict) -> str:
+    """Build payload/run_case.sh with OpenFOAM parallel MPI_BUFFER_SIZE safeguard."""
+    argv = build_hpc_command_argv(plan, cfg)
+    lines = ["set -euo pipefail"]
+    if plan["command"] == "mpirun":
+        lines.append('export MPI_BUFFER_SIZE="${MPI_BUFFER_SIZE:-20000000}"')
+    lines.append("cd payload/case")
+    lines.append(shlex.join(["timeout", "--signal=TERM", "--kill-after=5", str(plan["timeout_seconds"]), *argv]))
+    return "\n".join(lines) + "\n"
+
 class Problem(Exception):
     def __init__(self,category,reason,suggestion="Inspect status() capabilities and task evidence."):
         self.data=dict(ok=False,category=category,reason=reason,suggestion=suggestion)
@@ -402,8 +412,7 @@ class HPC:
             write(self.folder/"hpc-submit-intent.json",intent)
         payload=self.folder/"payload";shutil.copytree(plan["case_path"],payload/"case")
         if inventory(payload/"case")[0]!=plan["input_sha256"]:reject("prohibited","Input changed while staging.")
-        argv=build_hpc_command_argv(plan,self.cfg)
-        script="set -euo pipefail\ncd payload/case\n"+shlex.join(["timeout","--signal=TERM","--kill-after=5",str(plan["timeout_seconds"]),*argv])+"\n"
+        script=build_hpc_run_case_script(plan,self.cfg)
         (payload/"run_case.sh").write_text(script)
         batch=spec["batch_script"].replace('node=$(hostname -s)','printf "%s\\n" "$record" > logs/scheduler-allocation.txt\nnode=$(hostname -s)')
         batch=batch.replace("bash payload/run_case.sh",f"ulimit -f {hpc_ulimit_f_blocks(self.cfg)}\nbash payload/run_case.sh")
